@@ -209,10 +209,18 @@ int check_acpi(void)
 
     /* skip . and .. */
     if (!strncmp (".", name, 1) || !strncmp ("..", name, 2)) continue;
+    
+    sprintf (batteries[batt_count], "/proc/acpi/battery/%s/state", name);
+    if (!(acpi = fopen (batteries[batt_count], "r"))) {
+       sprintf (batteries[batt_count], "/proc/acpi/battery/%s/status", name);
+    }
+    else fclose (acpi);
+#if 0    
     if (!(acpi = fopen ("/proc/acpi/battery/1/status", "r")))
 	    sprintf (batteries[batt_count], "/proc/acpi/battery/%s/state", name);
     else
 	    sprintf (batteries[batt_count], "/proc/acpi/battery/%s/status", name);
+#endif    
     sprintf (battinfo[batt_count], "/proc/acpi/battery/%s/info", name);
     batt_count++;
   }

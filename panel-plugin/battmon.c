@@ -51,6 +51,8 @@
 extern xmlDocPtr xmlconfig;
 #define DATA(node) xmlNodeListGetString(xmlconfig, node->children, 1)
 
+#define LOW_COLOR "#ff0000"
+
 typedef struct
 {
 	gboolean	display_percentage;	/* Options */
@@ -77,6 +79,7 @@ typedef struct
 	gboolean		low;
 	gboolean		critical;
 	t_battmon_options	options;
+	GdkColor		color;
 } t_battmon;
 
 typedef struct
@@ -294,6 +297,9 @@ update_apm_status(t_battmon *battmon)
 	if(!battmon->critical && charge <= battmon->options.critical_percentage) {
 		battmon->critical = TRUE;
 		battmon->low = TRUE;
+
+		gtk_widget_modify_bg(battmon->battstatus, GTK_STATE_PRELIGHT, &(battmon->color));
+
 		if(battmon->options.action_on_critical == BM_MESSAGE)
 			xfce_warn(_("WARNING: Your battery has reached critical status. You should plug in or shutdown your computer now to avoid possible data loss."));
 		if(battmon->options.action_on_critical == BM_COMMAND) {
@@ -310,6 +316,9 @@ update_apm_status(t_battmon *battmon)
 
 	if(!battmon->low && charge <= battmon->options.low_percentage) {
 		battmon->low = TRUE;
+
+		gtk_widget_modify_bg(battmon->battstatus, GTK_STATE_PRELIGHT, &(battmon->color));
+
 		if(battmon->options.action_on_low == BM_MESSAGE)
 			xfce_warn(_("WARNING: Your battery is running low. You should consider plugging in or shutting down your computer soon to avoid possible data loss."));
 		if(battmon->options.action_on_low == BM_COMMAND) {
@@ -321,8 +330,10 @@ update_apm_status(t_battmon *battmon)
 				exec_cmd(battmon->options.command_on_low, 1, 0);
 		}
 	}
-	else if(battmon->low && charge > battmon->options.low_percentage)
+	else if(battmon->low && charge > battmon->options.low_percentage) {
 		battmon->low = FALSE;
+		gtk_widget_modify_bg(battmon->battstatus, GTK_STATE_PRELIGHT, NULL);
+	}
 
 	return TRUE;
 }
@@ -353,6 +364,8 @@ battmon_new(void)
 
 	battmon->timeoutid = 0;
 	battmon->flag = FALSE;
+
+	gdk_color_parse(LOW_COLOR, &(battmon->color));
 	
 	return(battmon);
 }

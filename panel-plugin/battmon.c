@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 2003 Nicholas Penwarden <toth64@yahoo.com>
  * Copyright (c) 2003 Benedikt Meurer <benedikt.meurer@unix-ag.uni-siegen.de>
+ * Copyright (c) 2003 edscott wilson garcia <edscott@users.sourceforge.net>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -39,6 +40,11 @@
 #include <apm.h>
 #endif
 
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <fcntl.h>
+#include <unistd.h>
+
 #include <libxfce4util/i18n.h>
 #include <libxfcegui4/dialogs.h>
 #include <panel/global.h>
@@ -46,15 +52,21 @@
 #include <panel/plugins.h>
 #include <panel/xfce_support.h>
 
-#include "acpi-linux.h"
+#ifdef __linux__
+#include "libacpi.h"
+#endif
 
 extern xmlDocPtr xmlconfig;
 #define DATA(node) xmlNodeListGetString(xmlconfig, node->children, 1)
 
-#define LOW_COLOR "#ff0000"
+#define HIGH_COLOR "#00ff00"
+#define LOW_COLOR "#ffff00"
+#define CRITICAL_COLOR "#ff0000"
 
 typedef struct
 {
+	gboolean	display_label;	/* Options */
+	gboolean	display_power;	/* Options */
 	gboolean	display_percentage;	/* Options */
 	gboolean	tooltip_display_percentage;
 	gboolean	tooltip_display_time;
@@ -75,15 +87,25 @@ typedef struct
 	GtkWidget		*battstatus;
 	int			timeoutid;	/* To update apm status */
 	int			method;
+	int 			orientation;
 	gboolean		flag;
 	gboolean		low;
 	gboolean		critical;
 	t_battmon_options	options;
-	GdkColor		color;
+	GdkColor		colorH;
+	GdkColor		colorL;
+	GdkColor		colorC;
+	GtkLabel		*label;
+	GtkLabel		*charge;
+	GtkLabel		*rtime;
+	GtkLabel		*acfan;
+	GtkLabel		*temp;
 } t_battmon;
 
 typedef struct
 {
+	GtkWidget		*cb_disp_power;
+	GtkWidget		*cb_disp_label;
 	GtkWidget		*cb_disp_percentage;
 	GtkWidget		*cb_disp_tooltip_percentage;
 	GtkWidget		*cb_disp_tooltip_time;
@@ -104,9 +126,12 @@ enum {BM_BROKEN, BM_USE_ACPI, BM_USE_APM};
 
 static GtkWidget *top_dialog;
 
+
 static void
 init_options(t_battmon_options *options)
 {
+	options->display_label = FALSE;
+	options->display_power = FALSE;
 	options->display_percentage = FALSE;
 	options->tooltip_display_percentage = FALSE;
 	options->tooltip_display_time = FALSE;
@@ -164,10 +189,14 @@ detect_battery_info(t_battmon *battmon)
   	return TRUE;
 #elif __linux__
 	/* First check to see if ACPI is available */
-	if(acpi_linux_read(&apm)) {
-		/* ACPI detected and working */
+	if(check_acpi()==0) {
+		/* ACPI detected */
 		battmon->method = BM_USE_ACPI;
-		return TRUE;
+		read_acpi_info(0); /* only consider first battery... */
+		read_acpi_state(0); /* only consider first battery... */
+		apm.battery_percentage=acpistate->percentage;
+		apm.battery_time=acpistate->rtime;
+	return TRUE;
 	}
 	if(apm_read(&apm) == 0) {
 		/* ACPI not detected, but APM works */
@@ -191,29 +220,12 @@ update_apm_status(t_battmon *battmon)
 	struct apm_info apm;
 #endif
 	int charge;
+	gboolean fan=FALSE;
+	const char *temp;
 	int time_remaining;
 	gboolean acline;
 	gchar buffer[128];
 
-	if(battmon->method == BM_BROKEN) {
-		/* See if ACPI or APM support has been enabled yet */
-		if(!detect_battery_info(battmon)) return TRUE;
-		if(battmon->timeoutid != 0) g_source_remove(battmon->timeoutid);
-		/* Poll only once per minute if using ACPI due to a bug */
-		if(battmon->method == BM_USE_ACPI) {
-			battmon->timeoutid = g_timeout_add(60 * 1000, (GSourceFunc) update_apm_status, battmon);
-		}
-	        else {
-			battmon->timeoutid = g_timeout_add(2 * 1000, (GSourceFunc) update_apm_status, battmon);
-		}
-	}
-
-	/* Show initial state if using ACPI rather than waiting a minute */
-	if(battmon->flag) {
-		battmon->flag = FALSE;
-		g_source_remove(battmon->timeoutid);
-		battmon->timeoutid = g_timeout_add(60 * 1000, (GSourceFunc) update_apm_status, battmon);
-	}
 
 #ifdef __FreeBSD__
   /* This is how I read the information from the APM subsystem under
@@ -251,91 +263,243 @@ update_apm_status(t_battmon *battmon)
   	time_remaining = apm.minutes_left;
   	acline = apm.ac_state ? TRUE : FALSE;
 #elif __linux__
-	if(battmon->method == BM_USE_ACPI) acpi_linux_read(&apm);
+	if(battmon->method == BM_BROKEN) {
+		/* See if ACPI or APM support has been enabled yet */
+		if(!detect_battery_info(battmon)) return TRUE;
+		if(battmon->timeoutid != 0) g_source_remove(battmon->timeoutid);
+		/* Poll only once per minute if using ACPI due to a bug */
+#ifdef TURTLE_UPDATES
+		/* what bug? I don't see any bug here on my box. */
+		if(battmon->method == BM_USE_ACPI) {
+			battmon->timeoutid = g_timeout_add(60 * 1024, (GSourceFunc) update_apm_status, battmon);
+		}
+	        else 
+#endif
+			battmon->timeoutid = g_timeout_add(2 * 1024, (GSourceFunc) update_apm_status, battmon);
+	}
+
+	/* Show initial state if using ACPI rather than waiting a minute */
+	if(battmon->flag) {
+		battmon->flag = FALSE;
+		g_source_remove(battmon->timeoutid);
+		battmon->timeoutid = g_timeout_add(2 * 1024, (GSourceFunc) update_apm_status, battmon);
+	}
+	if(battmon->method == BM_USE_ACPI) {
+		apm.ac_line_status=read_acad_state();
+		read_acpi_state(0); /* only consider first battery... */
+		apm.battery_percentage=acpistate->percentage;
+		apm.battery_time=acpistate->rtime;
+	}
 	else apm_read(&apm);	/* not broken and not using ACPI, assume APM */
 	charge = apm.battery_percentage;
-	if(battmon->method == BM_USE_ACPI) time_remaining = 0; /* no such info for ACPI :( */
-	else time_remaining = apm.battery_time;
+	time_remaining = apm.battery_time;
 	acline = apm.ac_line_status ? TRUE : FALSE;
 #endif
 	
+	
 	if(charge < 0) charge = 0;
 	gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(battmon->battstatus), charge / 100.0);
-
-	if(battmon->options.tooltip_display_percentage && battmon->options.tooltip_display_time) {
-		if(acline) 
-			g_snprintf(buffer, sizeof(buffer), _("%d%% (AC on-line)"), charge);
-		else if(time_remaining > 0)
-			g_snprintf(buffer, sizeof(buffer), _("%d%% (%d:%.2d) remaining"), charge, time_remaining / 60, time_remaining % 60);
-		else
-			g_snprintf(buffer, sizeof(buffer), _("%d%% (AC off-line)"), charge);
-
-		add_tooltip(battmon->ebox, buffer);
+	
+	if(battmon->options.display_label){
+		gtk_widget_show((GtkWidget *)battmon->label);
+	} else {
+		gtk_widget_hide((GtkWidget *)battmon->label);
 	}
-	else if(battmon->options.tooltip_display_percentage) {
-		g_snprintf(buffer, sizeof(buffer), _("%d%%"), charge);
-		add_tooltip(battmon->ebox, buffer);
+	
+	if(battmon->options.display_percentage){
+		gtk_widget_show((GtkWidget *)battmon->charge);
+		gtk_widget_show((GtkWidget *)battmon->rtime);
+		g_snprintf(buffer, sizeof(buffer),"%d%% ", charge);
+		gtk_label_set_text(battmon->charge,buffer);
+		g_snprintf(buffer, sizeof(buffer),"%02d:%02d ",time_remaining/60,time_remaining%60);
+		gtk_label_set_text(battmon->rtime,buffer);
+	} else {
+		gtk_widget_hide((GtkWidget *)battmon->charge);
+		gtk_widget_hide((GtkWidget *)battmon->rtime);
 	}
-	else if(battmon->options.tooltip_display_time) {
-		if(acline) 
-			g_snprintf(buffer, sizeof(buffer), _("AC on-line"));
-		else if(time_remaining > 0)
-			g_snprintf(buffer, sizeof(buffer), _("%d:%.2d remaining"), time_remaining / 60, time_remaining % 60);
-		else
-			g_snprintf(buffer, sizeof(buffer), _("AC off-line"));
+		
 
-		add_tooltip(battmon->ebox, buffer);
-	}
-	else add_tooltip(battmon->ebox, NULL);
-
-	if(battmon->options.display_percentage) {
-		g_snprintf(buffer, sizeof(buffer), _("%d%%"), charge);
-		gtk_progress_bar_set_text(GTK_PROGRESS_BAR(battmon->battstatus), buffer);	
-	}
-	else gtk_progress_bar_set_text(GTK_PROGRESS_BAR(battmon->battstatus), NULL);
-
-	if(!battmon->critical && charge <= battmon->options.critical_percentage) {
-		battmon->critical = TRUE;
-		battmon->low = TRUE;
-
-		gtk_widget_modify_bg(battmon->battstatus, GTK_STATE_PRELIGHT, &(battmon->color));
-
-		if(battmon->options.action_on_critical == BM_MESSAGE)
-			xfce_warn(_("WARNING: Your battery has reached critical status. You should plug in or shutdown your computer now to avoid possible data loss."));
-		if(battmon->options.action_on_critical == BM_COMMAND) {
-			if(battmon->options.command_on_critical && battmon->options.command_on_critical[0])
-				exec_cmd(battmon->options.command_on_critical, 0, 0);
+	if(acline) {
+		char *t=(charge<100.0)?_("(Charging from AC)"):_("(AC on-line)");
+		if(battmon->options.tooltip_display_percentage) {
+			g_snprintf(buffer, sizeof(buffer), "%d%% %s", charge,t);
 		}
-		if(battmon->options.action_on_critical == BM_COMMAND_TERM) {
-			if(battmon->options.command_on_critical && battmon->options.command_on_critical[0])
-				exec_cmd(battmon->options.command_on_critical, 1, 0);
-		}
+		else 
+			g_snprintf(buffer, sizeof(buffer), "%s",t);
 	}
-	else if(battmon->critical && charge > battmon->options.critical_percentage)
+	else {
+		if(battmon->options.tooltip_display_percentage && battmon->options.tooltip_display_time)
+		     g_snprintf(buffer, sizeof(buffer), _("%d%% (%02d:%02d) remaining"), charge, time_remaining / 60, time_remaining % 60);
+		else if(battmon->options.tooltip_display_percentage)
+		     g_snprintf(buffer, sizeof(buffer), _("%02d:%02d remaining"), charge, time_remaining / 60, time_remaining % 60);
+		else if(battmon->options.tooltip_display_time)
+		     g_snprintf(buffer, sizeof(buffer), _("%d%% remaining"), charge);
+   		else
+		     g_snprintf(buffer, sizeof(buffer), _("AC off-line"), charge);
+	}
+	add_tooltip(battmon->ebox, buffer);
+
+	if(battmon->options.display_power){
+	  gtk_widget_show((GtkWidget *)battmon->acfan);
+	  gtk_widget_show((GtkWidget *)battmon->temp);
+	  fan=get_fan_status();
+  	  if(acline && fan) gtk_label_set_text(battmon->acfan,"AC FAN");
+	  else if(acline && !fan) gtk_label_set_text(battmon->acfan,"AC");
+	  else if(!acline && fan) gtk_label_set_text(battmon->acfan,"FAN");
+	  else gtk_label_set_text(battmon->acfan,"");
+	
+	  temp=get_temperature();
+	  if(temp) gtk_label_set_text(battmon->temp,temp);
+	  else gtk_label_set_text(battmon->temp,"");
+	} else {
+	  gtk_widget_hide((GtkWidget *)battmon->acfan);
+	  gtk_widget_hide((GtkWidget *)battmon->temp);
+	}
+	
+		
+	gtk_progress_bar_set_text(GTK_PROGRESS_BAR(battmon->battstatus), NULL);
+	
+	/* bar colors and state flags */
+	if (acline) {
+	  battmon->low = battmon->critical = FALSE;
+	  gtk_widget_modify_bg(battmon->battstatus, GTK_STATE_PRELIGHT, NULL);
+	}
+	else {
+	  if(charge <= battmon->options.critical_percentage) {
+		gtk_widget_modify_bg(battmon->battstatus, GTK_STATE_PRELIGHT, &(battmon->colorC));
+	  } 
+	  else if(charge <= battmon->options.low_percentage) {
+		gtk_widget_modify_bg(battmon->battstatus, GTK_STATE_PRELIGHT, &(battmon->colorL));
 		battmon->critical = FALSE;
-
-	if(!battmon->low && charge <= battmon->options.low_percentage) {
-		battmon->low = TRUE;
-
-		gtk_widget_modify_bg(battmon->battstatus, GTK_STATE_PRELIGHT, &(battmon->color));
-
-		if(battmon->options.action_on_low == BM_MESSAGE)
-			xfce_warn(_("WARNING: Your battery is running low. You should consider plugging in or shutting down your computer soon to avoid possible data loss."));
-		if(battmon->options.action_on_low == BM_COMMAND) {
-			if(battmon->options.command_on_low && battmon->options.command_on_low[0])
-				exec_cmd(battmon->options.command_on_low, 0, 0);
-		}
-		if(battmon->options.action_on_low == BM_COMMAND_TERM) {
-			if(battmon->options.command_on_low && battmon->options.command_on_low[0])
-				exec_cmd(battmon->options.command_on_low, 1, 0);
-		}
-	}
-	else if(battmon->low && charge > battmon->options.low_percentage) {
-		battmon->low = FALSE;
-		gtk_widget_modify_bg(battmon->battstatus, GTK_STATE_PRELIGHT, NULL);
+	  } 
+	  else {
+	    	battmon->low = battmon->critical = FALSE;
+		gtk_widget_modify_bg(battmon->battstatus, GTK_STATE_PRELIGHT, &(battmon->colorH));
+	  }
 	}
 
+	/* alarms */
+	if (!acline && charge <= battmon->options.low_percentage){
+		if(!battmon->critical && charge <= battmon->options.critical_percentage) {
+		   	battmon->critical = TRUE;
+			if(battmon->options.action_on_critical == BM_MESSAGE){
+do_critical_warn:
+				xfce_warn(_("WARNING: Your battery has reached critical status. You should plug in or shutdown your computer now to avoid possible data loss."));
+				return TRUE;
+			}
+			if(battmon->options.action_on_critical == BM_COMMAND || 
+			   battmon->options.action_on_critical == BM_COMMAND_TERM){
+				int interm=(battmon->options.action_on_critical == BM_COMMAND_TERM)?1:0;
+				if (!battmon->options.command_on_critical ||
+				    !strlen(battmon->options.command_on_critical)) goto do_critical_warn;
+				exec_cmd(battmon->options.command_on_critical, interm, 0);
+			}
+		} else if (!battmon->low){
+		        battmon->low = TRUE;
+			if(battmon->options.action_on_low == BM_MESSAGE){
+do_low_warn:
+				xfce_warn(_("WARNING: Your battery is running low. You should consider plugging in or shutting down your computer soon to avoid possible data loss."));
+				return TRUE;
+			}
+			if(battmon->options.action_on_low == BM_COMMAND ||
+			   battmon->options.action_on_low == BM_COMMAND_TERM){
+				int interm=(battmon->options.action_on_low == BM_COMMAND_TERM)?1:0;
+				if (!battmon->options.command_on_low ||
+				    !strlen(battmon->options.command_on_low)) goto do_low_warn;
+				exec_cmd(battmon->options.command_on_low, interm, 0);
+			}
+		}
+	}
 	return TRUE;
+}
+
+
+static setup_battmon(t_battmon *battmon,int orientation){
+	GtkWidget *box,*vbox;
+	battmon->battstatus = gtk_progress_bar_new();
+	if (orientation == HORIZONTAL) 
+	{
+	   gtk_progress_bar_set_orientation(GTK_PROGRESS_BAR(battmon->battstatus), 
+			   GTK_PROGRESS_BOTTOM_TO_TOP);
+	   box=gtk_hbox_new(FALSE, 0);
+	   battmon->vbox = gtk_hbox_new(FALSE, 0);
+	} else {
+	   gtk_progress_bar_set_orientation(GTK_PROGRESS_BAR(battmon->battstatus), 
+			   GTK_PROGRESS_LEFT_TO_RIGHT);
+	   box=gtk_vbox_new(FALSE, 0);
+	   battmon->vbox = gtk_vbox_new(FALSE, 0);
+	}
+	
+	gtk_container_set_border_width(GTK_CONTAINER(battmon->vbox), border_width);
+
+	gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(battmon->battstatus), 0.0);
+	
+
+	
+  	battmon->label = (GtkLabel *)gtk_label_new(_("Battery"));
+    	gtk_box_pack_start(GTK_BOX(box),GTK_WIDGET(battmon->label),FALSE, FALSE, 0);
+	
+	gtk_box_pack_start(GTK_BOX(box),  GTK_WIDGET(battmon->battstatus), FALSE, FALSE, 0);
+
+	vbox=gtk_vbox_new(FALSE, 0);
+	
+	/* percent + rtime */
+        gtk_box_pack_start(GTK_BOX(box), GTK_WIDGET(vbox), FALSE, FALSE, 0);
+	
+  	battmon->charge = (GtkLabel *)gtk_label_new("50%%");
+    	gtk_box_pack_start(GTK_BOX(vbox),GTK_WIDGET(battmon->charge),FALSE, FALSE, 0);
+	
+  	battmon->rtime = (GtkLabel *)gtk_label_new("01:00");
+    	gtk_box_pack_start(GTK_BOX(vbox),GTK_WIDGET(battmon->rtime),FALSE, FALSE, 0);
+
+	vbox=gtk_vbox_new(FALSE, 0);
+	
+	/* ac-fan-temp */
+        gtk_box_pack_start(GTK_BOX(box), GTK_WIDGET(vbox), FALSE, FALSE, 0);
+  	
+	battmon->acfan = (GtkLabel *)gtk_label_new("AC FAN");
+    	gtk_box_pack_start(GTK_BOX(vbox),GTK_WIDGET(battmon->acfan),FALSE, FALSE, 0);
+	 
+  	battmon->temp = (GtkLabel *)gtk_label_new("40 C");
+    	gtk_box_pack_start(GTK_BOX(vbox),GTK_WIDGET(battmon->temp),FALSE, FALSE, 0);
+
+
+
+	gtk_box_pack_start(GTK_BOX(battmon->vbox), box, FALSE, FALSE, 0);
+	gtk_widget_show_all(battmon->vbox);
+	if(!battmon->options.display_label)
+		gtk_widget_hide((GtkWidget *)battmon->label);
+	if(!battmon->options.display_power){
+		gtk_widget_hide((GtkWidget *)battmon->acfan);
+		gtk_widget_hide((GtkWidget *)battmon->temp);
+	}
+	if(!battmon->options.display_percentage){
+		gtk_widget_hide((GtkWidget *)battmon->charge);
+		gtk_widget_hide((GtkWidget *)battmon->rtime);
+	} 
+
+	gtk_container_add(GTK_CONTAINER(battmon->ebox),GTK_WIDGET(battmon->vbox));
+	gtk_widget_show(battmon->ebox);
+
+
+	gdk_color_parse(HIGH_COLOR, &(battmon->colorH));
+	gdk_color_parse(LOW_COLOR, &(battmon->colorL));
+	gdk_color_parse(CRITICAL_COLOR, &(battmon->colorC));
+	gtk_widget_set_size_request(battmon->ebox, -1, -1);
+
+}
+
+static void
+battmon_set_orientation (Control * ctrl, int orientation)
+{
+
+    t_battmon *battmon   = ctrl->data;
+    battmon->orientation=orientation;		
+    if (battmon->timeoutid) g_source_remove(battmon->timeoutid);
+    gtk_container_remove(GTK_CONTAINER(battmon->ebox), GTK_WIDGET(battmon->vbox));
+    setup_battmon(battmon,orientation);
+    battmon->timeoutid = g_timeout_add(1 * 1024, (GSourceFunc) update_apm_status, battmon);
+    gtk_widget_set_size_request(ctrl->base, -1, -1);
 }
 
 static t_battmon *
@@ -348,25 +512,11 @@ battmon_new(void)
 
 	battmon->low = FALSE;
 	battmon->critical = FALSE;
-	battmon->vbox = gtk_vbox_new(FALSE, 0);
-	gtk_widget_show(battmon->vbox);
-	gtk_container_set_border_width(GTK_CONTAINER(battmon->vbox), border_width);
-
-	battmon->battstatus = gtk_progress_bar_new();
-	gtk_widget_show(battmon->battstatus);
-	gtk_progress_bar_set_orientation(GTK_PROGRESS_BAR(battmon->battstatus), GTK_PROGRESS_LEFT_TO_RIGHT);
-	gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(battmon->battstatus), 0.0);
-		
 	battmon->ebox = gtk_event_box_new();
-	gtk_widget_show(battmon->ebox);
-	gtk_container_add(GTK_CONTAINER(battmon->ebox), battmon->battstatus);
-	gtk_box_pack_start(GTK_BOX(battmon->vbox), battmon->ebox, FALSE, FALSE, 0);
-
+	battmon->orientation=HORIZONTAL;
+	setup_battmon(battmon,HORIZONTAL);
 	battmon->timeoutid = 0;
 	battmon->flag = FALSE;
-
-	gdk_color_parse(LOW_COLOR, &(battmon->color));
-	
 	return(battmon);
 }
 
@@ -377,7 +527,7 @@ battmon_control_new(Control *ctrl)
 
 	battmon = battmon_new();
 
-	gtk_container_add(GTK_CONTAINER(ctrl->base), battmon->vbox);
+	gtk_container_add(GTK_CONTAINER(ctrl->base), battmon->ebox);
 
 	ctrl->data = (gpointer)battmon;
 	ctrl->with_popup = FALSE;
@@ -388,15 +538,15 @@ battmon_control_new(Control *ctrl)
 	battmon->method = BM_BROKEN;
 	update_apm_status(battmon);	
 
-	/* If neither ACPI nor APM are enabled, check for either every 30 seconds */
+	/* If neither ACPI nor APM are enabled, check for either every 60 seconds */
 	if(battmon->timeoutid == 0)
-		battmon->timeoutid = g_timeout_add(30 * 1000, (GSourceFunc) update_apm_status, battmon);
+		battmon->timeoutid = g_timeout_add(60 * 1024, (GSourceFunc) update_apm_status, battmon);
 
 	/* Required for the percentage and tooltip to be initially displayed due to the long timeout for ACPI */
 	if(battmon->method == BM_USE_ACPI) {
 		battmon->flag = TRUE;
 		g_source_remove(battmon->timeoutid);
-		battmon->timeoutid = g_timeout_add(2 * 1000, (GSourceFunc) update_apm_status, battmon);
+		battmon->timeoutid = g_timeout_add(1000, (GSourceFunc) update_apm_status, battmon);
 	}
 
 	return(TRUE);
@@ -434,6 +584,14 @@ battmon_read_config(Control *ctrl, xmlNodePtr parent)
 
 	if(!xmlStrEqual(child->name, "BatteryMonitor")) return;
 
+	if(value = xmlGetProp(child, (const xmlChar *) "display_label")) {
+		battmon->options.display_label = atoi(value);
+		g_free(value);
+	}
+	if(value = xmlGetProp(child, (const xmlChar *) "display_power")) {
+		battmon->options.display_power = atoi(value);
+		g_free(value);
+	}
 	if(value = xmlGetProp(child, (const xmlChar *) "display_percentage")) {
 		battmon->options.display_percentage = atoi(value);
 		g_free(value);
@@ -487,7 +645,14 @@ battmon_write_config(Control *ctrl, xmlNodePtr parent)
 
 	t_battmon *battmon = (t_battmon *) ctrl->data;
 
+ 
 	root = xmlNewTextChild(parent, NULL, "BatteryMonitor", NULL);
+	/* Display label */
+	g_snprintf(value, 2, "%d", battmon->options.display_label);
+	xmlSetProp(root, "display_label", value);
+	/* Display Power */
+	g_snprintf(value, 2, "%d", battmon->options.display_power);
+	xmlSetProp(root, "display_power", value);
 	/* Display Percentage */
 	g_snprintf(value, 2, "%d", battmon->options.display_percentage);
 	xmlSetProp(root, "display_percentage", value);
@@ -512,7 +677,9 @@ battmon_write_config(Control *ctrl, xmlNodePtr parent)
 	/* Command on Low */
 	xmlNewTextChild(root, NULL, "command_on_low", battmon->options.command_on_low);
 	/* Command on Critical */
+
 	xmlNewTextChild(root, NULL, "command_on_critical", battmon->options.command_on_critical);
+
 }
 
 static void
@@ -530,13 +697,13 @@ static void
 battmon_set_size(Control *ctrl, int size)
 {
 	t_battmon *battmon = (t_battmon *)ctrl->data;
-	
-	gtk_widget_set_size_request(battmon->vbox, icon_size[size] * battmon->options.hsize, icon_size[size] /* * battmon->options.vsize */);
-	gtk_widget_set_size_request(battmon->battstatus, icon_size[size] * battmon->options.hsize, icon_size[size] * battmon->options.vsize);
-	if(battmon->options.vsize < 1)
-		gtk_box_set_child_packing(GTK_BOX(battmon->vbox), battmon->ebox, FALSE, FALSE, icon_size[size] * (1 - battmon->options.vsize) / 2, GTK_PACK_START);
-	else
-		gtk_box_set_child_packing(GTK_BOX(battmon->vbox), battmon->ebox, FALSE, FALSE, 0, GTK_PACK_START);
+	if (battmon->orientation==HORIZONTAL)
+	      gtk_widget_set_size_request(GTK_WIDGET(battmon->battstatus),
+                                         6 + 2 * size,icon_size[size]);
+	else 
+	      gtk_widget_set_size_request(GTK_WIDGET(battmon->battstatus),
+                                         icon_size[size],6 + 2 * size);
+	gtk_widget_set_size_request(ctrl->base, -1, -1);
 }
 
 /* No longer needed as Revert is no longer a part of the XFce4 panel plugin API
@@ -576,6 +743,8 @@ static void refresh_dialog(t_battmon_dialog *dialog)
 		gtk_entry_set_text(GTK_ENTRY(dialog->en_command_critical), battmon->options.command_on_critical);
 	else
 		gtk_entry_set_text(GTK_ENTRY(dialog->en_command_critical), "");
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->cb_disp_label), battmon->options.display_label);
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->cb_disp_power), battmon->options.display_power);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->cb_disp_percentage), battmon->options.display_percentage);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->cb_disp_tooltip_percentage), battmon->options.tooltip_display_percentage);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->cb_disp_tooltip_time), battmon->options.tooltip_display_time);
@@ -612,7 +781,7 @@ set_disp_percentage(GtkToggleButton *tb, t_battmon_dialog *dialog)
 	t_battmon *battmon = dialog->battmon;
 
 	battmon->options.display_percentage = gtk_toggle_button_get_active(tb);
-
+	update_apm_status(dialog->battmon);
 /*	gtk_widget_set_sensitive(dialog->revert, TRUE);	*/
 }
 
@@ -622,6 +791,26 @@ set_tooltip_disp_percentage(GtkToggleButton *tb, t_battmon_dialog *dialog)
 	t_battmon *battmon = dialog->battmon;
 
 	battmon->options.tooltip_display_percentage = gtk_toggle_button_get_active(tb);
+
+/*	gtk_widget_set_sensitive(dialog->revert, TRUE);	*/
+}
+static void
+set_disp_power(GtkToggleButton *tb, t_battmon_dialog *dialog)
+{
+	t_battmon *battmon = dialog->battmon;
+
+	battmon->options.display_power = gtk_toggle_button_get_active(tb);
+	update_apm_status(dialog->battmon);
+
+/*	gtk_widget_set_sensitive(dialog->revert, TRUE);	*/
+}
+static void
+set_disp_label(GtkToggleButton *tb, t_battmon_dialog *dialog)
+{
+	t_battmon *battmon = dialog->battmon;
+
+	battmon->options.display_label = gtk_toggle_button_get_active(tb);
+	update_apm_status(dialog->battmon);
 
 /*	gtk_widget_set_sensitive(dialog->revert, TRUE);	*/
 }
@@ -642,6 +831,7 @@ set_low_percentage(GtkSpinButton *sb, t_battmon_dialog *dialog)
 	t_battmon *battmon = dialog->battmon;
 
 	battmon->options.low_percentage = gtk_spin_button_get_value_as_int(sb);
+	update_apm_status(dialog->battmon);
 
 /*	gtk_widget_set_sensitive(dialog->revert, TRUE);	*/
 }
@@ -652,6 +842,7 @@ set_critical_percentage(GtkSpinButton *sb, t_battmon_dialog *dialog)
 	t_battmon *battmon = dialog->battmon;
 
 	battmon->options.critical_percentage = gtk_spin_button_get_value_as_int(sb);
+	update_apm_status(dialog->battmon);
 
 /*	gtk_widget_set_sensitive(dialog->revert, TRUE);	*/
 }
@@ -664,6 +855,7 @@ set_action_low(GtkOptionMenu *om, t_battmon_dialog *dialog)
 	battmon->options.action_on_low = gtk_option_menu_get_history(om);
 
 	gtk_widget_set_sensitive(dialog->en_command_low, (gtk_option_menu_get_history(om) > 1) ? 1 : 0);
+	update_apm_status(dialog->battmon);
 /*	gtk_widget_set_sensitive(dialog->revert, TRUE);	*/
 }
 
@@ -675,6 +867,7 @@ set_action_critical(GtkOptionMenu *om, t_battmon_dialog *dialog)
 	battmon->options.action_on_critical = gtk_option_menu_get_history(om);
 
 	gtk_widget_set_sensitive(dialog->en_command_critical, (gtk_option_menu_get_history(om) > 1) ? 1 : 0);
+	update_apm_status(dialog->battmon);
 /*	gtk_widget_set_sensitive(dialog->revert, TRUE);	*/
 }
 
@@ -687,6 +880,7 @@ set_command_low(GtkEntry *en, GdkEventFocus *event, t_battmon_dialog *dialog)
 	g_free(battmon->options.command_on_low);
 	temp = gtk_entry_get_text(en);
 	battmon->options.command_on_low = g_strdup(temp); 
+	update_apm_status(dialog->battmon);
 
 /*	gtk_widget_set_sensitive(dialog->revert, TRUE);	*/
 
@@ -703,6 +897,7 @@ set_command_critical(GtkEntry *en, GdkEventFocus *event, t_battmon_dialog *dialo
 	g_free(battmon->options.command_on_critical);
 	temp = gtk_entry_get_text(en);
 	battmon->options.command_on_critical = g_strdup(temp); 
+	update_apm_status(dialog->battmon);
 
 /*	gtk_widget_set_sensitive(dialog->revert, TRUE);	*/
 
@@ -899,6 +1094,10 @@ battmon_create_options(Control *ctrl, GtkContainer *container, GtkWidget *done)
 	gtk_widget_show(vbox2);
 	gtk_box_pack_start(GTK_BOX(hbox), vbox2, FALSE, FALSE, 0);
 
+	dialog->cb_disp_label = gtk_check_button_new_with_mnemonic(_("Display label"));
+	gtk_widget_show(dialog->cb_disp_label);
+	gtk_box_pack_start(GTK_BOX(vbox2), dialog->cb_disp_label, FALSE, FALSE, 0);
+	
 	dialog->cb_disp_percentage = gtk_check_button_new_with_mnemonic(_("Display percentage"));
 	gtk_widget_show(dialog->cb_disp_percentage);
 	gtk_box_pack_start(GTK_BOX(vbox2), dialog->cb_disp_percentage, FALSE, FALSE, 0);
@@ -910,14 +1109,22 @@ battmon_create_options(Control *ctrl, GtkContainer *container, GtkWidget *done)
 	dialog->cb_disp_tooltip_time = gtk_check_button_new_with_mnemonic(_("Display time remaining in tooltip"));
 	gtk_widget_show(dialog->cb_disp_tooltip_time);
 	gtk_box_pack_start(GTK_BOX(vbox2), dialog->cb_disp_tooltip_time, FALSE, FALSE, 0);
+	
+	dialog->cb_disp_power = gtk_check_button_new_with_mnemonic(_("Display power"));
+	gtk_widget_show(dialog->cb_disp_power);
+	gtk_box_pack_start(GTK_BOX(vbox2), dialog->cb_disp_power, FALSE, FALSE, 0);
 
-	/* Signal connections */
+	/* Signal connections should be set after setting tate of toggle buttons...*/
+	refresh_dialog(dialog);
 
 	g_signal_connect(button, "clicked", G_CALLBACK(command_browse_cb), dialog->en_command_low);
 	g_signal_connect(button2, "clicked", G_CALLBACK(command_browse_cb), dialog->en_command_critical);
 	g_signal_connect(dialog->cb_disp_percentage, "toggled", G_CALLBACK(set_disp_percentage), dialog);
 	g_signal_connect(dialog->cb_disp_tooltip_percentage, "toggled", G_CALLBACK(set_tooltip_disp_percentage), dialog);
+	g_signal_connect(dialog->cb_disp_power, "toggled", G_CALLBACK(set_disp_power), dialog);
 	g_signal_connect(dialog->cb_disp_tooltip_time, "toggled", G_CALLBACK(set_tooltip_time), dialog);
+	g_signal_connect(dialog->cb_disp_label, "toggled", G_CALLBACK(set_disp_label), dialog);
+	
 	g_signal_connect(dialog->sb_low_percentage, "value-changed", G_CALLBACK(set_low_percentage), dialog);
 	g_signal_connect(dialog->sb_critical_percentage, "value-changed", G_CALLBACK(set_critical_percentage), dialog);
 	g_signal_connect(dialog->om_action_low, "changed", G_CALLBACK(set_action_low), dialog);
@@ -926,7 +1133,6 @@ battmon_create_options(Control *ctrl, GtkContainer *container, GtkWidget *done)
 	g_signal_connect(dialog->en_command_critical, "focus-out-event", G_CALLBACK(set_command_critical), dialog);
 /*	g_signal_connect_swapped(revert, "clicked", G_CALLBACK(battmon_restore_backup), dialog);	*/
 
-	refresh_dialog(dialog);
 }
 
 G_MODULE_EXPORT void
@@ -951,6 +1157,7 @@ xfce_control_class_init(ControlClass *cc)
 	cc->attach_callback	= battmon_attach_callback;
 
 	cc->set_size		= battmon_set_size;
+        cc->set_orientation = battmon_set_orientation;
 	cc->create_options		= battmon_create_options;
 }
 

@@ -152,8 +152,8 @@ libbattmon_la_LDFLAGS = \
 libbattmon_la_SOURCES = \
 	apmlib.c							\
 	apm.h							\
-	acpi-linux.c							\
-	acpi-linux.h							\
+	libacpi.c							\
+	libacpi.h							\
 	battmon.c
 
 
@@ -173,15 +173,15 @@ LTLIBRARIES = $(plugin_LTLIBRARIES)
 
 libbattmon_la_DEPENDENCIES =
 am_libbattmon_la_OBJECTS = libbattmon_la-apmlib.lo \
-	libbattmon_la-acpi-linux.lo libbattmon_la-battmon.lo
+	libbattmon_la-libacpi.lo libbattmon_la-battmon.lo
 libbattmon_la_OBJECTS = $(am_libbattmon_la_OBJECTS)
 
 DEFAULT_INCLUDES =  -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
-@AMDEP_TRUE@DEP_FILES = ./$(DEPDIR)/libbattmon_la-acpi-linux.Plo \
-@AMDEP_TRUE@	./$(DEPDIR)/libbattmon_la-apmlib.Plo \
-@AMDEP_TRUE@	./$(DEPDIR)/libbattmon_la-battmon.Plo
+@AMDEP_TRUE@DEP_FILES = ./$(DEPDIR)/libbattmon_la-apmlib.Plo \
+@AMDEP_TRUE@	./$(DEPDIR)/libbattmon_la-battmon.Plo \
+@AMDEP_TRUE@	./$(DEPDIR)/libbattmon_la-libacpi.Plo
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 LTCOMPILE = $(LIBTOOL) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) \
@@ -239,9 +239,9 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libbattmon_la-acpi-linux.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libbattmon_la-apmlib.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libbattmon_la-battmon.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libbattmon_la-libacpi.Plo@am__quote@
 
 distclean-depend:
 	-rm -rf ./$(DEPDIR)
@@ -312,38 +312,38 @@ libbattmon_la-apmlib.lo: apmlib.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbattmon_la_CFLAGS) $(CFLAGS) -c -o libbattmon_la-apmlib.lo `test -f 'apmlib.c' || echo '$(srcdir)/'`apmlib.c
 
-libbattmon_la-acpi-linux.o: acpi-linux.c
-@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbattmon_la_CFLAGS) $(CFLAGS) -MT libbattmon_la-acpi-linux.o -MD -MP -MF "$(DEPDIR)/libbattmon_la-acpi-linux.Tpo" \
-@am__fastdepCC_TRUE@	  -c -o libbattmon_la-acpi-linux.o `test -f 'acpi-linux.c' || echo '$(srcdir)/'`acpi-linux.c; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libbattmon_la-acpi-linux.Tpo" "$(DEPDIR)/libbattmon_la-acpi-linux.Po"; \
-@am__fastdepCC_TRUE@	else rm -f "$(DEPDIR)/libbattmon_la-acpi-linux.Tpo"; exit 1; \
+libbattmon_la-libacpi.o: libacpi.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbattmon_la_CFLAGS) $(CFLAGS) -MT libbattmon_la-libacpi.o -MD -MP -MF "$(DEPDIR)/libbattmon_la-libacpi.Tpo" \
+@am__fastdepCC_TRUE@	  -c -o libbattmon_la-libacpi.o `test -f 'libacpi.c' || echo '$(srcdir)/'`libacpi.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libbattmon_la-libacpi.Tpo" "$(DEPDIR)/libbattmon_la-libacpi.Po"; \
+@am__fastdepCC_TRUE@	else rm -f "$(DEPDIR)/libbattmon_la-libacpi.Tpo"; exit 1; \
 @am__fastdepCC_TRUE@	fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='acpi-linux.c' object='libbattmon_la-acpi-linux.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	depfile='$(DEPDIR)/libbattmon_la-acpi-linux.Po' tmpdepfile='$(DEPDIR)/libbattmon_la-acpi-linux.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='libacpi.c' object='libbattmon_la-libacpi.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	depfile='$(DEPDIR)/libbattmon_la-libacpi.Po' tmpdepfile='$(DEPDIR)/libbattmon_la-libacpi.TPo' @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbattmon_la_CFLAGS) $(CFLAGS) -c -o libbattmon_la-acpi-linux.o `test -f 'acpi-linux.c' || echo '$(srcdir)/'`acpi-linux.c
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbattmon_la_CFLAGS) $(CFLAGS) -c -o libbattmon_la-libacpi.o `test -f 'libacpi.c' || echo '$(srcdir)/'`libacpi.c
 
-libbattmon_la-acpi-linux.obj: acpi-linux.c
-@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbattmon_la_CFLAGS) $(CFLAGS) -MT libbattmon_la-acpi-linux.obj -MD -MP -MF "$(DEPDIR)/libbattmon_la-acpi-linux.Tpo" \
-@am__fastdepCC_TRUE@	  -c -o libbattmon_la-acpi-linux.obj `if test -f 'acpi-linux.c'; then $(CYGPATH_W) 'acpi-linux.c'; else $(CYGPATH_W) '$(srcdir)/acpi-linux.c'; fi`; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libbattmon_la-acpi-linux.Tpo" "$(DEPDIR)/libbattmon_la-acpi-linux.Po"; \
-@am__fastdepCC_TRUE@	else rm -f "$(DEPDIR)/libbattmon_la-acpi-linux.Tpo"; exit 1; \
+libbattmon_la-libacpi.obj: libacpi.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbattmon_la_CFLAGS) $(CFLAGS) -MT libbattmon_la-libacpi.obj -MD -MP -MF "$(DEPDIR)/libbattmon_la-libacpi.Tpo" \
+@am__fastdepCC_TRUE@	  -c -o libbattmon_la-libacpi.obj `if test -f 'libacpi.c'; then $(CYGPATH_W) 'libacpi.c'; else $(CYGPATH_W) '$(srcdir)/libacpi.c'; fi`; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libbattmon_la-libacpi.Tpo" "$(DEPDIR)/libbattmon_la-libacpi.Po"; \
+@am__fastdepCC_TRUE@	else rm -f "$(DEPDIR)/libbattmon_la-libacpi.Tpo"; exit 1; \
 @am__fastdepCC_TRUE@	fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='acpi-linux.c' object='libbattmon_la-acpi-linux.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	depfile='$(DEPDIR)/libbattmon_la-acpi-linux.Po' tmpdepfile='$(DEPDIR)/libbattmon_la-acpi-linux.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='libacpi.c' object='libbattmon_la-libacpi.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	depfile='$(DEPDIR)/libbattmon_la-libacpi.Po' tmpdepfile='$(DEPDIR)/libbattmon_la-libacpi.TPo' @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbattmon_la_CFLAGS) $(CFLAGS) -c -o libbattmon_la-acpi-linux.obj `if test -f 'acpi-linux.c'; then $(CYGPATH_W) 'acpi-linux.c'; else $(CYGPATH_W) '$(srcdir)/acpi-linux.c'; fi`
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbattmon_la_CFLAGS) $(CFLAGS) -c -o libbattmon_la-libacpi.obj `if test -f 'libacpi.c'; then $(CYGPATH_W) 'libacpi.c'; else $(CYGPATH_W) '$(srcdir)/libacpi.c'; fi`
 
-libbattmon_la-acpi-linux.lo: acpi-linux.c
-@am__fastdepCC_TRUE@	if $(LIBTOOL) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbattmon_la_CFLAGS) $(CFLAGS) -MT libbattmon_la-acpi-linux.lo -MD -MP -MF "$(DEPDIR)/libbattmon_la-acpi-linux.Tpo" \
-@am__fastdepCC_TRUE@	  -c -o libbattmon_la-acpi-linux.lo `test -f 'acpi-linux.c' || echo '$(srcdir)/'`acpi-linux.c; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libbattmon_la-acpi-linux.Tpo" "$(DEPDIR)/libbattmon_la-acpi-linux.Plo"; \
-@am__fastdepCC_TRUE@	else rm -f "$(DEPDIR)/libbattmon_la-acpi-linux.Tpo"; exit 1; \
+libbattmon_la-libacpi.lo: libacpi.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbattmon_la_CFLAGS) $(CFLAGS) -MT libbattmon_la-libacpi.lo -MD -MP -MF "$(DEPDIR)/libbattmon_la-libacpi.Tpo" \
+@am__fastdepCC_TRUE@	  -c -o libbattmon_la-libacpi.lo `test -f 'libacpi.c' || echo '$(srcdir)/'`libacpi.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libbattmon_la-libacpi.Tpo" "$(DEPDIR)/libbattmon_la-libacpi.Plo"; \
+@am__fastdepCC_TRUE@	else rm -f "$(DEPDIR)/libbattmon_la-libacpi.Tpo"; exit 1; \
 @am__fastdepCC_TRUE@	fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='acpi-linux.c' object='libbattmon_la-acpi-linux.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	depfile='$(DEPDIR)/libbattmon_la-acpi-linux.Plo' tmpdepfile='$(DEPDIR)/libbattmon_la-acpi-linux.TPlo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='libacpi.c' object='libbattmon_la-libacpi.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	depfile='$(DEPDIR)/libbattmon_la-libacpi.Plo' tmpdepfile='$(DEPDIR)/libbattmon_la-libacpi.TPlo' @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbattmon_la_CFLAGS) $(CFLAGS) -c -o libbattmon_la-acpi-linux.lo `test -f 'acpi-linux.c' || echo '$(srcdir)/'`acpi-linux.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbattmon_la_CFLAGS) $(CFLAGS) -c -o libbattmon_la-libacpi.lo `test -f 'libacpi.c' || echo '$(srcdir)/'`libacpi.c
 
 libbattmon_la-battmon.o: battmon.c
 @am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libbattmon_la_CFLAGS) $(CFLAGS) -MT libbattmon_la-battmon.o -MD -MP -MF "$(DEPDIR)/libbattmon_la-battmon.Tpo" \

@@ -222,8 +222,10 @@ detect_battery_info(t_battmon *battmon)
 		for (i=0;i<batt_count;i++) {
 		    if (read_acpi_state(i)) break; 
 		}
-		apm.battery_percentage=acpistate->percentage;
-		apm.battery_time=acpistate->rtime;
+		if (batt_count){
+		   apm.battery_percentage=acpistate->percentage;
+		   apm.battery_time=acpistate->rtime;
+		}
 	return TRUE;
 	}
 	if(apm_read(&apm) == 0) {
@@ -306,8 +308,10 @@ update_apm_status(t_battmon *battmon)
 		    if (read_acpi_state(i)) break; 
 		}
 		/*read_acpi_state(0);*/ /* only consider first battery... */
-		charge = acpistate->percentage;
-		time_remaining = acpistate->rtime;
+		if (batt_count) {
+		   charge = acpistate->percentage;
+		   time_remaining = acpistate->rtime;
+		}
 	}
 #ifdef __linux__	
 	else {

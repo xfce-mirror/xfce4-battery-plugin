@@ -243,18 +243,21 @@ int check_acpi(void)
 #else
 #ifdef HAVE_SYSCTL
   {
-  static char buf[BUFSIZ];
-  char *bufp=buf;
-  char fmt[BUFSIZ];
-  void *oldp=(void *)buf;
-  size_t oldlenp=BUFSIZ;
-  int len,mib[CTL_MAXNAME];
-  u_int kind;
-  snprintf(buf, BUFSIZ, "%s", "hw.acpi.battery.time");
-  len = name2oid(bufp, mib);
-  if (len <=0) return 1;
-  if (oidfmt(mib, len, fmt, &kind)) return 1;
-  if ((kind & CTLTYPE) == CTLTYPE_NODE) return 1;
+    static char buf[BUFSIZ];
+    char *bufp=buf;
+    char fmt[BUFSIZ];
+    void *oldp=(void *)buf;
+    size_t oldlenp=BUFSIZ;
+    int len,mib[CTL_MAXNAME];
+    u_int kind;
+/*  snprintf(buf, BUFSIZ, "%s", "hw.acpi.battery.time");*/
+    snprintf(buf, BUFSIZ, "%s", "hw.acpi.battery.units");
+    len = name2oid(bufp, mib);
+    if (len <=0) return 1;
+    if (oidfmt(mib, len, fmt, &kind)) return 1;
+    if ((kind & CTLTYPE) == CTLTYPE_NODE) return 1;
+    batt_count=get_var(mib, len);
+  
   }
   return 0;
 #else

@@ -1,3 +1,12 @@
+2003-07-18 17:59  huysmans
+
+	* panel-plugin/battmon.c: Change panel API again to prevent old
+	plugins to crash the panel
+
+2003-07-17 20:31  benny
+
+	* ChangeLog: Updated ChangeLog.
+
 2003-07-17 20:30  benny
 
 	* compile, depcomp, README, aclocal.m4, ltmain.sh, configure,

@@ -277,7 +277,8 @@ int read_acad_state(void)
     if (!(acpi = fopen ("/proc/acpi/ac_adapter/ACAD/state", "r")))
       if (!(acpi = fopen ("/proc/acpi/ac_adapter/AC/state", "r")))
         if (!(acpi = fopen ("/proc/acpi/ac_adapter/ADP1/state", "r")))
-          if (!(acpi = fopen ("/proc/acpi/ac_adapter/ADP0/state", "r")))
+         if (!(acpi = fopen ("/proc/acpi/ac_adapter/AC0/state", "r")))
+	    if (!(acpi = fopen ("/proc/acpi/ac_adapter/ADP0/state", "r")))
 	      if (!(acpi = fopen ("/proc/acpi/ac_adapter/C11B/state", "r")))
 	        return -1;
 

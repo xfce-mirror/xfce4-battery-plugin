@@ -28,6 +28,14 @@
 #include <sys/time.h>
 #include <sys/ioctl.h>
 #include <sys/types.h>
+
+#ifndef __linux__
+/* FIXME: enable BSD apm calls here */
+int apm_exists(void)
+{
+     return 0;
+}
+#else
 #include <sys/sysmacros.h>
 #include "apm.h"
 
@@ -463,3 +471,4 @@ const char *apm_time_nosec(time_t t)
 
     return buffer;
 }
+#endif

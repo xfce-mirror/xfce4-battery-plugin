@@ -156,10 +156,27 @@ detect_battery_info(t_battmon *battmon)
   /* This is how I read the information from the APM subsystem under
      FreeBSD.  Each time this functions is called (once every second)
      the APM device is opened, read from and then closed.
+
+     except that is does not work on FreeBSD  
+     
   */
+	
   	int fd;
 
+	/* First check to see if ACPI is available */
+	if(check_acpi()==0) {
+		/* ACPI detected */
+		battmon->method = BM_USE_ACPI;
+		read_acpi_info(0); /* only consider first battery... */
+		read_acpi_state(0); /* only consider first battery... */
+#ifdef DEBUG
+	printf("using ACPI\n");
+#endif
+		return TRUE;
+	}
+
 	battmon->method = BM_BROKEN;
+#ifdef APMDEVICE
   	fd = open(APMDEVICE, O_RDONLY);
   	if (fd == -1) return FALSE;
 
@@ -168,7 +185,7 @@ detect_battery_info(t_battmon *battmon)
 
   	close(fd);
   	battmon->method = BM_USE_APM;
-
+#endif
   	return TRUE;
 #elif __OpenBSD__
   /* Code for OpenBSD by Joe Ammond <jra@twinight.org>. Using the same
@@ -217,35 +234,15 @@ update_apm_status(t_battmon *battmon)
 #else
 	struct apm_info apm;
 #endif
-	int charge;
+	int charge=0;
 	gboolean fan=FALSE;
 	const char *temp;
-	int time_remaining;
+	int time_remaining=0;
 	gboolean acline;
 	gchar buffer[128];
 
 
-#ifdef __FreeBSD__
-  /* This is how I read the information from the APM subsystem under
-     FreeBSD.  Each time this functions is called (once every second)
-     the APM device is opened, read from and then closed.
-  */
-  	int fd;
-
-  	battmon->method = BM_BROKEN;
-  	fd = open(APMDEVICE, O_RDONLY);
-  	if (fd == -1) return TRUE;
-
-  	if (ioctl(fd, APMIO_GETINFO, &apm) == -1)
-     		return TRUE;
-
-  	close(fd);
-
-  	acline = apm.ai_acline ? TRUE : FALSE;
-  	time_remaining = apm.ai_batt_time;
-	time_remaining = time_remaining / 60; /* convert from seconds to minutes */
-  	charge = apm.ai_batt_life;
-#elif __OpenBSD__
+#ifdef __OpenBSD__
   /* Code for OpenBSD by Joe Ammond <jra@twinight.org>. Using the same
      procedure as for FreeBSD.
   */
@@ -260,38 +257,86 @@ update_apm_status(t_battmon *battmon)
   	charge = apm.battery_life;
   	time_remaining = apm.minutes_left;
   	acline = apm.ac_state ? TRUE : FALSE;
-#elif __linux__
+	
+#else
+#ifdef DEBUG
+	printf("updating battery status...\n");
+#endif
 	if(battmon->method == BM_BROKEN) {
 		/* See if ACPI or APM support has been enabled yet */
 		if(!detect_battery_info(battmon)) return TRUE;
 		if(battmon->timeoutid != 0) g_source_remove(battmon->timeoutid);
 		/* Poll only once per minute if using ACPI due to a bug */
 #ifdef TURTLE_UPDATES
-		/* what bug? I don't see any bug here on my box. */
+		/* what bug? I don't see any bug here. */
 		if(battmon->method == BM_USE_ACPI) {
-			battmon->timeoutid = g_timeout_add(60 * 1024, (GSourceFunc) update_apm_status, battmon);
+			battmon->timeoutid = g_timeout_add(60 * 1024, 
+					(GSourceFunc) update_apm_status, battmon);
 		}
 	        else 
 #endif
-			battmon->timeoutid = g_timeout_add(2 * 1024, (GSourceFunc) update_apm_status, battmon);
+			battmon->timeoutid = g_timeout_add(2 * 1024, 
+					(GSourceFunc) update_apm_status, battmon);
 	}
 
 	/* Show initial state if using ACPI rather than waiting a minute */
 	if(battmon->flag) {
 		battmon->flag = FALSE;
 		g_source_remove(battmon->timeoutid);
-		battmon->timeoutid = g_timeout_add(2 * 1024, (GSourceFunc) update_apm_status, battmon);
+		battmon->timeoutid = g_timeout_add(2 * 1024, 
+				(GSourceFunc) update_apm_status, battmon);
 	}
 	if(battmon->method == BM_USE_ACPI) {
-		apm.ac_line_status=read_acad_state();
+		acline = read_acad_state();
 		read_acpi_state(0); /* only consider first battery... */
-		apm.battery_percentage=acpistate->percentage;
-		apm.battery_time=acpistate->rtime;
+		charge = acpistate->percentage;
+		time_remaining = acpistate->rtime;
 	}
-	else apm_read(&apm);	/* not broken and not using ACPI, assume APM */
-	charge = apm.battery_percentage;
-	time_remaining = apm.battery_time;
-	acline = apm.ac_line_status ? TRUE : FALSE;
+#ifdef __linux__	
+	else {
+		apm_read(&apm);	/* not broken and not using ACPI, assume APM */
+		charge = apm.battery_percentage;
+		time_remaining = apm.battery_time;
+		acline = apm.ac_line_status ? TRUE : FALSE;
+	}
+#elif __FreeBSD__
+	else {
+ /* This is how I read the information from the APM subsystem under
+     FreeBSD.  Each time this functions is called (once every second)
+     the APM device is opened, read from and then closed.
+
+     except it don't work with 5.x: 
+battmon.c: In function `update_apm_status':
+battmon.c:241: `APMDEVICE' undeclared (first use in this function)
+battmon.c:241: (Each undeclared identifier is reported only once
+battmon.c:241: for each function it appears in.)
+*** Error code 1
+
+  */
+#ifdef APMDEVICE
+  	 int fd;
+
+  	 battmon->method = BM_BROKEN;
+  	 fd = open(APMDEVICE, O_RDONLY);
+  	 if (fd == -1) return TRUE;
+
+  	 if (ioctl(fd, APMIO_GETINFO, &apm) == -1)
+     		return TRUE;
+
+  	 close(fd);
+
+  	 acline = apm.ai_acline ? TRUE : FALSE;
+  	 time_remaining = apm.ai_batt_time;
+	 time_remaining = time_remaining / 60; /* convert from seconds to minutes */
+  	 charge = apm.ai_batt_life;
+#else
+	 /* FIXME: apm stuff needs fix for 5.x kernels */
+	 acline=0;
+	 time_remaining=0;
+	 charge=0;
+#endif
+	}
+#endif
 #endif
 	
 	
@@ -377,6 +422,9 @@ update_apm_status(t_battmon *battmon)
 	}
 
 	/* alarms */
+	/* FIXME: should put in a timeout to terminate the alarm boxes after one
+	 * minute because if they are left open, they block the event loop for
+	 * the panel, and that means the critical action will not be performed! */
 	if (!acline && charge <= battmon->options.low_percentage){
 		if(!battmon->critical && charge <= battmon->options.critical_percentage) {
 		   	battmon->critical = TRUE;

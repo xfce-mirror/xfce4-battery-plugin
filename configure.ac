@@ -26,6 +26,7 @@ AC_PROG_LIBTOOL
 dnl Check for standard header files
 AC_HEADER_STDC
 
+AC_CHECK_FUNCS([sysctl])
 dnl configure the panel plugin
 XFCE_PANEL_PLUGIN([XFCE4_PANEL], [3.99.2])
 

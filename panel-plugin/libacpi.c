@@ -1,6 +1,7 @@
 /***************************************************************************
                           libacpi.c  -  description
                              -------------------
+    August 2003 C.  edscott wilson garcia <edscott@imp.mx>: BSD acpi stuff
     begin                : Feb 10 2003
     copyright            : (C) 2003 by Noberasco Michele
     e-mail               : 2001s098@educ.disi.unige.it
@@ -28,6 +29,9 @@
  /***************************************************************************
         Originally written by Costantino Pistagna for his wmacpimon
  ***************************************************************************/
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
 #ifndef __libacpi_c__
 #define __libacpi_c__
 #endif
@@ -36,19 +40,153 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include <dirent.h>
+
+#if HAVE_SYSCTL
+#include <sys/sysctl.h>
+#include <err.h>
+#include <errno.h>
+#include <unistd.h>
+
+#endif
+
 #include "libacpi.h"
 
 
 static char batteries[MAXBATT][128];
 static char battinfo[MAXBATT][128];
+#if HAVE_SYSCTL
+ static int
+name2oid(char *name, int *oidp)
+{
+	int oid[2];
+	int i;
+	size_t j;
+
+	oid[0] = 0;
+	oid[1] = 3;
+
+	j = CTL_MAXNAME * sizeof(int);
+	i = sysctl(oid, 2, oidp, &j, name, strlen(name));
+	if (i < 0) 
+		return i;
+	j /= sizeof(int);
+	return (j);
+}
+static int
+oidfmt(int *oid, int len, char *fmt, u_int *kind)
+{
+	int qoid[CTL_MAXNAME+2];
+	u_char buf[BUFSIZ];
+	int i;
+	size_t j;
+
+	qoid[0] = 0;
+	qoid[1] = 4;
+	memcpy(qoid + 2, oid, len * sizeof(int));
+
+	j = sizeof(buf);
+	i = sysctl(qoid, len + 2, buf, &j, 0, 0);
+	if (i)
+		err(1, "sysctl fmt %d %d %d", i, j, errno);
+
+	if (kind)
+		*kind = *(u_int *)buf;
+
+	if (fmt)
+		strcpy(fmt, (char *)(buf + sizeof(u_int)));
+	return 0;
+}
+
+
+
+static int
+get_var(int *oid, int nlen)
+{
+		int retval;
+	u_char buf[BUFSIZ], *val, *p;
+	char name[BUFSIZ], *fmt, *sep;
+	int qoid[CTL_MAXNAME+2];
+	int i;
+	size_t j, len;
+	u_int kind;
+	int (*func)(int, void *);
+
+	qoid[0] = 0;
+	memcpy(qoid + 2, oid, nlen * sizeof(int));
+
+	qoid[1] = 1;
+	j = sizeof(name);
+	i = sysctl(qoid, nlen + 2, name, &j, 0, 0);
+	if (i || !j)
+		err(1, "sysctl name %d %d %d", i, j, errno);
+
+	sep = "=";
+
+
+	/* find an estimate of how much we need for this var */
+	j = 0;
+	i = sysctl(oid, nlen, 0, &j, 0, 0);
+	j += j; /* we want to be sure :-) */
+
+	val = alloca(j + 1);
+	len = j;
+	i = sysctl(oid, nlen, val, &len, 0, 0);
+	if (i || !len)
+		return (1);
+
+	val[len] = '\0';
+	fmt = buf;
+	oidfmt(oid, nlen, fmt, &kind);
+	p = val;
+	switch (*fmt) {		
+	case 'I':
+#ifdef DEBUG
+		printf("I:%s%s", name, sep);
+#endif
+		fmt++;
+		val = "";
+		while (len >= sizeof(int)) {
+			if(*fmt == 'U'){
+				retval=*((unsigned int *)p);
+#ifdef DEBUG
+				printf("x%s%u", val, *(unsigned int *)p);
+#endif
+			}
+			else {
+				retval=*((int *)p);
+#ifdef DEBUG
+				printf("x%s%d", val, *(int *)p);
+#endif
+			}
+			val = " ";
+			len -= sizeof(int);
+			p += sizeof(int);
+		}
+		
+		return (retval);
+	default:
+			printf("%s%s", name, sep);
+		printf("Format:%s Length:%d Dump:0x", fmt, len);
+		while (len-- && (p < val + 16))
+			printf("%02x", *p++);
+		if (len > 16)
+			printf("...");
+		return (0);
+	}
+	return (0);
+}
+
+ 
+#endif
 
 /* see if we have ACPI support */
 int check_acpi(void)
 {
-  FILE *acpi;
   DIR *battdir;
   struct dirent *batt;
   char *name;
+#ifdef __linux__
+  FILE *acpi;
 
   if (!(acpi = fopen ("/proc/acpi/info", "r")))
   {
@@ -79,12 +217,33 @@ int check_acpi(void)
     batt_count++;
   }
   closedir (battdir);
-
   return 0;
+#else
+#ifdef HAVE_SYSCTL
+  {
+  static char buf[BUFSIZ];
+  char *bufp=buf;
+  char fmt[BUFSIZ];
+  void *oldp=(void *)buf;
+  size_t oldlenp=BUFSIZ;
+  int len,mib[CTL_MAXNAME];
+  u_int kind;
+  snprintf(buf, BUFSIZ, "%s", "hw.acpi.battery.time");
+  len = name2oid(bufp, mib);
+  if (len <=0) return 1;
+  if (oidfmt(mib, len, fmt, &kind)) return 1;
+  if ((kind & CTLTYPE) == CTLTYPE_NODE) return 1;
+  }
+  return 0;
+#else
+  return 1;
+#endif
+#endif
 }
 
 int read_acad_state(void)
 {
+#ifdef __linux__
   FILE *acpi;
   char *ptr;
   char stat;
@@ -122,10 +281,39 @@ int read_acad_state(void)
   }
 
   return 1;
+#else
+#ifdef HAVE_SYSCTL
+  static char buf[BUFSIZ];
+  char fmt[BUFSIZ];
+  void *oldp=(void *)buf;
+  char *bufp=buf;
+  size_t oldlenp=BUFSIZ;
+  int len,mib[CTL_MAXNAME];
+  u_int kind;
+  int retval;
+  snprintf(buf, BUFSIZ, "%s", "hw.acpi.acline");
+  len = name2oid(bufp, mib);
+  if (oidfmt(mib, len, fmt, &kind))
+	err(1, "couldn't find format of oid '%s'", bufp);
+  if (len < 0) errx(1, "unknown oid '%s'", bufp);
+  if ((kind & CTLTYPE) == CTLTYPE_NODE) {
+	printf("oh-oh...\n");
+  } else {
+	retval=get_var(mib, len);
+#ifdef DEBUG
+	printf("retval=%d\n",retval);
+#endif
+  }
+  return retval;
+#else
+  return 0;
+#endif
+#endif
 }
 
 int read_acpi_info(int battery)
 {
+#ifdef __linux__
   FILE *acpi;
   char *ptr;
   char stat;
@@ -203,10 +391,47 @@ int read_acpi_info(int battery)
   }
 	
   return 1;
+#else
+#ifdef HAVE_SYSCTL
+  static char buf[BUFSIZ];
+  char *bufp=buf;
+  int len,mib[CTL_MAXNAME];
+  char fmt[BUFSIZ];
+  u_int kind;
+  int retval;
+  if (!acpiinfo) acpiinfo=(ACPIinfo *)malloc(sizeof(ACPIinfo));
+	    acpiinfo->present = 0;
+	    acpiinfo->design_capacity = 0;
+	    acpiinfo->last_full_capacity = 0;
+	    acpiinfo->battery_technology = 0;
+	    acpiinfo->design_voltage = 0;
+	    acpiinfo->design_capacity_warning = 0;
+	    acpiinfo->design_capacity_low = 0;
+  snprintf(buf, BUFSIZ, "%s", "hw.acpi.battery.units");
+  len = name2oid(bufp, mib);
+  if (oidfmt(mib, len, fmt, &kind))
+	err(1, "couldn't find format of oid '%s'", bufp);
+  if (len < 0) errx(1, "unknown oid '%s'", bufp);
+  if ((kind & CTLTYPE) == CTLTYPE_NODE) {
+	printf("oh-oh...\n");
+  } else {
+	retval=get_var(mib, len);
+#ifdef DEBUG
+	printf("retval=%d\n",retval);
+#endif
+  }
+  acpiinfo->present = retval;
+  return 1;
+#else
+  return 0;
+#endif
+#endif
+  
 }
 
 int read_acpi_state(int battery)
 {
+#ifdef __linux__
   FILE *acpi;
   char *ptr;
   char stat;
@@ -298,6 +523,60 @@ int read_acpi_state(int battery)
   }
 	
   return 1;
+#else
+#ifdef HAVE_SYSCTL
+  char *string;
+  static char buf[BUFSIZ];
+  char fmt[BUFSIZ];
+  char *bufp=buf;
+  void *oldp=(void *)buf;
+  size_t oldlenp=BUFSIZ;
+  int len,mib[CTL_MAXNAME];
+  int retval;
+  u_int kind;
+  if (!acpistate) acpistate=(ACPIstate *)malloc(sizeof(ACPIstate));
+  acpistate->present = 0;
+  acpistate->state = UNKNOW;
+  acpistate->prate = 0;
+  acpistate->rcapacity = 0;
+  acpistate->pvoltage = 0;
+  acpistate->rtime = 0;
+  acpistate->percentage = 0;
+  
+  snprintf(buf, BUFSIZ, "%s", "hw.acpi.battery.time");
+  len = name2oid(bufp, mib);
+  if (oidfmt(mib, len, fmt, &kind))
+	err(1, "couldn't find format of oid '%s'", bufp);
+  if (len < 0) errx(1, "unknown oid '%s'", bufp);
+  if ((kind & CTLTYPE) == CTLTYPE_NODE) {
+	printf("oh-oh...\n");
+  } else {
+	retval=get_var(mib, len);
+#ifdef DEBUG
+	printf("retval=%d\n",retval);
+#endif
+  }
+  acpistate->rtime =(retval<0)?0:retval;
+  
+  snprintf(buf, BUFSIZ, "%s", "hw.acpi.battery.life");
+  len = name2oid(bufp, mib);
+  if (oidfmt(mib, len, fmt, &kind))
+	err(1, "couldn't find format of oid '%s'", bufp);
+  if (len < 0) errx(1, "unknown oid '%s'", bufp);
+  if ((kind & CTLTYPE) == CTLTYPE_NODE) {
+	printf("oh-oh...\n");
+  } else {
+	retval=get_var(mib, len);
+#ifdef DEBUG
+	printf("retval=%d\n",retval);
+#endif
+  }
+  acpistate->percentage =retval;
+  return 1;
+#else
+  return 0;
+#endif
+#endif
 }
 
 int get_fan_status(void)
@@ -326,6 +605,7 @@ int get_fan_status(void)
 
 const char *get_temperature(void)
 {
+#ifdef __linux__
   FILE *fp;
   char *proc_temperature="/proc/acpi/thermal_zone/THRM/temperature";
   static char *p,line[256];
@@ -340,5 +620,34 @@ const char *get_temperature(void)
   if (*p==0) return NULL;
   if (strchr(p,'\n')) p=strtok(p,"\n");
   return (const char *)p;
+#else
+#ifdef HAVE_SYSCTL
+  static char buf[BUFSIZ];
+  char fmt[BUFSIZ];
+  char *bufp=buf;
+  void *oldp=(void *)buf;
+  size_t oldlenp=BUFSIZ;
+  int len,mib[CTL_MAXNAME];
+  int retval;
+  u_int kind;
+  snprintf(buf, BUFSIZ, "%s", "hw.acpi.thermal.tz0.temperature");
+  len = name2oid(bufp, mib);
+  if (oidfmt(mib, len, fmt, &kind))
+	err(1, "couldn't find format of oid '%s'", bufp);
+  if (len < 0) errx(1, "unknown oid '%s'", bufp);
+  if ((kind & CTLTYPE) == CTLTYPE_NODE) {
+	printf("oh-oh...\n");
+  } else {
+	retval=get_var(mib, len);
+#ifdef DEBUG
+	printf("retval=%d\n",retval);
+#endif
+  }
+  snprintf(buf, BUFSIZ, "%d C",(retval-2735)/10);
+  return (const char *)buf;
+#else
+  return "";
+#endif
+#endif
 }
 

@@ -345,13 +345,13 @@ int read_acpi_info(int battery)
 #ifdef DEBUG
 	  printf("DBG: error, battery > MAXBATT (%d)\n",MAXBATT);
 #endif
-	  return -1;
+	  return 0;
   }
   if (!(acpi = fopen (battinfo[battery], "r"))) {
 #ifdef DEBUG
 	  printf("DBG:cannot open %s for read!\n",battinfo[battery]);
 #endif
-	  return -1;
+	  return 0;
   }
 
 #ifdef DEBUG
@@ -369,7 +369,7 @@ int read_acpi_info(int battery)
   if ((ptr = strstr (buf, "present:")) || (ptr = strstr (buf, "Present:")))
   {
 #ifdef DEBUG
-	  printf("DBG:Battery present...\n");
+	  printf("DBG:Battery present... and its called %s\n",battinfo[battery]);
 #endif
     stat = *(ptr + 25);
     if (stat == 'y')
@@ -440,7 +440,7 @@ int read_acpi_info(int battery)
     else /* Battery not present */
 	  {
 #ifdef DEBUG
-	  printf("DBG:Battery not present!\n");
+	  printf("DBG:Battery not present!... and its called %s\n",battinfo[battery]);
 #endif
 	    acpiinfo->present = 0;
 	    acpiinfo->design_capacity = 0;
@@ -506,7 +506,7 @@ int read_acpi_state(int battery)
 #ifdef DEBUG
 	  printf("DBG:Could not open %s (%d)\n",batteries[battery],battery);
 #endif
-	  return -1;
+	  return 0;
   }
 
   fread (buf, 512, 1, acpi);

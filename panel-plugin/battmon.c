@@ -165,10 +165,17 @@ detect_battery_info(t_battmon *battmon)
 
 	/* First check to see if ACPI is available */
 	if(check_acpi()==0) {
+		int i;
 		/* ACPI detected */
 		battmon->method = BM_USE_ACPI;
-		read_acpi_info(0); /* only consider first battery... */
-		read_acpi_state(0); /* only consider first battery... */
+		/* consider battery 0 first... */
+		for (i=0;i<batt_count;i++) {
+			if (read_acpi_info(i)) break; 
+		}
+		for (i=0;i<batt_count;i++) {
+		    if (read_acpi_state(i)) break; 
+		}
+		/*read_acpi_state(0);*/ /* only consider first battery... */
 #ifdef DEBUG
 	printf("using ACPI\n");
 #endif
@@ -206,9 +213,15 @@ detect_battery_info(t_battmon *battmon)
 	/* First check to see if ACPI is available */
 	if(check_acpi()==0) {
 		/* ACPI detected */
+		int i;
 		battmon->method = BM_USE_ACPI;
-		read_acpi_info(0); /* only consider first battery... */
-		read_acpi_state(0); /* only consider first battery... */
+		for (i=0;i<batt_count;i++) {
+			if (read_acpi_info(i)) break; 
+		}
+		/*read_acpi_info(0);*/ /* only consider first battery... */
+		for (i=0;i<batt_count;i++) {
+		    if (read_acpi_state(i)) break; 
+		}
 		apm.battery_percentage=acpistate->percentage;
 		apm.battery_time=acpistate->rtime;
 	return TRUE;
@@ -287,8 +300,12 @@ update_apm_status(t_battmon *battmon)
 				(GSourceFunc) update_apm_status, battmon);
 	}
 	if(battmon->method == BM_USE_ACPI) {
+		int i;
 		acline = read_acad_state();
-		read_acpi_state(0); /* only consider first battery... */
+		for (i=0;i<batt_count;i++) {
+		    if (read_acpi_state(i)) break; 
+		}
+		/*read_acpi_state(0);*/ /* only consider first battery... */
 		charge = acpistate->percentage;
 		time_remaining = acpistate->rtime;
 	}

@@ -92,6 +92,7 @@ int batt_count;
 /* temp buffer */
 char buf[512];
 #else
+extern int batt_count;
 extern ACPIstate *acpistate;
 extern ACPIinfo *acpiinfo;
 extern ACADstate *acadstate;

@@ -1747,7 +1747,7 @@ fi
 
 # Define the identity of the package.
  PACKAGE=xfce4-battery-plugin
- VERSION=0.1.1
+ VERSION=0.1.2
 
 
 cat >>confdefs.h <<_ACEOF

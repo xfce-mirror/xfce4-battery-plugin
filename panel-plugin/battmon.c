@@ -390,9 +390,9 @@ battmon.c:241: for each function it appears in.)
 	else {
 		if(battmon->options.tooltip_display_percentage && battmon->options.tooltip_display_time)
 		     g_snprintf(buffer, sizeof(buffer), _("%d%% (%02d:%02d) remaining"), charge, time_remaining / 60, time_remaining % 60);
-		else if(battmon->options.tooltip_display_percentage)
-		     g_snprintf(buffer, sizeof(buffer), _("%02d:%02d remaining"),time_remaining / 60, time_remaining % 60);
 		else if(battmon->options.tooltip_display_time)
+		     g_snprintf(buffer, sizeof(buffer), _("%02d:%02d remaining"),time_remaining / 60, time_remaining % 60);
+		else if(battmon->options.tooltip_display_percentage)
 		     g_snprintf(buffer, sizeof(buffer), _("%d%% remaining"), charge);
    		else
 		     g_snprintf(buffer, sizeof(buffer), _("AC off-line"));

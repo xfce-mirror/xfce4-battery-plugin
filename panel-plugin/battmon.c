@@ -169,10 +169,10 @@ detect_battery_info(t_battmon *battmon)
 		/* ACPI detected */
 		battmon->method = BM_USE_ACPI;
 		/* consider battery 0 first... */
-		for (i=0;i<batt_count;i++) {
+		for (i=batt_count-1;i>=0;i--) {
 			if (read_acpi_info(i)) break; 
 		}
-		for (i=0;i<batt_count;i++) {
+		for (i=batt_count-1;i>=0;i--) {
 		    if (read_acpi_state(i)) break; 
 		}
 		/*read_acpi_state(0);*/ /* only consider first battery... */
@@ -215,11 +215,11 @@ detect_battery_info(t_battmon *battmon)
 		/* ACPI detected */
 		int i;
 		battmon->method = BM_USE_ACPI;
-		for (i=0;i<batt_count;i++) {
+		for (i=batt_count-1;i>=0;i--) {
 			if (read_acpi_info(i)) break; 
 		}
 		/*read_acpi_info(0);*/ /* only consider first battery... */
-		for (i=0;i<batt_count;i++) {
+		for (i=batt_count-1;i>=0;i--) {
 		    if (read_acpi_state(i)) break; 
 		}
 		if (batt_count){
@@ -304,7 +304,7 @@ update_apm_status(t_battmon *battmon)
 	if(battmon->method == BM_USE_ACPI) {
 		int i;
 		acline = read_acad_state();
-		for (i=0;i<batt_count;i++) {
+		for (i=batt_count-1;i>=0;i--) {
 		    if (read_acpi_state(i)) break; 
 		}
 		/*read_acpi_state(0);*/ /* only consider first battery... */

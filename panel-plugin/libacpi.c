@@ -319,6 +319,7 @@ int read_acad_state(void)
   int retval;
   snprintf(buf, BUFSIZ, "%s", "hw.acpi.acline");
   len = name2oid(bufp, mib);
+  if (len <= 0) return(-1);
   if (oidfmt(mib, len, fmt, &kind))
 	err(1, "couldn't find format of oid '%s'", bufp);
   if (len < 0) errx(1, "unknown oid '%s'", bufp);
@@ -476,6 +477,7 @@ int read_acpi_info(int battery)
 	    acpiinfo->design_capacity_low = 0;
   snprintf(buf, BUFSIZ, "%s", "hw.acpi.battery.units");
   len = name2oid(bufp, mib);
+  if (len <= 0) return(-1);
   if (oidfmt(mib, len, fmt, &kind))
 	err(1, "couldn't find format of oid '%s'", bufp);
   if (len < 0) errx(1, "unknown oid '%s'", bufp);
@@ -624,6 +626,7 @@ int read_acpi_state(int battery)
   
   snprintf(buf, BUFSIZ, "%s", "hw.acpi.battery.time");
   len = name2oid(bufp, mib);
+  if (len <= 0) return(-1);
   if (oidfmt(mib, len, fmt, &kind))
 	err(1, "couldn't find format of oid '%s'", bufp);
   if (len < 0) errx(1, "unknown oid '%s'", bufp);
@@ -639,6 +642,7 @@ int read_acpi_state(int battery)
   
   snprintf(buf, BUFSIZ, "%s", "hw.acpi.battery.life");
   len = name2oid(bufp, mib);
+  if (len <= 0) return(-1);
   if (oidfmt(mib, len, fmt, &kind))
 	err(1, "couldn't find format of oid '%s'", bufp);
   if (len < 0) errx(1, "unknown oid '%s'", bufp);
@@ -711,6 +715,7 @@ const char *get_temperature(void)
   u_int kind;
   snprintf(buf, BUFSIZ, "%s", "hw.acpi.thermal.tz0.temperature");
   len = name2oid(bufp, mib);
+  if (len <= 0) return(NULL);
   if (oidfmt(mib, len, fmt, &kind))
 	err(1, "couldn't find format of oid '%s'", bufp);
   if (len < 0) errx(1, "unknown oid '%s'", bufp);

@@ -1,0 +1,25 @@
+2003-07-17 20:30  benny
+
+	* compile, depcomp, README, aclocal.m4, ltmain.sh, configure,
+	configure.ac, config.guess, install-sh, AUTHORS, COPYING,
+	ChangeLog, INSTALL, Makefile.am, Makefile.in, autogen.sh,
+	config.h.in, config.sub, missing, mkinstalldirs, m4/debug.m4,
+	m4/depends.m4, m4/i18n.m4, panel-plugin/Makefile.am,
+	panel-plugin/Makefile.in, panel-plugin/acpi-linux.c,
+	panel-plugin/acpi-linux.h, panel-plugin/apm.h,
+	panel-plugin/apmlib.c, panel-plugin/battmon.c,
+	panel-plugin/libbattmon_la-apmlib.loT: Initial revision
+
+2003-07-17 20:30  benny
+
+	* compile, depcomp, README, aclocal.m4, ltmain.sh, configure,
+	configure.ac, config.guess, install-sh, AUTHORS, COPYING,
+	ChangeLog, INSTALL, Makefile.am, Makefile.in, autogen.sh,
+	config.h.in, config.sub, missing, mkinstalldirs, m4/debug.m4,
+	m4/depends.m4, m4/i18n.m4, panel-plugin/Makefile.am,
+	panel-plugin/Makefile.in, panel-plugin/acpi-linux.c,
+	panel-plugin/acpi-linux.h, panel-plugin/apm.h,
+	panel-plugin/apmlib.c, panel-plugin/battmon.c,
+	panel-plugin/libbattmon_la-apmlib.loT: Initial import of the
+	battery monitor panel plugin.
+

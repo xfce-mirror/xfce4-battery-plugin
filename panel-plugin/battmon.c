@@ -374,11 +374,11 @@ battmon.c:241: for each function it appears in.)
 		if(battmon->options.tooltip_display_percentage && battmon->options.tooltip_display_time)
 		     g_snprintf(buffer, sizeof(buffer), _("%d%% (%02d:%02d) remaining"), charge, time_remaining / 60, time_remaining % 60);
 		else if(battmon->options.tooltip_display_percentage)
-		     g_snprintf(buffer, sizeof(buffer), _("%02d:%02d remaining"), charge, time_remaining / 60, time_remaining % 60);
+		     g_snprintf(buffer, sizeof(buffer), _("%02d:%02d remaining"),time_remaining / 60, time_remaining % 60);
 		else if(battmon->options.tooltip_display_time)
 		     g_snprintf(buffer, sizeof(buffer), _("%d%% remaining"), charge);
    		else
-		     g_snprintf(buffer, sizeof(buffer), _("AC off-line"), charge);
+		     g_snprintf(buffer, sizeof(buffer), _("AC off-line"));
 	}
 	add_tooltip(battmon->ebox, buffer);
 
@@ -460,7 +460,7 @@ do_low_warn:
 }
 
 
-static setup_battmon(t_battmon *battmon,int orientation){
+static void setup_battmon(t_battmon *battmon,int orientation){
 	GtkWidget *box,*vbox;
 	battmon->battstatus = gtk_progress_bar_new();
 	if (orientation == HORIZONTAL) 
@@ -630,39 +630,39 @@ battmon_read_config(Control *ctrl, xmlNodePtr parent)
 
 	if(!xmlStrEqual(child->name, "BatteryMonitor")) return;
 
-	if(value = xmlGetProp(child, (const xmlChar *) "display_label")) {
+	if((value = xmlGetProp(child, (const xmlChar *) "display_label")) != NULL) {
 		battmon->options.display_label = atoi(value);
 		g_free(value);
 	}
-	if(value = xmlGetProp(child, (const xmlChar *) "display_power")) {
+	if((value = xmlGetProp(child, (const xmlChar *) "display_power")) != NULL) {
 		battmon->options.display_power = atoi(value);
 		g_free(value);
 	}
-	if(value = xmlGetProp(child, (const xmlChar *) "display_percentage")) {
+	if((value = xmlGetProp(child, (const xmlChar *) "display_percentage")) != NULL) {
 		battmon->options.display_percentage = atoi(value);
 		g_free(value);
 	}
-	if(value = xmlGetProp(child, (const xmlChar *) "tooltip_display_percentage")) {
+	if((value = xmlGetProp(child, (const xmlChar *) "tooltip_display_percentage")) != NULL) {
 		battmon->options.tooltip_display_percentage = atoi(value);
 		g_free(value);
 	}
-	if(value = xmlGetProp(child, (const xmlChar *) "tooltip_display_time")) {
+	if((value = xmlGetProp(child, (const xmlChar *) "tooltip_display_time")) != NULL) {
 		battmon->options.tooltip_display_time = atoi(value);
 		g_free(value);
 	}
-	if(value = xmlGetProp(child, (const xmlChar *) "low_percentage")) {
+	if((value = xmlGetProp(child, (const xmlChar *) "low_percentage")) != NULL) {
 		battmon->options.low_percentage = atoi(value);
 		g_free(value);
 	}
-	if(value = xmlGetProp(child, (const xmlChar *) "critical_percentage")) {
+	if((value = xmlGetProp(child, (const xmlChar *) "critical_percentage")) != NULL) {
 		battmon->options.critical_percentage = atoi(value);
 		g_free(value);
 	}
-	if(value = xmlGetProp(child, (const xmlChar *) "action_on_low")) {
+	if((value = xmlGetProp(child, (const xmlChar *) "action_on_low")) != NULL) {
 		battmon->options.action_on_low = atoi(value);
 		g_free(value);
 	}
-	if(value = xmlGetProp(child, (const xmlChar *) "action_on_critical")) {
+	if((value = xmlGetProp(child, (const xmlChar *) "action_on_critical")) != NULL) {
 		battmon->options.action_on_critical = atoi(value);
 		g_free(value);
 	}

@@ -102,14 +102,14 @@ oidfmt(int *oid, int len, char *fmt, u_int *kind)
 static int
 get_var(int *oid, int nlen)
 {
-		int retval;
+		int retval=0;
 	u_char buf[BUFSIZ], *val, *p;
 	char name[BUFSIZ], *fmt, *sep;
 	int qoid[CTL_MAXNAME+2];
 	int i;
 	size_t j, len;
 	u_int kind;
-	int (*func)(int, void *);
+/*	int (*func)(int, void *);*/
 
 	qoid[0] = 0;
 	memcpy(qoid + 2, oid, nlen * sizeof(int));
@@ -190,6 +190,9 @@ int check_acpi(void)
 
   if (!(acpi = fopen ("/proc/acpi/info", "r")))
   {
+#ifdef DEBUG
+	  printf("DBG:no acpi: /proc/acpi/info not found!\n");
+#endif
     return 1;
   }
 
@@ -201,6 +204,9 @@ int check_acpi(void)
   battdir = opendir ("/proc/acpi/battery");
   if (battdir == 0)
   {
+#ifdef DEBUG
+	  printf("DBG:No battery. /proc/acpi/battery not found!\n");
+#endif
     return 2;
   }
   while ((batt = readdir (battdir)))
@@ -215,6 +221,7 @@ int check_acpi(void)
        sprintf (batteries[batt_count], "/proc/acpi/battery/%s/status", name);
     }
     else fclose (acpi);
+    
 #if 0    
     if (!(acpi = fopen ("/proc/acpi/battery/1/status", "r")))
 	    sprintf (batteries[batt_count], "/proc/acpi/battery/%s/state", name);
@@ -222,6 +229,13 @@ int check_acpi(void)
 	    sprintf (batteries[batt_count], "/proc/acpi/battery/%s/status", name);
 #endif    
     sprintf (battinfo[batt_count], "/proc/acpi/battery/%s/info", name);
+#ifdef DEBUG
+	  printf("DBG:battery number %d at:\n",batt_count);
+	  printf("DBG:info->%s\n",battinfo[batt_count]);
+	  printf("DBG:state->%s\n",batteries[batt_count]);
+	  printf("DBG:------------------------\n");
+#endif
+
     batt_count++;
   }
   closedir (battdir);
@@ -327,16 +341,36 @@ int read_acpi_info(int battery)
   char stat;
   int temp;
 
-  if (battery > MAXBATT) return -1;
-  if (!(acpi = fopen (battinfo[battery], "r"))) return -1;
+  if (battery > MAXBATT) {
+#ifdef DEBUG
+	  printf("DBG: error, battery > MAXBATT (%d)\n",MAXBATT);
+#endif
+	  return -1;
+  }
+  if (!(acpi = fopen (battinfo[battery], "r"))) {
+#ifdef DEBUG
+	  printf("DBG:cannot open %s for read!\n",battinfo[battery]);
+#endif
+	  return -1;
+  }
 
-  fread (buf, 512, 1, acpi);
+#ifdef DEBUG
+  { 
+	  int jj= fread (buf, 1,512, acpi);
+	  printf("DBG:%d characters read from %s\n",jj,battinfo[battery]);
+  }
+#else
+  fread (buf, 1,512, acpi);
+#endif
   fclose (acpi);
 
   if (!acpiinfo) acpiinfo=(ACPIinfo *)malloc(sizeof(ACPIinfo));
 
   if ((ptr = strstr (buf, "present:")) || (ptr = strstr (buf, "Present:")))
   {
+#ifdef DEBUG
+	  printf("DBG:Battery present...\n");
+#endif
     stat = *(ptr + 25);
     if (stat == 'y')
   	{
@@ -346,12 +380,18 @@ int read_acpi_info(int battery)
 	      ptr += 25;
 	      sscanf (ptr, "%d", &temp);
 	      acpiinfo->design_capacity = temp;
+#ifdef DEBUG
+	  printf("DBG:design capacity:%d\n",temp);
+#endif
 	    }
 	    if ((ptr = strstr (buf, "last full capacity:")) || (ptr = strstr (buf, "Last Full Capacity:")))
 	    {
 	      ptr += 25;
 	      sscanf (ptr, "%d", &temp);
 	      acpiinfo->last_full_capacity = temp;
+#ifdef DEBUG
+	  printf("DBG:last full capacity:%d\n",temp);
+#endif
 	    }
 	    if ((ptr = strstr (buf, "battery technology:")) || (ptr = strstr (buf, "Battery Technology:")))
 	    {
@@ -371,22 +411,37 @@ int read_acpi_info(int battery)
 	      ptr += 25;
 	      sscanf (ptr, "%d", &temp);
 	      acpiinfo->design_voltage = temp;
+#ifdef DEBUG
+	  printf("DBG:design voltage:%d\n",temp);
+#endif
 	    }
 	    if ((ptr = strstr (buf, "design capacity warning:")) || (ptr = strstr (buf, "Design Capacity Warning:")))
 	    {
 	      ptr += 25;
 	      sscanf (ptr, "%d", &temp);
 	      acpiinfo->design_capacity_warning = temp;
+#ifdef DEBUG
+	  printf("DBG:design capacity warning:%d\n",temp);
+#endif
 	    }
   	  if ((ptr = strstr (buf, "design capacity low:")) || (ptr = strstr (buf, "Design Capacity Low:")))
 	    {
 	      ptr += 25;
 	      sscanf (ptr, "%d", &temp);
 	      acpiinfo->design_capacity_low = temp;
+#ifdef DEBUG
+	  printf("DBG:design capacity low:%d\n",temp);
+#endif
 	    }
+#ifdef DEBUG
+	  printf("DBG:ALL Battery information read...\n");
+#endif
 	  }
     else /* Battery not present */
 	  {
+#ifdef DEBUG
+	  printf("DBG:Battery not present!\n");
+#endif
 	    acpiinfo->present = 0;
 	    acpiinfo->design_capacity = 0;
 	    acpiinfo->last_full_capacity = 0;
@@ -447,7 +502,12 @@ int read_acpi_state(int battery)
   int percent = 100;		/* battery percentage */
   int ptemp, rate, rtime = 0;
 
-  if (!(acpi = fopen (batteries[battery], "r"))) return -1;
+  if (!(acpi = fopen (batteries[battery], "r"))) {
+#ifdef DEBUG
+	  printf("DBG:Could not open %s (%d)\n",batteries[battery],battery);
+#endif
+	  return -1;
+  }
 
   fread (buf, 512, 1, acpi);
   fclose (acpi);
@@ -455,6 +515,9 @@ int read_acpi_state(int battery)
 
   if ((ptr = strstr (buf, "present:")) || (ptr = strstr (buf, "Present:")))
   {
+#ifdef DEBUG
+	  printf("DBG:Battery state present...\n");
+#endif
     stat = *(ptr + 25);
     if (stat == 'y')
   	{
@@ -492,6 +555,10 @@ int read_acpi_state(int battery)
 	      acpistate->rcapacity = ptemp;
 	      percent =	(float) ((float) ptemp / (float) acpiinfo->last_full_capacity) * 100;
 	      acpistate->percentage = percent;
+#ifdef DEBUG
+	  printf("DBG:remaining capacity:100 * %d/%d = %d\n",
+			  ptemp,acpiinfo->last_full_capacity,acpistate->percentage);
+#endif
 	    }
 	    if ((ptr = strstr (buf, "present rate:")) || (ptr = strstr (buf, "Present Rate:")))
 	    {
@@ -592,7 +659,7 @@ int get_fan_status(void)
   FILE *fp;
   char * proc_fan_status="/proc/acpi/toshiba/fan";
   char line[256];
-  int result;
+  /*int result;*/
 
    /* Check for fan status in PROC filesystem */
     if ( (fp=fopen(proc_fan_status, "r")) != NULL ) {

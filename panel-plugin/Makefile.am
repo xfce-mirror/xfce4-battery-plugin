@@ -10,7 +10,7 @@ libbattmon_la_LDFLAGS =							\
 
 libbattmon_la_SOURCES =							\
 	apmlib.c							\
-	apmlib.h							\
+	apm.h							\
 	acpi-linux.c							\
 	acpi-linux.h							\
 	battmon.c

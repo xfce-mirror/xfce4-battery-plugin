@@ -709,7 +709,7 @@ command_browse_cb (GtkWidget *b, GtkEntry *entry)
 }
 
 static void
-battmon_add_options(Control *ctrl, GtkContainer *container, GtkWidget *done)
+battmon_create_options(Control *ctrl, GtkContainer *container, GtkWidget *done)
 {
 	t_battmon *battmon = ctrl->data;
 	t_battmon_dialog *dialog;
@@ -938,7 +938,7 @@ xfce_control_class_init(ControlClass *cc)
 	cc->attach_callback	= battmon_attach_callback;
 
 	cc->set_size		= battmon_set_size;
-	cc->add_options		= battmon_add_options;
+	cc->create_options		= battmon_create_options;
 }
 
 XFCE_PLUGIN_CHECK_INIT

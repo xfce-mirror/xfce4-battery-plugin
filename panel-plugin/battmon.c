@@ -52,9 +52,7 @@
 #include <panel/plugins.h>
 #include <panel/xfce_support.h>
 
-#ifdef __linux__
 #include "libacpi.h"
-#endif
 
 extern xmlDocPtr xmlconfig;
 #define DATA(node) xmlNodeListGetString(xmlconfig, node->children, 1)

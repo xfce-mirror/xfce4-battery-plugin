@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2003 Nicholas Penwarden <toth64@yahoo.com>
- * Copyright (c) 2003 Benedikt Meurer <benedikt.meurer@unix-ag.uni-siegen.de>
+ * Copyright (c) 2003 Benedikt Meurer <benny@xfce.org>
  * Copyright (c) 2003 edscott wilson garcia <edscott@users.sourceforge.net>
  *
  * Redistribution and use in source and binary forms, with or without
@@ -362,6 +362,7 @@ battmon.c:241: for each function it appears in.)
 	
 	
 	if(charge < 0) charge = 0;
+  if(charge > 100) charge = 100;
 	gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(battmon->battstatus), charge / 100.0);
 	
 	if(battmon->options.display_label){

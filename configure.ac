@@ -9,7 +9,7 @@ AC_INIT([configure])
 
 AM_CONFIG_HEADER([config.h])
 
-AM_INIT_AUTOMAKE([xfce4-battery-plugin], [0.1.2])
+AM_INIT_AUTOMAKE([xfce4-battery-plugin], [0.3.0])
 
 AM_MAINTAINER_MODE
 

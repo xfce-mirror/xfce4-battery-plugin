@@ -1,7 +1,8 @@
 /*
  * Copyright (c) 2003 Nicholas Penwarden <toth64@yahoo.com>
- * Copyright (c) 2003 Benedikt Meurer <benny@xfce.org>
+ * Copyright (c) 2003 Benedikt Meurer <benedikt.meurer@unix-ag.uni-siegen.de>
  * Copyright (c) 2003 edscott wilson garcia <edscott@users.sourceforge.net>
+ * Copyright (c) 2005 Eduard Roccatello <eduard@xfce.org>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -45,13 +46,14 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-#include <libxfce4util/i18n.h>
-#include <libxfcegui4/dialogs.h>
+#include <libxfce4util/libxfce4util.h>
+#include <libxfcegui4/libxfcegui4.h>
 #include <panel/global.h>
 #include <panel/controls.h>
 #include <panel/plugins.h>
 #include <panel/xfce_support.h>
 
+#include "battery.h"
 #include "libacpi.h"
 
 extern xmlDocPtr xmlconfig;
@@ -64,6 +66,7 @@ extern xmlDocPtr xmlconfig;
 typedef struct
 {
 	gboolean	display_label;	/* Options */
+	gboolean	display_icon;	/* Options */
 	gboolean	display_power;	/* Options */
 	gboolean	display_percentage;	/* Options */
 	gboolean	tooltip_display_percentage;
@@ -98,6 +101,7 @@ typedef struct
 	GtkLabel		*rtime;
 	GtkLabel		*acfan;
 	GtkLabel		*temp;
+	GtkWidget		*image;
 } t_battmon;
 
 typedef struct
@@ -107,6 +111,7 @@ typedef struct
 	GtkWidget		*cb_disp_percentage;
 	GtkWidget		*cb_disp_tooltip_percentage;
 	GtkWidget		*cb_disp_tooltip_time;
+	GtkWidget		*cb_disp_icon;
 	GtkWidget		*sb_low_percentage;
 	GtkWidget		*sb_critical_percentage;
 	GtkWidget		*om_action_low;
@@ -128,6 +133,7 @@ static GtkWidget *top_dialog;
 static void
 init_options(t_battmon_options *options)
 {
+	options->display_icon = FALSE;
 	options->display_label = FALSE;
 	options->display_power = FALSE;
 	options->display_percentage = FALSE;
@@ -169,10 +175,10 @@ detect_battery_info(t_battmon *battmon)
 		/* ACPI detected */
 		battmon->method = BM_USE_ACPI;
 		/* consider battery 0 first... */
-		for (i=batt_count-1;i>=0;i--) {
+		for (i=0;i<batt_count;i++) {
 			if (read_acpi_info(i)) break; 
 		}
-		for (i=batt_count-1;i>=0;i--) {
+		for (i=0;i<batt_count;i++) {
 		    if (read_acpi_state(i)) break; 
 		}
 		/*read_acpi_state(0);*/ /* only consider first battery... */
@@ -215,11 +221,11 @@ detect_battery_info(t_battmon *battmon)
 		/* ACPI detected */
 		int i;
 		battmon->method = BM_USE_ACPI;
-		for (i=batt_count-1;i>=0;i--) {
+		for (i=0;i<batt_count;i++) {
 			if (read_acpi_info(i)) break; 
 		}
 		/*read_acpi_info(0);*/ /* only consider first battery... */
-		for (i=batt_count-1;i>=0;i--) {
+		for (i=0;i<batt_count;i++) {
 		    if (read_acpi_state(i)) break; 
 		}
 		if (batt_count){
@@ -304,7 +310,7 @@ update_apm_status(t_battmon *battmon)
 	if(battmon->method == BM_USE_ACPI) {
 		int i;
 		acline = read_acad_state();
-		for (i=batt_count-1;i>=0;i--) {
+		for (i=0;i<batt_count;i++) {
 		    if (read_acpi_state(i)) break; 
 		}
 		/*read_acpi_state(0);*/ /* only consider first battery... */
@@ -362,7 +368,6 @@ battmon.c:241: for each function it appears in.)
 	
 	
 	if(charge < 0) charge = 0;
-  if(charge > 100) charge = 100;
 	gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(battmon->battstatus), charge / 100.0);
 	
 	if(battmon->options.display_label){
@@ -370,6 +375,13 @@ battmon.c:241: for each function it appears in.)
 	} else {
 		gtk_widget_hide((GtkWidget *)battmon->label);
 	}
+
+	if(battmon->options.display_icon){
+		gtk_widget_show(battmon->image);
+	} else {
+		gtk_widget_hide(battmon->image);
+	}
+	
 	
 	if(battmon->options.display_percentage){
 		gtk_widget_show((GtkWidget *)battmon->charge);
@@ -483,7 +495,9 @@ do_low_warn:
 
 
 static void setup_battmon(t_battmon *battmon,int orientation){
+	
 	GtkWidget *box,*vbox;
+	GdkPixbuf *icon;
 	battmon->battstatus = gtk_progress_bar_new();
 	if (orientation == HORIZONTAL) 
 	{
@@ -502,14 +516,17 @@ static void setup_battmon(t_battmon *battmon,int orientation){
 
 	gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(battmon->battstatus), 0.0);
 	
-
 	
+	icon  = xfce_inline_icon_at_size (battery_pixbuf, 20, 32);
+	battmon->image = gtk_image_new_from_pixbuf (icon);
+	gtk_box_pack_start(GTK_BOX(box),GTK_WIDGET(battmon->image), FALSE, FALSE, 2);
+
   	battmon->label = (GtkLabel *)gtk_label_new(_("Battery"));
     	gtk_box_pack_start(GTK_BOX(box),GTK_WIDGET(battmon->label),FALSE, FALSE, 0);
 	
-	gtk_box_pack_start(GTK_BOX(box),  GTK_WIDGET(battmon->battstatus), FALSE, FALSE, 0);
+	gtk_box_pack_start(GTK_BOX(box),  GTK_WIDGET(battmon->battstatus), FALSE, FALSE, 2);
 
-	vbox=gtk_vbox_new(FALSE, 0);
+	vbox = gtk_vbox_new(FALSE, 0);
 	
 	/* percent + rtime */
         gtk_box_pack_start(GTK_BOX(box), GTK_WIDGET(vbox), FALSE, FALSE, 0);
@@ -656,6 +673,10 @@ battmon_read_config(Control *ctrl, xmlNodePtr parent)
 		battmon->options.display_label = atoi(value);
 		g_free(value);
 	}
+	if((value = xmlGetProp(child, (const xmlChar *) "display_icon")) != NULL) {
+		battmon->options.display_icon = atoi(value);
+		g_free(value);
+	}
 	if((value = xmlGetProp(child, (const xmlChar *) "display_power")) != NULL) {
 		battmon->options.display_power = atoi(value);
 		g_free(value);
@@ -718,6 +739,9 @@ battmon_write_config(Control *ctrl, xmlNodePtr parent)
 	/* Display label */
 	g_snprintf(value, 2, "%d", battmon->options.display_label);
 	xmlSetProp(root, "display_label", value);
+	/* Display icon */
+	g_snprintf(value, 2, "%d", battmon->options.display_icon);
+	xmlSetProp(root, "display_icon", value);
 	/* Display Power */
 	g_snprintf(value, 2, "%d", battmon->options.display_power);
 	xmlSetProp(root, "display_power", value);
@@ -812,6 +836,7 @@ static void refresh_dialog(t_battmon_dialog *dialog)
 	else
 		gtk_entry_set_text(GTK_ENTRY(dialog->en_command_critical), "");
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->cb_disp_label), battmon->options.display_label);
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->cb_disp_icon), battmon->options.display_icon);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->cb_disp_power), battmon->options.display_power);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->cb_disp_percentage), battmon->options.display_percentage);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->cb_disp_tooltip_percentage), battmon->options.tooltip_display_percentage);
@@ -878,6 +903,17 @@ set_disp_label(GtkToggleButton *tb, t_battmon_dialog *dialog)
 	t_battmon *battmon = dialog->battmon;
 
 	battmon->options.display_label = gtk_toggle_button_get_active(tb);
+	update_apm_status(dialog->battmon);
+
+/*	gtk_widget_set_sensitive(dialog->revert, TRUE);	*/
+}
+
+static void
+set_disp_icon(GtkToggleButton *tb, t_battmon_dialog *dialog)
+{
+	t_battmon *battmon = dialog->battmon;
+
+	battmon->options.display_icon = gtk_toggle_button_get_active(tb);
 	update_apm_status(dialog->battmon);
 
 /*	gtk_widget_set_sensitive(dialog->revert, TRUE);	*/
@@ -1182,6 +1218,10 @@ battmon_create_options(Control *ctrl, GtkContainer *container, GtkWidget *done)
 	gtk_widget_show(dialog->cb_disp_power);
 	gtk_box_pack_start(GTK_BOX(vbox2), dialog->cb_disp_power, FALSE, FALSE, 0);
 
+	dialog->cb_disp_icon = gtk_check_button_new_with_mnemonic(_("Display icon"));
+	gtk_widget_show(dialog->cb_disp_icon);
+	gtk_box_pack_start(GTK_BOX(vbox2), dialog->cb_disp_icon, FALSE, FALSE, 0);
+
 	/* Signal connections should be set after setting tate of toggle buttons...*/
 	refresh_dialog(dialog);
 
@@ -1192,6 +1232,7 @@ battmon_create_options(Control *ctrl, GtkContainer *container, GtkWidget *done)
 	g_signal_connect(dialog->cb_disp_power, "toggled", G_CALLBACK(set_disp_power), dialog);
 	g_signal_connect(dialog->cb_disp_tooltip_time, "toggled", G_CALLBACK(set_tooltip_time), dialog);
 	g_signal_connect(dialog->cb_disp_label, "toggled", G_CALLBACK(set_disp_label), dialog);
+	g_signal_connect(dialog->cb_disp_icon, "toggled", G_CALLBACK(set_disp_icon), dialog);
 	
 	g_signal_connect(dialog->sb_low_percentage, "value-changed", G_CALLBACK(set_low_percentage), dialog);
 	g_signal_connect(dialog->sb_critical_percentage, "value-changed", G_CALLBACK(set_critical_percentage), dialog);

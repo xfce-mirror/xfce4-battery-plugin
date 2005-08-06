@@ -13,7 +13,8 @@ libbattmon_la_SOURCES =							\
 	apm.h							\
 	libacpi.c							\
 	libacpi.h							\
-	battmon.c
+	battmon.c							\
+	battery.h
 
 libbattmon_la_CFLAGS =							\
 	@XFCE4_PANEL_CFLAGS@

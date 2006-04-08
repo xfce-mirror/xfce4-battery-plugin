@@ -1,34 +1,157 @@
-2003-07-18 17:59  huysmans
+2005-08-06 11:39  mastershadow
+
+	* AUTHORS, Makefile.in, README, aclocal.m4, compile, config.guess,
+	  config.sub, configure, configure.ac, depcomp, install-sh,
+	  ltmain.sh, missing, mkinstalldirs, panel-plugin/Makefile.am,
+	  panel-plugin/Makefile.in, panel-plugin/battery.h,
+	  panel-plugin/battery.png, panel-plugin/battmon.c: Graphical
+	  tweaks and new icon added
+
+2004-07-28 21:49  benny
+
+	* m4/depends.m4: Fix BM_DEPEND_CHECK().
+
+2004-07-24 17:29  benny
+
+	* m4/depends.m4: Correct min. required panel version.
+
+2004-07-24 17:26  benny
+
+	* m4/depends.m4: Extended XFCE_PANEL_PLUGIN macro to honor the new
+	  threaded panel.
+
+2004-07-21 09:00  benny
+
+	* m4/depends.m4: New panel plugin check
+
+2004-07-03 00:56  edscott
+
+	* panel-plugin/libacpi.c: patch by Jos� Eduardo Martins
+	  (This line should soon be replaced with a for(;;) loop)
+
+2004-06-17 05:42  benny
+
+	* panel-plugin/battmon.c: Applied small patch from Lukasz Stelmach.
+
+2004-04-19 19:53  edscott
+
+	* panel-plugin/battmon.c: reverse battery count order because low
+	  value battery drains last.
+
+2004-03-30 15:12  edscott
+
+	* panel-plugin/libacpi.c: compac laptops use a different AC
+	  adapter identifier
+
+2004-02-05 21:48  benny
+
+	* panel-plugin/libacpi.c: Check return values of name2oid!
+
+2003-12-05 16:00  edscott
+
+	* panel-plugin/libacpi.c: submitted path
+
+2003-09-09 13:55  edscott
+
+	* panel-plugin/battmon.c, panel-plugin/libacpi.c: Recent fixes
+	  caused crash if no battery found, fixed. Also, battery count was
+	  not being figured out by sysctl methods (freeBSD)
+
+2003-09-09 13:20  edscott
+
+	* panel-plugin/battmon.c: tooltip time and percentage were
+	  reversed when on battery
+
+2003-09-09 01:39  edscott
+
+	* panel-plugin/battmon.c, panel-plugin/libacpi.c,
+	  panel-plugin/libacpi.h: process linux for more than one battery,
+	  but use the first one that is available, instead of the plain
+	  first one.
+
+2003-09-08 22:37  edscott
+
+	* panel-plugin/battmon.c, panel-plugin/libacpi.c: debug information
+
+2003-09-04 14:25  edscott
+
+	* panel-plugin/libacpi.c: fix detection for battery state file
+	  (linux)
+
+2003-08-10 06:07  benny
+
+	* panel-plugin/libbattmon_la-apmlib.loT: This does not belong here.
+
+2003-08-09 04:35  edscott
+
+	* AUTHORS, config.h.in, configure, configure.ac,
+	  panel-plugin/apmlib.c, panel-plugin/battmon.c,
+	  panel-plugin/libacpi.c: introduced support for acpi in freebsd
+	  (5.x+)
+
+2003-08-01 13:34  edscott
+
+	* panel-plugin/battmon.c: Allow compilation of libacpi headers on
+	  all platforms. Should not hurt.
+
+2003-08-01 01:53  edscott
+
+	* panel-plugin/Makefile.am, panel-plugin/Makefile.in,
+	  panel-plugin/acpi-linux.c, panel-plugin/acpi-linux.h,
+	  panel-plugin/battmon.c, panel-plugin/libacpi.c,
+	  panel-plugin/libacpi.h: - replaced broken acpi-linux library
+	  with libacpi
+	  - added monitors for temperature and fan state
+	  - changed orientation to match system load plugin
+	  - added colors for alert state and normal state
+	  - added battery label
+	  - fixed orientation when panel is set vertical
+
+2003-07-23 23:39  toth64
+
+	* panel-plugin/battmon.c: Progress bar now becomes red when
+	  battery is low
+
+2003-07-23 20:30  huysmans
+
+	* panel-plugin/Makefile.am, panel-plugin/Makefile.in: really fix
+	  headers
+
+2003-07-23 20:18  huysmans
+
+	* configure, configure.ac, panel-plugin/Makefile.am,
+	  panel-plugin/Makefile.in: Fix buildfiles to include headers in
+	  tarball
+
+2003-07-18 18:23  benny
+
+	* ChangeLog, configure, configure.ac: Make this work with the
+	  latest xfce4-panel.
+
+2003-07-18 15:59  huysmans
 
 	* panel-plugin/battmon.c: Change panel API again to prevent old
-	plugins to crash the panel
+	  plugins to crash the panel
 
-2003-07-17 20:31  benny
+2003-07-17 18:31  benny
 
 	* ChangeLog: Updated ChangeLog.
 
-2003-07-17 20:30  benny
+2003-07-17 18:30  benny
 
-	* compile, depcomp, README, aclocal.m4, ltmain.sh, configure,
-	configure.ac, config.guess, install-sh, AUTHORS, COPYING,
-	ChangeLog, INSTALL, Makefile.am, Makefile.in, autogen.sh,
-	config.h.in, config.sub, missing, mkinstalldirs, m4/debug.m4,
-	m4/depends.m4, m4/i18n.m4, panel-plugin/Makefile.am,
-	panel-plugin/Makefile.in, panel-plugin/acpi-linux.c,
-	panel-plugin/acpi-linux.h, panel-plugin/apm.h,
-	panel-plugin/apmlib.c, panel-plugin/battmon.c,
-	panel-plugin/libbattmon_la-apmlib.loT: Initial revision
+	* AUTHORS, COPYING, ChangeLog, INSTALL, Makefile.am, Makefile.in,
+	  README, aclocal.m4, autogen.sh, compile, config.guess,
+	  config.h.in, config.sub, configure, configure.ac, depcomp,
+	  install-sh, ltmain.sh, m4, m4/debug.m4, m4/depends.m4,
+	  m4/i18n.m4, missing, mkinstalldirs, panel-plugin,
+	  panel-plugin/Makefile.am, panel-plugin/Makefile.in,
+	  panel-plugin/acpi-linux.c, panel-plugin/acpi-linux.h,
+	  panel-plugin/apm.h, panel-plugin/apmlib.c,
+	  panel-plugin/battmon.c, panel-plugin/libbattmon_la-apmlib.loT:
+	  Initial revision
 
-2003-07-17 20:30  benny
+2003-07-17 18:30  
 
-	* compile, depcomp, README, aclocal.m4, ltmain.sh, configure,
-	configure.ac, config.guess, install-sh, AUTHORS, COPYING,
-	ChangeLog, INSTALL, Makefile.am, Makefile.in, autogen.sh,
-	config.h.in, config.sub, missing, mkinstalldirs, m4/debug.m4,
-	m4/depends.m4, m4/i18n.m4, panel-plugin/Makefile.am,
-	panel-plugin/Makefile.in, panel-plugin/acpi-linux.c,
-	panel-plugin/acpi-linux.h, panel-plugin/apm.h,
-	panel-plugin/apmlib.c, panel-plugin/battmon.c,
-	panel-plugin/libbattmon_la-apmlib.loT: Initial import of the
-	battery monitor panel plugin.
+	* xfce4-battery-plugin/branches, xfce4-battery-plugin/tags, .: New
+	  repository initialized by cvs2svn.
 

@@ -17,7 +17,7 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  * 
- * $Id: apm.h,v 1.1 2003/07/17 18:30:30 benny Exp $
+ * $Id$
  * 
  */
 #include <linux/apm_bios.h>

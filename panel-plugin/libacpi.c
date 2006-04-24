@@ -54,6 +54,7 @@
 
 static char batteries[MAXBATT][128];
 static char battinfo[MAXBATT][128];
+#ifndef __linux__
 #if HAVE_SYSCTL
  static int
 name2oid(char *name, int *oidp)
@@ -177,6 +178,7 @@ get_var(int *oid, int nlen)
 }
 
  
+#endif
 #endif
 
 /* see if we have ACPI support */

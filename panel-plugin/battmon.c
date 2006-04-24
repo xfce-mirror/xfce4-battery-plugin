@@ -30,8 +30,6 @@
 #include <config.h>
 #endif
 
-#include <gtk/gtk.h>
-
 #ifdef __FreeBSD__
 #include <machine/apm_bios.h>
 #elif __OpenBSD__
@@ -45,23 +43,22 @@
 #include <sys/types.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <string.h>
+#include <stdlib.h>
+
+#include <gtk/gtk.h>
 
 #include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
-#include <panel/global.h>
-#include <panel/controls.h>
-#include <panel/plugins.h>
-#include <panel/xfce_support.h>
+#include <libxfce4panel/xfce-panel-plugin.h>
 
 #include "battery.h"
 #include "libacpi.h"
 
-extern xmlDocPtr xmlconfig;
-#define DATA(node) xmlNodeListGetString(xmlconfig, node->children, 1)
-
-#define HIGH_COLOR "#00ff00"
-#define LOW_COLOR "#ffff00"
-#define CRITICAL_COLOR "#ff0000"
+#define BORDER			8
+#define HIGH_COLOR 		"#00ff00"
+#define LOW_COLOR 		"#ffff00"
+#define CRITICAL_COLOR 	"#ff0000"
 
 typedef struct
 {
@@ -83,12 +80,14 @@ typedef struct
 
 typedef struct
 {
+	XfcePanelPlugin *plugin;
+	
+	GtkTooltips		*tips;
 	GtkWidget		*vbox;		/* Widgets */
 	GtkWidget		*ebox;
 	GtkWidget		*battstatus;
 	int			timeoutid;	/* To update apm status */
 	int			method;
-	int 			orientation;
 	gboolean		flag;
 	gboolean		low;
 	gboolean		critical;
@@ -118,16 +117,11 @@ typedef struct
 	GtkWidget		*om_action_critical;
 	GtkWidget		*en_command_low;
 	GtkWidget		*en_command_critical;
-	Control			*ctrl;
-	GtkWidget		*revert;
 	t_battmon		*battmon;
-	t_battmon_options	backup;
 } t_battmon_dialog;
 
 enum {BM_DO_NOTHING, BM_MESSAGE, BM_COMMAND, BM_COMMAND_TERM};
 enum {BM_BROKEN, BM_USE_ACPI, BM_USE_APM};
-
-static GtkWidget *top_dialog;
 
 
 static void
@@ -366,8 +360,8 @@ battmon.c:241: for each function it appears in.)
 #endif
 #endif
 	
-	
-	if(charge < 0) charge = 0;
+
+	charge = CLAMP (charge, 0, 100);
 	gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(battmon->battstatus), charge / 100.0);
 	
 	if(battmon->options.display_label){
@@ -381,8 +375,7 @@ battmon.c:241: for each function it appears in.)
 	} else {
 		gtk_widget_hide(battmon->image);
 	}
-	
-	
+		
 	if(battmon->options.display_percentage){
 		gtk_widget_show((GtkWidget *)battmon->charge);
 		gtk_widget_show((GtkWidget *)battmon->rtime);
@@ -397,7 +390,7 @@ battmon.c:241: for each function it appears in.)
 		
 
 	if(acline) {
-		char *t=(charge<100.0)?_("(Charging from AC)"):_("(AC on-line)");
+		char *t=(charge<99.9)?_("(Charging from AC)"):_("(AC on-line)");
 		if(battmon->options.tooltip_display_percentage) {
 			g_snprintf(buffer, sizeof(buffer), "%d%% %s", charge,t);
 		}
@@ -414,7 +407,8 @@ battmon.c:241: for each function it appears in.)
    		else
 		     g_snprintf(buffer, sizeof(buffer), _("AC off-line"));
 	}
-	add_tooltip(battmon->ebox, buffer);
+	
+	gtk_tooltips_set_tip (battmon->tips, battmon->ebox, buffer, NULL);
 
 	if(battmon->options.display_power){
 	  gtk_widget_show((GtkWidget *)battmon->acfan);
@@ -432,7 +426,6 @@ battmon.c:241: for each function it appears in.)
 	  gtk_widget_hide((GtkWidget *)battmon->acfan);
 	  gtk_widget_hide((GtkWidget *)battmon->temp);
 	}
-	
 		
 	gtk_progress_bar_set_text(GTK_PROGRESS_BAR(battmon->battstatus), NULL);
 	
@@ -472,7 +465,7 @@ do_critical_warn:
 				int interm=(battmon->options.action_on_critical == BM_COMMAND_TERM)?1:0;
 				if (!battmon->options.command_on_critical ||
 				    !strlen(battmon->options.command_on_critical)) goto do_critical_warn;
-				exec_cmd(battmon->options.command_on_critical, interm, 0);
+				xfce_exec (battmon->options.command_on_critical, interm, 0, NULL);
 			}
 		} else if (!battmon->low){
 		        battmon->low = TRUE;
@@ -486,7 +479,7 @@ do_low_warn:
 				int interm=(battmon->options.action_on_low == BM_COMMAND_TERM)?1:0;
 				if (!battmon->options.command_on_low ||
 				    !strlen(battmon->options.command_on_low)) goto do_low_warn;
-				exec_cmd(battmon->options.command_on_low, interm, 0);
+				xfce_exec(battmon->options.command_on_low, interm, 0, NULL);
 			}
 		}
 	}
@@ -494,12 +487,13 @@ do_low_warn:
 }
 
 
-static void setup_battmon(t_battmon *battmon,int orientation){
-	
+static void setup_battmon(t_battmon *battmon, GtkOrientation orientation)
+{	
 	GtkWidget *box,*vbox;
 	GdkPixbuf *icon;
+	
 	battmon->battstatus = gtk_progress_bar_new();
-	if (orientation == HORIZONTAL) 
+	if (orientation == GTK_ORIENTATION_HORIZONTAL) 
 	{
 	   gtk_progress_bar_set_orientation(GTK_PROGRESS_BAR(battmon->battstatus), 
 			   GTK_PROGRESS_BOTTOM_TO_TOP);
@@ -512,7 +506,7 @@ static void setup_battmon(t_battmon *battmon,int orientation){
 	   battmon->vbox = gtk_vbox_new(FALSE, 0);
 	}
 	
-	gtk_container_set_border_width(GTK_CONTAINER(battmon->vbox), border_width);
+	gtk_container_set_border_width(GTK_CONTAINER(battmon->vbox), BORDER / 2);
 
 	gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(battmon->battstatus), 0.0);
 	
@@ -520,6 +514,7 @@ static void setup_battmon(t_battmon *battmon,int orientation){
 	icon  = xfce_inline_icon_at_size (battery_pixbuf, 20, 32);
 	battmon->image = gtk_image_new_from_pixbuf (icon);
 	gtk_box_pack_start(GTK_BOX(box),GTK_WIDGET(battmon->image), FALSE, FALSE, 2);
+	g_object_unref (icon);
 
   	battmon->label = (GtkLabel *)gtk_label_new(_("Battery"));
     	gtk_box_pack_start(GTK_BOX(box),GTK_WIDGET(battmon->label),FALSE, FALSE, 0);
@@ -529,7 +524,7 @@ static void setup_battmon(t_battmon *battmon,int orientation){
 	vbox = gtk_vbox_new(FALSE, 0);
 	
 	/* percent + rtime */
-        gtk_box_pack_start(GTK_BOX(box), GTK_WIDGET(vbox), FALSE, FALSE, 0);
+	gtk_box_pack_start(GTK_BOX(box), GTK_WIDGET(vbox), FALSE, FALSE, 0);
 	
   	battmon->charge = (GtkLabel *)gtk_label_new("50%%");
     	gtk_box_pack_start(GTK_BOX(vbox),GTK_WIDGET(battmon->charge),FALSE, FALSE, 0);
@@ -540,14 +535,13 @@ static void setup_battmon(t_battmon *battmon,int orientation){
 	vbox=gtk_vbox_new(FALSE, 0);
 	
 	/* ac-fan-temp */
-        gtk_box_pack_start(GTK_BOX(box), GTK_WIDGET(vbox), FALSE, FALSE, 0);
+	gtk_box_pack_start(GTK_BOX(box), GTK_WIDGET(vbox), FALSE, FALSE, 0);
   	
 	battmon->acfan = (GtkLabel *)gtk_label_new("AC FAN");
     	gtk_box_pack_start(GTK_BOX(vbox),GTK_WIDGET(battmon->acfan),FALSE, FALSE, 0);
 	 
-  	battmon->temp = (GtkLabel *)gtk_label_new("40 C");
+  	battmon->temp = (GtkLabel *)gtk_label_new("40°C");
     	gtk_box_pack_start(GTK_BOX(vbox),GTK_WIDGET(battmon->temp),FALSE, FALSE, 0);
-
 
 
 	gtk_box_pack_start(GTK_BOX(battmon->vbox), box, FALSE, FALSE, 0);
@@ -571,253 +565,160 @@ static void setup_battmon(t_battmon *battmon,int orientation){
 	gdk_color_parse(LOW_COLOR, &(battmon->colorL));
 	gdk_color_parse(CRITICAL_COLOR, &(battmon->colorC));
 	gtk_widget_set_size_request(battmon->ebox, -1, -1);
-
 }
 
-static void
-battmon_set_orientation (Control * ctrl, int orientation)
+static gboolean
+battmon_set_orientation (XfcePanelPlugin *plugin, GtkOrientation orientation,
+						 t_battmon *battmon)
 {
-
-    t_battmon *battmon   = ctrl->data;
-    battmon->orientation=orientation;		
     if (battmon->timeoutid) g_source_remove(battmon->timeoutid);
     gtk_container_remove(GTK_CONTAINER(battmon->ebox), GTK_WIDGET(battmon->vbox));
     setup_battmon(battmon,orientation);
     battmon->timeoutid = g_timeout_add(1 * 1024, (GSourceFunc) update_apm_status, battmon);
-    gtk_widget_set_size_request(ctrl->base, -1, -1);
+
+	return TRUE;
 }
 
-static t_battmon *
-battmon_new(void)
+static t_battmon*
+battmon_create(XfcePanelPlugin *plugin)
 {
 	t_battmon *battmon;
 
 	battmon = g_new(t_battmon, 1);
 	init_options(&(battmon->options));
 
+        battmon->plugin = plugin;
+
 	battmon->low = FALSE;
 	battmon->critical = FALSE;
 	battmon->ebox = gtk_event_box_new();
-	battmon->orientation=HORIZONTAL;
-	setup_battmon(battmon,HORIZONTAL);
+	setup_battmon(battmon, xfce_panel_plugin_get_orientation (plugin));
 	battmon->timeoutid = 0;
 	battmon->flag = FALSE;
-	return(battmon);
-}
+	battmon->tips = gtk_tooltips_new ();
+	g_object_ref (battmon->tips);
+	gtk_object_sink (GTK_OBJECT (battmon->tips));
 
-static gboolean
-battmon_control_new(Control *ctrl)
-{
-	t_battmon *battmon;
-
-	battmon = battmon_new();
-
-	gtk_container_add(GTK_CONTAINER(ctrl->base), battmon->ebox);
-
-	ctrl->data = (gpointer)battmon;
-	ctrl->with_popup = FALSE;
-
-	gtk_widget_set_size_request(ctrl->base, -1, -1);
-
-	/* Determine what facility to use and initialize reading */
-	battmon->method = BM_BROKEN;
-	update_apm_status(battmon);	
-
-	/* If neither ACPI nor APM are enabled, check for either every 60 seconds */
-	if(battmon->timeoutid == 0)
-		battmon->timeoutid = g_timeout_add(60 * 1024, (GSourceFunc) update_apm_status, battmon);
-
-	/* Required for the percentage and tooltip to be initially displayed due to the long timeout for ACPI */
-	if(battmon->method == BM_USE_ACPI) {
-		battmon->flag = TRUE;
-		g_source_remove(battmon->timeoutid);
-		battmon->timeoutid = g_timeout_add(1000, (GSourceFunc) update_apm_status, battmon);
-	}
-
-	return(TRUE);
+	return battmon;
 }
 
 static void
-battmon_free(Control *ctrl)
+battmon_free(XfcePanelPlugin *plugin, t_battmon *battmon)
 {
-	t_battmon *battmon;
-
-	g_return_if_fail(ctrl != NULL);
-	g_return_if_fail(ctrl->data != NULL);
-
-	battmon = (t_battmon *)ctrl->data;
-
 	if(battmon->timeoutid != 0) {
 		g_source_remove(battmon->timeoutid);
 		battmon->timeoutid = 0;
 	}
 
+	g_object_unref (battmon->tips);
 	g_free(battmon);
 }
 
 static void
-battmon_read_config(Control *ctrl, xmlNodePtr parent)
+battmon_read_config(XfcePanelPlugin *plugin, t_battmon *battmon)
 {
-	xmlChar *value;
-	xmlNodePtr child;
+    const char *value;
+    char *file;
+    XfceRc *rc;
+    
+    if (!(file = xfce_panel_plugin_lookup_rc_file (plugin)))
+        return;
+    
+    rc = xfce_rc_simple_open (file, TRUE);
+    g_free (file);
+
+    if (!rc)
+        return;
+    
+	battmon->options.display_label = xfce_rc_read_bool_entry (rc, "display_label", FALSE);
 	
-	t_battmon *battmon = (t_battmon *) ctrl->data;
+	battmon->options.display_icon = xfce_rc_read_bool_entry (rc, "display_icon", FALSE);
 
-	if(!parent || !parent->children) return;
+	battmon->options.display_power = xfce_rc_read_bool_entry (rc, "display_power", FALSE);
 
-	child = parent->children;
+	battmon->options.display_percentage = xfce_rc_read_bool_entry (rc, "display_percentage", FALSE);
 
-	if(!xmlStrEqual(child->name, "BatteryMonitor")) return;
+	battmon->options.tooltip_display_percentage = xfce_rc_read_bool_entry (rc, "tooltip_display_percentage", FALSE);
 
-	if((value = xmlGetProp(child, (const xmlChar *) "display_label")) != NULL) {
-		battmon->options.display_label = atoi(value);
-		g_free(value);
-	}
-	if((value = xmlGetProp(child, (const xmlChar *) "display_icon")) != NULL) {
-		battmon->options.display_icon = atoi(value);
-		g_free(value);
-	}
-	if((value = xmlGetProp(child, (const xmlChar *) "display_power")) != NULL) {
-		battmon->options.display_power = atoi(value);
-		g_free(value);
-	}
-	if((value = xmlGetProp(child, (const xmlChar *) "display_percentage")) != NULL) {
-		battmon->options.display_percentage = atoi(value);
-		g_free(value);
-	}
-	if((value = xmlGetProp(child, (const xmlChar *) "tooltip_display_percentage")) != NULL) {
-		battmon->options.tooltip_display_percentage = atoi(value);
-		g_free(value);
-	}
-	if((value = xmlGetProp(child, (const xmlChar *) "tooltip_display_time")) != NULL) {
-		battmon->options.tooltip_display_time = atoi(value);
-		g_free(value);
-	}
-	if((value = xmlGetProp(child, (const xmlChar *) "low_percentage")) != NULL) {
-		battmon->options.low_percentage = atoi(value);
-		g_free(value);
-	}
-	if((value = xmlGetProp(child, (const xmlChar *) "critical_percentage")) != NULL) {
-		battmon->options.critical_percentage = atoi(value);
-		g_free(value);
-	}
-	if((value = xmlGetProp(child, (const xmlChar *) "action_on_low")) != NULL) {
-		battmon->options.action_on_low = atoi(value);
-		g_free(value);
-	}
-	if((value = xmlGetProp(child, (const xmlChar *) "action_on_critical")) != NULL) {
-		battmon->options.action_on_critical = atoi(value);
-		g_free(value);
-	}
+	battmon->options.tooltip_display_time = xfce_rc_read_bool_entry (rc, "tooltip_display_time", FALSE);
 
-	if(!child || !child->children) return;
+	battmon->options.low_percentage = xfce_rc_read_int_entry (rc, "low_percentage", 10);
 
-	for(child = child->children; child; child = child->next) {
-		if(xmlStrEqual(child->name, (const xmlChar *) "command_on_low")) {
-			value = DATA(child);
-			if(battmon->options.command_on_low) g_free(battmon->options.command_on_low);
-			if(value) battmon->options.command_on_low = (char *)value;
-		}
-		if(xmlStrEqual(child->name, (const xmlChar *) "command_on_critical")) {
-			value = DATA(child);
-			if(battmon->options.command_on_critical) g_free(battmon->options.command_on_critical);
-			if(value) battmon->options.command_on_critical = (char *)value;
-		}
-	}
+	battmon->options.critical_percentage = xfce_rc_read_int_entry (rc, "critical_percentage", 5);
+
+	battmon->options.action_on_low = xfce_rc_read_int_entry (rc, "action_on_low", 0);
+
+	battmon->options.action_on_critical = xfce_rc_read_int_entry (rc, "action_on_critical", 0);
+
+	if ((value =  xfce_rc_read_entry (rc, "command_on_low", NULL)) && *value)
+		battmon->options.command_on_low = g_strdup (value);
+
+	if((value =  xfce_rc_read_entry (rc, "command_on_critical", NULL)) && *value)
+		battmon->options.command_on_critical = g_strdup (value);
+
+	xfce_rc_close (rc);
 }
 
 static void
-battmon_write_config(Control *ctrl, xmlNodePtr parent)
+battmon_write_config(XfcePanelPlugin *plugin, t_battmon *battmon)
 {
-	xmlNodePtr root;
-	char value[MAXSTRLEN + 1];
+    XfceRc *rc;
+	char *file;
 
-	t_battmon *battmon = (t_battmon *) ctrl->data;
+    if (!(file = xfce_panel_plugin_save_location (plugin, TRUE)))
+        return;
+    
+    rc = xfce_rc_simple_open (file, FALSE);
+    g_free (file);
 
- 
-	root = xmlNewTextChild(parent, NULL, "BatteryMonitor", NULL);
-	/* Display label */
-	g_snprintf(value, 2, "%d", battmon->options.display_label);
-	xmlSetProp(root, "display_label", value);
-	/* Display icon */
-	g_snprintf(value, 2, "%d", battmon->options.display_icon);
-	xmlSetProp(root, "display_icon", value);
-	/* Display Power */
-	g_snprintf(value, 2, "%d", battmon->options.display_power);
-	xmlSetProp(root, "display_power", value);
-	/* Display Percentage */
-	g_snprintf(value, 2, "%d", battmon->options.display_percentage);
-	xmlSetProp(root, "display_percentage", value);
-	/* Display Percentage in Tooltip */
-	g_snprintf(value, 2, "%d", battmon->options.tooltip_display_percentage);
-	xmlSetProp(root, "tooltip_display_percentage", value);
-	/* Display Time in Tooltip */
-	g_snprintf(value, 2, "%d", battmon->options.tooltip_display_time);
-	xmlSetProp(root, "tooltip_display_time", value);
-	/* Low Percentage */
-	g_snprintf(value, 4, "%d", battmon->options.low_percentage);
-	xmlSetProp(root, "low_percentage", value);
-	/* Critical Percentage */
-	g_snprintf(value, 4, "%d", battmon->options.critical_percentage);
-	xmlSetProp(root, "critical_percentage", value);
-	/* Action on Low */
-	g_snprintf(value, 2, "%d", battmon->options.action_on_low);
-	xmlSetProp(root, "action_on_low", value);
-	/* Action on Critical */
-	g_snprintf(value, 2, "%d", battmon->options.action_on_critical);
-	xmlSetProp(root, "action_on_critical", value);
-	/* Command on Low */
-	xmlNewTextChild(root, NULL, "command_on_low", battmon->options.command_on_low);
-	/* Command on Critical */
+    if (!rc)
+        return;
+    
+	xfce_rc_write_bool_entry (rc, "display_label", battmon->options.display_label);
 
-	xmlNewTextChild(root, NULL, "command_on_critical", battmon->options.command_on_critical);
+	xfce_rc_write_bool_entry (rc, "display_icon", battmon->options.display_icon);
 
+	xfce_rc_write_bool_entry (rc, "display_power", battmon->options.display_power);
+
+	xfce_rc_write_bool_entry (rc, "display_percentage", battmon->options.display_percentage);
+
+	xfce_rc_write_bool_entry (rc, "tooltip_display_percentage", battmon->options.tooltip_display_percentage);
+
+	xfce_rc_write_bool_entry (rc, "tooltip_display_time", battmon->options.tooltip_display_time);
+
+	xfce_rc_write_int_entry (rc, "low_percentage", battmon->options.low_percentage);
+
+	xfce_rc_write_int_entry (rc, "critical_percentage", battmon->options.critical_percentage);
+
+	xfce_rc_write_int_entry (rc, "action_on_low", battmon->options.action_on_low);
+
+	xfce_rc_write_int_entry (rc, "action_on_critical", battmon->options.action_on_critical);
+
+	xfce_rc_write_entry (rc, "command_on_low", battmon->options.command_on_low ? battmon->options.command_on_low : "");
+
+	xfce_rc_write_entry (rc, "command_on_critical", battmon->options.command_on_critical ? battmon->options.command_on_critical : 0);
+
+	xfce_rc_close (rc);
 }
 
-static void
-battmon_attach_callback(Control *ctrl, const gchar *signal, GCallback cb, gpointer data)
+static gboolean
+battmon_set_size(XfcePanelPlugin *plugin, int size, t_battmon *battmon)
 {
-	t_battmon *battmon;
-
-	battmon = (t_battmon *)ctrl->data;
-	g_signal_connect(battmon->vbox, signal, cb, data);
-	g_signal_connect(battmon->ebox, signal, cb, data);
-	g_signal_connect(battmon->battstatus, signal, cb, data);
-}
-
-static void
-battmon_set_size(Control *ctrl, int size)
-{
-	t_battmon *battmon = (t_battmon *)ctrl->data;
-	if (battmon->orientation==HORIZONTAL)
+	if (xfce_panel_plugin_get_orientation (plugin) == 
+			GTK_ORIENTATION_HORIZONTAL)
+	{
 	      gtk_widget_set_size_request(GTK_WIDGET(battmon->battstatus),
-                                         6 + 2 * size,icon_size[size]);
+                                      BORDER, size);
+	}
 	else 
+	{
 	      gtk_widget_set_size_request(GTK_WIDGET(battmon->battstatus),
-                                         icon_size[size],6 + 2 * size);
-	gtk_widget_set_size_request(ctrl->base, -1, -1);
+                                      size, BORDER);
+	}
+
+	return TRUE;
 }
 
-/* No longer needed as Revert is no longer a part of the XFce4 panel plugin API
-
-static void battmon_backup(t_battmon_dialog *dialog)
-{
-	t_battmon *battmon = dialog->battmon;
-
-	dialog->backup.display_percentage = battmon->options.display_percentage;
-	dialog->backup.tooltip_display_percentage = battmon->options.tooltip_display_percentage;
-	dialog->backup.tooltip_display_time = battmon->options.tooltip_display_time;
-	dialog->backup.low_percentage = battmon->options.low_percentage;
-	dialog->backup.critical_percentage = battmon->options.critical_percentage;
-	dialog->backup.action_on_low = battmon->options.action_on_low;
-	dialog->backup.action_on_critical = battmon->options.action_on_critical;
-	g_free(dialog->backup.command_on_low);
-	dialog->backup.command_on_low = g_strdup(battmon->options.command_on_low);
-	g_free(dialog->backup.command_on_critical);
-	dialog->backup.command_on_critical = g_strdup(battmon->options.command_on_critical);
-}
-
-*/
 
 static void refresh_dialog(t_battmon_dialog *dialog)
 {
@@ -845,29 +746,6 @@ static void refresh_dialog(t_battmon_dialog *dialog)
 	gtk_widget_set_sensitive(dialog->en_command_critical, (battmon->options.action_on_critical > 1) ? 1 : 0);
 }
 
-/* No longer required for the new plugin API
-
-static void battmon_restore_backup(t_battmon_dialog *dialog)
-{
-	t_battmon *battmon = dialog->battmon;
-
-	battmon->options.display_percentage = dialog->backup.display_percentage;
-	battmon->options.tooltip_display_percentage = dialog->backup.tooltip_display_percentage;
-	battmon->options.tooltip_display_time = dialog->backup.tooltip_display_time;
-	battmon->options.low_percentage = dialog->backup.low_percentage;
-	battmon->options.critical_percentage = dialog->backup.critical_percentage;
-	battmon->options.action_on_low = dialog->backup.action_on_low;
-	battmon->options.action_on_critical = dialog->backup.action_on_critical;
-	g_free(battmon->options.command_on_low);
-	battmon->options.command_on_low = g_strdup(dialog->backup.command_on_low);
-	g_free(battmon->options.command_on_critical);
-	battmon->options.command_on_critical = g_strdup(dialog->backup.command_on_critical);
-
-	refresh_dialog(dialog);
-}
-
-*/
-
 static void
 set_disp_percentage(GtkToggleButton *tb, t_battmon_dialog *dialog)
 {
@@ -875,7 +753,6 @@ set_disp_percentage(GtkToggleButton *tb, t_battmon_dialog *dialog)
 
 	battmon->options.display_percentage = gtk_toggle_button_get_active(tb);
 	update_apm_status(dialog->battmon);
-/*	gtk_widget_set_sensitive(dialog->revert, TRUE);	*/
 }
 
 static void
@@ -884,8 +761,6 @@ set_tooltip_disp_percentage(GtkToggleButton *tb, t_battmon_dialog *dialog)
 	t_battmon *battmon = dialog->battmon;
 
 	battmon->options.tooltip_display_percentage = gtk_toggle_button_get_active(tb);
-
-/*	gtk_widget_set_sensitive(dialog->revert, TRUE);	*/
 }
 static void
 set_disp_power(GtkToggleButton *tb, t_battmon_dialog *dialog)
@@ -894,8 +769,6 @@ set_disp_power(GtkToggleButton *tb, t_battmon_dialog *dialog)
 
 	battmon->options.display_power = gtk_toggle_button_get_active(tb);
 	update_apm_status(dialog->battmon);
-
-/*	gtk_widget_set_sensitive(dialog->revert, TRUE);	*/
 }
 static void
 set_disp_label(GtkToggleButton *tb, t_battmon_dialog *dialog)
@@ -904,8 +777,6 @@ set_disp_label(GtkToggleButton *tb, t_battmon_dialog *dialog)
 
 	battmon->options.display_label = gtk_toggle_button_get_active(tb);
 	update_apm_status(dialog->battmon);
-
-/*	gtk_widget_set_sensitive(dialog->revert, TRUE);	*/
 }
 
 static void
@@ -915,8 +786,6 @@ set_disp_icon(GtkToggleButton *tb, t_battmon_dialog *dialog)
 
 	battmon->options.display_icon = gtk_toggle_button_get_active(tb);
 	update_apm_status(dialog->battmon);
-
-/*	gtk_widget_set_sensitive(dialog->revert, TRUE);	*/
 }
 
 static void
@@ -925,8 +794,6 @@ set_tooltip_time(GtkToggleButton *tb, t_battmon_dialog *dialog)
 	t_battmon *battmon = dialog->battmon;
 
 	battmon->options.tooltip_display_time = gtk_toggle_button_get_active(tb);
-
-/*	gtk_widget_set_sensitive(dialog->revert, TRUE);	*/
 }
 
 static void
@@ -936,8 +803,6 @@ set_low_percentage(GtkSpinButton *sb, t_battmon_dialog *dialog)
 
 	battmon->options.low_percentage = gtk_spin_button_get_value_as_int(sb);
 	update_apm_status(dialog->battmon);
-
-/*	gtk_widget_set_sensitive(dialog->revert, TRUE);	*/
 }
 
 static void
@@ -947,8 +812,6 @@ set_critical_percentage(GtkSpinButton *sb, t_battmon_dialog *dialog)
 
 	battmon->options.critical_percentage = gtk_spin_button_get_value_as_int(sb);
 	update_apm_status(dialog->battmon);
-
-/*	gtk_widget_set_sensitive(dialog->revert, TRUE);	*/
 }
 
 static void
@@ -960,7 +823,6 @@ set_action_low(GtkOptionMenu *om, t_battmon_dialog *dialog)
 
 	gtk_widget_set_sensitive(dialog->en_command_low, (gtk_option_menu_get_history(om) > 1) ? 1 : 0);
 	update_apm_status(dialog->battmon);
-/*	gtk_widget_set_sensitive(dialog->revert, TRUE);	*/
 }
 
 static void
@@ -972,10 +834,9 @@ set_action_critical(GtkOptionMenu *om, t_battmon_dialog *dialog)
 
 	gtk_widget_set_sensitive(dialog->en_command_critical, (gtk_option_menu_get_history(om) > 1) ? 1 : 0);
 	update_apm_status(dialog->battmon);
-/*	gtk_widget_set_sensitive(dialog->revert, TRUE);	*/
 }
 
-gboolean
+static gboolean
 set_command_low(GtkEntry *en, GdkEventFocus *event, t_battmon_dialog *dialog)
 {
 	t_battmon *battmon = dialog->battmon;
@@ -986,13 +847,11 @@ set_command_low(GtkEntry *en, GdkEventFocus *event, t_battmon_dialog *dialog)
 	battmon->options.command_on_low = g_strdup(temp); 
 	update_apm_status(dialog->battmon);
 
-/*	gtk_widget_set_sensitive(dialog->revert, TRUE);	*/
-
 	/* Prevents a GTK crash */
 	return FALSE;
 }
 
-gboolean
+static gboolean
 set_command_critical(GtkEntry *en, GdkEventFocus *event, t_battmon_dialog *dialog)
 {
 	t_battmon *battmon = dialog->battmon;
@@ -1002,58 +861,121 @@ set_command_critical(GtkEntry *en, GdkEventFocus *event, t_battmon_dialog *dialo
 	temp = gtk_entry_get_text(en);
 	battmon->options.command_on_critical = g_strdup(temp); 
 	update_apm_status(dialog->battmon);
-
-/*	gtk_widget_set_sensitive(dialog->revert, TRUE);	*/
-
+	
 	/* Prevents a GTK crash */
 	return FALSE;
+}
+
+static char *
+select_file_name (const char *title, const char *path, GtkWidget * parent)
+{
+    const char *t;
+    GtkWidget *fs;
+    char *name = NULL;
+
+    t = (title) ? title : _("Select file");
+    
+    fs = gtk_file_chooser_dialog_new (t, GTK_WINDOW(parent), 
+                               GTK_FILE_CHOOSER_ACTION_OPEN, 
+                               GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL, 
+                               GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT, 
+                               NULL);
+
+    if (path && *path && g_file_test (path, G_FILE_TEST_EXISTS))
+    {
+        if (!g_path_is_absolute (path))
+        {
+            char *current, *full;
+
+            current = g_get_current_dir ();
+            full = g_build_filename (current, path, NULL);
+
+            gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(fs), full);
+
+            g_free (current);
+            g_free (full);
+        }
+        else
+        {
+            gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(fs), path);
+        }
+    }
+
+    if (gtk_dialog_run (GTK_DIALOG (fs)) == GTK_RESPONSE_ACCEPT)
+    {
+		name = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(fs));
+    }
+
+    gtk_widget_destroy (fs);
+
+    return name;
 }
 
 static void
 command_browse_cb (GtkWidget *b, GtkEntry *entry)
 {
-    char *file = select_file_name(_("Select command"), gtk_entry_get_text(entry), top_dialog);
+    char *file = select_file_name(_("Select command"), gtk_entry_get_text(entry), gtk_widget_get_toplevel (b));
 
     if (file) {
-	gtk_entry_set_text (entry, file);
-	g_free (file);
+		gtk_entry_set_text (entry, file);
+		g_free (file);
     }
 }
 
 static void
-battmon_create_options(Control *ctrl, GtkContainer *container, GtkWidget *done)
+battmon_dialog_response (GtkWidget *dlg, int response, t_battmon *battmon)
 {
-	t_battmon *battmon = ctrl->data;
-	t_battmon_dialog *dialog;
+    gtk_widget_destroy (dlg);
+    xfce_panel_plugin_unblock_menu (battmon->plugin);
+    battmon_write_config (battmon->plugin, battmon);
+}
 
+static void
+battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
+{
+    GtkWidget *dlg, *header;
 	GtkWidget *vbox, *vbox2, *hbox, *label, *menu, *mi, *button, *button2;
 	GtkSizeGroup *sg;
+	t_battmon_dialog *dialog;
 
 	dialog = g_new0(t_battmon_dialog, 1);
-	init_options(&(dialog->backup));
-	top_dialog = gtk_widget_get_toplevel(done);
 
-	dialog->ctrl = ctrl;
 	dialog->battmon = battmon;
-/*	dialog->revert = revert;	*/
+    
+    xfce_panel_plugin_block_menu (plugin);
+    
+    dlg = gtk_dialog_new_with_buttons (_("Configure Battery Monitor"), 
+                GTK_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (plugin))),
+                GTK_DIALOG_DESTROY_WITH_PARENT |
+                GTK_DIALOG_NO_SEPARATOR,
+                GTK_STOCK_CLOSE, GTK_RESPONSE_OK,
+                NULL);
+    
+    g_signal_connect (dlg, "response", G_CALLBACK (battmon_dialog_response),
+                      battmon);
 
-	/* Backup current options */
-
-/*	battmon_backup(dialog);	*/
-
-	/* Create main container */
-
-	vbox = gtk_vbox_new(FALSE, 8);
-	gtk_widget_show(vbox);
-	gtk_container_add(container, vbox);
-
+    gtk_container_set_border_width (GTK_CONTAINER (dlg), 2);
+    
+	header = xfce_create_header (NULL, _("Battery Monitor"));
+    gtk_widget_set_size_request (GTK_BIN (header)->child, -1, 32);
+    gtk_container_set_border_width (GTK_CONTAINER (header), BORDER - 2);
+    gtk_widget_show (header);
+    gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dlg)->vbox), header,
+                        FALSE, TRUE, 0);
+    
+    vbox = gtk_vbox_new(FALSE, BORDER);
+    gtk_container_set_border_width (GTK_CONTAINER (vbox), BORDER - 2);
+    gtk_widget_show(vbox);
+    gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dlg)->vbox), vbox,
+                        TRUE, TRUE, 0);
+    
 	/* Create size group to keep widgets aligned */
 
 	sg = gtk_size_group_new(GTK_SIZE_GROUP_HORIZONTAL);
 
 	/* Low and Critical percentage settings */
 
-	hbox = gtk_hbox_new(FALSE, 4);	
+	hbox = gtk_hbox_new(FALSE, BORDER);	
 	gtk_widget_show(hbox);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
@@ -1067,7 +989,7 @@ battmon_create_options(Control *ctrl, GtkContainer *container, GtkWidget *done)
 	gtk_widget_show(dialog->sb_low_percentage);
 	gtk_box_pack_start(GTK_BOX(hbox), dialog->sb_low_percentage, FALSE, FALSE, 0);
 
-	hbox = gtk_hbox_new(FALSE, 4);	
+	hbox = gtk_hbox_new(FALSE, BORDER);	
 	gtk_widget_show(hbox);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
@@ -1083,7 +1005,7 @@ battmon_create_options(Control *ctrl, GtkContainer *container, GtkWidget *done)
 
 	/* Low battery action settings */
 
-	hbox = gtk_hbox_new(FALSE, 4);	
+	hbox = gtk_hbox_new(FALSE, BORDER);	
 	gtk_widget_show(hbox);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
@@ -1114,7 +1036,7 @@ battmon_create_options(Control *ctrl, GtkContainer *container, GtkWidget *done)
 
 	/* Low battery command */
 
-	hbox = gtk_hbox_new(FALSE, 4);
+	hbox = gtk_hbox_new(FALSE, BORDER);
     	gtk_widget_show(hbox);
   	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, TRUE, 0);
 
@@ -1134,7 +1056,7 @@ battmon_create_options(Control *ctrl, GtkContainer *container, GtkWidget *done)
 
 	/* Critical battery action settings */
 
-	hbox = gtk_hbox_new(FALSE, 4);	
+	hbox = gtk_hbox_new(FALSE, BORDER);	
 	gtk_widget_show(hbox);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
@@ -1165,7 +1087,7 @@ battmon_create_options(Control *ctrl, GtkContainer *container, GtkWidget *done)
 
 	/* Critical battery command */
 
-	hbox = gtk_hbox_new(FALSE, 4);
+	hbox = gtk_hbox_new(FALSE, BORDER);
     	gtk_widget_show(hbox);
   	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, TRUE, 0);
 
@@ -1185,7 +1107,7 @@ battmon_create_options(Control *ctrl, GtkContainer *container, GtkWidget *done)
 
 	/* Create checkbox options */
 
-	hbox = gtk_hbox_new(FALSE, 4);	
+	hbox = gtk_hbox_new(FALSE, BORDER);	
 	gtk_widget_show(hbox);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
@@ -1240,34 +1162,55 @@ battmon_create_options(Control *ctrl, GtkContainer *container, GtkWidget *done)
 	g_signal_connect(dialog->om_action_critical, "changed", G_CALLBACK(set_action_critical), dialog);
 	g_signal_connect(dialog->en_command_low, "focus-out-event", G_CALLBACK(set_command_low), dialog);
 	g_signal_connect(dialog->en_command_critical, "focus-out-event", G_CALLBACK(set_command_critical), dialog);
-/*	g_signal_connect_swapped(revert, "clicked", G_CALLBACK(battmon_restore_backup), dialog);	*/
 
+	gtk_widget_show (dlg);
 }
 
-G_MODULE_EXPORT void
-xfce_control_class_init(ControlClass *cc)
+/* create the plugin */
+static void 
+battmon_construct (XfcePanelPlugin *plugin)
 {
+	t_battmon *battmon;
 
-#ifdef ENABLE_NLS
-    /* This is required for UTF-8 at least - Please don't remove it */
-    bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
-    bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-    textdomain (GETTEXT_PACKAGE);
-#endif
+	xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
 
-	cc->name		= "batterymonitor";
-	cc->caption		= _("Battery Monitor");
+	battmon = battmon_create (plugin);
 
-	cc->create_control	= (CreateControlFunc)battmon_control_new;
+	battmon_read_config (plugin, battmon);
+	
+	g_signal_connect (plugin, "free-data", G_CALLBACK (battmon_free), battmon);
+	
+	g_signal_connect (plugin, "save", G_CALLBACK (battmon_write_config), battmon);
+	
+	xfce_panel_plugin_menu_show_configure (plugin);
+	g_signal_connect (plugin, "configure-plugin", G_CALLBACK (battmon_create_options), battmon);
+	
+	g_signal_connect (plugin, "size-changed", G_CALLBACK (battmon_set_size), battmon);
+	
+	g_signal_connect (plugin, "orientation-changed", G_CALLBACK (battmon_set_orientation), battmon);
+	
+	gtk_container_add(GTK_CONTAINER(plugin), battmon->ebox);
 
-	cc->free		= battmon_free;
-	cc->read_config		= battmon_read_config;
-	cc->write_config	= battmon_write_config;
-	cc->attach_callback	= battmon_attach_callback;
+	xfce_panel_plugin_add_action_widget (plugin, battmon->ebox);
+	
+	xfce_panel_plugin_add_action_widget (plugin, battmon->battstatus);
+	
+	/* Determine what facility to use and initialize reading */
+	battmon->method = BM_BROKEN;
+	update_apm_status(battmon);	
 
-	cc->set_size		= battmon_set_size;
-        cc->set_orientation = battmon_set_orientation;
-	cc->create_options		= battmon_create_options;
+	/* If neither ACPI nor APM are enabled, check for either every 60 seconds */
+	if(battmon->timeoutid == 0)
+		battmon->timeoutid = g_timeout_add(60 * 1024, (GSourceFunc) update_apm_status, battmon);
+
+	/* Required for the percentage and tooltip to be initially displayed due to the long timeout for ACPI */
+	if(battmon->method == BM_USE_ACPI) {
+		battmon->flag = TRUE;
+		g_source_remove(battmon->timeoutid);
+		battmon->timeoutid = g_timeout_add(1000, (GSourceFunc) update_apm_status, battmon);
+	}
 }
 
-XFCE_PLUGIN_CHECK_INIT
+/* register the plugin */
+XFCE_PANEL_PLUGIN_REGISTER_EXTERNAL (battmon_construct);
+

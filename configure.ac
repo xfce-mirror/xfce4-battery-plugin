@@ -1,6 +1,6 @@
 dnl configure.ac
 dnl
-dnl xfce4-battery-plugin - Battery monitor for the XFce4 panel
+dnl xfce4-battery-plugin - Battery monitor for the Xfce4 panel
 dnl
 dnl 2003 Benedikt Meurer <benedikt.meurer@unix-ag.uni-siegen.de>
 dnl

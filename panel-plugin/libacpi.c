@@ -25,7 +25,7 @@
  *   59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.              *
  *                                                                         *
  ***************************************************************************/
- 
+
  /***************************************************************************
         Originally written by Costantino Pistagna for his wmacpimon
  ***************************************************************************/
@@ -42,6 +42,14 @@
 #include <dirent.h>
 
 #if HAVE_SYSCTL
+
+#ifdef __NetBSD__
+#include <sys/param.h>
+/* CTLTYPE does not exist in NetBSD headers.
+ * Defining it to 0x0f here won't do any harm though. */
+#define CTLTYPE 0x0f
+#endif
+
 #include <sys/sysctl.h>
 #include <err.h>
 #include <errno.h>
@@ -50,6 +58,8 @@
 #endif
 
 #include "libacpi.h"
+
+#define ACBASE "/proc/acpi/ac_adapter"
 
 
 static char batteries[MAXBATT][128];
@@ -68,7 +78,7 @@ name2oid(char *name, int *oidp)
 
 	j = CTL_MAXNAME * sizeof(int);
 	i = sysctl(oid, 2, oidp, &j, name, strlen(name));
-	if (i < 0) 
+	if (i < 0)
 		return i;
 	j /= sizeof(int);
 	return (j);
@@ -139,7 +149,7 @@ get_var(int *oid, int nlen)
 	fmt = buf;
 	oidfmt(oid, nlen, fmt, &kind);
 	p = val;
-	switch (*fmt) {		
+	switch (*fmt) {
 	case 'I':
 #ifdef DEBUG
 		printf("I:%s%s", name, sep);
@@ -163,7 +173,7 @@ get_var(int *oid, int nlen)
 			len -= sizeof(int);
 			p += sizeof(int);
 		}
-		
+
 		return (retval);
 	default:
 			printf("%s%s", name, sep);
@@ -177,7 +187,7 @@ get_var(int *oid, int nlen)
 	return (0);
 }
 
- 
+
 #endif
 #endif
 
@@ -217,19 +227,13 @@ int check_acpi(void)
 
     /* skip . and .. */
     if (!strncmp (".", name, 1) || !strncmp ("..", name, 2)) continue;
-    
+
     sprintf (batteries[batt_count], "/proc/acpi/battery/%s/state", name);
     if (!(acpi = fopen (batteries[batt_count], "r"))) {
        sprintf (batteries[batt_count], "/proc/acpi/battery/%s/status", name);
     }
     else fclose (acpi);
-    
-#if 0    
-    if (!(acpi = fopen ("/proc/acpi/battery/1/status", "r")))
-	    sprintf (batteries[batt_count], "/proc/acpi/battery/%s/state", name);
-    else
-	    sprintf (batteries[batt_count], "/proc/acpi/battery/%s/status", name);
-#endif    
+
     sprintf (battinfo[batt_count], "/proc/acpi/battery/%s/info", name);
 #ifdef DEBUG
 	  printf("DBG:battery number %d at:\n",batt_count);
@@ -259,7 +263,7 @@ int check_acpi(void)
     if (oidfmt(mib, len, fmt, &kind)) return 1;
     if ((kind & CTLTYPE) == CTLTYPE_NODE) return 1;
     batt_count=get_var(mib, len);
-  
+
   }
   return 0;
 #else
@@ -275,14 +279,32 @@ int read_acad_state(void)
   char *ptr;
   char stat;
 
-  if (!(acpi = fopen ("/proc/acpi/ac_adapter/0/status", "r")))
-    if (!(acpi = fopen ("/proc/acpi/ac_adapter/ACAD/state", "r")))
-      if (!(acpi = fopen ("/proc/acpi/ac_adapter/AC/state", "r")))
-        if (!(acpi = fopen ("/proc/acpi/ac_adapter/ADP1/state", "r")))
-         if (!(acpi = fopen ("/proc/acpi/ac_adapter/AC0/state", "r")))
-	    if (!(acpi = fopen ("/proc/acpi/ac_adapter/ADP0/state", "r")))
-	      if (!(acpi = fopen ("/proc/acpi/ac_adapter/C11B/state", "r")))
-	        return -1;
+  char acpath[64];
+  char *name;
+  DIR  *acdir;
+  struct dirent *ac;
+
+  if (!(acdir=opendir(ACBASE))){
+    return -1;
+  }
+  while ((ac = readdir (acdir))){
+    name = ac->d_name;
+
+    /* skip . and .. */
+    if (name[0] == '.')
+      continue;
+
+    sprintf (acpath, "%s/%s/state", ACBASE, name);
+    if (access(acpath,R_OK)){
+      sprintf (acpath, "%s/%s/status", ACBASE, name);
+      if (access(acpath,R_OK)){
+	return -1;
+      }
+    }
+    break; //only one ac adapter supported
+  }
+  closedir(acdir);
+  acpi = fopen (acpath, "r");
 
   fread (buf, 512, 1, acpi);
   fclose (acpi);
@@ -364,7 +386,7 @@ int read_acpi_info(int battery)
   }
 
 #ifdef DEBUG
-  { 
+  {
 	  int jj= fread (buf, 1,512, acpi);
 	  printf("DBG:%d characters read from %s\n",jj,battinfo[battery]);
   }
@@ -461,7 +483,7 @@ int read_acpi_info(int battery)
 	    return 0;
 	  }
   }
-	
+
   return 1;
 #else
 #ifdef HAVE_SYSCTL
@@ -499,7 +521,7 @@ int read_acpi_info(int battery)
   return 0;
 #endif
 #endif
-  
+
 }
 
 int read_acpi_state(int battery)
@@ -552,9 +574,9 @@ int read_acpi_state(int battery)
 		    }
 	    }
 	    /* This section of the code will calculate "percentage remaining"
-	     * using battery capacity, and the following formula 
+	     * using battery capacity, and the following formula
 	     * (acpi spec 3.9.2):
-	     * 
+	     *
 	     * percentage = (current_capacity / last_full_capacity) * 100;
 	     *
 	     */
@@ -579,12 +601,12 @@ int read_acpi_state(int battery)
 	      if (rate <= 0) rate = 0;
 
 	      acpistate->prate = rate;
-				
+
 	      /* time remaining in minutes */
 	      rtime = ((float) ((float) acpistate->rcapacity /
 				(float) acpistate->prate)) * 60;
 	      if (rtime <= 0) rtime = 0;
-	      
+
 				acpistate->rtime = rtime;
 	    }
 	    if ((ptr = strstr (buf, "present voltage:")) || (ptr = strstr (buf, "Battery Voltage:")))
@@ -606,7 +628,7 @@ int read_acpi_state(int battery)
 	    return 0;
 	  }
   }
-	
+
   return 1;
 #else
 #ifdef HAVE_SYSCTL
@@ -627,7 +649,7 @@ int read_acpi_state(int battery)
   acpistate->pvoltage = 0;
   acpistate->rtime = 0;
   acpistate->percentage = 0;
-  
+
   snprintf(buf, BUFSIZ, "%s", "hw.acpi.battery.time");
   len = name2oid(bufp, mib);
   if (len <= 0) return(-1);
@@ -643,7 +665,7 @@ int read_acpi_state(int battery)
 #endif
   }
   acpistate->rtime =(retval<0)?0:retval;
-  
+
   snprintf(buf, BUFSIZ, "%s", "hw.acpi.battery.life");
   len = name2oid(bufp, mib);
   if (len <= 0) return(-1);
@@ -680,9 +702,9 @@ int get_fan_status(void)
   	  if (strlen(line) && strstr(line,"1")) return 1;
     	  else return 0;
     }
-    proc_fan_status="/proc/acpi/fan/FAN/state";
-    if ( (fp=fopen(proc_fan_status, "r")) == NULL ) return 0; 
-    
+    proc_fan_status="/proc/acpi/fan/*/state";
+    if ( (fp=fopen(proc_fan_status, "r")) == NULL ) return 0;
+
     fgets(line,255,fp);
     fclose(fp);
 
@@ -694,7 +716,7 @@ const char *get_temperature(void)
 {
 #ifdef __linux__
   FILE *fp;
-  char *proc_temperature="/proc/acpi/thermal_zone/THRM/temperature";
+  char *proc_temperature="/proc/acpi/thermal_zone/*0/temperature";
   static char *p,line[256];
 
   if ( (fp=fopen(proc_temperature, "r")) == NULL) return NULL;

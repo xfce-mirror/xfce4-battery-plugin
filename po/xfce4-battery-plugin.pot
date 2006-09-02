@@ -1,149 +1,140 @@
-# Czech translations for xfce4-battery-plugin package.
-# Copyright (C) 2006 THE xfce4-battery-plugin'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the xfce4-battery-plugin package.
-# Michal Várady <miko.vaji@gmail.com>, 2006.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-battery-plugin 0.4.0\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-09-01 12:16+0200\n"
-"PO-Revision-Date: 2006-08-26 21:03+0100\n"
-"Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
-"Language-Team: Czech <translation-team-cs@lists.sourceforge.net>\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #: ../panel-plugin/battmon.c:401
 msgid "(Charging from AC)"
-msgstr "(Nabíjení ze sítě)"
+msgstr ""
 
 #: ../panel-plugin/battmon.c:401
 msgid "(AC on-line)"
-msgstr "(Připojeno do sítě)"
+msgstr ""
 
 #: ../panel-plugin/battmon.c:410
 #, c-format
 msgid "%d%% (%02d:%02d) remaining"
-msgstr "Zbývá %d%% (%02d:%02d)"
+msgstr ""
 
 #: ../panel-plugin/battmon.c:412
 #, c-format
 msgid "%02d:%02d remaining"
-msgstr "Zbývá %02d:%02d"
+msgstr ""
 
 #: ../panel-plugin/battmon.c:414
 #, c-format
 msgid "%d%% remaining"
-msgstr "Zbývá %d%%"
+msgstr ""
 
 #: ../panel-plugin/battmon.c:416
 msgid "AC off-line"
-msgstr "Napájení odpojeno"
+msgstr ""
 
 #: ../panel-plugin/battmon.c:479
 msgid ""
 "WARNING: Your battery has reached critical status. You should plug in or "
 "shutdown your computer now to avoid possible data loss."
 msgstr ""
-"VAROVÁNÍ: Baterie dosáhla kritického stavu. Měli byste připojit počítač do "
-"elektrické sítě nebo jej vypnout, abyste předešli možné ztrátě dat."
 
 #: ../panel-plugin/battmon.c:493
 msgid ""
 "WARNING: Your battery is running low. You should consider plugging in or "
 "shutting down your computer soon to avoid possible data loss."
 msgstr ""
-"VAROVÁNÍ: Úroveň nabití baterie je nízká. Měli byste zvážit připojení "
-"počítače do elektrické sítě nebo jej v dohledné době vypnout, abyste "
-"předešli ztrátě dat."
 
 #: ../panel-plugin/battmon.c:581
 msgid "Battery"
-msgstr "Baterie"
+msgstr ""
 
 #: ../panel-plugin/battmon.c:981
 msgid "Select file"
-msgstr "Vyberte soubor"
+msgstr ""
 
 #: ../panel-plugin/battmon.c:1022
 msgid "Select command"
-msgstr "Vyberte příkaz"
+msgstr ""
 
 #: ../panel-plugin/battmon.c:1052 ../panel-plugin/battmon.desktop.in.in.h:1
 msgid "Battery Monitor"
-msgstr "Sledování baterie"
+msgstr ""
 
 #: ../panel-plugin/battmon.c:1080
 msgid "Low percentage:"
-msgstr "Nízký stav:"
+msgstr ""
 
 #: ../panel-plugin/battmon.c:1091
 msgid "Critical percentage:"
-msgstr "Kritický stav:"
+msgstr ""
 
 #: ../panel-plugin/battmon.c:1104
 msgid "Low battery action:"
-msgstr "Akce při nízkém stavu:"
+msgstr ""
 
 #: ../panel-plugin/battmon.c:1110 ../panel-plugin/battmon.c:1150
 msgid "Do nothing"
-msgstr "Žádná akce"
+msgstr ""
 
 #: ../panel-plugin/battmon.c:1112 ../panel-plugin/battmon.c:1152
 msgid "Display a warning message"
-msgstr "Zobrazit varování"
+msgstr ""
 
 #: ../panel-plugin/battmon.c:1114 ../panel-plugin/battmon.c:1154
 msgid "Run command"
-msgstr "Spustit příkaz"
+msgstr ""
 
 #: ../panel-plugin/battmon.c:1116 ../panel-plugin/battmon.c:1156
 msgid "Run command in terminal"
-msgstr "Spustit příkaz v terminálu"
+msgstr ""
 
 #: ../panel-plugin/battmon.c:1128 ../panel-plugin/battmon.c:1168
 msgid "Command:"
-msgstr "Příkaz:"
+msgstr ""
 
 #: ../panel-plugin/battmon.c:1144
 msgid "Critical battery action:"
-msgstr "Akce při kritickém stavu:"
+msgstr ""
 
 #: ../panel-plugin/battmon.c:1191
 msgid "Display label"
-msgstr "Zobrazit popisek"
+msgstr ""
 
 #: ../panel-plugin/battmon.c:1194
 msgid "Display percentage"
-msgstr "Zobrazit údaj v procentech"
+msgstr ""
 
 #: ../panel-plugin/battmon.c:1197
-#, fuzzy
 msgid "Display time"
-msgstr "Zobrazit ikonu"
+msgstr ""
 
 #: ../panel-plugin/battmon.c:1200
 msgid "Display percentage in tooltip"
-msgstr "Zobrazit údaj v procentech jako tip"
+msgstr ""
 
 #: ../panel-plugin/battmon.c:1203
 msgid "Display time remaining in tooltip"
-msgstr "Zobrazit zbývající čas jako tip"
+msgstr ""
 
 #: ../panel-plugin/battmon.c:1206
 msgid "Display power"
-msgstr "Zobrazit úroveň nabití"
+msgstr ""
 
 #: ../panel-plugin/battmon.c:1209
 msgid "Display icon"
-msgstr "Zobrazit ikonu"
+msgstr ""
 
 #: ../panel-plugin/battmon.desktop.in.in.h:2
 msgid "Show and monitor the battery status"
-msgstr "Zobrazit a monitorovat stav baterie"
-
-#~ msgid "Configure Battery Monitor"
-#~ msgstr "Nastavit sledování baterie"
+msgstr ""

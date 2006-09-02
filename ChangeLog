@@ -1,3 +1,39 @@
+2005-09-01 14:0  nick
+
+	* Bumped version to 0.4.90.2 for realease.
+
+2005-09-01 13:30  nick
+
+	* panel-plugin/battmon.c, panel-plugin/libacpi.c: Applied patches (or
+	parts of it) from Bug #1261, Bug #1475
+	* panel-plugin/battmon.c, panel-plugin/libacpi.c: NetBSD patch from
+	Stefan Sperling <stsp@stsp.in-berlin.de>
+
+2005-09-01 12:11  nick
+
+	* configure.ac, autogen.sh, po/LINGUAS: Switch to linguas support,
+	rename configure.in to configure.in.in
+	* po/xfce4-battery-plugin.pot: Addded file
+	* po/*.po: Regenerated po files
+
+2005-09-01 11:33  nick
+
+	* panel-plugin/libacpi.c: Apply patch from Giuseppe Ciotta to
+	remove hardcoded battery paths.
+	* panel-plugin/battmon.c: Fix crash when adding the plugin.
+	* panel-plugin/battmon.c: Fix plugin resize problem (bug #1791)
+	* panel-plugin/battmon.c: Improved icon loading and try to load the
+	battery icon from your current theme (fallback on buildin icon).
+	* panel-plugin/battmon.c: Initially hide the icon when building the
+	plugin (this stops the icon from flashing if disabled).
+	* panel-plugin/battmon.c: Remove the time label from "display percentage"
+	and add a new option "Display time".
+	* panel-plugin/battmon.c: Fix label alignment if only 1 "option" is shown
+	in a vbox.
+	* panel-plugin/battmon.c, configure.ac: Use new titled dialog and depend on
+	beta 2.
+	* panel-plugin/battmon.c: Couple of small fixes, improvement, memleaks etc.
+
 2003-07-18 17:59  huysmans
 
 	* panel-plugin/battmon.c: Change panel API again to prevent old

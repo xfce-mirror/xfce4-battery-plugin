@@ -1,11 +1,11 @@
 dnl configure.ac
 dnl
-dnl xfce4-battery-plugin - Battery monitor for the Xfce4 panel
+dnl xfce4-battery-plugin - Battery monitor for the XFce4 panel
 dnl
 dnl 2003 Benedikt Meurer <benedikt.meurer@unix-ag.uni-siegen.de>
 dnl
 
-m4_define([battmon_version], [0.4.0])
+m4_define([battmon_version], [0.4.90.2])
 
 AC_INIT([xfce4-battery-plugin], [battmon_version()],
 	[xfce-goodies-dev@lists.berlios.de])
@@ -33,8 +33,9 @@ AC_CHECK_FUNCS([sysctl])
 
 
 dnl configure the panel plugin
-XDT_CHECK_PACKAGE([LIBXFCE4PANEL], [libxfce4panel-1.0], [4.3.20])
-XDT_I18N([cs])
+XDT_CHECK_PACKAGE([LIBXFCE4PANEL], [libxfce4panel-1.0], [4.3.90.2])
+
+XDT_I18N([@LINGUAS@])
 
 dnl Check for debugging support
 XDT_FEATURE_DEBUG()

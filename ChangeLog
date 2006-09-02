@@ -1,22 +1,22 @@
-2005-09-01 14:0  nick
+2006-09-01 14:0  nick
 
 	* Bumped version to 0.4.90.2 for release.
 
-2005-09-01 13:30  nick
+2006-09-01 13:30  nick
 
 	* panel-plugin/battmon.c, panel-plugin/libacpi.c: Applied patches (or
 	parts of it) from Bug #1261, Bug #1475
 	* panel-plugin/battmon.c, panel-plugin/libacpi.c: NetBSD patch from
 	Stefan Sperling <stsp@stsp.in-berlin.de>
 
-2005-09-01 12:11  nick
+2006-09-01 12:11  nick
 
 	* configure.ac, autogen.sh, po/LINGUAS: Switch to linguas support,
 	rename configure.in to configure.in.in
 	* po/xfce4-battery-plugin.pot: Addded file
 	* po/*.po: Regenerated po files
 
-2005-09-01 11:33  nick
+2006-09-01 11:33  nick
 
 	* panel-plugin/libacpi.c: Apply patch from Giuseppe Ciotta to
 	remove hardcoded battery paths.

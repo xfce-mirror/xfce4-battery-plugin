@@ -41,7 +41,7 @@
 #include <machine/apmvar.h>
 #define APMDEVICE "/dev/apm"
 #elif __linux__
-#include <apm.h>
+#include <libapm.h>
 #endif
 
 #include <sys/stat.h>
@@ -51,10 +51,10 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include <gtk/gtk.h>
-
 #include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
+
+#include <gtk/gtk.h>
 #include <libxfce4panel/xfce-panel-plugin.h>
 
 #include "battery.h"

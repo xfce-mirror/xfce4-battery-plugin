@@ -1,20 +1,27 @@
 plugindir = $(libexecdir)/xfce4/panel-plugins
 plugin_PROGRAMS = xfce4-battery-plugin
 
+xfce4_battery_plugin_SOURCES =					\
+	battery.h						\	
+	battery.c						\
+	libacpi.h						\
+	libacpi.c						\
+	libapm.h						\
+	libapm.c
+
 xfce4_battery_plugin_CFLAGS =					\
+	-I$(top_srcdir)						\
 	-DPACKAGE_LOCALE_DIR=\"$(localedir)\"			\
-	@LIBXFCE4PANEL_CFLAGS@
+	$(LIBXFCE4PANEL_CFLAGS)					\
+	$(LIBXFCEGUI4_CFLAGS)					\
+	$(LIBXFCE4UTIL_CFLAGS)					\
+	$(GTK_CFLAGS)
 
 xfce4_battery_plugin_LDFLAGS =					\
-	@LIBXFCE4PANEL_LIBS@
-
-xfce4_battery_plugin_SOURCES =					\
-	apmlib.c						\
-	apm.h							\
-	libacpi.c						\
-	libacpi.h						\
-	battmon.c						\
-	battery.h
+	$(LIBXFCE4PANEL_LIBS)					\
+	$(LIBXFCEGUI4_LIBS)					\
+	$(LIBXFCE4UTIL_LIBS)					\
+	$(GTK_LIBS)
 
 # .desktop file
 #

@@ -1,5 +1,3 @@
-@SET_MAKE@
-
 SUBDIRS = panel-plugin po
 
 distclean-local:

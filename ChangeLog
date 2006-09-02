@@ -1,4 +1,10 @@
-2006-09-01 14:0  nick
+2006-09-02 20:17  nick
+
+	* configure.in.in, Makefile.am, panel-plugin/Makefile.am: Improvements
+	in build files. This also makes building with as-needed possible.
+	* libapm.c, libapm.h, battery.c: Rename files
+
+2006-09-01 14:00  nick
 
 	* Bumped version to 0.4.90.2 for release.
 

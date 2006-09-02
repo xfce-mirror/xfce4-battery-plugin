@@ -8,13 +8,12 @@ dnl
 m4_define([battmon_version], [0.4.90.2])
 
 AC_INIT([xfce4-battery-plugin], [battmon_version()],
-	[xfce-goodies-dev@lists.berlios.de])
+	[goodies-dev@xfce.org])
 
 
 BATTMON_VERSION=battmon_version()
 AM_INIT_AUTOMAKE([xfce4-battery-plugin], [$BATTMON_VERSION])
 AM_CONFIG_HEADER([config.h])
-
 AM_MAINTAINER_MODE
 
 dnl Check for UNIX variants
@@ -25,14 +24,21 @@ AC_MINIX
 dnl Check for basic programs
 AC_PROG_CC
 AC_PROG_INSTALL
-AC_PROG_INTLTOOL
+AC_PROG_LIBTOOL
+AC_PROG_INTLTOOL()
 
 dnl Check for standard header files
 AC_HEADER_STDC
 AC_CHECK_FUNCS([sysctl])
+AC_CHECK_HEADERS([dirent.h stdio.h stdlib.h unistd.h string.h fcntl.h \
+                  ctype.h sys/stat.h sys/time.h sys/ioctl.h sys/types.h])
 
+dnl required packages
+XDT_CHECK_PACKAGE([GTK], [gtk+-2.0], [2.6.0])
+XDT_CHECK_PACKAGE([GTHREAD], [gthread-2.0], [2.6.0])
 
-dnl configure the panel plugin
+XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.3.90.2])
+XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.3.90.2])
 XDT_CHECK_PACKAGE([LIBXFCE4PANEL], [libxfce4panel-1.0], [4.3.90.2])
 
 XDT_I18N([@LINGUAS@])

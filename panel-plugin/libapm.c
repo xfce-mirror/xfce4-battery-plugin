@@ -37,7 +37,7 @@ int apm_exists(void)
 }
 #else
 #include <sys/sysmacros.h>
-#include "apm.h"
+#include "libapm.h"
 
 #define BACKWARD_COMPAT 1
 

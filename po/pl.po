@@ -1,0 +1,141 @@
+# Polish translations for xfce4-battery-plugin package.
+# Copyright (C) 2006 THE xfce4-battery-plugin'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the xfce4-battery-plugin package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xfce4-battery-plugin 0.4.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-08-09 00:20+0200\n"
+"PO-Revision-Date: 2006-04-08 12:19+0900\n"
+"Last-Translator: Piotr Maliński <admin@rk.edu.pl>\n"
+"Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../panel-plugin/battmon.c:393
+msgid "(Charging from AC)"
+msgstr "(Ładuję z AC)"
+
+#: ../panel-plugin/battmon.c:393
+msgid "(AC on-line)"
+msgstr "(AC podłączone)"
+
+#: ../panel-plugin/battmon.c:402
+#, c-format
+msgid "%d%% (%02d:%02d) remaining"
+msgstr "%d%% (%02d:%02d) pozostało"
+
+#: ../panel-plugin/battmon.c:404
+#, c-format
+msgid "%02d:%02d remaining"
+msgstr "%02d:%02d pozostało"
+
+#: ../panel-plugin/battmon.c:406
+#, c-format
+msgid "%d%% remaining"
+msgstr "%d%% pozostało"
+
+#: ../panel-plugin/battmon.c:408
+msgid "AC off-line"
+msgstr "Brak zasilania"
+
+#: ../panel-plugin/battmon.c:460
+msgid "WARNING: Your battery has reached critical status. You should plug in or shutdown your computer now to avoid possible data loss."
+msgstr "UWAGA: Bateria jest prawie rozładowana. Powinieneś wyłączyć komputer lub podłączyć zasilanie by uniknąć potencjalnej utraty danych."
+
+#: ../panel-plugin/battmon.c:474
+msgid "WARNING: Your battery is running low. You should consider plugging in or shutting down your computer soon to avoid possible data loss."
+msgstr "UWAGA: Pojemność baterii spada. Powinieneś wyłączyć komputer lub podłączyć zasilanie by uniknąć potencjalnej utraty danych."
+
+#: ../panel-plugin/battmon.c:519
+msgid "Battery"
+msgstr "Bateria"
+
+#: ../panel-plugin/battmon.c:876
+msgid "Select file"
+msgstr "Wybierz plik"
+
+#: ../panel-plugin/battmon.c:917
+msgid "Select command"
+msgstr "Wybierz polecenie"
+
+#: ../panel-plugin/battmon.c:947
+msgid "Configure Battery Monitor"
+msgstr "Konfiguracja Monitora Baterii"
+
+#: ../panel-plugin/battmon.c:959
+#: ../panel-plugin/battmon.desktop.in.in.h:1
+msgid "Battery Monitor"
+msgstr "Monitor Baterii"
+
+#: ../panel-plugin/battmon.c:982
+msgid "Low percentage:"
+msgstr "Stan niski (%):"
+
+#: ../panel-plugin/battmon.c:996
+msgid "Critical percentage:"
+msgstr "Stan krytyczny (%):"
+
+#: ../panel-plugin/battmon.c:1012
+msgid "Low battery action:"
+msgstr "Akcja dla stanu niskiego:"
+
+#: ../panel-plugin/battmon.c:1019
+#: ../panel-plugin/battmon.c:1070
+msgid "Do nothing"
+msgstr "Nic nie rób"
+
+#: ../panel-plugin/battmon.c:1022
+#: ../panel-plugin/battmon.c:1073
+msgid "Display a warning message"
+msgstr "Wyświetl ostrzeżenie"
+
+#: ../panel-plugin/battmon.c:1025
+#: ../panel-plugin/battmon.c:1076
+msgid "Run command"
+msgstr "Wykonaj polecenie"
+
+#: ../panel-plugin/battmon.c:1028
+#: ../panel-plugin/battmon.c:1079
+msgid "Run command in terminal"
+msgstr "Wykonaj polecenie w terminalu"
+
+#: ../panel-plugin/battmon.c:1043
+#: ../panel-plugin/battmon.c:1094
+msgid "Command:"
+msgstr "Polecenie:"
+
+#: ../panel-plugin/battmon.c:1063
+msgid "Critical battery action:"
+msgstr "Akcja dla stanu krytycznego:"
+
+#: ../panel-plugin/battmon.c:1123
+msgid "Display label"
+msgstr "Wyświetl etykietę"
+
+#: ../panel-plugin/battmon.c:1127
+msgid "Display percentage"
+msgstr "Wyświetl procenty"
+
+#: ../panel-plugin/battmon.c:1131
+msgid "Display percentage in tooltip"
+msgstr "Wyświetl procenty w dymku"
+
+#: ../panel-plugin/battmon.c:1135
+msgid "Display time remaining in tooltip"
+msgstr "Wyświetl pozostały czas w dymku"
+
+#: ../panel-plugin/battmon.c:1139
+msgid "Display power"
+msgstr "Wyświetl moc"
+
+#: ../panel-plugin/battmon.c:1143
+msgid "Display icon"
+msgstr "Wyświetl ikonę"
+
+#: ../panel-plugin/battmon.desktop.in.in.h:2
+msgid "Show and monitor the battery status"
+msgstr "Pokazuj i monitoruj stan baterii"
+

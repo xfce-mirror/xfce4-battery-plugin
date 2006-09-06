@@ -1,8 +1,8 @@
-dnl configure.ac
+dnl $Id$
 dnl
-dnl xfce4-battery-plugin - Battery monitor for the XFce4 panel
+dnl xfce4-battery-plugin - Battery monitor for the Xfce4 panel
 dnl
-dnl 2003 Benedikt Meurer <benedikt.meurer@unix-ag.uni-siegen.de>
+dnl 2003 Benedikt Meurer <benny@xfce.org>
 dnl
 
 m4_define([battmon_version], [0.4.90.2])

@@ -1,3 +1,2 @@
-panel-plugin/battmon.c
+panel-plugin/battery.c
 panel-plugin/battmon.desktop.in.in
-

@@ -1,3 +1,11 @@
+2006-09-06 11:43  nick
+
+	* Added $Id$ using svn:keywords
+	* Added COPYING.LIB for libacpi and libapm
+	* Updated the copyright text in all *.c and *.h files
+	* Regenerated po files
+	* Some improvements in build files
+
 2006-09-02 20:17  nick
 
 	* configure.in.in, Makefile.am, panel-plugin/Makefile.am: Improvements

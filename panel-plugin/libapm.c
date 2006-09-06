@@ -1,23 +1,22 @@
-/* apmlib.c -- Sample APM interface routines
- * Created: Mon Jan  8 10:28:16 1996 by faith@acm.org
- * Revised: Fri Dec 26 21:38:29 1997 by faith@acm.org
- * Copyright 1996, 1997 Rickard E. Faith (faith@acm.org)
- * 
+/* $Id$
+ *
+ * Copyright (c) 1996, 1997 Rickard E. Faith <faith@acm.org>
+ *
  * This library is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Library General Public License as published
  * by the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Library General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Library General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
- *
  */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -56,7 +55,7 @@ int apm_exists(void)
 
 
 /* Read information from /proc/apm.  Return 0 on success, 1 if APM not
- * installed, 2 if APM installed, but old version. 
+ * installed, 2 if APM installed, but old version.
  */
 int apm_read(apm_info * i)
 {
@@ -146,7 +145,7 @@ int apm_read(apm_info * i)
     }
 
     /* Fix possible kernel bug -- percentage
-     * set to 0xff (==255) instead of -1. 
+     * set to 0xff (==255) instead of -1.
      */
     if (i->battery_percentage > 100)
 	i->battery_percentage = -1;
@@ -198,7 +197,7 @@ dev_t apm_dev(void)
 
 /* Return a file descriptor for the apm_bios device, or -1 if there is an
  * error.  Is this method secure?  Should we make the device in /dev
- * instead of /tmp? 
+ * instead of /tmp?
  *
  * apenwarr 2001/05/11: just throw out the weird temporary device file stuff.
  *	It was only for ancient kernel versions anyway.
@@ -224,10 +223,10 @@ int apm_open(void)
 	    }
 	    fd = open(APM_DEVICE, O_RDWR);
 	}
-	
+
 	return fd;
     }
-    
+
     return -1;
 }
 
@@ -329,7 +328,7 @@ static const lookup_t error_table[] = {
 const char *apm_error_name( unsigned int err )
 {
   int i;
-  
+
   for(i=0; i<ERROR_COUNT; i++)
     if(err == error_table[i].key) return(error_table[i].msg);
 
@@ -339,7 +338,7 @@ const char *apm_error_name( unsigned int err )
 int apm_reject( int fd )
 {
 #ifdef APM_IOC_REJECT
-    if ( ioctl( fd, APM_IOC_REJECT, NULL ) ) 
+    if ( ioctl( fd, APM_IOC_REJECT, NULL ) )
 	return apm_last_error( fd );
     else
 #endif

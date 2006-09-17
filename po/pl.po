@@ -118,9 +118,8 @@ msgid "Display percentage"
 msgstr "Wyświetl procenty"
 
 #: ../panel-plugin/battery.c:1198
-#, fuzzy
 msgid "Display time"
-msgstr "Wyświetl ikonę"
+msgstr "Wyświetl czas"
 
 #: ../panel-plugin/battery.c:1201
 msgid "Display percentage in tooltip"

@@ -5,7 +5,7 @@ dnl
 dnl 2003 Benedikt Meurer <benny@xfce.org>
 dnl
 
-m4_define([battmon_version], [0.4.90.2])
+m4_define([battmon_version], [0.4.90.3])
 
 AC_INIT([xfce4-battery-plugin], [battmon_version()],
 	[goodies-dev@xfce.org])

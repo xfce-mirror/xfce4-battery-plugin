@@ -2,7 +2,7 @@
  *
  * Copyright (c) 2003 Nicholas Penwarden <toth64@yahoo.com>
  * Copyright (c) 2003 Benedikt Meurer <benedikt.meurer@unix-ag.uni-siegen.de>
- * Copyright (c) 2003 edscott wilson garcia <edscott@users.sourceforge.net>
+ * Copyright (c) 2003 Edscott Wilson Garcia <edscott@users.sourceforge.net>
  * Copyright (c) 2005 Eduard Roccatello <eduard@xfce.org>
  * Copyright (c) 2006 Nick Schermer <nick@xfce.org>
  *
@@ -55,10 +55,14 @@
 #include "battery.h"
 #include "libacpi.h"
 
+#include <sys/time.h>
+#include <time.h>
+
 #define BORDER		8
 #define HIGH_COLOR	"#00ff00"
 #define LOW_COLOR	"#ffff00"
 #define CRITICAL_COLOR	"#ff0000"
+#define AVERAGING_CYCLE 5
 
 typedef struct
 {
@@ -67,14 +71,14 @@ typedef struct
 	gboolean	display_power;	/* Options */
 	gboolean	display_percentage;	/* Options */
 	gboolean	display_time;
+        gboolean        hide_when_full;
 	gboolean	tooltip_display_percentage;
 	gboolean	tooltip_display_time;
 	int		low_percentage;
 	int		critical_percentage;
 	int		action_on_low;
 	int		action_on_critical;
-	char		*command_on_low;
-	char		*command_on_critical;
+	char		*command_on_low;	char		*command_on_critical;
 	float		hsize;
 	float		vsize;
 } t_battmon_options;
@@ -99,6 +103,7 @@ typedef struct
 	GtkLabel		*label;
 	GtkLabel		*charge;
 	GtkLabel		*rtime;
+	GtkLabel		*alt_rtime;
 	GtkLabel		*acfan;
 	GtkLabel		*temp;
 	GtkWidget		*image;
@@ -110,6 +115,7 @@ typedef struct
 	GtkWidget		*cb_disp_label;
 	GtkWidget		*cb_disp_percentage;
 	GtkWidget		*cb_disp_time;
+        GtkWidget               *cb_hide_when_full;
 	GtkWidget		*cb_disp_tooltip_percentage;
 	GtkWidget		*cb_disp_tooltip_time;
 	GtkWidget		*cb_disp_icon;
@@ -138,8 +144,8 @@ init_options(t_battmon_options *options)
 	options->tooltip_display_time = FALSE;
 	options->low_percentage = 10;
 	options->critical_percentage = 5;
-	options->action_on_low = 0;
-	options->action_on_critical = 0;
+	options->action_on_low = 1;
+	options->action_on_critical = 1;
 	options->command_on_low = NULL;
 	options->command_on_critical = NULL;
 	options->hsize = 1.75;
@@ -161,7 +167,7 @@ detect_battery_info(t_battmon *battmon)
   	int fd;
 
 	/* First check to see if ACPI is available */
-	if(check_acpi()==0) {
+	if (check_acpi() == 0) {
 		int i;
 		/* ACPI detected */
 		battmon->method = BM_USE_ACPI;
@@ -246,15 +252,44 @@ detect_battery_info(t_battmon *battmon)
 }
 
 static gboolean
+battmon_time_labels_fits(t_battmon *battmon)
+{
+  int plugin_size, labels_size;
+
+    GtkRequisition widget_size;
+    gtk_widget_size_request( GTK_WIDGET(battmon->plugin), &widget_size );
+    plugin_size = widget_size.height;
+	
+    labels_size = 0;
+    gtk_widget_size_request( GTK_WIDGET(battmon->charge), &widget_size );
+    labels_size += widget_size.height;
+    gtk_widget_size_request( GTK_WIDGET(battmon->rtime), &widget_size );
+    labels_size += widget_size.height;
+
+    return labels_size <= plugin_size;
+}
+
+static gboolean
 update_apm_status(t_battmon *battmon)
 {
-	int charge=0;
+	int charge=0, rate;
+
+	int lcapacity, ccapacity;
 	gboolean fan=FALSE;
 	const char *temp;
 	int time_remaining=0;
 	gboolean acline;
 	gchar buffer[128];
 
+	static int update_time = AVERAGING_CYCLE;
+	static int sum_lcapacity = 0;
+	static int sum_ccapacity = 0;
+	static int sum_rate = 0;
+
+	static int last_ccapacity = 0;
+	static int last_lcapacity = 0;
+	static int last_rate = 0;
+	static int last_acline = 0;
 
 #if defined(__OpenBSD__) || defined(__NetBSD__)
   /* Code for OpenBSD by Joe Ammond <jra@twinight.org>. Using the same
@@ -279,11 +314,11 @@ update_apm_status(t_battmon *battmon)
 	DBG ("Updating battery status...");
 
 	if(battmon->method == BM_BROKEN) {
-		/* See if ACPI or APM support has been enabled yet */
+	  /* See if ACPI or APM support has been enabled yet */
 		if(!detect_battery_info(battmon)) return TRUE;
 		if(battmon->timeoutid != 0) g_source_remove(battmon->timeoutid);
 		/* Poll only once per minute if using ACPI due to a bug */
-#ifdef TURTLE_UPDATES
+#ifdef TUTTLE_UPDATES
 		/* what bug? I don't see any bug here. */
 		if(battmon->method == BM_USE_ACPI) {
 			battmon->timeoutid = g_timeout_add(60 * 1024,
@@ -297,29 +332,73 @@ update_apm_status(t_battmon *battmon)
 
 	/* Show initial state if using ACPI rather than waiting a minute */
 	if(battmon->flag) {
-		battmon->flag = FALSE;
 		g_source_remove(battmon->timeoutid);
 		battmon->timeoutid = g_timeout_add(2 * 1024,
 				(GSourceFunc) update_apm_status, battmon);
 	}
+
 	if(battmon->method == BM_USE_ACPI) {
 		int i;
 		acline = read_acad_state();
+		lcapacity = rate = ccapacity = 0;
 		for (i=0;i<batt_count;i++) {
-		    if (read_acpi_state(i)) break;
+		  if ( !read_acpi_info(i) || !read_acpi_state(i) )
+		    continue;
+		  lcapacity += acpiinfo->last_full_capacity;
+		  ccapacity += acpistate->rcapacity;
+		  rate += acpistate->prate;
 		}
-		/*read_acpi_state(0);*/ /* only consider first battery... */
-		if (batt_count) {
-		   charge = acpistate->percentage;
-		   time_remaining = acpistate->rtime;
+
+		if ( battmon->flag ) {
+		  last_ccapacity = ccapacity;
+		  last_lcapacity = lcapacity;
+		  last_rate = rate;
 		}
-	}
+
+		sum_lcapacity += lcapacity;
+		sum_ccapacity += ccapacity;
+		sum_rate += rate;
+
+		update_time++;
+		if ( update_time >= AVERAGING_CYCLE || last_acline != acline ) {
+		  if ( last_acline != acline ) {
+		    last_ccapacity = ccapacity;
+		    last_lcapacity = lcapacity;
+		    last_rate = rate;
+		  } else {
+		    last_ccapacity = ccapacity = (float)(sum_ccapacity)/(float)(update_time);
+		    last_lcapacity = lcapacity = (float)(sum_lcapacity)/(float)(update_time);
+		    last_rate = rate = (float)(sum_rate)/(float)(update_time);
+		  }
+		  update_time = 0;
+		  sum_ccapacity = sum_lcapacity = sum_rate = 0;
+		} else {
+		  ccapacity = last_ccapacity;
+		  lcapacity = last_lcapacity;
+		  rate = last_rate;
+		}
+		
+		charge = (((float)ccapacity)/((float)lcapacity))*100;
+
+		if ( last_acline )
+		    time_remaining = ((float)(lcapacity-ccapacity)/(float)(rate))*60;
+		else
+		    time_remaining = ((float)(ccapacity)/(float)(rate))*60;
+
+		if ( time_remaining < 0 )
+		    time_remaining = 0;
+		
+		last_acline = acline;
+
+	}	
 #ifdef __linux__
 	else {
+		DBG ("Trying apm_read()...");
 		apm_read(&apm);	/* not broken and not using ACPI, assume APM */
 		charge = apm.battery_percentage;
 		time_remaining = apm.battery_time;
 		acline = apm.ac_line_status ? TRUE : FALSE;
+		
 	}
 #elif __FreeBSD__
 	else {
@@ -362,7 +441,7 @@ battmon.c:241: for each function it appears in.)
 	}
 #endif
 #endif
-
+	battmon->flag = FALSE;
 
 	charge = CLAMP (charge, 0, 100);
 	gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(battmon->battstatus), charge / 100.0);
@@ -379,7 +458,7 @@ battmon.c:241: for each function it appears in.)
 		gtk_widget_hide(battmon->image);
 	}
 
-	if(battmon->options.display_percentage){
+	if(battmon->options.display_percentage && !(battmon->options.hide_when_full && acline && charge >= 99)){
 		gtk_widget_show((GtkWidget *)battmon->charge);
 		g_snprintf(buffer, sizeof(buffer),"%d%% ", charge);
 		gtk_label_set_text(battmon->charge,buffer);
@@ -387,13 +466,23 @@ battmon.c:241: for each function it appears in.)
 		gtk_widget_hide((GtkWidget *)battmon->charge);
 	}
 
-	if (battmon->options.display_time){
-		gtk_widget_show((GtkWidget *)battmon->rtime);
+	if (battmon->options.display_time && !(battmon->options.hide_when_full && acline && charge >= 99 )){
+		GtkLabel *active_label;
+		if ( battmon_time_labels_fits( battmon ) ) {
+		    active_label = battmon->rtime;
+		    gtk_widget_hide( (GtkWidget*)battmon->alt_rtime );
+		} else {
+		    active_label = battmon->alt_rtime;
+		    gtk_widget_hide( (GtkWidget*)battmon->rtime );
+		}
+
+		gtk_widget_show((GtkWidget *)active_label);
 		g_snprintf(buffer, sizeof(buffer),"%02d:%02d ",time_remaining/60,time_remaining%60);
-		gtk_label_set_text(battmon->rtime,buffer);
+		gtk_label_set_text(active_label,buffer);
 
 	} else {
 		gtk_widget_hide((GtkWidget *)battmon->rtime);
+		gtk_widget_hide((GtkWidget *)battmon->alt_rtime);
 	}
 
 
@@ -503,6 +592,7 @@ do_low_warn:
 			}
 		}
 	}
+
 	return TRUE;
 }
 
@@ -593,7 +683,13 @@ static void setup_battmon(t_battmon *battmon, GtkOrientation orientation)
     	gtk_box_pack_start(GTK_BOX(vbox),GTK_WIDGET(battmon->charge),TRUE, TRUE, 0);
 
   	battmon->rtime = (GtkLabel *)gtk_label_new("01:00");
-    	gtk_box_pack_start(GTK_BOX(vbox),GTK_WIDGET(battmon->rtime),TRUE, TRUE, 0);
+	gtk_box_pack_start(GTK_BOX(vbox),GTK_WIDGET(battmon->rtime),TRUE, TRUE, 0);
+	
+	vbox=gtk_vbox_new(FALSE, 0);
+	gtk_box_pack_start(GTK_BOX(box), GTK_WIDGET(vbox), FALSE, FALSE, 0);
+	
+	battmon->alt_rtime = (GtkLabel *)gtk_label_new("01:00");
+	gtk_box_pack_start(GTK_BOX(vbox),GTK_WIDGET(battmon->alt_rtime),TRUE, TRUE, 0);
 
 	vbox=gtk_vbox_new(FALSE, 0);
 
@@ -619,7 +715,14 @@ static void setup_battmon(t_battmon *battmon, GtkOrientation orientation)
 		gtk_widget_hide((GtkWidget *)battmon->charge);
 	}
 	if (!battmon->options.display_time){
-		gtk_widget_hide((GtkWidget *)battmon->rtime);
+	    gtk_widget_hide((GtkWidget *)battmon->rtime);
+	    gtk_widget_hide((GtkWidget *)battmon->alt_rtime);
+	} else {
+	    if ( battmon_time_labels_fits(battmon) ) {
+		gtk_widget_hide((GtkWidget*)battmon->alt_rtime);
+	    } else {
+		gtk_widget_hide((GtkWidget*)battmon->rtime);
+	    }
 	}
 
 	gtk_container_add(GTK_CONTAINER(battmon->ebox),GTK_WIDGET(battmon->vbox));
@@ -639,6 +742,7 @@ battmon_set_orientation (XfcePanelPlugin *plugin, GtkOrientation orientation,
     if (battmon->timeoutid) g_source_remove(battmon->timeoutid);
     gtk_container_remove(GTK_CONTAINER(battmon->ebox), GTK_WIDGET(battmon->vbox));
     setup_battmon(battmon,orientation);
+    update_apm_status( battmon );
     battmon->timeoutid = g_timeout_add(1 * 1024, (GSourceFunc) update_apm_status, battmon);
 
 	return TRUE;
@@ -663,8 +767,6 @@ battmon_create(XfcePanelPlugin *plugin)
 	battmon->tips = gtk_tooltips_new ();
 	g_object_ref (G_OBJECT (battmon->tips));
 	gtk_object_sink (GTK_OBJECT (battmon->tips));
-
-
 
 	return battmon;
 }
@@ -726,6 +828,8 @@ battmon_read_config(XfcePanelPlugin *plugin, t_battmon *battmon)
 
 	battmon->options.action_on_critical = xfce_rc_read_int_entry (rc, "action_on_critical", 0);
 
+	battmon->options.hide_when_full = xfce_rc_read_int_entry (rc, "hide_when_full", 0);
+
 	if ((value =  xfce_rc_read_entry (rc, "command_on_low", NULL)) && *value)
 		battmon->options.command_on_low = g_strdup (value);
 
@@ -771,6 +875,8 @@ battmon_write_config(XfcePanelPlugin *plugin, t_battmon *battmon)
 	xfce_rc_write_int_entry (rc, "action_on_low", battmon->options.action_on_low);
 
 	xfce_rc_write_int_entry (rc, "action_on_critical", battmon->options.action_on_critical);
+	
+	xfce_rc_write_int_entry (rc, "hide_when_full", battmon->options.hide_when_full );
 
 	xfce_rc_write_entry (rc, "command_on_low", battmon->options.command_on_low ? battmon->options.command_on_low : "");
 
@@ -839,6 +945,7 @@ static void refresh_dialog(t_battmon_dialog *dialog)
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->cb_disp_time), battmon->options.display_time);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->cb_disp_tooltip_percentage), battmon->options.tooltip_display_percentage);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->cb_disp_tooltip_time), battmon->options.tooltip_display_time);
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->cb_hide_when_full), battmon->options.hide_when_full);
 	gtk_widget_set_sensitive(dialog->en_command_low, (battmon->options.action_on_low > 1) ? 1 : 0);
 	gtk_widget_set_sensitive(dialog->en_command_critical, (battmon->options.action_on_critical > 1) ? 1 : 0);
 }
@@ -858,6 +965,15 @@ set_disp_time(GtkToggleButton *tb, t_battmon_dialog *dialog)
 	t_battmon *battmon = dialog->battmon;
 
 	battmon->options.display_time = gtk_toggle_button_get_active(tb);
+	update_apm_status(dialog->battmon);
+}
+
+static void
+set_hide_when_full(GtkToggleButton *tb, t_battmon_dialog *dialog)
+{
+	t_battmon *battmon = dialog->battmon;
+
+	battmon->options.hide_when_full = gtk_toggle_button_get_active(tb);
 	update_apm_status(dialog->battmon);
 }
 
@@ -1108,14 +1224,15 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
 	gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
 
 	menu = gtk_menu_new();
- 	mi = gtk_menu_item_new_with_label(_("Do nothing"));
-    	gtk_menu_shell_append(GTK_MENU_SHELL(menu), mi);
+        mi = gtk_menu_item_new_with_label(_("Do nothing"));
+	gtk_menu_shell_append(GTK_MENU_SHELL(menu), mi);
  	mi = gtk_menu_item_new_with_label(_("Display a warning message"));
     	gtk_menu_shell_append(GTK_MENU_SHELL(menu), mi);
 	mi = gtk_menu_item_new_with_label(_("Run command"));
     	gtk_menu_shell_append(GTK_MENU_SHELL(menu), mi);
  	mi = gtk_menu_item_new_with_label(_("Run command in terminal"));
     	gtk_menu_shell_append(GTK_MENU_SHELL(menu), mi);
+		
 
 	dialog->om_action_low = gtk_option_menu_new();
 	gtk_option_menu_set_menu(GTK_OPTION_MENU(dialog->om_action_low), menu);
@@ -1148,8 +1265,8 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
 	gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
 
 	menu = gtk_menu_new();
- 	mi = gtk_menu_item_new_with_label(_("Do nothing"));
-    	gtk_menu_shell_append(GTK_MENU_SHELL(menu), mi);
+        mi = gtk_menu_item_new_with_label(_("Do nothing"));
+        gtk_menu_shell_append(GTK_MENU_SHELL(menu), mi);
  	mi = gtk_menu_item_new_with_label(_("Display a warning message"));
     	gtk_menu_shell_append(GTK_MENU_SHELL(menu), mi);
 	mi = gtk_menu_item_new_with_label(_("Run command"));
@@ -1198,6 +1315,9 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
 	dialog->cb_disp_time = gtk_check_button_new_with_mnemonic(_("Display time"));
 	gtk_box_pack_start(GTK_BOX(vbox2), dialog->cb_disp_time, FALSE, FALSE, 0);
 
+	dialog->cb_hide_when_full = gtk_check_button_new_with_mnemonic(_("Hide time/percentage when full"));
+	gtk_box_pack_start(GTK_BOX(vbox2), dialog->cb_hide_when_full, FALSE, FALSE, 0);
+	
 	dialog->cb_disp_tooltip_percentage = gtk_check_button_new_with_mnemonic(_("Display percentage in tooltip"));
 	gtk_box_pack_start(GTK_BOX(vbox2), dialog->cb_disp_tooltip_percentage, FALSE, FALSE, 0);
 
@@ -1217,6 +1337,7 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
 	g_signal_connect(button2, "clicked", G_CALLBACK(command_browse_cb), dialog->en_command_critical);
 	g_signal_connect(dialog->cb_disp_percentage, "toggled", G_CALLBACK(set_disp_percentage), dialog);
 	g_signal_connect(dialog->cb_disp_time, "toggled", G_CALLBACK(set_disp_time), dialog);
+	g_signal_connect(dialog->cb_hide_when_full, "toggled", G_CALLBACK(set_hide_when_full), dialog);
 	g_signal_connect(dialog->cb_disp_tooltip_percentage, "toggled", G_CALLBACK(set_tooltip_disp_percentage), dialog);
 	g_signal_connect(dialog->cb_disp_power, "toggled", G_CALLBACK(set_disp_power), dialog);
 	g_signal_connect(dialog->cb_disp_tooltip_time, "toggled", G_CALLBACK(set_tooltip_time), dialog);

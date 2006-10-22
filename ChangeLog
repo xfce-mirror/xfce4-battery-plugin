@@ -1,3 +1,18 @@
+2006-10-22 20:28  nick
+	* Regenerated po files
+	* Applied atch from Tim Baga <tim.baga at gmail dot com>
+	  * Fixed update_apm_status() to allow plugin display correct
+	    information on systems with multiple batteries.
+	  * Maid few fixes to avoid overlapping remaining time/percentage
+	    labels on small panel height.
+	  * Due to different ACPI data update time on different systems made
+	    approx. 10 seconds averaging of calculations of remaining time/percentage.
+	  * Now plugin shows remaining discharge time when ac adaptor is off,
+	    otherwise remaining charge time.
+	  * Added option "hide time/percentage when full". Actually it hides
+	    appropriate labels when battery is charging, and it's charge >= 99%.
+	  * Changed default low/critical battery action to "Display a warning message".
+
 2006-09-06 11:43  nick
 
 	* Added $Id$ using svn:keywords

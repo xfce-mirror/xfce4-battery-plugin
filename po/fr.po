@@ -2,13 +2,14 @@
 # Copyright (C) 2006 Michal Várady
 # This file is distributed under the same license as the xfce4-battery-plugin package.
 # Michal Várady <miko.vaji@gmail.com>, 2006.
+# Maximilian Schleiss <maxschleiss@bluewin.ch>, 2006.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-battery-plugin 0.4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-22 20:37+0200\n"
-"PO-Revision-Date: 2006-09-14 21:15+0100\n"
+"PO-Revision-Date: 2006-10-26 22:00+0100\n"
 "Last-Translator: Maximilian Schleiss <maxschleiss@bluewin.ch>\n"
 "Language-Team: French <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
@@ -43,21 +44,12 @@ msgid "AC off-line"
 msgstr "Secteur débranché"
 
 #: ../panel-plugin/battery.c:569
-msgid ""
-"WARNING: Your battery has reached critical status. You should plug in or "
-"shutdown your computer now to avoid possible data loss."
-msgstr ""
-"ATTENTION : La batterie a atteint un seuil critique. Il est conseillé de "
-"brancher le chargeur ou d'éteindre l'ordinateur pour éviter toute perte de "
-"données."
+msgid "WARNING: Your battery has reached critical status. You should plug in or shutdown your computer now to avoid possible data loss."
+msgstr "ATTENTION : La batterie a atteint un seuil critique. Il est conseillé de brancher le chargeur ou d'éteindre l'ordinateur pour éviter toute perte de données."
 
 #: ../panel-plugin/battery.c:583
-msgid ""
-"WARNING: Your battery is running low. You should consider plugging in or "
-"shutting down your computer soon to avoid possible data loss."
-msgstr ""
-"ATTENTION : La batterie est faible. Il est conseillé de brancher le chargeur "
-"ou d'éteindre l'ordinateur pour éviter toute perte de données."
+msgid "WARNING: Your battery is running low. You should consider plugging in or shutting down your computer soon to avoid possible data loss."
+msgstr "ATTENTION : La batterie est faible. Il est conseillé de brancher le chargeur ou d'éteindre l'ordinateur pour éviter toute perte de données."
 
 #: ../panel-plugin/battery.c:672
 msgid "Battery"
@@ -71,7 +63,8 @@ msgstr "Sélectionner un fichier"
 msgid "Select command"
 msgstr "Sélectionner une commande"
 
-#: ../panel-plugin/battery.c:1169 ../panel-plugin/battmon.desktop.in.in.h:1
+#: ../panel-plugin/battery.c:1169
+#: ../panel-plugin/battmon.desktop.in.in.h:1
 msgid "Battery Monitor"
 msgstr "Moniteur de batterie"
 
@@ -87,23 +80,28 @@ msgstr "Seuil critique :"
 msgid "Low battery action:"
 msgstr "Action batterie faible"
 
-#: ../panel-plugin/battery.c:1227 ../panel-plugin/battery.c:1268
+#: ../panel-plugin/battery.c:1227
+#: ../panel-plugin/battery.c:1268
 msgid "Do nothing"
 msgstr "Ne rien faire"
 
-#: ../panel-plugin/battery.c:1229 ../panel-plugin/battery.c:1270
+#: ../panel-plugin/battery.c:1229
+#: ../panel-plugin/battery.c:1270
 msgid "Display a warning message"
 msgstr "Afficher un message d'avertissement"
 
-#: ../panel-plugin/battery.c:1231 ../panel-plugin/battery.c:1272
+#: ../panel-plugin/battery.c:1231
+#: ../panel-plugin/battery.c:1272
 msgid "Run command"
 msgstr "Lancer une commande"
 
-#: ../panel-plugin/battery.c:1233 ../panel-plugin/battery.c:1274
+#: ../panel-plugin/battery.c:1233
+#: ../panel-plugin/battery.c:1274
 msgid "Run command in terminal"
 msgstr "Lancer une commande dans la console"
 
-#: ../panel-plugin/battery.c:1246 ../panel-plugin/battery.c:1286
+#: ../panel-plugin/battery.c:1246
+#: ../panel-plugin/battery.c:1286
 msgid "Command:"
 msgstr "Commande :"
 
@@ -125,7 +123,7 @@ msgstr "Afficher le temps"
 
 #: ../panel-plugin/battery.c:1318
 msgid "Hide time/percentage when full"
-msgstr ""
+msgstr "Cacher le temps/pourcentage quand la batterie est chargée"
 
 #: ../panel-plugin/battery.c:1321
 msgid "Display percentage in tooltip"
@@ -146,3 +144,4 @@ msgstr "Afficher l'icône"
 #: ../panel-plugin/battmon.desktop.in.in.h:2
 msgid "Show and monitor the battery status"
 msgstr "Afficher et suivre l'état de la batterie"
+

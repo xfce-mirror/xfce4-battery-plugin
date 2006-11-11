@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: xfce4-battery-plugin 0.4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-22 20:37+0200\n"
-"PO-Revision-Date: 2006-09-23 09:52+0100\n"
+"PO-Revision-Date: 2006-11-10 21:13+0100\n"
 "Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
 "Language-Team: Czech <translation-team-cs@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -44,21 +44,12 @@ msgid "AC off-line"
 msgstr "Napájení odpojeno"
 
 #: ../panel-plugin/battery.c:569
-msgid ""
-"WARNING: Your battery has reached critical status. You should plug in or "
-"shutdown your computer now to avoid possible data loss."
-msgstr ""
-"VAROVÁNÍ: Baterie dosáhla kritického stavu. Měli byste připojit počítač do "
-"elektrické sítě nebo jej vypnout, abyste předešli možné ztrátě dat."
+msgid "WARNING: Your battery has reached critical status. You should plug in or shutdown your computer now to avoid possible data loss."
+msgstr "VAROVÁNÍ: Baterie dosáhla kritického stavu. Měli byste připojit počítač do elektrické sítě nebo jej vypnout, abyste předešli možné ztrátě dat."
 
 #: ../panel-plugin/battery.c:583
-msgid ""
-"WARNING: Your battery is running low. You should consider plugging in or "
-"shutting down your computer soon to avoid possible data loss."
-msgstr ""
-"VAROVÁNÍ: Úroveň nabití baterie je nízká. Měli byste zvážit připojení "
-"počítače do elektrické sítě nebo jej v dohledné době vypnout, abyste "
-"předešli ztrátě dat."
+msgid "WARNING: Your battery is running low. You should consider plugging in or shutting down your computer soon to avoid possible data loss."
+msgstr "VAROVÁNÍ: Úroveň nabití baterie je nízká. Měli byste zvážit připojení počítače do elektrické sítě nebo jej v dohledné době vypnout, abyste předešli ztrátě dat."
 
 #: ../panel-plugin/battery.c:672
 msgid "Battery"
@@ -72,7 +63,8 @@ msgstr "Vyberte soubor"
 msgid "Select command"
 msgstr "Vyberte příkaz"
 
-#: ../panel-plugin/battery.c:1169 ../panel-plugin/battmon.desktop.in.in.h:1
+#: ../panel-plugin/battery.c:1169
+#: ../panel-plugin/battmon.desktop.in.in.h:1
 msgid "Battery Monitor"
 msgstr "Sledování baterie"
 
@@ -88,23 +80,28 @@ msgstr "Kritický stav:"
 msgid "Low battery action:"
 msgstr "Akce při nízkém stavu:"
 
-#: ../panel-plugin/battery.c:1227 ../panel-plugin/battery.c:1268
+#: ../panel-plugin/battery.c:1227
+#: ../panel-plugin/battery.c:1268
 msgid "Do nothing"
 msgstr "Žádná akce"
 
-#: ../panel-plugin/battery.c:1229 ../panel-plugin/battery.c:1270
+#: ../panel-plugin/battery.c:1229
+#: ../panel-plugin/battery.c:1270
 msgid "Display a warning message"
 msgstr "Zobrazit varování"
 
-#: ../panel-plugin/battery.c:1231 ../panel-plugin/battery.c:1272
+#: ../panel-plugin/battery.c:1231
+#: ../panel-plugin/battery.c:1272
 msgid "Run command"
 msgstr "Spustit příkaz"
 
-#: ../panel-plugin/battery.c:1233 ../panel-plugin/battery.c:1274
+#: ../panel-plugin/battery.c:1233
+#: ../panel-plugin/battery.c:1274
 msgid "Run command in terminal"
 msgstr "Spustit příkaz v terminálu"
 
-#: ../panel-plugin/battery.c:1246 ../panel-plugin/battery.c:1286
+#: ../panel-plugin/battery.c:1246
+#: ../panel-plugin/battery.c:1286
 msgid "Command:"
 msgstr "Příkaz:"
 
@@ -126,7 +123,7 @@ msgstr "Zobrazit čas"
 
 #: ../panel-plugin/battery.c:1318
 msgid "Hide time/percentage when full"
-msgstr ""
+msgstr "Skrýt čas/procenta při plném stavu"
 
 #: ../panel-plugin/battery.c:1321
 msgid "Display percentage in tooltip"
@@ -150,3 +147,4 @@ msgstr "Zobrazit a monitorovat stav baterie"
 
 #~ msgid "Configure Battery Monitor"
 #~ msgstr "Nastavit sledování baterie"
+

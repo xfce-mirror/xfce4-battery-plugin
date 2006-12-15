@@ -1,0 +1,151 @@
+# Catalan translation of xfce4-battery-plugin.
+# Copyright (C) 2006 xfce4-battery-plugin's copyright holder.
+# This file is distributed under the same license as the
+# xfce4-battery-plugin package.
+# Carles Muñoz Gorriz <carlesmu@internautas.org>, 2006.
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xfce4-battery-plugin 0.4.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-10-22 20:37+0200\n"
+"PO-Revision-Date: 2006-12-01 21:45+0100\n"
+"Last-Translator: Carles Muñoz Gorriz <carlesmu@internautas.org>\n"
+"Language-Team: Catalan <xfce-i18n@xfce.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: ../panel-plugin/battery.c:490
+msgid "(Charging from AC)"
+msgstr "(Carregant de la corrent)"
+
+#: ../panel-plugin/battery.c:490
+msgid "(AC on-line)"
+msgstr "(En la línia elèctrica)"
+
+#: ../panel-plugin/battery.c:499
+#, c-format
+msgid "%d%% (%02d:%02d) remaining"
+msgstr "%d%% (%02d:%02d) restants"
+
+#: ../panel-plugin/battery.c:501
+#, c-format
+msgid "%02d:%02d remaining"
+msgstr "%02d:%02d restants"
+
+#: ../panel-plugin/battery.c:503
+#, c-format
+msgid "%d%% remaining"
+msgstr "%d%% restants"
+
+#: ../panel-plugin/battery.c:505
+msgid "AC off-line"
+msgstr "Desconnectat de la corrent"
+
+#: ../panel-plugin/battery.c:569
+msgid ""
+"WARNING: Your battery has reached critical status. You should plug in or "
+"shutdown your computer now to avoid possible data loss."
+msgstr ""
+"AVÍS: La bateria està en una situació crítica. Per evitar possibles pèrdues "
+"d'informació hauríeu d'endollar o apagar l'ordinador ara."
+
+#: ../panel-plugin/battery.c:583
+msgid ""
+"WARNING: Your battery is running low. You should consider plugging in or "
+"shutting down your computer soon to avoid possible data loss."
+msgstr ""
+"AVÍS: La vostra bateria està baixa de càrrega. Hauríeu de pensar en endollar-"
+"la o apagar l'ordinador aviat per evitar possibles pèrdues d'informació."
+
+#: ../panel-plugin/battery.c:672
+msgid "Battery"
+msgstr "Bateria"
+
+#: ../panel-plugin/battery.c:1098
+msgid "Select file"
+msgstr "Seleccioneu el fitxer"
+
+#: ../panel-plugin/battery.c:1139
+msgid "Select command"
+msgstr "Seleccioneu ordre"
+
+#: ../panel-plugin/battery.c:1169 ../panel-plugin/battmon.desktop.in.in.h:1
+msgid "Battery Monitor"
+msgstr "Monitor de la bateria"
+
+#: ../panel-plugin/battery.c:1197
+msgid "Low percentage:"
+msgstr "baixa (percentatge):"
+
+#: ../panel-plugin/battery.c:1208
+msgid "Critical percentage:"
+msgstr "Perillosament baixa (percentatge):"
+
+#: ../panel-plugin/battery.c:1221
+msgid "Low battery action:"
+msgstr "Acció per baixa bateria:"
+
+#: ../panel-plugin/battery.c:1227 ../panel-plugin/battery.c:1268
+msgid "Do nothing"
+msgstr "No fer res"
+
+#: ../panel-plugin/battery.c:1229 ../panel-plugin/battery.c:1270
+msgid "Display a warning message"
+msgstr "Mostra el diàleg d'avís"
+
+#: ../panel-plugin/battery.c:1231 ../panel-plugin/battery.c:1272
+msgid "Run command"
+msgstr "Executa una ordre"
+
+#: ../panel-plugin/battery.c:1233 ../panel-plugin/battery.c:1274
+msgid "Run command in terminal"
+msgstr "Executa una ordre en un terminal"
+
+#: ../panel-plugin/battery.c:1246 ../panel-plugin/battery.c:1286
+msgid "Command:"
+msgstr "Ordre:"
+
+#: ../panel-plugin/battery.c:1262
+msgid "Critical battery action:"
+msgstr "Acció per perillosament baixa:"
+
+#: ../panel-plugin/battery.c:1309
+msgid "Display label"
+msgstr "Mostra etiqueta"
+
+#: ../panel-plugin/battery.c:1312
+msgid "Display percentage"
+msgstr "Mostra percentatge"
+
+#: ../panel-plugin/battery.c:1315
+msgid "Display time"
+msgstr "Mostra el temps"
+
+#: ../panel-plugin/battery.c:1318
+msgid "Hide time/percentage when full"
+msgstr "Amaga el temps/percentatge quan estigui plena"
+
+#: ../panel-plugin/battery.c:1321
+msgid "Display percentage in tooltip"
+msgstr "Mostra el percentatge al rètol"
+
+#: ../panel-plugin/battery.c:1324
+msgid "Display time remaining in tooltip"
+msgstr "Mostra el temps restant al rètol"
+
+#: ../panel-plugin/battery.c:1327
+msgid "Display power"
+msgstr "Mostra l'enjegada"
+
+#: ../panel-plugin/battery.c:1330
+msgid "Display icon"
+msgstr "Mostra la icona"
+
+#: ../panel-plugin/battmon.desktop.in.in.h:2
+msgid "Show and monitor the battery status"
+msgstr "Mostra i monitoritza l'estat de la bateria"

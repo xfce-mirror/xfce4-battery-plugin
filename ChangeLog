@@ -1,3 +1,8 @@
+2006-12-20 17:45  nick
+	* panel-plugin/battery.c: Add help button with exo-open
+	  to battery wiki page.
+	* po/*.po: Merge new string
+
 2006-10-22 20:28  nick
 	* Regenerated po files
 	* Applied atch from Tim Baga <tim.baga at gmail dot com>

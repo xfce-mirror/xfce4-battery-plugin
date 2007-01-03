@@ -75,7 +75,7 @@ msgstr "Hautatu komandoa"
 #: ../panel-plugin/battery.c:1159
 #, c-format
 msgid "Unable to open the following url: %s"
-msgstr ""
+msgstr "Ezin da hurrengo url-a ireki: %s"
 
 #: ../panel-plugin/battery.c:1183 ../panel-plugin/battmon.desktop.in.in.h:1
 msgid "Battery Monitor"

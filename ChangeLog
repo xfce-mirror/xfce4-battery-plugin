@@ -1,9 +1,19 @@
-2006-12-20 17:45  nick
+2007-01-17	Nick Schermer <nick@xfce.org>
+
+	* Remove the inline icon and add Tango icons.
+	* Improve Makefile.am and configure files.
+	* Use the battery icon in the desktop file.
+	* Fix LDADD to prevent linker problems.
+	* Bump version to 0.5.0 for release with Xfce 4.4.0
+
+2006-12-20	Nick Schermer <nick@xfce.org>
+
 	* panel-plugin/battery.c: Add help button with exo-open
 	  to battery wiki page.
 	* po/*.po: Merge new string
 
-2006-10-22 20:28  nick
+2006-10-22	Nick Schermer <nick@xfce.org>
+
 	* Regenerated po files
 	* Applied atch from Tim Baga <tim.baga at gmail dot com>
 	  * Fixed update_apm_status() to allow plugin display correct
@@ -18,7 +28,7 @@
 	    appropriate labels when battery is charging, and it's charge >= 99%.
 	  * Changed default low/critical battery action to "Display a warning message".
 
-2006-09-06 11:43  nick
+2006-09-06	Nick Schermer <nick@xfce.org>
 
 	* Added $Id$ using svn:keywords
 	* Added COPYING.LIB for libacpi and libapm
@@ -26,31 +36,31 @@
 	* Regenerated po files
 	* Some improvements in build files
 
-2006-09-02 20:17  nick
+2006-09-02	Nick Schermer <nick@xfce.org>
 
 	* configure.in.in, Makefile.am, panel-plugin/Makefile.am: Improvements
 	in build files. This also makes building with as-needed possible.
 	* libapm.c, libapm.h, battery.c: Rename files
 
-2006-09-01 14:00  nick
+2006-09-01	Nick Schermer <nick@xfce.org>
 
 	* Bumped version to 0.4.90.2 for release.
 
-2006-09-01 13:30  nick
+2006-09-01	Nick Schermer <nick@xfce.org>
 
 	* panel-plugin/battmon.c, panel-plugin/libacpi.c: Applied patches (or
 	parts of it) from Bug #1261, Bug #1475
 	* panel-plugin/battmon.c, panel-plugin/libacpi.c: NetBSD patch from
 	Stefan Sperling <stsp@stsp.in-berlin.de>
 
-2006-09-01 12:11  nick
+2006-09-01	Nick Schermer <nick@xfce.org>
 
 	* configure.ac, autogen.sh, po/LINGUAS: Switch to linguas support,
 	rename configure.in to configure.in.in
 	* po/xfce4-battery-plugin.pot: Addded file
 	* po/*.po: Regenerated po files
 
-2006-09-01 11:33  nick
+2006-09-01	Nick Schermer <nick@xfce.org>
 
 	* panel-plugin/libacpi.c: Apply patch from Giuseppe Ciotta to
 	remove hardcoded battery paths.
@@ -68,16 +78,16 @@
 	beta 2.
 	* panel-plugin/battmon.c: Couple of small fixes, improvement, memleaks etc.
 
-2003-07-18 17:59  huysmans
+2003-07-18	Jasper Huijsmans <jasper@xfce.org>
 
 	* panel-plugin/battmon.c: Change panel API again to prevent old
 	plugins to crash the panel
 
-2003-07-17 20:31  benny
+2003-07-17	Benedikt Meurer <benny@xfce.org>
 
 	* ChangeLog: Updated ChangeLog.
 
-2003-07-17 20:30  benny
+2003-07-17	Benedikt Meurer <benny@xfce.org>
 
 	* compile, depcomp, README, aclocal.m4, ltmain.sh, configure,
 	configure.ac, config.guess, install-sh, AUTHORS, COPYING,
@@ -89,7 +99,7 @@
 	panel-plugin/apmlib.c, panel-plugin/battmon.c,
 	panel-plugin/libbattmon_la-apmlib.loT: Initial revision
 
-2003-07-17 20:30  benny
+2003-07-17	Benedikt Meurer <benny@xfce.org>
 
 	* compile, depcomp, README, aclocal.m4, ltmain.sh, configure,
 	configure.ac, config.guess, install-sh, AUTHORS, COPYING,

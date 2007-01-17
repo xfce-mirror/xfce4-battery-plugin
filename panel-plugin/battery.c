@@ -52,7 +52,6 @@
 #include <gtk/gtk.h>
 #include <libxfce4panel/xfce-panel-plugin.h>
 
-#include "battery.h"
 #include "libacpi.h"
 
 #include <sys/time.h>
@@ -622,11 +621,7 @@ battmon_icon (t_battmon *battmon)
 
     /* try to load battery icon from your current icon theme */
     icon = gtk_icon_theme_load_icon (gtk_icon_theme_get_default (),
-        "battery", size , 0, NULL);
-
-    /* no icon found in your curren icon theme? Use ours! */
-    if (!icon)
-        icon = xfce_inline_icon_at_size (battery_pixbuf, width, height);
+                                     "battery", size , 0, NULL);
 
     return icon;
 }

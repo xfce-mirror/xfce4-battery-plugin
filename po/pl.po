@@ -72,7 +72,7 @@ msgstr "Wybierz polecenie"
 #: ../panel-plugin/battery.c:1159
 #, c-format
 msgid "Unable to open the following url: %s"
-msgstr ""
+msgstr "Nie można otworzyć URL: %s"
 
 #: ../panel-plugin/battery.c:1183 ../panel-plugin/battmon.desktop.in.in.h:1
 msgid "Battery Monitor"
@@ -128,7 +128,7 @@ msgstr "Wyświetl czas"
 
 #: ../panel-plugin/battery.c:1333
 msgid "Hide time/percentage when full"
-msgstr ""
+msgstr "Ukryj czas/procenty kiedy pełna"
 
 #: ../panel-plugin/battery.c:1336
 msgid "Display percentage in tooltip"

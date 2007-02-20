@@ -1,11 +1,10 @@
-# translation of sq.po to Albanian
-# Besnik Bleta <besnik@programeshqip.org>, 2007.
 # Albanian translation for the xfce4-battery-plugin package.
 # Copyright (C) 2006 Michal VÃ¡rady
 # This file is distributed under the same license as the xfce4-battery-plugin package.
+# Besnik Bleta <besnik@programeshqip.org>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: sq\n"
+"Project-Id-Version: xfce4-battery-plugin 0.4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-12-20 17:45+0100\n"
 "PO-Revision-Date: 2007-01-30 21:09+0200\n"
@@ -14,7 +13,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.1\n"
+
 
 #: ../panel-plugin/battery.c:491
 msgid "(Charging from AC)"

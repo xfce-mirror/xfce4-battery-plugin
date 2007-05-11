@@ -1,0 +1,152 @@
+# Hungarian translation for xfce4-battery-plugin
+# This file is distributed under the same license as the xfce4-battery-plugin package.
+# Németh Csaba <csaba@sopron.hu>, 2007
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xfce4-battery-plugin\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-01-24 16:40+0000\n"
+"PO-Revision-Date: 2007-05-11 15:53+0100\n"
+"Last-Translator: SZERVÁC Attila <sas@321.hu>\n"
+"Language-Team: Hungarian <hu@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Hungarian\n"
+"X-Poedit-Country: HUNGARY\n"
+
+#: ../panel-plugin/battery.c:490
+msgid "(Charging from AC)"
+msgstr "Töltés váltóáramról"
+
+#: ../panel-plugin/battery.c:490
+msgid "(AC on-line)"
+msgstr "(Energiaellátás bekapcsolva)"
+
+#: ../panel-plugin/battery.c:499
+#, c-format
+msgid "%d%% (%02d:%02d) remaining"
+msgstr "Hátralevő: %d%% (%02d:%02d)"
+
+#: ../panel-plugin/battery.c:501
+#, c-format
+msgid "%02d:%02d remaining"
+msgstr "Hátralevő: %02d:%02d"
+
+#: ../panel-plugin/battery.c:503
+#, c-format
+msgid "%d%% remaining"
+msgstr "Hátralevő: %d%%"
+
+#: ../panel-plugin/battery.c:505
+msgid "AC off-line"
+msgstr "Energiaellátás megszűnt"
+
+#: ../panel-plugin/battery.c:569
+msgid "WARNING: Your battery has reached critical status. You should plug in or shutdown your computer now to avoid possible data loss."
+msgstr "FIGYELMEZTETÉS: Az akkumulátor elérte a kritikus szintet. Kezdd el tölteni vagy kapcsold ki a számítógépet az esetleges adatvesztés elkerülése érdekében."
+
+#: ../panel-plugin/battery.c:583
+msgid "WARNING: Your battery is running low. You should consider plugging in or shutting down your computer soon to avoid possible data loss."
+msgstr "FIGYELMEZTETÉS: Az akkumulátor alacsony töltöttségi szintet ért el. Kezdd el mihamarabb tölteni, vagy kapcsold ki a számítógépet az esetleges adatvesztés elkerülése érdekében."
+
+#: ../panel-plugin/battery.c:668
+msgid "Battery"
+msgstr "Akkumulátor"
+
+#: ../panel-plugin/battery.c:1094
+msgid "Select file"
+msgstr "Válassz fájlt"
+
+#: ../panel-plugin/battery.c:1135
+msgid "Select command"
+msgstr "Válassz parancsot"
+
+#: ../panel-plugin/battery.c:1154
+#, c-format
+msgid "Unable to open the following url: %s"
+msgstr "Az alábbi url nem nyitható meg: %s"
+
+#: ../panel-plugin/battery.c:1178
+#: ../panel-plugin/battmon.desktop.in.in.h:1
+msgid "Battery Monitor"
+msgstr "Akkumulátorfigyelő"
+
+#: ../panel-plugin/battery.c:1207
+msgid "Low percentage:"
+msgstr "Alacsony szint:"
+
+#: ../panel-plugin/battery.c:1218
+msgid "Critical percentage:"
+msgstr "Kritikus szint:"
+
+#: ../panel-plugin/battery.c:1231
+msgid "Low battery action:"
+msgstr "Alacsony töltöttségi szintnél:"
+
+#: ../panel-plugin/battery.c:1237
+#: ../panel-plugin/battery.c:1278
+msgid "Do nothing"
+msgstr "Ne tegyen semmit"
+
+#: ../panel-plugin/battery.c:1239
+#: ../panel-plugin/battery.c:1280
+msgid "Display a warning message"
+msgstr "Figyelmeztető üzenet küldése"
+
+#: ../panel-plugin/battery.c:1241
+#: ../panel-plugin/battery.c:1282
+msgid "Run command"
+msgstr "Parancs futtatása"
+
+#: ../panel-plugin/battery.c:1243
+#: ../panel-plugin/battery.c:1284
+msgid "Run command in terminal"
+msgstr "Parancs futtatása terminálban"
+
+#: ../panel-plugin/battery.c:1256
+#: ../panel-plugin/battery.c:1296
+msgid "Command:"
+msgstr "Parancs:"
+
+#: ../panel-plugin/battery.c:1272
+msgid "Critical battery action:"
+msgstr "Kritikus töltöttségi szintnél:"
+
+#: ../panel-plugin/battery.c:1319
+msgid "Display label"
+msgstr "Címke megjelenítése"
+
+#: ../panel-plugin/battery.c:1322
+msgid "Display percentage"
+msgstr "Százalék megjelenítése"
+
+#: ../panel-plugin/battery.c:1325
+msgid "Display time"
+msgstr "Idő megjelenítése"
+
+#: ../panel-plugin/battery.c:1328
+msgid "Hide time/percentage when full"
+msgstr "Idő/százalék elrejtése ha feltöltődött"
+
+#: ../panel-plugin/battery.c:1331
+msgid "Display percentage in tooltip"
+msgstr "Százalék megjelenítése buborékban"
+
+#: ../panel-plugin/battery.c:1334
+msgid "Display time remaining in tooltip"
+msgstr "Hátralevő idő megjelenítése buborékban"
+
+#: ../panel-plugin/battery.c:1337
+msgid "Display power"
+msgstr "Töltöttség megjelenítése"
+
+#: ../panel-plugin/battery.c:1340
+msgid "Display icon"
+msgstr "Ikon megjelenítése"
+
+#: ../panel-plugin/battmon.desktop.in.in.h:2
+msgid "Show and monitor the battery status"
+msgstr "Akkumulátorállapot megjelenítése és figyelése"
+

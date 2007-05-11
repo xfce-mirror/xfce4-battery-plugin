@@ -1,8 +1,8 @@
 # Catalan translation of xfce4-battery-plugin.
-# Copyright (C) 2006 xfce4-battery-plugin's copyright holder.
+# Copyright (C) 2006, 2007 xfce4-battery-plugin's copyright holder.
 # This file is distributed under the same license as the
 # xfce4-battery-plugin package.
-# Carles Muñoz Gorriz <carlesmu@internautas.org>, 2006.
+# Carles Muñoz Gorriz <carlesmu@internautas.org>, 2006, 2007.
 #
 #
 msgid ""
@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: xfce4-battery-plugin 0.4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-12-20 17:45+0100\n"
-"PO-Revision-Date: 2006-12-01 21:45+0100\n"
+"PO-Revision-Date: 2007-05-11 18:31+0100\n"
 "Last-Translator: Carles Muñoz Gorriz <carlesmu@internautas.org>\n"
 "Language-Team: Catalan <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
@@ -77,7 +77,7 @@ msgstr "Seleccioneu ordre"
 #: ../panel-plugin/battery.c:1159
 #, c-format
 msgid "Unable to open the following url: %s"
-msgstr ""
+msgstr "No s'ha pogut obrir la url: %s"
 
 #: ../panel-plugin/battery.c:1183 ../panel-plugin/battmon.desktop.in.in.h:1
 msgid "Battery Monitor"

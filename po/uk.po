@@ -1,11 +1,11 @@
-# Ukrainian translation for xfce4-battery-plugin package
-# Copyright (C) 2006 Dmitry Nikitin
+# Ukrainian translation of the xfce4-battery-plugin package.
+# Copyright (C) 2006-2007 The Xfce development team.
 # This file is distributed under the same license as the xfce4-battery-plugin package.
-#
 # Dmitry Nikitin <luckas_fb@mail.ru>, 2007.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: uk\n"
+"Project-Id-Version: xfce4-battery-plugin 0.5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-12-20 17:45+0100\n"
 "PO-Revision-Date: 2007-03-02 12:36+0200\n"

@@ -190,10 +190,12 @@ int check_acpi(void)
 #ifdef __linux__
   FILE *acpi;
 
-  if (!(acpi = fopen ("/proc/acpi/info", "r")))
+  if (!(acpi = fopen ("/proc/acpi/info", "r"))
+      && !(acpi = fopen ("/sys/module/acpi/parameters/acpica_version", "r")))
   {
 #ifdef DEBUG
-	  printf("DBG:no acpi: /proc/acpi/info not found!\n");
+	  printf("DBG:no acpi: /proc/acpi/info or "
+             "/sys/module/acpi/parameters/acpica_version not found!\n");
 #endif
     return 1;
   }

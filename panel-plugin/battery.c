@@ -25,7 +25,7 @@
 #include <config.h>
 #endif
 
-#ifdef __FreeBSD__
+#if defined(__FreeBSD__) || defined(__FreeBSD_kernel__)
 #include <machine/apm_bios.h>
 #elif __OpenBSD__
 #include <sys/param.h>
@@ -259,7 +259,7 @@ battmon_time_labels_fits(t_battmon *battmon)
     GtkRequisition widget_size;
     gtk_widget_size_request( GTK_WIDGET(battmon->plugin), &widget_size );
     plugin_size = widget_size.height;
-    
+
     labels_size = 0;
     gtk_widget_size_request( GTK_WIDGET(battmon->charge), &widget_size );
     labels_size += widget_size.height;
@@ -377,7 +377,7 @@ update_apm_status(t_battmon *battmon)
           lcapacity = last_lcapacity;
           rate = last_rate;
         }
-        
+
         charge = (((float)ccapacity)/((float)lcapacity))*100;
 
         if ( last_acline )
@@ -387,10 +387,10 @@ update_apm_status(t_battmon *battmon)
 
         if ( time_remaining < 0 )
             time_remaining = 0;
-        
+
         last_acline = acline;
 
-    }    
+    }
 #ifdef __linux__
     else {
         DBG ("Trying apm_read()...");
@@ -398,7 +398,7 @@ update_apm_status(t_battmon *battmon)
         charge = apm.battery_percentage;
         time_remaining = apm.battery_time;
         acline = apm.ac_line_status ? TRUE : FALSE;
-        
+
     }
 #elif __FreeBSD__
     else {
@@ -680,10 +680,10 @@ static void setup_battmon(t_battmon *battmon, GtkOrientation orientation)
 
       battmon->rtime = (GtkLabel *)gtk_label_new("01:00");
     gtk_box_pack_start(GTK_BOX(vbox),GTK_WIDGET(battmon->rtime),TRUE, TRUE, 0);
-    
+
     vbox=gtk_vbox_new(FALSE, 0);
     gtk_box_pack_start(GTK_BOX(box), GTK_WIDGET(vbox), FALSE, FALSE, 0);
-    
+
     battmon->alt_rtime = (GtkLabel *)gtk_label_new("01:00");
     gtk_box_pack_start(GTK_BOX(vbox),GTK_WIDGET(battmon->alt_rtime),TRUE, TRUE, 0);
 
@@ -871,7 +871,7 @@ battmon_write_config(XfcePanelPlugin *plugin, t_battmon *battmon)
     xfce_rc_write_int_entry (rc, "action_on_low", battmon->options.action_on_low);
 
     xfce_rc_write_int_entry (rc, "action_on_critical", battmon->options.action_on_critical);
-    
+
     xfce_rc_write_int_entry (rc, "hide_when_full", battmon->options.hide_when_full );
 
     xfce_rc_write_entry (rc, "command_on_low", battmon->options.command_on_low ? battmon->options.command_on_low : "");
@@ -1144,7 +1144,7 @@ static void
 battmon_dialog_response (GtkWidget *dlg, int response, t_battmon *battmon)
 {
     gboolean result;
-    
+
     if (response == GTK_RESPONSE_HELP)
     {
         /* show help */
@@ -1242,7 +1242,7 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
         gtk_menu_shell_append(GTK_MENU_SHELL(menu), mi);
      mi = gtk_menu_item_new_with_label(_("Run command in terminal"));
         gtk_menu_shell_append(GTK_MENU_SHELL(menu), mi);
-        
+
 
     dialog->om_action_low = gtk_option_menu_new();
     gtk_option_menu_set_menu(GTK_OPTION_MENU(dialog->om_action_low), menu);
@@ -1327,7 +1327,7 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
 
     dialog->cb_hide_when_full = gtk_check_button_new_with_mnemonic(_("Hide time/percentage when full"));
     gtk_box_pack_start(GTK_BOX(vbox2), dialog->cb_hide_when_full, FALSE, FALSE, 0);
-    
+
     dialog->cb_disp_tooltip_percentage = gtk_check_button_new_with_mnemonic(_("Display percentage in tooltip"));
     gtk_box_pack_start(GTK_BOX(vbox2), dialog->cb_disp_tooltip_percentage, FALSE, FALSE, 0);
 

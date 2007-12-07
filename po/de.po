@@ -1,0 +1,156 @@
+# German translations for xfce4-battery-plugin package.
+# Copyright (C) 2007 THE xfce4-battery-plugin'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the xfce4-battery-plugin package.
+# Fabian Nowak <timystery@arcor.de>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xfce4-battery-plugin 0.5.1svn-r3672\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-12-06 22:27+0100\n"
+"PO-Revision-Date: 2007-12-06 22:27+0100\n"
+"Last-Translator: Fabian Nowak <timystery@arcor.de>\n"
+"Language-Team: German\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../panel-plugin/battery.c:490
+msgid "(Charging from AC)"
+msgstr "(Lade von Steckdose)"
+
+#: ../panel-plugin/battery.c:490
+msgid "(AC on-line)"
+msgstr "(Externe Stromzufuhr vorhanden)"
+
+#: ../panel-plugin/battery.c:499
+#, c-format
+msgid "%d%% (%02d:%02d) remaining"
+msgstr "%d%% (%02d:%02d) verbleibend"
+
+#: ../panel-plugin/battery.c:501
+#, c-format
+msgid "%02d:%02d remaining"
+msgstr "%02d:%02d verbleibend"
+
+#: ../panel-plugin/battery.c:503
+#, c-format
+msgid "%d%% remaining"
+msgstr "%d%% verbleibend"
+
+#: ../panel-plugin/battery.c:505
+#, c-format
+msgid "AC off-line"
+msgstr "Keine externe Stromzufuhr"
+
+#: ../panel-plugin/battery.c:569
+msgid ""
+"WARNING: Your battery has reached critical status. You should plug in or "
+"shutdown your computer now to avoid possible data loss."
+msgstr ""
+"ACHTUNG: Ihr Akku hat einen kritischen Zustand erreicht. Sie sollten Ihr "
+"Gerät jetzt an Strom anschließen oder herunterfahren, um möglichen "
+"Datenverlust zu verhindern."
+
+#: ../panel-plugin/battery.c:583
+msgid ""
+"WARNING: Your battery is running low. You should consider plugging in or "
+"shutting down your computer soon to avoid possible data loss."
+msgstr ""
+"ACHTUNG: Ihr Akku befindet sich in einem niedrigen Energiezustand. Sie "
+"sollten es demnächst in Erwägung ziehen, ihr Gerät an Strom anzuschließen "
+"oder herunterzufahren, um möglichen Datenverlust zu verhindern."
+
+#: ../panel-plugin/battery.c:668
+msgid "Battery"
+msgstr "Betteriezustand"
+
+#: ../panel-plugin/battery.c:1094
+msgid "Select file"
+msgstr "Wählen Sie eine Datei"
+
+#: ../panel-plugin/battery.c:1135
+msgid "Select command"
+msgstr "Wählen Sie einen Befehl"
+
+#: ../panel-plugin/battery.c:1154
+#, c-format
+msgid "Unable to open the following url: %s"
+msgstr "Kann die folgende Adresse nicht öffnen: %s"
+
+#: ../panel-plugin/battery.c:1178 ../panel-plugin/battmon.desktop.in.in.h:1
+msgid "Battery Monitor"
+msgstr "Batterieüberwachung"
+
+#: ../panel-plugin/battery.c:1207
+msgid "Low percentage:"
+msgstr "Niedriger Prozentsatz:"
+
+#: ../panel-plugin/battery.c:1218
+msgid "Critical percentage:"
+msgstr "Kritischer Prozentsatz:"
+
+#: ../panel-plugin/battery.c:1231
+msgid "Low battery action:"
+msgstr "Ereignis bei niedrigen Emergiezustand:"
+
+#: ../panel-plugin/battery.c:1237 ../panel-plugin/battery.c:1278
+msgid "Do nothing"
+msgstr "Nichts unternehmen"
+
+#: ../panel-plugin/battery.c:1239 ../panel-plugin/battery.c:1280
+msgid "Display a warning message"
+msgstr "Warnhinweis anzeigen"
+
+#: ../panel-plugin/battery.c:1241 ../panel-plugin/battery.c:1282
+msgid "Run command"
+msgstr "Befehl ausführen"
+
+#: ../panel-plugin/battery.c:1243 ../panel-plugin/battery.c:1284
+msgid "Run command in terminal"
+msgstr "Befehl im Terminal ausführen."
+
+#: ../panel-plugin/battery.c:1256 ../panel-plugin/battery.c:1296
+msgid "Command:"
+msgstr "Befehl:"
+
+#: ../panel-plugin/battery.c:1272
+msgid "Critical battery action:"
+msgstr "Ereignis bei kritischem Energiezustand:"
+
+#: ../panel-plugin/battery.c:1319
+msgid "Display label"
+msgstr "Beschriftung anzeigen"
+
+#: ../panel-plugin/battery.c:1322
+msgid "Display percentage"
+msgstr "Prozentsatz anzeigen"
+
+#: ../panel-plugin/battery.c:1325
+msgid "Display time"
+msgstr "Zeit anzeigen"
+
+#: ../panel-plugin/battery.c:1328
+msgid "Hide time/percentage when full"
+msgstr "Zeit/Prozentsatz verstecken wenn voll"
+
+#: ../panel-plugin/battery.c:1331
+msgid "Display percentage in tooltip"
+msgstr "Prozentsatz in Tooltip anzeigen"
+
+#: ../panel-plugin/battery.c:1334
+msgid "Display time remaining in tooltip"
+msgstr "Verbleibdende Zeit in Tooltip anzeigen"
+
+#: ../panel-plugin/battery.c:1337
+msgid "Display power"
+msgstr "Strom anzeigen"
+
+#: ../panel-plugin/battery.c:1340
+msgid "Display icon"
+msgstr "Symbol anzeigen"
+
+#: ../panel-plugin/battmon.desktop.in.in.h:2
+msgid "Show and monitor the battery status"
+msgstr "Batteriezustand zeigen und überwachen"

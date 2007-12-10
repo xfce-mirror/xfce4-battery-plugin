@@ -1,0 +1,34 @@
+What is it?
+===========
+
+Xfce4-battery-plugin is a panel plugin that can be used in the Xfce
+panel. The plugin uses HAL to get the information about the
+battery(-ies) and suspending the system.
+
+
+Required packages
+=================
+
+This plugin depends on the following packages:
+
+ - gtk+ 2.8.0 or above
+ - libxfce4util 4.4.0 or above
+ - libxfce4panel 4.4.0 or above
+ - hal 0.5.6 or above
+ - dbus-glib 0.34 or above
+
+
+Installation
+============
+
+The file 'INSTALL' contains generic installation
+instructions.
+
+
+How to report bugs?
+===================
+
+Bugs should be reported to the Xfce bug tracking system
+(http://bugzilla.xfce.org, product 'Xfce Panel Plugins', component
+'Battery'). You will need to create an account for yourself.
+More information can be found in the BUGS file.

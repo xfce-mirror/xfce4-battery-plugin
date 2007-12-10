@@ -1,0 +1,7 @@
+[Xfce Panel]
+Type=X-XFCE-PanelPlugin
+Encoding=UTF-8
+_Name=Battery Monitor
+_Comment=Display battery status
+Icon=battery
+X-XFCE-Exec=@libexecdir@/xfce4/panel-plugins/xfce4-battery-plugin

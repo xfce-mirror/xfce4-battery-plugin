@@ -1,0 +1,5 @@
+panel-plugin/battery-monitor.desktop.in.in
+
+panel-plugin/battery-monitor.c
+panel-plugin/battery-plugin.c
+panel-plugin/battery-preferences.c

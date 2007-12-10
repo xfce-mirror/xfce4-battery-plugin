@@ -1,0 +1,98 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-08-30 09:34+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../panel-plugin/battery-monitor.desktop.in.in.h:1
+msgid "Battery Monitor"
+msgstr ""
+
+#: ../panel-plugin/battery-monitor.desktop.in.in.h:2
+msgid "Display battery status and manage power"
+msgstr ""
+
+#: ../panel-plugin/battery.c:163
+msgid "Failed to load the battery icon"
+msgstr ""
+
+#: ../panel-plugin/battery.c:229
+msgid "Charged"
+msgstr ""
+
+#. translator friendly
+#: ../panel-plugin/battery.c:267
+msgid "min"
+msgstr ""
+
+#: ../panel-plugin/battery.c:268
+msgid "hr"
+msgstr ""
+
+#: ../panel-plugin/battery.c:269
+msgid "Fully Charged"
+msgstr ""
+
+#: ../panel-plugin/battery.c:270
+msgid "Charging"
+msgstr ""
+
+#: ../panel-plugin/battery.c:271
+msgid "completed"
+msgstr ""
+
+#: ../panel-plugin/battery.c:272
+msgid "remaining"
+msgstr ""
+
+#: ../panel-plugin/battery.c:273
+msgid "Battery not present"
+msgstr ""
+
+#. append battery name and status
+#: ../panel-plugin/battery.c:343
+msgid "Battery"
+msgstr ""
+
+#: ../panel-plugin/battery-hal.c:221
+msgid "Unable to load battery last full capacity"
+msgstr ""
+
+#: ../panel-plugin/battery-hal.c:275
+msgid ""
+"Unable to rescan the battery(-ies), you probably don't have permission to do "
+"this."
+msgstr ""
+
+#: ../panel-plugin/battery-hal.c:339
+#, c-format
+msgid "Error when freeing monitor: %s: %s"
+msgstr ""
+
+#: ../panel-plugin/battery-hal.c:402
+msgid "Failed to connect to the HAL daemon"
+msgstr ""
+
+#: ../panel-plugin/battery-hal.c:413
+msgid "No batteries where found on your system"
+msgstr ""
+
+#: ../battery-suspend.desktop.in.in.h:1
+msgid "Suspend Computer"
+msgstr ""
+
+#: ../battery-suspend.desktop.in.in.h:2
+msgid "Suspend your laptop"
+msgstr ""

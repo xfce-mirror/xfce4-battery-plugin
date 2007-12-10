@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: $
+# $Id$
 #
 
 (type xdt-autogen) >/dev/null 2>&1 || {

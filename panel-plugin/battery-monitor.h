@@ -49,25 +49,15 @@ struct _BatteryInfo
   /* device model */
   gchar    *model;
 
-  /* last update time */
-  GTimeVal  time;
-
   /* charge levels */
   gint      charge_last_full;
   gint      charge_low;
   gint      charge_warning;
   gint      charge_current;
-  gint      charge_current_prev;
-
-  /* discharge rate */
-  gint      rate_discharging;
-  gint      rate_charging;
 
   /* status */
   guint     is_discharging : 1;
   guint     is_present : 1;
-
-  /* calculations */
   gint      percentage;
   gint      remaining_time;
 };

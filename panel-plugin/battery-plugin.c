@@ -163,7 +163,12 @@ battery_plugin_update_label (BatteryPlugin *plugin,
     string = g_string_append (string, "medium\">");
 
   /* create the label */
-  if (BATTERY_FULLY_CHARGED (info))
+  if (info->is_present == FALSE)
+    {
+      /* battery not present */
+      string = g_string_append (string, _("Not Present"));
+    }
+  else if (BATTERY_FULLY_CHARGED (info))
     {
       /* append "Changed" */
       string = g_string_append (string, _("Charged"));
@@ -311,7 +316,7 @@ battery_plugin_query_tooltip (GtkWidget     *widget,
 
   /* get pixbuf */
   icon_name = battery_plugin_get_icon_name (info);
-  pixbuf = gtk_icon_theme_load_icon (gtk_icon_theme_get_default (), icon_name, 22 , 0, NULL);
+  pixbuf = gtk_icon_theme_load_icon (gtk_icon_theme_get_default (), icon_name, 32 , 0, NULL);
   g_free (icon_name);
 
   if (G_LIKELY (pixbuf))
@@ -476,7 +481,7 @@ battery_plugin_update (BatteryPlugin *plugin)
     }
   else
     {
-      /* TODO: on ac */
+      /* TODO: on ac, no batteries */
     }
 
 #if !GTK_CHECK_VERSION (2,12,0)
@@ -492,8 +497,6 @@ battery_plugin_load (BatteryPlugin *plugin)
 {
   gchar       *file;
   XfceRc      *rc;
-  GList       *devices, *li;
-  BatteryInfo *info;
 
   /* set defaults */
   plugin->show_frame = TRUE;
@@ -523,25 +526,6 @@ battery_plugin_load (BatteryPlugin *plugin)
           plugin->show_progressbar = xfce_rc_read_bool_entry (rc, "ShowProgressBar", FALSE);
           plugin->show_label = xfce_rc_read_bool_entry (rc, "ShowLabel",TRUE);
 
-          /* get list of all the devices */
-          devices = battery_monitor_get_devices (plugin->monitor);
-
-          /* load settings */
-          for (li = devices; li != NULL; li = li->next)
-            {
-              info = li->data;
-
-              /* set device udi as group */
-              xfce_rc_set_group (rc, info->udi);
-
-              /* set (dis)charge rates */
-              info->rate_charging = xfce_rc_read_int_entry (rc, "RateCharging", 0);
-              info->rate_discharging = xfce_rc_read_int_entry (rc, "RateDischarging", 0);
-            }
-
-          /* cleanup */
-          g_list_free (devices);
-
           /* close the rc file */
           xfce_rc_close (rc);
         }
@@ -555,8 +539,6 @@ battery_plugin_save (BatteryPlugin *plugin)
 {
   gchar       *file;
   XfceRc      *rc;
-  GList       *devices, *li;
-  BatteryInfo *info;
 
   /* get rc file, create one if needed */
   file = xfce_panel_plugin_save_location (plugin->panel_plugin, TRUE);
@@ -580,25 +562,6 @@ battery_plugin_save (BatteryPlugin *plugin)
           xfce_rc_write_bool_entry (rc, "ShowProgressBar", plugin->show_progressbar);
           xfce_rc_write_bool_entry (rc, "ShowLabel", plugin->show_label);
 
-          /* get list of known devices */
-          devices = battery_monitor_get_devices (plugin->monitor);
-
-          /* store */
-          for (li = devices; li != NULL; li = li->next)
-            {
-              info = li->data;
-
-              /* set device udi as group */
-              xfce_rc_set_group (rc, info->udi);
-
-              /* save rates */
-              xfce_rc_write_int_entry (rc, "RateCharging", info->rate_charging);
-              xfce_rc_write_int_entry (rc, "RateDischarging", info->rate_discharging);
-            }
-
-          /* cleanup */
-          g_list_free (devices);
-
           /* close the rc file */
           xfce_rc_close (rc);
         }
@@ -611,13 +574,18 @@ static void
 battery_plugin_orientation_changed (BatteryPlugin  *plugin,
                                     GtkOrientation  orientation)
 {
+  gint size;
+  
   /* set the orientation of the hvbox */
   xfce_hvbox_set_orientation (XFCE_HVBOX (plugin->box), orientation);
+  
+  /* get the panel size */
+  size = xfce_panel_plugin_get_size (plugin->panel_plugin);
 
   if (orientation == GTK_ORIENTATION_HORIZONTAL)
     {
       /* progressbar size and orienation */
-      gtk_widget_set_size_request (plugin->progressbar, PROGRESS_BAR_THINKNESS, -1);
+      gtk_widget_set_size_request (plugin->progressbar, PROGRESS_BAR_THINKNESS, size);
       gtk_progress_bar_set_orientation (GTK_PROGRESS_BAR (plugin->progressbar), GTK_PROGRESS_BOTTOM_TO_TOP);
 
       /* label justification */
@@ -626,7 +594,7 @@ battery_plugin_orientation_changed (BatteryPlugin  *plugin,
   else
     {
       /* progressbar size and orienation */
-      gtk_widget_set_size_request (plugin->progressbar, -1, PROGRESS_BAR_THINKNESS);
+      gtk_widget_set_size_request (plugin->progressbar, size, PROGRESS_BAR_THINKNESS);
       gtk_progress_bar_set_orientation (GTK_PROGRESS_BAR (plugin->progressbar), GTK_PROGRESS_LEFT_TO_RIGHT);
 
       /* label justification */
@@ -642,7 +610,10 @@ battery_plugin_set_size (BatteryPlugin *plugin,
 {
   /* set the border width of the frame */
   gtk_container_set_border_width (GTK_CONTAINER (plugin->frame), size > 26 ? PANEL_PADDING : 0);
-
+  
+  /* poke function above to set proper progressbar sizings */
+  battery_plugin_orientation_changed (plugin, xfce_panel_plugin_get_orientation (plugin->panel_plugin));
+  
   /* free last icon name */
   g_free (plugin->status_icon_name);
   plugin->status_icon_name = NULL;

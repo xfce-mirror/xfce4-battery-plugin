@@ -41,8 +41,6 @@
 
 #define DEFAULT_LEVEL_LOW     (0.08)
 #define DEFAULT_LEVEL_WARNING (0.20)
-#define RATE_AVERANGE         (10)
-#define MAXIMUM_RATE_DIFF     (0.50)
 
 
 enum
@@ -251,93 +249,11 @@ battery_monitor_calculate_percentage (BatteryInfo *info)
 
 
 
-static gint
-battery_monitor_calculate_remaining_time (BatteryInfo *info)
-{
-  gint     remaining_time = 0;
-  gint     charge_diff, charge_rate;
-  GTimeVal current_time;
-
-  /* only valid when last full charge is valid */
-  if (info->charge_last_full > 0)
-    {
-      /* get the current time */
-      g_get_current_time (&current_time);
-
-      /* only update when we need to */
-      if (info->charge_current_prev > 0
-          && info->charge_current_prev != info->charge_current
-          && current_time.tv_sec > info->time.tv_sec)
-        {
-          /* charge rate difference */
-          charge_diff = ABS (info->charge_current_prev - info->charge_current);
-
-          /* convert to charge rate per minute */
-          charge_rate = charge_diff / (current_time.tv_sec - info->time.tv_sec);
-
-          /* calculate (dis)charge rate */
-          if (info->is_discharging)
-            {
-              if (G_LIKELY (info->rate_discharging > 0))
-                {
-                  /* avoid weird rates */
-                  charge_rate = CLAMP (charge_rate, info->rate_discharging * MAXIMUM_RATE_DIFF,
-                                       info->rate_discharging * (1.00 + MAXIMUM_RATE_DIFF));
-
-                  /* update average rate */
-                  info->rate_discharging = MAX (1, (info->rate_discharging * RATE_AVERANGE + charge_rate) / (RATE_AVERANGE + 1));
-                }
-              else
-                {
-                  /* set rate */
-                  info->rate_discharging = charge_rate;
-                }
-
-              /* calculate the remaining time */
-              remaining_time = info->charge_current / info->rate_discharging;
-            }
-          else /* charging */
-            {
-              if (G_LIKELY (info->rate_charging > 0))
-                {
-                  /* avoid weird rates */
-                  charge_rate = CLAMP (charge_rate, info->rate_charging * MAXIMUM_RATE_DIFF,
-                                       info->rate_charging * (1.00 + MAXIMUM_RATE_DIFF));
-
-                  /* update average rate */
-                  info->rate_charging = MAX (1, (info->rate_charging * RATE_AVERANGE + charge_rate) / (RATE_AVERANGE + 1));
-                }
-              else
-                {
-                  /* set rate */
-                  info->rate_charging = charge_rate;
-                }
-
-              /* calculate the remaining time */
-              remaining_time = (info->charge_last_full - info->charge_current) / info->rate_charging;
-            }
-        }
-    }
-
-  return MAX (0, remaining_time);
-}
-
-
-
 static void
 battery_monitor_calculate (BatteryInfo *info)
 {
   /* update the percentage */
   info->percentage = battery_monitor_calculate_percentage (info);
-
-  /* update remaining time */
-  info->remaining_time = battery_monitor_calculate_remaining_time (info);
-
-  /* set new time */
-  g_get_current_time (&(info->time));
-
-  /* update the previous charge rate */
-  info->charge_current_prev = info->charge_current;
 }
 
 
@@ -354,14 +270,10 @@ battery_monitor_device_new (const gchar *udi)
   info->udi = g_strdup (udi);
   info->model = NULL;
 
-  /* initialize time */
-  g_get_current_time (&(info->time));
-
   /* set defaults */
   info->charge_last_full = info->charge_low = info->charge_warning = 0;
-  info->charge_current = info->charge_current_prev = 0;
+  info->charge_current = 0;
   info->percentage = info->remaining_time = 0;
-  info->rate_charging = info->rate_discharging = 0;
   info->is_discharging = info->is_present = FALSE;
 
   return info;
@@ -454,9 +366,6 @@ battery_monitor_device_global_update (BatteryMonitor *monitor)
         global->is_present = TRUE;
     }
 
-  /* set charge previous equal */
-  global->charge_current_prev = global->charge_current;
-
   /* cleanup */
   g_list_free (devices);
 
@@ -472,6 +381,7 @@ battery_monitor_device_update_properties (const gchar    *udi,
                                           BatteryMonitor *monitor)
 {
   gint       current;
+  gint       remaining_time;
   gchar     *model;
   DBusError  error;
 
@@ -483,7 +393,7 @@ battery_monitor_device_update_properties (const gchar    *udi,
   /* make sure the device exists */
   if (libhal_device_exists (monitor->context, udi, NULL))
     {
-      /* update static battery information is needed */
+      /* update static battery information if needed */
       if (G_UNLIKELY (info->charge_last_full == 0))
         {
           /* get the last full capacity, leave when there is none, since it makes the device useless */
@@ -508,10 +418,14 @@ battery_monitor_device_update_properties (const gchar    *udi,
           if (libhal_device_property_exists (monitor->context, udi, "battery.model", &error))
             {
               model = libhal_device_get_property_string (monitor->context, udi, "battery.model", &error);
-              if (g_utf8_strlen (model, -1) > 0)
-                info->model = model;
-              else
-                g_free (model);
+              
+              if (G_LIKELY (model))
+                {
+                  if (g_utf8_strlen (model, -1) > 0)
+                    info->model = model;
+                  else
+                    g_free (model);
+                }
             }
         }
 
@@ -524,7 +438,17 @@ battery_monitor_device_update_properties (const gchar    *udi,
         info->is_present = libhal_device_get_property_bool (monitor->context, udi, "battery.present", &error);
       else
         info->is_present = FALSE;
+        
+      /* current remaining time */
+      if (libhal_device_property_exists (monitor->context, udi, "battery.remaining_time", &error))
+        {
+          remaining_time = libhal_device_get_property_int (monitor->context, udi, "battery.remaining_time", &error);
 
+          /* only set when valid */
+          if (G_LIKELY (remaining_time > 0))
+            info->remaining_time = remaining_time;
+        }
+      
       /* current change level */
       if (libhal_device_property_exists (monitor->context, udi, "battery.charge_level.current", &error))
         {
@@ -533,6 +457,13 @@ battery_monitor_device_update_properties (const gchar    *udi,
           /* only set when valid */
           if (G_LIKELY (current > 0))
             info->charge_current = current;
+            
+          /* fix some weirdness for unplugged batteries but not properly removed inside hal */
+          if (info->charge_current == 0)
+            {
+              info->remaining_time = 0;
+              info->is_present = FALSE;
+            }
         }
 
       /* update the global battery */
@@ -546,7 +477,7 @@ battery_monitor_device_update_properties (const gchar    *udi,
             monitor->global->is_present = TRUE;
 
           /* when one battery is charging, global is charging */
-          if (!info->is_discharging)
+          if (!info->is_discharging && info->is_present)
             monitor->global->is_discharging = FALSE;
         }
 
@@ -850,6 +781,7 @@ battery_monitor_get_devices (BatteryMonitor *monitor)
   /* get the list of devices */
   devices = g_hash_table_get_values (monitor->devices);
 
+  /* sort the list of devices */
   devices = g_list_sort (devices, battery_monitor_sort_devices_func);
 
   return devices;

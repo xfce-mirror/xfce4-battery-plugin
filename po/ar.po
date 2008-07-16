@@ -39,11 +39,15 @@ msgid "AC off-line"
 msgstr ""
 
 #: ../panel-plugin/battery.c:570
-msgid "WARNING: Your battery has reached critical status. You should plug in or shutdown your computer now to avoid possible data loss."
+msgid ""
+"WARNING: Your battery has reached critical status. You should plug in or "
+"shutdown your computer now to avoid possible data loss."
 msgstr ""
 
 #: ../panel-plugin/battery.c:584
-msgid "WARNING: Your battery is running low. You should consider plugging in or shutting down your computer soon to avoid possible data loss."
+msgid ""
+"WARNING: Your battery is running low. You should consider plugging in or "
+"shutting down your computer soon to avoid possible data loss."
 msgstr ""
 
 #: ../panel-plugin/battery.c:673
@@ -63,8 +67,7 @@ msgstr ""
 msgid "Unable to open the following url: %s"
 msgstr ""
 
-#: ../panel-plugin/battery.c:1183
-#: ../panel-plugin/battmon.desktop.in.in.h:1
+#: ../panel-plugin/battery.c:1183 ../panel-plugin/battmon.desktop.in.in.h:1
 msgid "Battery Monitor"
 msgstr ""
 
@@ -80,28 +83,23 @@ msgstr ""
 msgid "Low battery action:"
 msgstr ""
 
-#: ../panel-plugin/battery.c:1242
-#: ../panel-plugin/battery.c:1283
+#: ../panel-plugin/battery.c:1242 ../panel-plugin/battery.c:1283
 msgid "Do nothing"
 msgstr ""
 
-#: ../panel-plugin/battery.c:1244
-#: ../panel-plugin/battery.c:1285
+#: ../panel-plugin/battery.c:1244 ../panel-plugin/battery.c:1285
 msgid "Display a warning message"
 msgstr ""
 
-#: ../panel-plugin/battery.c:1246
-#: ../panel-plugin/battery.c:1287
+#: ../panel-plugin/battery.c:1246 ../panel-plugin/battery.c:1287
 msgid "Run command"
 msgstr ""
 
-#: ../panel-plugin/battery.c:1248
-#: ../panel-plugin/battery.c:1289
+#: ../panel-plugin/battery.c:1248 ../panel-plugin/battery.c:1289
 msgid "Run command in terminal"
 msgstr ""
 
-#: ../panel-plugin/battery.c:1261
-#: ../panel-plugin/battery.c:1301
+#: ../panel-plugin/battery.c:1261 ../panel-plugin/battery.c:1301
 msgid "Command:"
 msgstr ""
 
@@ -144,4 +142,3 @@ msgstr ""
 #: ../panel-plugin/battmon.desktop.in.in.h:2
 msgid "Show and monitor the battery status"
 msgstr ""
-

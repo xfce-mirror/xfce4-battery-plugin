@@ -1,3 +1,6 @@
+2008-09-04	Auke Kok <sofar@xfce.org>
+	* Reduce polling interval for ACPI reads to reduce ACPI interrupts.
+
 2007-08-17	Nick Schermer <nick@xfce.org>
 
 	* Apply patch to fix compilation with kfreebsd (Bug #3040).

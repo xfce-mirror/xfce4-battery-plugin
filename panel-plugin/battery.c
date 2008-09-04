@@ -333,7 +333,11 @@ update_apm_status(t_battmon *battmon)
     /* Show initial state if using ACPI rather than waiting a minute */
     if(battmon->flag) {
         g_source_remove(battmon->timeoutid);
-        battmon->timeoutid = g_timeout_add(2 * 1024,
+        /* we hit ACPI 4-5 times per poll, so polling every 2 seconds
+	 * generates ~10 interrupts per second. updating every 30 seconds
+	 * should be more than enough, and comes down to only 0.16
+	 * interrupts per second, adding significant sleep time */
+        battmon->timeoutid = g_timeout_add(30 * 1024,
                 (GSourceFunc) update_apm_status, battmon);
     }
 

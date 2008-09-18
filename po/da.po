@@ -1,28 +1,30 @@
-# Danish translation for the xfce4-battery-plugin
-# Copyright (C) 2008 The xfce4-battery-plugin's COPYRIGHT HOLDER
+# translation of xfce4-battery-plugin to Danish
+# Copyright (C) 2007 THE xfce4-battery-plugin'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the xfce4-battery-plugin package.
-# Jannich Brendle <jannich@bredsaal.dk>, 2008.
-#
-#, fuzzy
+# Jens Hyllegaard <jens.hyllegaard@gmail.com>, 2007.
+# Per Kongstad <p_kongstad@op.pl>
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-battery-plugin 0.5.0\n"
+"Project-Id-Version: xfce4-battery-plugin 0.5.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-12-20 17:45+0100\n"
-"PO-Revision-Date: 2008-05-13 13:51+0200\n"
-"Last-Translator: Jannich Brendle <jannich@bredsaal.dk>\n"
-"Language-Team: Danish <xfce-i18n@xfce.org>\n"
+"PO-Revision-Date: 2008-09-18 08:50+0100\n"
+"Last-Translator: Per Kongstad <p_kongstad@op.pl>\n"
+"Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Danish\n"
+"X-Poedit-Country: DENMARK\n"
+"X-Poedit-SourceCharset: utf-8\n"
 
 #: ../panel-plugin/battery.c:491
 msgid "(Charging from AC)"
-msgstr "(Oplader fra AC)"
+msgstr "(Oplader via AC)"
 
 #: ../panel-plugin/battery.c:491
 msgid "(AC on-line)"
-msgstr "(AC tilsluttet)"
+msgstr "(AC tilkoblet)"
 
 #: ../panel-plugin/battery.c:500
 #, c-format
@@ -41,23 +43,15 @@ msgstr "%d%% tilbage"
 
 #: ../panel-plugin/battery.c:506
 msgid "AC off-line"
-msgstr "AC ikke tilsluttet"
+msgstr "AC frakoblet"
 
 #: ../panel-plugin/battery.c:570
-msgid ""
-"WARNING: Your battery has reached critical status. You should plug in or "
-"shutdown your computer now to avoid possible data loss."
-msgstr ""
-"ADVARSEL: Dit batteri har nået kritisk status. Du bør oplade eller"
-"slukke din computer nu for at undgå eventuelt tab af data."
+msgid "WARNING: Your battery has reached critical status. You should plug in or shutdown your computer now to avoid possible data loss."
+msgstr "ADVARSEL: Dit batteri er næsten helt fladt. Du bør tilslutte din computer til en strømkilde, eller lukke den ned nu, for at undgå muligt datatab."
 
 #: ../panel-plugin/battery.c:584
-msgid ""
-"WARNING: Your battery is running low. You should consider plugging in or "
-"shutting down your computer soon to avoid possible data loss."
-msgstr ""
-"ADVARSEL: Dit batteri er ved at løbe tør for strøm. Du bør overveje at oplade eller"
-"slukke din computer snart for at undgå eventuelt tab af data."
+msgid "WARNING: Your battery is running low. You should consider plugging in or shutting down your computer soon to avoid possible data loss."
+msgstr "ADVARSEL: Dit batteri er ved at være fladt. Du bør overveje at tilslutte din computer til en strømkilde, eller lukke den ned, for at undgå muligt datatab."
 
 #: ../panel-plugin/battery.c:673
 msgid "Battery"
@@ -74,11 +68,12 @@ msgstr "Vælg kommando"
 #: ../panel-plugin/battery.c:1159
 #, c-format
 msgid "Unable to open the following url: %s"
-msgstr "Kan ikke åbne denne url: %s"
+msgstr "Kunne ikke åbne denne url: %s"
 
-#: ../panel-plugin/battery.c:1183 ../panel-plugin/battmon.desktop.in.in.h:1
+#: ../panel-plugin/battery.c:1183
+#: ../panel-plugin/battmon.desktop.in.in.h:1
 msgid "Battery Monitor"
-msgstr "Batteriovervåger"
+msgstr "Batteriovervågning"
 
 #: ../panel-plugin/battery.c:1212
 msgid "Low percentage:"
@@ -90,35 +85,40 @@ msgstr "Kritisk procentdel:"
 
 #: ../panel-plugin/battery.c:1236
 msgid "Low battery action:"
-msgstr "Lavt batteriniveau handling:"
+msgstr "Handling ved lav batteristand:"
 
-#: ../panel-plugin/battery.c:1242 ../panel-plugin/battery.c:1283
+#: ../panel-plugin/battery.c:1242
+#: ../panel-plugin/battery.c:1283
 msgid "Do nothing"
-msgstr "Gør intet"
+msgstr "Gør ingenting"
 
-#: ../panel-plugin/battery.c:1244 ../panel-plugin/battery.c:1285
+#: ../panel-plugin/battery.c:1244
+#: ../panel-plugin/battery.c:1285
 msgid "Display a warning message"
-msgstr "Vis en advarsel"
+msgstr "Vis advarselsmeddelelse"
 
-#: ../panel-plugin/battery.c:1246 ../panel-plugin/battery.c:1287
+#: ../panel-plugin/battery.c:1246
+#: ../panel-plugin/battery.c:1287
 msgid "Run command"
 msgstr "Kør kommando"
 
-#: ../panel-plugin/battery.c:1248 ../panel-plugin/battery.c:1289
+#: ../panel-plugin/battery.c:1248
+#: ../panel-plugin/battery.c:1289
 msgid "Run command in terminal"
-msgstr "Kør kommando i terminal"
+msgstr "Kør kommando i en terminal"
 
-#: ../panel-plugin/battery.c:1261 ../panel-plugin/battery.c:1301
+#: ../panel-plugin/battery.c:1261
+#: ../panel-plugin/battery.c:1301
 msgid "Command:"
-msgstr "Kommando"
+msgstr "Kommando:"
 
 #: ../panel-plugin/battery.c:1277
 msgid "Critical battery action:"
-msgstr "Kritisk batteriniveauhandling:"
+msgstr "Handling ved kritisk batteristand:"
 
 #: ../panel-plugin/battery.c:1324
 msgid "Display label"
-msgstr "Vis label"
+msgstr "Vis mærkat"
 
 #: ../panel-plugin/battery.c:1327
 msgid "Display percentage"
@@ -130,19 +130,19 @@ msgstr "Vis tid"
 
 #: ../panel-plugin/battery.c:1333
 msgid "Hide time/percentage when full"
-msgstr "Gem tid/procentdel når fuldt opladt"
+msgstr "Skjul tid/procentdel når fuld"
 
 #: ../panel-plugin/battery.c:1336
 msgid "Display percentage in tooltip"
-msgstr "Vis procentdel i tooltip"
+msgstr "Vis procentdel i værktøjstip"
 
 #: ../panel-plugin/battery.c:1339
 msgid "Display time remaining in tooltip"
-msgstr "Vis resterende tid i tooltip"
+msgstr "Vis tilbageværende tid i værktøjstip"
 
 #: ../panel-plugin/battery.c:1342
 msgid "Display power"
-msgstr "Vis strømkilde"
+msgstr "Vis strøm"
 
 #: ../panel-plugin/battery.c:1345
 msgid "Display icon"
@@ -150,4 +150,5 @@ msgstr "Vis ikon"
 
 #: ../panel-plugin/battmon.desktop.in.in.h:2
 msgid "Show and monitor the battery status"
-msgstr "Viser og overvåger batteristatus"
+msgstr "Vis og overvåg batteristatus"
+

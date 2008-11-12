@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: xfce4-battery-plugin 0.5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-12-20 17:45+0100\n"
-"PO-Revision-Date: 2008-11-05 14:19+0200\n"
+"PO-Revision-Date: 2008-11-09 15:38+0200\n"
 "Last-Translator: Piarres Beobide <pi@beobide.net>\n"
 "Language-Team: Basque <xfce-i18n@xfce.org>\n"
 "Language: eu\n"
@@ -148,7 +148,7 @@ msgstr "Bistarazi karga"
 
 #: ../panel-plugin/battery.c:1345
 msgid "Display icon"
-msgstr "Bistarazi ikonoa "
+msgstr "Bistarazi ikonoa"
 
 #: ../panel-plugin/battmon.desktop.in.in.h:2
 msgid "Show and monitor the battery status"

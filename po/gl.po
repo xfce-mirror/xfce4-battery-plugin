@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-12-20 17:45+0100\n"
-"PO-Revision-Date: 2008-12-14 16:16+0100\n"
+"PO-Revision-Date: 2009-02-11 14:04+0100\n"
 "Last-Translator: Leandro Regueiro <leandro DOT regueiro AT gmail DOT com>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
@@ -21,12 +21,14 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: ../panel-plugin/battery.c:491
+#, fuzzy
 msgid "(Charging from AC)"
-msgstr ""
+msgstr "Coller da selección"
 
 #: ../panel-plugin/battery.c:491
+#, fuzzy
 msgid "(AC on-line)"
-msgstr ""
+msgstr "Erro na liña %d letra %d: %s"
 
 #: ../panel-plugin/battery.c:500
 #, c-format
@@ -44,8 +46,9 @@ msgid "%d%% remaining"
 msgstr "Quedan %d%%"
 
 #: ../panel-plugin/battery.c:506
+#, fuzzy
 msgid "AC off-line"
-msgstr ""
+msgstr "_Cor das liñas da reixa:"
 
 #: ../panel-plugin/battery.c:570
 msgid "WARNING: Your battery has reached critical status. You should plug in or shutdown your computer now to avoid possible data loss."
@@ -78,16 +81,19 @@ msgid "Battery Monitor"
 msgstr "Monitor da Batería"
 
 #: ../panel-plugin/battery.c:1212
+#, fuzzy
 msgid "Low percentage:"
-msgstr ""
+msgstr "Baixo"
 
 #: ../panel-plugin/battery.c:1223
+#, fuzzy
 msgid "Critical percentage:"
-msgstr ""
+msgstr "Mostrar porcentaxe de zoom"
 
 #: ../panel-plugin/battery.c:1236
+#, fuzzy
 msgid "Low battery action:"
-msgstr ""
+msgstr "Desface-la última acción"
 
 #: ../panel-plugin/battery.c:1242
 #: ../panel-plugin/battery.c:1283
@@ -106,8 +112,9 @@ msgstr "Executar comando"
 
 #: ../panel-plugin/battery.c:1248
 #: ../panel-plugin/battery.c:1289
+#, fuzzy
 msgid "Run command in terminal"
-msgstr ""
+msgstr "Fallou ao executar o complemento \"%s\""
 
 #: ../panel-plugin/battery.c:1261
 #: ../panel-plugin/battery.c:1301
@@ -115,20 +122,24 @@ msgid "Command:"
 msgstr "Comando:"
 
 #: ../panel-plugin/battery.c:1277
+#, fuzzy
 msgid "Critical battery action:"
-msgstr ""
+msgstr "Desface-la última acción"
 
 #: ../panel-plugin/battery.c:1324
+#, fuzzy
 msgid "Display label"
-msgstr ""
+msgstr "Modo de _visualización"
 
 #: ../panel-plugin/battery.c:1327
+#, fuzzy
 msgid "Display percentage"
-msgstr ""
+msgstr "Modo de _visualización"
 
 #: ../panel-plugin/battery.c:1330
+#, fuzzy
 msgid "Display time"
-msgstr ""
+msgstr "Modo de _visualización"
 
 #: ../panel-plugin/battery.c:1333
 msgid "Hide time/percentage when full"
@@ -143,12 +154,14 @@ msgid "Display time remaining in tooltip"
 msgstr ""
 
 #: ../panel-plugin/battery.c:1342
+#, fuzzy
 msgid "Display power"
-msgstr ""
+msgstr "Modo de _visualización"
 
 #: ../panel-plugin/battery.c:1345
+#, fuzzy
 msgid "Display icon"
-msgstr ""
+msgstr "Icona de ferramenta"
 
 #: ../panel-plugin/battmon.desktop.in.in.h:2
 msgid "Show and monitor the battery status"

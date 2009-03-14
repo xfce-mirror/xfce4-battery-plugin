@@ -1,8 +1,8 @@
 # Galician translation of xfce4-battery-plugin
-# Copyright (C) 2008 Leandro Regueiro
+# Copyright (C) 2008-2009 Leandro Regueiro
 # This file is distributed under the same license as the xfce package.
 #
-# Leandro Regueiro <leandro.regueiro@gmail.com>, 2008.
+# Leandro Regueiro <leandro.regueiro@gmail.com>, 2008, 2009.
 #
 # Proxecto Trasno - Adaptación do software libre á lingua galega:  Se desexas
 # colaborar connosco, podes atopar máis información en <http://trasno.net>
@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: xfce-i18n@xfce.org\n"
 "POT-Creation-Date: 2006-12-20 17:45+0100\n"
-"PO-Revision-Date: 2009-02-11 14:04+0100\n"
+"PO-Revision-Date: 2009-03-07 12:28+0100\n"
 "Last-Translator: Leandro Regueiro <leandro DOT regueiro AT gmail DOT com>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
@@ -23,17 +23,17 @@ msgstr ""
 #: ../panel-plugin/battery.c:491
 #, fuzzy
 msgid "(Charging from AC)"
-msgstr "Coller da selección"
+msgstr "Ac_tivar todo"
 
 #: ../panel-plugin/battery.c:491
 #, fuzzy
 msgid "(AC on-line)"
-msgstr "Erro na liña %d letra %d: %s"
+msgstr "Erro na liña %d: %s"
 
 #: ../panel-plugin/battery.c:500
-#, c-format
+#, fuzzy, c-format
 msgid "%d%% (%02d:%02d) remaining"
-msgstr ""
+msgstr "resta %d minuto (%d%%) "
 
 #: ../panel-plugin/battery.c:502
 #, c-format
@@ -48,15 +48,15 @@ msgstr "Quedan %d%%"
 #: ../panel-plugin/battery.c:506
 #, fuzzy
 msgid "AC off-line"
-msgstr "_Cor das liñas da reixa:"
+msgstr "Engadir a liña asinado por"
 
 #: ../panel-plugin/battery.c:570
 msgid "WARNING: Your battery has reached critical status. You should plug in or shutdown your computer now to avoid possible data loss."
-msgstr ""
+msgstr "ADVERTENCIA: A batería chegou a un estado crítico. Debe enchufala ou apagar o ordenador agora para evitar unha posible perda de datos."
 
 #: ../panel-plugin/battery.c:584
 msgid "WARNING: Your battery is running low. You should consider plugging in or shutting down your computer soon to avoid possible data loss."
-msgstr ""
+msgstr "ADVERTENCIA: A batería estase esgotando. Deberia considerar enchufala ou apagar o ordenador pronto para evitar unha posible perda de datos."
 
 #: ../panel-plugin/battery.c:673
 msgid "Battery"
@@ -81,19 +81,16 @@ msgid "Battery Monitor"
 msgstr "Monitor da Batería"
 
 #: ../panel-plugin/battery.c:1212
-#, fuzzy
 msgid "Low percentage:"
-msgstr "Baixo"
+msgstr "Porcentaxe baixa:"
 
 #: ../panel-plugin/battery.c:1223
-#, fuzzy
 msgid "Critical percentage:"
-msgstr "Mostrar porcentaxe de zoom"
+msgstr "Porcentaxe crítica:"
 
 #: ../panel-plugin/battery.c:1236
-#, fuzzy
 msgid "Low battery action:"
-msgstr "Desface-la última acción"
+msgstr "Acción para cando a batería está baixa:"
 
 #: ../panel-plugin/battery.c:1242
 #: ../panel-plugin/battery.c:1283
@@ -112,9 +109,8 @@ msgstr "Executar comando"
 
 #: ../panel-plugin/battery.c:1248
 #: ../panel-plugin/battery.c:1289
-#, fuzzy
 msgid "Run command in terminal"
-msgstr "Fallou ao executar o complemento \"%s\""
+msgstr "Executar o comando nun terminal"
 
 #: ../panel-plugin/battery.c:1261
 #: ../panel-plugin/battery.c:1301
@@ -122,46 +118,43 @@ msgid "Command:"
 msgstr "Comando:"
 
 #: ../panel-plugin/battery.c:1277
-#, fuzzy
 msgid "Critical battery action:"
-msgstr "Desface-la última acción"
+msgstr "Acción para cando a batería está crítica:"
 
 #: ../panel-plugin/battery.c:1324
-#, fuzzy
 msgid "Display label"
-msgstr "Modo de _visualización"
+msgstr "Mostrar unha etiqueta"
 
 #: ../panel-plugin/battery.c:1327
-#, fuzzy
 msgid "Display percentage"
-msgstr "Modo de _visualización"
+msgstr "Mostrar a porcentaxe"
 
 #: ../panel-plugin/battery.c:1330
-#, fuzzy
 msgid "Display time"
-msgstr "Modo de _visualización"
+msgstr "Mostrar o tempo"
 
 #: ../panel-plugin/battery.c:1333
 msgid "Hide time/percentage when full"
-msgstr ""
+msgstr "Agochar tempo/porcentaxe cando estea cargada"
 
 #: ../panel-plugin/battery.c:1336
+#, fuzzy
 msgid "Display percentage in tooltip"
-msgstr ""
+msgstr "Mostrar a data nunha indicación"
 
 #: ../panel-plugin/battery.c:1339
+#, fuzzy
 msgid "Display time remaining in tooltip"
-msgstr ""
+msgstr "Se é verdadeiro, mostrar os segundos na hora."
 
 #: ../panel-plugin/battery.c:1342
 #, fuzzy
 msgid "Display power"
-msgstr "Modo de _visualización"
+msgstr "Xestor de enerxía"
 
 #: ../panel-plugin/battery.c:1345
-#, fuzzy
 msgid "Display icon"
-msgstr "Icona de ferramenta"
+msgstr "Mostrar unha icona"
 
 #: ../panel-plugin/battmon.desktop.in.in.h:2
 msgid "Show and monitor the battery status"

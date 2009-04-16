@@ -10,10 +10,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: xfce-i18n@xfce.org\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-12-20 17:45+0100\n"
-"PO-Revision-Date: 2009-03-07 12:28+0100\n"
-"Last-Translator: Leandro Regueiro <leandro DOT regueiro AT gmail DOT com>\n"
+"PO-Revision-Date: 2009-04-14 21:59+0100\n"
+"Last-Translator: Leandro Regueiro <leandro.regueiro@gmail.com>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,19 +21,17 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: ../panel-plugin/battery.c:491
-#, fuzzy
 msgid "(Charging from AC)"
-msgstr "Ac_tivar todo"
+msgstr ""
 
 #: ../panel-plugin/battery.c:491
-#, fuzzy
 msgid "(AC on-line)"
-msgstr "Erro na liña %d: %s"
+msgstr ""
 
 #: ../panel-plugin/battery.c:500
-#, fuzzy, c-format
+#, c-format
 msgid "%d%% (%02d:%02d) remaining"
-msgstr "resta %d minuto (%d%%) "
+msgstr ""
 
 #: ../panel-plugin/battery.c:502
 #, c-format
@@ -46,9 +44,8 @@ msgid "%d%% remaining"
 msgstr "Quedan %d%%"
 
 #: ../panel-plugin/battery.c:506
-#, fuzzy
 msgid "AC off-line"
-msgstr "Engadir a liña asinado por"
+msgstr ""
 
 #: ../panel-plugin/battery.c:570
 msgid "WARNING: Your battery has reached critical status. You should plug in or shutdown your computer now to avoid possible data loss."
@@ -138,19 +135,16 @@ msgid "Hide time/percentage when full"
 msgstr "Agochar tempo/porcentaxe cando estea cargada"
 
 #: ../panel-plugin/battery.c:1336
-#, fuzzy
 msgid "Display percentage in tooltip"
-msgstr "Mostrar a data nunha indicación"
+msgstr "Mostrar a porcentaxe na notificación"
 
 #: ../panel-plugin/battery.c:1339
-#, fuzzy
 msgid "Display time remaining in tooltip"
-msgstr "Se é verdadeiro, mostrar os segundos na hora."
+msgstr "Mostrar o tempo restante na notificación"
 
 #: ../panel-plugin/battery.c:1342
-#, fuzzy
 msgid "Display power"
-msgstr "Xestor de enerxía"
+msgstr "Mostrar a enerxía"
 
 #: ../panel-plugin/battery.c:1345
 msgid "Display icon"

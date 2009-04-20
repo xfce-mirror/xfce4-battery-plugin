@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-12-20 17:45+0100\n"
-"PO-Revision-Date: 2009-04-14 21:59+0100\n"
+"PO-Revision-Date: 2009-04-17 22:20+0100\n"
 "Last-Translator: Leandro Regueiro <leandro.regueiro@gmail.com>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
@@ -22,16 +22,16 @@ msgstr ""
 
 #: ../panel-plugin/battery.c:491
 msgid "(Charging from AC)"
-msgstr ""
+msgstr "(Cargando da rede eléctrica)"
 
 #: ../panel-plugin/battery.c:491
 msgid "(AC on-line)"
-msgstr ""
+msgstr "(Conectado á rede eléctrica)"
 
 #: ../panel-plugin/battery.c:500
 #, c-format
 msgid "%d%% (%02d:%02d) remaining"
-msgstr ""
+msgstr "%d%% (%02d:%02d) restante"
 
 #: ../panel-plugin/battery.c:502
 #, c-format
@@ -45,7 +45,7 @@ msgstr "Quedan %d%%"
 
 #: ../panel-plugin/battery.c:506
 msgid "AC off-line"
-msgstr ""
+msgstr "Desconectado da rede eléctrica"
 
 #: ../panel-plugin/battery.c:570
 msgid "WARNING: Your battery has reached critical status. You should plug in or shutdown your computer now to avoid possible data loss."

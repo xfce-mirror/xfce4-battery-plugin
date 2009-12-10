@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<interface>
+  <!-- interface-requires gtk+ 2.10 -->
+  <!-- interface-naming-policy project-wide -->
+  <object class="GtkVBox" id="vbox">
+    <property name="visible">True</property>
+    <property name="orientation">vertical</property>
+    <property name="spacing">4</property>
+    <child>
+      <object class="GtkCheckButton" id="show-icon">
+        <property name="label" translatable="yes">Display image</property>
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">False</property>
+        <property name="draw_indicator">True</property>
+        <signal name="toggled" handler="show_icon_toggled_cb"/>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="position">0</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkCheckButton" id="show-time">
+        <property name="label" translatable="yes">Display time</property>
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">False</property>
+        <property name="draw_indicator">True</property>
+        <signal name="toggled" handler="show_time_toggled_cb"/>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="position">1</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkCheckButton" id="show-percentage">
+        <property name="label" translatable="yes">Display percentage</property>
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">False</property>
+        <property name="draw_indicator">True</property>
+        <signal name="toggled" handler="show_percentage_toggled_cb"/>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="position">2</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkCheckButton" id="hide-percentage-time-when-full">
+        <property name="label" translatable="yes">Hide time/percentage when full</property>
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">False</property>
+        <property name="draw_indicator">True</property>
+        <signal name="toggled" handler="hide_percentage_time_when_full_toggled_cb"/>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="position">3</property>
+      </packing>
+    </child>
+  </object>
+</interface>

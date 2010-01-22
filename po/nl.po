@@ -1,3 +1,4 @@
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce\n"
@@ -13,132 +14,130 @@ msgstr ""
 
 #: ../panel-plugin/battery.c:491
 msgid "(Charging from AC)"
-msgstr ""
+msgstr "(Opladen van Netspanning)"
 
 #: ../panel-plugin/battery.c:491
+#, fuzzy
 msgid "(AC on-line)"
-msgstr ""
+msgstr " (Netstroomadapter ingeplugd)"
 
 #: ../panel-plugin/battery.c:500
 #, c-format
 msgid "%d%% (%02d:%02d) remaining"
-msgstr ""
+msgstr "%d%%(%02d:%02d ) resterend"
 
 #: ../panel-plugin/battery.c:502
 #, c-format
 msgid "%02d:%02d remaining"
-msgstr ""
+msgstr "%02d:%02d resterend"
 
 #: ../panel-plugin/battery.c:504
 #, c-format
 msgid "%d%% remaining"
-msgstr ""
+msgstr "%d%% resterend"
 
 #: ../panel-plugin/battery.c:506
+#, fuzzy
 msgid "AC off-line"
-msgstr ""
+msgstr "Netstroomadapter is niet ingeplugd"
 
 #: ../panel-plugin/battery.c:570
-msgid ""
-"WARNING: Your battery has reached critical status. You should plug in or "
-"shutdown your computer now to avoid possible data loss."
-msgstr ""
+msgid "WARNING: Your battery has reached critical status. You should plug in or shutdown your computer now to avoid possible data loss."
+msgstr "WAARSCHUWING: De batterij heeft kritieke status bereikt. U moet uw  computer op netstroom aansluiten of uitzetten om mogelijke gegevensverlies te voorkomen."
 
 #: ../panel-plugin/battery.c:584
-msgid ""
-"WARNING: Your battery is running low. You should consider plugging in or "
-"shutting down your computer soon to avoid possible data loss."
-msgstr ""
+msgid "WARNING: Your battery is running low. You should consider plugging in or shutting down your computer soon to avoid possible data loss."
+msgstr "WAARSCHUWING: De batterij is bijna leeg. U moet overwegen uw  computer op netstroom aan te sluiten of uit te zetten om mogelijke gegevensverlies te voorkomen."
 
 #: ../panel-plugin/battery.c:673
 msgid "Battery"
-msgstr ""
+msgstr "Batterij"
 
 #: ../panel-plugin/battery.c:1099
 msgid "Select file"
-msgstr ""
+msgstr "Selecteer bestand"
 
 #: ../panel-plugin/battery.c:1140
 msgid "Select command"
-msgstr ""
+msgstr "Selecteer commando"
 
 #: ../panel-plugin/battery.c:1159
 #, c-format
 msgid "Unable to open the following url: %s"
-msgstr ""
+msgstr "Kan de volgende URL niet openen: %s"
 
 #: ../panel-plugin/battery.c:1183 ../panel-plugin/battmon.desktop.in.in.h:1
 msgid "Battery Monitor"
-msgstr ""
+msgstr "Batterij Monitor"
 
 #: ../panel-plugin/battery.c:1212
 msgid "Low percentage:"
-msgstr ""
+msgstr "Laag percentage:"
 
 #: ../panel-plugin/battery.c:1223
 msgid "Critical percentage:"
-msgstr ""
+msgstr "Kritiek percentage:"
 
 #: ../panel-plugin/battery.c:1236
 msgid "Low battery action:"
-msgstr ""
+msgstr "Actie wanneer de accu bijna leeg is:"
 
 #: ../panel-plugin/battery.c:1242 ../panel-plugin/battery.c:1283
 msgid "Do nothing"
-msgstr ""
+msgstr "Niets doen"
 
 #: ../panel-plugin/battery.c:1244 ../panel-plugin/battery.c:1285
 msgid "Display a warning message"
-msgstr ""
+msgstr "Toon een waarschuwing"
 
 #: ../panel-plugin/battery.c:1246 ../panel-plugin/battery.c:1287
 msgid "Run command"
-msgstr ""
+msgstr "Een commando uitvoeren"
 
 #: ../panel-plugin/battery.c:1248 ../panel-plugin/battery.c:1289
 msgid "Run command in terminal"
-msgstr ""
+msgstr "Voer een commando uit in terminal"
 
 #: ../panel-plugin/battery.c:1261 ../panel-plugin/battery.c:1301
 msgid "Command:"
-msgstr ""
+msgstr "Commando:"
 
 #: ../panel-plugin/battery.c:1277
 msgid "Critical battery action:"
-msgstr ""
+msgstr "Kritische batterij lading actie:"
 
 #: ../panel-plugin/battery.c:1324
 msgid "Display label"
-msgstr ""
+msgstr "Geef beschrijving weer"
 
 #: ../panel-plugin/battery.c:1327
 msgid "Display percentage"
-msgstr ""
+msgstr "Geef percentage weer"
 
 #: ../panel-plugin/battery.c:1330
 msgid "Display time"
-msgstr ""
+msgstr "Geef tijd weer"
 
 #: ../panel-plugin/battery.c:1333
 msgid "Hide time/percentage when full"
-msgstr ""
+msgstr "Verberg tijd/percentage wanneer de batterij helemaal opgeladen is"
 
 #: ../panel-plugin/battery.c:1336
 msgid "Display percentage in tooltip"
-msgstr ""
+msgstr "Geef percentage in de tekstballon weer"
 
 #: ../panel-plugin/battery.c:1339
 msgid "Display time remaining in tooltip"
-msgstr ""
+msgstr "Geef resterende tijd weer in de tekstballon"
 
 #: ../panel-plugin/battery.c:1342
 msgid "Display power"
-msgstr ""
+msgstr "Geef energie weer"
 
 #: ../panel-plugin/battery.c:1345
 msgid "Display icon"
-msgstr ""
+msgstr "Geef icoon weer"
 
 #: ../panel-plugin/battmon.desktop.in.in.h:2
 msgid "Show and monitor the battery status"
-msgstr ""
+msgstr "Laat zien en houd toezicht op de status van de batterij"

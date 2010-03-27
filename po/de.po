@@ -82,7 +82,7 @@ msgstr "Kritischer Prozentsatz:"
 
 #: ../panel-plugin/battery.c:1236
 msgid "Low battery action:"
-msgstr "Ereignis bei niedrigen Emergiezustand:"
+msgstr "Ereignis bei niedrigem Energiezustand:"
 
 #: ../panel-plugin/battery.c:1242 ../panel-plugin/battery.c:1283
 msgid "Do nothing"

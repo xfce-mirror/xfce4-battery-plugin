@@ -1,0 +1,154 @@
+# Croatian translations for  xfce4-battery-plugin package.
+# Copyright (C) 2010 The Xfce development team.
+# This file is distributed under the same license as the xfce4-battery-plugin package.
+#  Ivica Kolić<ikoli@yahoo.com>, 2010.
+#  Ivica Kolić<ikoli@yahoo.com> <>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version:  xfce4-battery-plugin\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-12-20 17:45+0100\n"
+"PO-Revision-Date: 2010-06-12 18:02+0200\n"
+"Last-Translator:  Ivica Kolić<ikoli@yahoo.com> <>\n"
+"Language-Team: Croatian <>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: ../panel-plugin/battery.c:491
+msgid "(Charging from AC)"
+msgstr "(Punjenje iz AC)"
+
+#: ../panel-plugin/battery.c:491
+msgid "(AC on-line)"
+msgstr "(AC on-line)"
+
+#: ../panel-plugin/battery.c:500
+#, c-format
+msgid "%d%% (%02d:%02d) remaining"
+msgstr "%d%% (%02d:%02d) preostalo"
+
+#: ../panel-plugin/battery.c:502
+#, c-format
+msgid "%02d:%02d remaining"
+msgstr "%02d:%02d preostalo"
+
+#: ../panel-plugin/battery.c:504
+#, c-format
+msgid "%d%% remaining"
+msgstr "%d%% preostalo"
+
+#: ../panel-plugin/battery.c:506
+msgid "AC off-line"
+msgstr "AC off-line"
+
+#: ../panel-plugin/battery.c:570
+msgid ""
+"WARNING: Your battery has reached critical status. You should plug in or "
+"shutdown your computer now to avoid possible data loss."
+msgstr ""
+"UPOZORENJE:Vaša baterija je dosegla kritični status.Trebate je uključiti ili "
+"isključiti računalo da izbjegnete gubitak podataka."
+
+#: ../panel-plugin/battery.c:584
+msgid ""
+"WARNING: Your battery is running low. You should consider plugging in or "
+"shutting down your computer soon to avoid possible data loss."
+msgstr ""
+"UPOZORENJE:Vaša se baterija prazni.Ramislite o uključivanju ili "
+"isključivanju računala uskoro da biste izbjegli gubitak podataka."
+
+#: ../panel-plugin/battery.c:673
+msgid "Battery"
+msgstr "Baterija"
+
+#: ../panel-plugin/battery.c:1099
+msgid "Select file"
+msgstr "Odaberi datoteku"
+
+#: ../panel-plugin/battery.c:1140
+msgid "Select command"
+msgstr "Odaberi naredbu"
+
+#: ../panel-plugin/battery.c:1159
+#, c-format
+msgid "Unable to open the following url: %s"
+msgstr "Neuspjeh u otvaranju slijedećeg url: %s"
+
+#: ../panel-plugin/battery.c:1183 ../panel-plugin/battmon.desktop.in.in.h:1
+msgid "Battery Monitor"
+msgstr "Monitor baterije"
+
+#: ../panel-plugin/battery.c:1212
+msgid "Low percentage:"
+msgstr "Niski postotak:"
+
+#: ../panel-plugin/battery.c:1223
+msgid "Critical percentage:"
+msgstr "Kritični postotak:"
+
+#: ../panel-plugin/battery.c:1236
+msgid "Low battery action:"
+msgstr ""
+
+#: ../panel-plugin/battery.c:1242 ../panel-plugin/battery.c:1283
+msgid "Do nothing"
+msgstr "Ne čini mišta"
+
+#: ../panel-plugin/battery.c:1244 ../panel-plugin/battery.c:1285
+msgid "Display a warning message"
+msgstr "Prikaži poruku upozorenja"
+
+#: ../panel-plugin/battery.c:1246 ../panel-plugin/battery.c:1287
+msgid "Run command"
+msgstr "Pokreni naredbu"
+
+#: ../panel-plugin/battery.c:1248 ../panel-plugin/battery.c:1289
+msgid "Run command in terminal"
+msgstr "Pokreni naredbu u terminalu"
+
+#: ../panel-plugin/battery.c:1261 ../panel-plugin/battery.c:1301
+msgid "Command:"
+msgstr "Naredba:"
+
+#: ../panel-plugin/battery.c:1277
+msgid "Critical battery action:"
+msgstr ""
+
+#: ../panel-plugin/battery.c:1324
+msgid "Display label"
+msgstr "Prikaži natips"
+
+#: ../panel-plugin/battery.c:1327
+msgid "Display percentage"
+msgstr "Prikaži postotak"
+
+#: ../panel-plugin/battery.c:1330
+msgid "Display time"
+msgstr "Prikaži vrijeme"
+
+#: ../panel-plugin/battery.c:1333
+msgid "Hide time/percentage when full"
+msgstr "Sakrij vrijeme/postotak kada je puna"
+
+#: ../panel-plugin/battery.c:1336
+msgid "Display percentage in tooltip"
+msgstr ""
+
+#: ../panel-plugin/battery.c:1339
+msgid "Display time remaining in tooltip"
+msgstr ""
+
+#: ../panel-plugin/battery.c:1342
+msgid "Display power"
+msgstr "Prikaži napajanje"
+
+#: ../panel-plugin/battery.c:1345
+msgid "Display icon"
+msgstr "Prikaži ikonu"
+
+#: ../panel-plugin/battmon.desktop.in.in.h:2
+msgid "Show and monitor the battery status"
+msgstr "Pokaži i prati status baterije"

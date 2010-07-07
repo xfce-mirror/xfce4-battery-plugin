@@ -1,12 +1,12 @@
 # Galician translation of xfce4-battery-plugin
 # Copyright (C) 2008-2009 Leandro Regueiro
 # This file is distributed under the same license as the xfce package.
-#
+# 
 # Leandro Regueiro <leandro.regueiro@gmail.com>, 2008, 2009.
-#
+# 
 # Proxecto Trasno - Adaptación do software libre á lingua galega:  Se desexas
 # colaborar connosco, podes atopar máis información en <http://trasno.net>
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -72,8 +72,7 @@ msgstr "Seleccione un comando"
 msgid "Unable to open the following url: %s"
 msgstr "Non foi posible abrir o seguinte url: %s"
 
-#: ../panel-plugin/battery.c:1183
-#: ../panel-plugin/battmon.desktop.in.in.h:1
+#: ../panel-plugin/battery.c:1183 ../panel-plugin/battmon.desktop.in.in.h:1
 msgid "Battery Monitor"
 msgstr "Monitor da Batería"
 
@@ -89,28 +88,23 @@ msgstr "Porcentaxe crítica:"
 msgid "Low battery action:"
 msgstr "Acción para cando a batería está baixa:"
 
-#: ../panel-plugin/battery.c:1242
-#: ../panel-plugin/battery.c:1283
+#: ../panel-plugin/battery.c:1242 ../panel-plugin/battery.c:1283
 msgid "Do nothing"
 msgstr "Non facer nada"
 
-#: ../panel-plugin/battery.c:1244
-#: ../panel-plugin/battery.c:1285
+#: ../panel-plugin/battery.c:1244 ../panel-plugin/battery.c:1285
 msgid "Display a warning message"
 msgstr "Mostrar unha mensaxe de advertencia"
 
-#: ../panel-plugin/battery.c:1246
-#: ../panel-plugin/battery.c:1287
+#: ../panel-plugin/battery.c:1246 ../panel-plugin/battery.c:1287
 msgid "Run command"
 msgstr "Executar comando"
 
-#: ../panel-plugin/battery.c:1248
-#: ../panel-plugin/battery.c:1289
+#: ../panel-plugin/battery.c:1248 ../panel-plugin/battery.c:1289
 msgid "Run command in terminal"
 msgstr "Executar o comando nun terminal"
 
-#: ../panel-plugin/battery.c:1261
-#: ../panel-plugin/battery.c:1301
+#: ../panel-plugin/battery.c:1261 ../panel-plugin/battery.c:1301
 msgid "Command:"
 msgstr "Comando:"
 
@@ -132,7 +126,7 @@ msgstr "Mostrar o tempo"
 
 #: ../panel-plugin/battery.c:1333
 msgid "Hide time/percentage when full"
-msgstr "Agochar tempo/porcentaxe cando estea cargada"
+msgstr "Ocultar tempo/porcentaxe cando estea cargada"
 
 #: ../panel-plugin/battery.c:1336
 msgid "Display percentage in tooltip"
@@ -153,4 +147,3 @@ msgstr "Mostrar unha icona"
 #: ../panel-plugin/battmon.desktop.in.in.h:2
 msgid "Show and monitor the battery status"
 msgstr "Mostrar e monitorizar o estado da batería"
-

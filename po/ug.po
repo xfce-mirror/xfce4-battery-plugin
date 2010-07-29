@@ -1,0 +1,152 @@
+# Uyghur translations for xfce4-battery-plugin package.
+# Copyright (C) Eduard Roccatello <eduard@xfce.org>
+# This file is distributed under the same license as the xfce4-battery-plugin package.
+# Gheyret T.Kenji <gheyret@gmail.com>, 2010.
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xfce4-battery-plugin\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-12-05 22:54+0900\n"
+"PO-Revision-Date: 2008-12-06 23:24+0900\n"
+"Last-Translator: Gheyret T.Kenji <gheyret@gmail.com>\n"
+"Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../panel-plugin/battery.c:494
+msgid "(Charging from AC)"
+msgstr "(AC دىن توكلاۋاتىدۇ)"
+
+#: ../panel-plugin/battery.c:494
+msgid "(AC on-line)"
+msgstr "(AC غا ئۇلاقلىق)"
+
+#: ../panel-plugin/battery.c:503
+#, c-format
+msgid "%d%% (%02d:%02d) remaining"
+msgstr "%d%% (%02d:%02d) قالدى"
+
+#: ../panel-plugin/battery.c:505
+#, c-format
+msgid "%02d:%02d remaining"
+msgstr "%02d:%02d قالدى"
+
+#: ../panel-plugin/battery.c:507
+#, c-format
+msgid "%d%% remaining"
+msgstr "%d%% قالدى"
+
+#: ../panel-plugin/battery.c:509
+#, c-format
+msgid "AC off-line"
+msgstr "AC ئۇلانماپتۇ"
+
+#: ../panel-plugin/battery.c:573
+msgid "WARNING: Your battery has reached critical status. You should plug in or shutdown your computer now to avoid possible data loss."
+msgstr "دىققەت: توكدان تۈگەي دەپلا قالدى، سانلىق ئاساسلارنىڭ يوقاپ كەتمەسلىكى ئۈچۈن توكقا ئۇلاش ياكى  كومپيۇتېرنى ئېتىشنى تېزدىن بېكىتىڭ."
+
+#: ../panel-plugin/battery.c:587
+msgid "WARNING: Your battery is running low. You should consider plugging in or shutting down your computer soon to avoid possible data loss."
+msgstr "دىققەت: توكداننىڭ توكى ئاز قالدى. سانلىق ئاساسلارنىڭ يوقاپ كەتمەسلىكى ئۈچۈن توكقا ئۇلاش ياكى  كومپيۇتېرنى ئېتىشنى ئويلىشىپ كۆرۈڭ."
+
+#: ../panel-plugin/battery.c:672
+msgid "Battery"
+msgstr "توكدان"
+
+#: ../panel-plugin/battery.c:1098
+msgid "Select file"
+msgstr "ھۆججەت تاللا"
+
+#: ../panel-plugin/battery.c:1139
+msgid "Select command"
+msgstr "بۇيرۇق تاللا"
+
+#: ../panel-plugin/battery.c:1158
+#, c-format
+msgid "Unable to open the following url: %s"
+msgstr "次の URL を開くことができません: %s"
+
+#: ../panel-plugin/battery.c:1182
+#: ../panel-plugin/battmon.desktop.in.in.h:1
+msgid "Battery Monitor"
+msgstr "توكدان كۆزەتكۈ"
+
+#: ../panel-plugin/battery.c:1211
+msgid "Low percentage:"
+msgstr "ئاز قالدىنىڭ پىرسەنتى:"
+
+#: ../panel-plugin/battery.c:1222
+msgid "Critical percentage:"
+msgstr "تۈگەي دەپ قالدىنىڭ پىرسەنتى:"
+
+#: ../panel-plugin/battery.c:1235
+msgid "Low battery action:"
+msgstr "توك ئاز قالغاندا ئېلىپ بارىدىغان مەشغۇلات:"
+
+#: ../panel-plugin/battery.c:1241
+#: ../panel-plugin/battery.c:1282
+msgid "Do nothing"
+msgstr "ھېچ ئىش قىلما"
+
+#: ../panel-plugin/battery.c:1243
+#: ../panel-plugin/battery.c:1284
+msgid "Display a warning message"
+msgstr "دىققەت ئۇچۇرى چىقىرىش"
+
+#: ../panel-plugin/battery.c:1245
+#: ../panel-plugin/battery.c:1286
+msgid "Run command"
+msgstr "بۇيرۇق ئىجرا قىل"
+
+#: ../panel-plugin/battery.c:1247
+#: ../panel-plugin/battery.c:1288
+msgid "Run command in terminal"
+msgstr "تېرمىنالدا بۇيرۇق ئىجرا قىل"
+
+#: ../panel-plugin/battery.c:1260
+#: ../panel-plugin/battery.c:1300
+msgid "Command:"
+msgstr "بۇيرۇق:"
+
+#: ../panel-plugin/battery.c:1276
+msgid "Critical battery action:"
+msgstr "توك تۈگەي دەپ قالغاندا ئېلىپ بارىدىغان مەشغۇلات:"
+
+#: ../panel-plugin/battery.c:1323
+msgid "Display label"
+msgstr "ئەن كۆرسەت"
+
+#: ../panel-plugin/battery.c:1326
+msgid "Display percentage"
+msgstr "قالدۇق پىرسەنتىنى كۆرسەت"
+
+#: ../panel-plugin/battery.c:1329
+msgid "Display time"
+msgstr "ۋاقىت كۆرسەت"
+
+#: ../panel-plugin/battery.c:1332
+msgid "Hide time/percentage when full"
+msgstr "تولۇق توكلانغاندا ۋاقىت ۋە ئاز قالدۇق پىرسەنتىنى يوشۇر"
+
+#: ../panel-plugin/battery.c:1335
+msgid "Display percentage in tooltip"
+msgstr "قالدۇقنى tooltip تا كۆرسەت"
+
+#: ../panel-plugin/battery.c:1338
+msgid "Display time remaining in tooltip"
+msgstr "قالغان ۋاقىتنى tooltip تا كۆرسەت"
+
+#: ../panel-plugin/battery.c:1341
+msgid "Display power"
+msgstr "توك مەنبەسىنى كۆرسەت"
+
+#: ../panel-plugin/battery.c:1344
+msgid "Display icon"
+msgstr "سىنبەلگە كۆرسەت"
+
+#: ../panel-plugin/battmon.desktop.in.in.h:2
+msgid "Show and monitor the battery status"
+msgstr "توكدان ھالىتىنى كۆزىتىپ كۆرسەت"

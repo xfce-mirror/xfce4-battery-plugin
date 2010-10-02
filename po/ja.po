@@ -10,7 +10,7 @@
 # This file is distributed under the same license as the xfce4-battery-plugin package.
 # Nobuhiro Iwamatsu <iwamatsu@nigauri.org>, 2007,2008.
 #
-# battery: バッテリ（のばさない）
+# battery: バッテリ(のばさない)
 # percentage: 残量
 #
 msgid ""

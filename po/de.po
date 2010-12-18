@@ -18,7 +18,7 @@ msgstr ""
 
 #: ../panel-plugin/battery.c:491
 msgid "(Charging from AC)"
-msgstr "(Lade von Steckdose)"
+msgstr "(Wird von Stromzufuhr geladen)"
 
 #: ../panel-plugin/battery.c:491
 msgid "(AC on-line)"
@@ -45,11 +45,11 @@ msgstr "Keine externe Stromzufuhr"
 
 #: ../panel-plugin/battery.c:570
 msgid "WARNING: Your battery has reached critical status. You should plug in or shutdown your computer now to avoid possible data loss."
-msgstr "ACHTUNG: Ihr Akku hat einen kritischen Zustand erreicht. Sie sollten Ihr Gerät jetzt an Strom anschließen oder herunterfahren, um möglichen Datenverlust zu verhindern."
+msgstr "ACHTUNG: Ihr Akku hat einen kritischen Zustand erreicht. Sie sollten Ihr Gerät jetzt an Strom anschließen oder herunterfahren, um möglichen Datenverlust zu vermeiden."
 
 #: ../panel-plugin/battery.c:584
 msgid "WARNING: Your battery is running low. You should consider plugging in or shutting down your computer soon to avoid possible data loss."
-msgstr "ACHTUNG: Ihr Akku befindet sich in einem niedrigen Energiezustand. Sie sollten es demnächst in Erwägung ziehen, ihr Gerät an Strom anzuschließen oder herunterzufahren, um möglichen Datenverlust zu verhindern."
+msgstr "ACHTUNG: Ihr Akku befindet sich in einem niedrigen Energiezustand. Sie sollten es demnächst in Erwägung ziehen, ihr Gerät an Strom anzuschließen oder herunterzufahren, um möglichen Datenverlust zu vermeiden."
 
 #: ../panel-plugin/battery.c:673
 msgid "Battery"
@@ -57,11 +57,11 @@ msgstr "Batteriezustand"
 
 #: ../panel-plugin/battery.c:1099
 msgid "Select file"
-msgstr "Wählen Sie eine Datei"
+msgstr "Datei auswählen"
 
 #: ../panel-plugin/battery.c:1140
 msgid "Select command"
-msgstr "Wählen Sie einen Befehl"
+msgstr "Befehl auswählen"
 
 #: ../panel-plugin/battery.c:1159
 #, c-format
@@ -126,15 +126,15 @@ msgstr "Zeit/Prozentsatz verstecken wenn voll"
 
 #: ../panel-plugin/battery.c:1336
 msgid "Display percentage in tooltip"
-msgstr "Prozentsatz in Tooltip anzeigen"
+msgstr "Prozentsatz in der Kurzhilfe anzeigen"
 
 #: ../panel-plugin/battery.c:1339
 msgid "Display time remaining in tooltip"
-msgstr "Verbleibende Zeit in Tooltip anzeigen"
+msgstr "Verbleibende Zeit in der Kurzhilfe anzeigen"
 
 #: ../panel-plugin/battery.c:1342
 msgid "Display power"
-msgstr "Strom anzeigen"
+msgstr "Vorhandene Stromversorgung anzeigen"
 
 #: ../panel-plugin/battery.c:1345
 msgid "Display icon"

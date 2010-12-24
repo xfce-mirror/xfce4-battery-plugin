@@ -17,8 +17,8 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <linux/apm_bios.h>
 #include <sys/types.h>
+#include <linux/apm_bios.h>
 
 #define APM_PROC   "/proc/apm"
 #define APM_DEVICE "/dev/apm_bios"

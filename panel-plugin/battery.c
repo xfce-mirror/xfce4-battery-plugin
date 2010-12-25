@@ -1,6 +1,4 @@
-/* $Id$
- *
- * Copyright (c) 2003 Nicholas Penwarden <toth64@yahoo.com>
+/* Copyright (c) 2003 Nicholas Penwarden <toth64@yahoo.com>
  * Copyright (c) 2003 Benedikt Meurer <benedikt.meurer@unix-ag.uni-siegen.de>
  * Copyright (c) 2003 Edscott Wilson Garcia <edscott@users.sourceforge.net>
  * Copyright (c) 2005 Eduard Roccatello <eduard@xfce.org>

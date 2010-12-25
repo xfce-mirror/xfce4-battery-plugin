@@ -1,6 +1,4 @@
-/* $Id$
- *
- * Copyright (c) 2002 Costantino Pistagna <valvoline@vrlteam.org>
+/* Copyright (c) 2002 Costantino Pistagna <valvoline@vrlteam.org>
  * Copyright (c) 2003 Noberasco Michele <2001s098@educ.disi.unige.it>
  * Copyright (c) 2003 Edscott Wilson Garcia <edscott@imp.mx>
  *

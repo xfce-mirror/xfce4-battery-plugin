@@ -1,9 +1,8 @@
-dnl $Id$
-dnl
 dnl xfce4-battery-plugin - Battery monitor for the Xfce4 panel
 dnl
 dnl 2003      Benedikt Meurer <benny@xfce.org>
 dnl 2006-2007 Nick Schermer <nick@xfce.org>
+dnl 2010      Florian Rivoal <frivoal@xfce.org>
 dnl
 
 dnl ***************************
@@ -13,7 +12,7 @@ m4_define([battery_version_major], [0])
 m4_define([battery_version_minor], [5])
 m4_define([battery_version_micro], [2])
 m4_define([battery_version_build], [r@REVISION@])
-m4_define([battery_version_tag], [svn])
+m4_define([battery_version_tag], [git])
 m4_define([battery_version], [battery_version_major().battery_version_minor().battery_version_micro()ifelse(battery_version_tag(), [svn], [battery_version_tag()-battery_version_build()], [battery_version_tag()])])
 
 dnl ***************************
@@ -24,7 +23,6 @@ AC_COPYRIGHT([Copyright (c) 2006-2007
 AC_INIT([xfce4-battery-plugin], [battery_version], [http://bugzilla.xfce.org/], [xfce4-battery-plugin])
 AC_PREREQ([2.50])
 AC_CANONICAL_TARGET()
-AC_REVISION([$Id$])
 
 dnl ***************************
 dnl *** Initialize automake ***

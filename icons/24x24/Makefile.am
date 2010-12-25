@@ -1,5 +1,3 @@
-# $Id$
-
 iconsdir = $(datadir)/icons/hicolor/24x24/devices
 icons_DATA =								\
 	battery.png

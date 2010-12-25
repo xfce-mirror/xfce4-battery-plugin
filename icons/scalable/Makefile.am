@@ -1,5 +1,3 @@
-# $Id$
-
 iconsdir = $(datadir)/icons/hicolor/scalable/devices
 icons_DATA =								\
 	battery.svg

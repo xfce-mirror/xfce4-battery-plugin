@@ -25,7 +25,7 @@
 #include <config.h>
 #endif
 
-#if defined(__FreeBSD__) || defined(__FreeBSD_kernel__)
+#if (defined(__FreeBSD__) || defined(__FreeBSD_kernel__)) && (defined(i386) || defined(__i386__))
 #include <machine/apm_bios.h>
 #elif __OpenBSD__
 #include <sys/param.h>
@@ -163,7 +163,9 @@ detect_battery_info(t_battmon *battmon)
      except that is does not work on FreeBSD
 
   */
+#ifdef APMDEVICE
     struct apm_info apm;
+#endif
       int fd;
 
     /* First check to see if ACPI is available */
@@ -310,7 +312,9 @@ update_apm_status(t_battmon *battmon)
       acline = apm.ac_state ? TRUE : FALSE;
 
 #else
+#ifdef __linux__ || APMDEVICE
     struct apm_info apm;
+#endif
     DBG ("Updating battery status...");
 
     if(battmon->method == BM_BROKEN) {

@@ -7,10 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-battery-plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-12-20 17:45+0100\n"
+"POT-Creation-Date: 2010-12-27 23:53+0900\n"
 "PO-Revision-Date: 2009-05-14 02:41+0500\n"
 "Last-Translator: Muhammad Ali Makki <makki.ma@gmail.com>\n"
 "Language-Team: Urdu <makki.ma@gmail.com>\n"
+"Language: ur\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,137 +20,144 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "Plural-Forms: Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: ../panel-plugin/battery.c:491
-msgid "(Charging from AC)"
-msgstr "(چارجر سے چارجنگ جاری ہے)"
-
-#: ../panel-plugin/battery.c:491
-msgid "(AC on-line)"
+#: ../panel-plugin/battery.c:498
+#, fuzzy
+msgid "(No battery, AC on-line)"
 msgstr "(چارجر لگا ہوا ہے)"
 
 #: ../panel-plugin/battery.c:500
+msgid "(Charging from AC)"
+msgstr "(چارجر سے چارجنگ جاری ہے)"
+
+#: ../panel-plugin/battery.c:500
+msgid "(AC on-line)"
+msgstr "(چارجر لگا ہوا ہے)"
+
+#: ../panel-plugin/battery.c:510
 #, c-format
 msgid "%d%% (%02d:%02d) remaining"
 msgstr "%d%% (%02d:%02d) باقی ہے"
 
-#: ../panel-plugin/battery.c:502
+#: ../panel-plugin/battery.c:512
 #, c-format
 msgid "%02d:%02d remaining"
 msgstr "%02d:%02d باقی ہے"
 
-#: ../panel-plugin/battery.c:504
+#: ../panel-plugin/battery.c:514
 #, c-format
 msgid "%d%% remaining"
 msgstr "%d%% باقی ہے"
 
-#: ../panel-plugin/battery.c:506
+#: ../panel-plugin/battery.c:516
+#, c-format
 msgid "AC off-line"
 msgstr "چارجر لگا ہوا نہیں ہے"
 
-#: ../panel-plugin/battery.c:570
-msgid "WARNING: Your battery has reached critical status. You should plug in or shutdown your computer now to avoid possible data loss."
-msgstr "انتباہ: آپ کی بیٹری خطرناک حد تک پہنچ گئی ہے. فوری طور پر چارج کریں یا کمپیوٹر بند کردیں تاکہ ڈیٹا کے کسی قسم کے نقصان سے بچا جاسکے."
+#: ../panel-plugin/battery.c:580
+msgid ""
+"WARNING: Your battery has reached critical status. You should plug in or "
+"shutdown your computer now to avoid possible data loss."
+msgstr ""
+"انتباہ: آپ کی بیٹری خطرناک حد تک پہنچ گئی ہے. فوری طور پر چارج کریں یا "
+"کمپیوٹر بند کردیں تاکہ ڈیٹا کے کسی قسم کے نقصان سے بچا جاسکے."
 
-#: ../panel-plugin/battery.c:584
-msgid "WARNING: Your battery is running low. You should consider plugging in or shutting down your computer soon to avoid possible data loss."
-msgstr "انتباہ: آپ کی بیٹری کم ہوگئی ہے. اسے فوری طور پر چارج کریں یا جلد ہی اپنا کمپیوٹر بند کردیں تاکہ کسی قسم کے ڈیٹا کے نقصان سے بچا جاسکے."
+#: ../panel-plugin/battery.c:594
+msgid ""
+"WARNING: Your battery is running low. You should consider plugging in or "
+"shutting down your computer soon to avoid possible data loss."
+msgstr ""
+"انتباہ: آپ کی بیٹری کم ہوگئی ہے. اسے فوری طور پر چارج کریں یا جلد ہی اپنا "
+"کمپیوٹر بند کردیں تاکہ کسی قسم کے ڈیٹا کے نقصان سے بچا جاسکے."
 
-#: ../panel-plugin/battery.c:673
+#: ../panel-plugin/battery.c:679
 msgid "Battery"
 msgstr "بیٹری"
 
-#: ../panel-plugin/battery.c:1099
+#: ../panel-plugin/battery.c:1105
 msgid "Select file"
 msgstr "فائل منتخب کریں"
 
-#: ../panel-plugin/battery.c:1140
+#: ../panel-plugin/battery.c:1146
 msgid "Select command"
 msgstr "کمانڈ منتخب کریں"
 
-#: ../panel-plugin/battery.c:1159
+#: ../panel-plugin/battery.c:1165
 #, c-format
 msgid "Unable to open the following url: %s"
 msgstr "یہ url کھولنے میں ناکامی: %s"
 
-#: ../panel-plugin/battery.c:1183
-#: ../panel-plugin/battmon.desktop.in.in.h:1
+#: ../panel-plugin/battery.c:1189 ../panel-plugin/battmon.desktop.in.in.h:1
 msgid "Battery Monitor"
 msgstr "بیٹری مانیٹر"
 
-#: ../panel-plugin/battery.c:1212
+#: ../panel-plugin/battery.c:1218
 msgid "Low percentage:"
 msgstr "کم فیصد:"
 
-#: ../panel-plugin/battery.c:1223
+#: ../panel-plugin/battery.c:1229
 msgid "Critical percentage:"
 msgstr "خطرناک فیصد:"
 
-#: ../panel-plugin/battery.c:1236
+#: ../panel-plugin/battery.c:1242
 msgid "Low battery action:"
 msgstr "کم بیٹری حرکت:"
 
-#: ../panel-plugin/battery.c:1242
-#: ../panel-plugin/battery.c:1283
+#: ../panel-plugin/battery.c:1248 ../panel-plugin/battery.c:1289
 msgid "Do nothing"
 msgstr "کچھ نہ کریں"
 
-#: ../panel-plugin/battery.c:1244
-#: ../panel-plugin/battery.c:1285
+#: ../panel-plugin/battery.c:1250 ../panel-plugin/battery.c:1291
 msgid "Display a warning message"
 msgstr "انتباہی پیغام دکھائیں"
 
-#: ../panel-plugin/battery.c:1246
-#: ../panel-plugin/battery.c:1287
+#: ../panel-plugin/battery.c:1252 ../panel-plugin/battery.c:1293
 msgid "Run command"
 msgstr "کمانڈ چلائیں"
 
-#: ../panel-plugin/battery.c:1248
-#: ../panel-plugin/battery.c:1289
+#: ../panel-plugin/battery.c:1254 ../panel-plugin/battery.c:1295
 msgid "Run command in terminal"
 msgstr "کمانڈ ٹرمنل میں چلائیں"
 
-#: ../panel-plugin/battery.c:1261
-#: ../panel-plugin/battery.c:1301
+#: ../panel-plugin/battery.c:1267 ../panel-plugin/battery.c:1307
 msgid "Command:"
 msgstr "کمانڈ:"
 
-#: ../panel-plugin/battery.c:1277
+#: ../panel-plugin/battery.c:1283
 msgid "Critical battery action:"
 msgstr "خطرناک بیٹری حرکت:"
 
-#: ../panel-plugin/battery.c:1324
+#: ../panel-plugin/battery.c:1330
 msgid "Display label"
 msgstr "لیبل دکھائیں"
 
-#: ../panel-plugin/battery.c:1327
+#: ../panel-plugin/battery.c:1333
 msgid "Display percentage"
 msgstr "فیصد دکھائیں"
 
-#: ../panel-plugin/battery.c:1330
+#: ../panel-plugin/battery.c:1336
 msgid "Display time"
 msgstr "وقت دکھائیں"
 
-#: ../panel-plugin/battery.c:1333
+#: ../panel-plugin/battery.c:1339
 msgid "Hide time/percentage when full"
 msgstr "فُل ہونے پر وقت/فیصد مت دکھائیں"
 
-#: ../panel-plugin/battery.c:1336
+#: ../panel-plugin/battery.c:1342
 msgid "Display percentage in tooltip"
 msgstr "فیصد ٹول ٹپ میں دکھائیں"
 
-#: ../panel-plugin/battery.c:1339
+#: ../panel-plugin/battery.c:1345
 msgid "Display time remaining in tooltip"
 msgstr "بقیہ وقت ٹول ٹپ میں دکھائیں"
 
-#: ../panel-plugin/battery.c:1342
+#: ../panel-plugin/battery.c:1348
 msgid "Display power"
 msgstr "پاور دکھائیں"
 
-#: ../panel-plugin/battery.c:1345
+#: ../panel-plugin/battery.c:1351
 msgid "Display icon"
 msgstr "آئکن دکھائیں"
 
 #: ../panel-plugin/battmon.desktop.in.in.h:2
 msgid "Show and monitor the battery status"
 msgstr "ظاہر کریں اور بیٹری کی حالت دیکھتے رہیں"
-

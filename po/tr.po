@@ -2,10 +2,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: XFCE\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-12-20 17:45+0100\n"
+"POT-Creation-Date: 2010-12-27 23:53+0900\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Utku Aydın <utkuaydin54@gmail.com>\n"
 "Language-Team: XFCE Türkiye\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -13,137 +14,144 @@ msgstr ""
 "X-Poedit-Country: TURKEY\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: ../panel-plugin/battery.c:491
-msgid "(Charging from AC)"
-msgstr "(Fişten şarj ediyor)"
-
-#: ../panel-plugin/battery.c:491
-msgid "(AC on-line)"
+#: ../panel-plugin/battery.c:498
+#, fuzzy
+msgid "(No battery, AC on-line)"
 msgstr "Fişe takılı"
 
 #: ../panel-plugin/battery.c:500
+msgid "(Charging from AC)"
+msgstr "(Fişten şarj ediyor)"
+
+#: ../panel-plugin/battery.c:500
+msgid "(AC on-line)"
+msgstr "Fişe takılı"
+
+#: ../panel-plugin/battery.c:510
 #, c-format
 msgid "%d%% (%02d:%02d) remaining"
 msgstr "%d%% (%02d:%02d) kaldı"
 
-#: ../panel-plugin/battery.c:502
+#: ../panel-plugin/battery.c:512
 #, c-format
 msgid "%02d:%02d remaining"
 msgstr "%02d:%02d kaldı"
 
-#: ../panel-plugin/battery.c:504
+#: ../panel-plugin/battery.c:514
 #, c-format
 msgid "%d%% remaining"
 msgstr "%d%% kaldı"
 
-#: ../panel-plugin/battery.c:506
+#: ../panel-plugin/battery.c:516
+#, c-format
 msgid "AC off-line"
 msgstr "Fişe takılı değil"
 
-#: ../panel-plugin/battery.c:570
-msgid "WARNING: Your battery has reached critical status. You should plug in or shutdown your computer now to avoid possible data loss."
-msgstr "UYARI: Piliniz çok az. Bilgisayarınızı hemen fişe takın veya kapatın yoksa veri kaybı yaşayabilirsiniz."
+#: ../panel-plugin/battery.c:580
+msgid ""
+"WARNING: Your battery has reached critical status. You should plug in or "
+"shutdown your computer now to avoid possible data loss."
+msgstr ""
+"UYARI: Piliniz çok az. Bilgisayarınızı hemen fişe takın veya kapatın yoksa "
+"veri kaybı yaşayabilirsiniz."
 
-#: ../panel-plugin/battery.c:584
-msgid "WARNING: Your battery is running low. You should consider plugging in or shutting down your computer soon to avoid possible data loss."
-msgstr "UYARI: Piliniz bitmek üzere. Bilgisayarınızı en kısa sürede fişe takın ya da kapatın, aksi takdirde veri kaybı yaşayabilirsiniz."
+#: ../panel-plugin/battery.c:594
+msgid ""
+"WARNING: Your battery is running low. You should consider plugging in or "
+"shutting down your computer soon to avoid possible data loss."
+msgstr ""
+"UYARI: Piliniz bitmek üzere. Bilgisayarınızı en kısa sürede fişe takın ya da "
+"kapatın, aksi takdirde veri kaybı yaşayabilirsiniz."
 
-#: ../panel-plugin/battery.c:673
+#: ../panel-plugin/battery.c:679
 msgid "Battery"
 msgstr "Pil"
 
-#: ../panel-plugin/battery.c:1099
+#: ../panel-plugin/battery.c:1105
 msgid "Select file"
 msgstr "Dosya seç"
 
-#: ../panel-plugin/battery.c:1140
+#: ../panel-plugin/battery.c:1146
 msgid "Select command"
 msgstr "Komut seç"
 
-#: ../panel-plugin/battery.c:1159
+#: ../panel-plugin/battery.c:1165
 #, c-format
 msgid "Unable to open the following url: %s"
 msgstr "Belirtilen URL açılamadı: %s"
 
-#: ../panel-plugin/battery.c:1183
-#: ../panel-plugin/battmon.desktop.in.in.h:1
+#: ../panel-plugin/battery.c:1189 ../panel-plugin/battmon.desktop.in.in.h:1
 msgid "Battery Monitor"
 msgstr "Pil Gözlemcisi"
 
-#: ../panel-plugin/battery.c:1212
+#: ../panel-plugin/battery.c:1218
 msgid "Low percentage:"
 msgstr "Düşük doluluk oranı:"
 
-#: ../panel-plugin/battery.c:1223
+#: ../panel-plugin/battery.c:1229
 msgid "Critical percentage:"
 msgstr "Kritik doluluk oranı:"
 
-#: ../panel-plugin/battery.c:1236
+#: ../panel-plugin/battery.c:1242
 msgid "Low battery action:"
 msgstr "Pil seviyesi düşük olduğunda gerçekleştirilecek işlem:"
 
-#: ../panel-plugin/battery.c:1242
-#: ../panel-plugin/battery.c:1283
+#: ../panel-plugin/battery.c:1248 ../panel-plugin/battery.c:1289
 msgid "Do nothing"
 msgstr "Bir şey yapma"
 
-#: ../panel-plugin/battery.c:1244
-#: ../panel-plugin/battery.c:1285
+#: ../panel-plugin/battery.c:1250 ../panel-plugin/battery.c:1291
 msgid "Display a warning message"
 msgstr "Hata mesajı göster"
 
-#: ../panel-plugin/battery.c:1246
-#: ../panel-plugin/battery.c:1287
+#: ../panel-plugin/battery.c:1252 ../panel-plugin/battery.c:1293
 msgid "Run command"
 msgstr "Komut çalıştır"
 
-#: ../panel-plugin/battery.c:1248
-#: ../panel-plugin/battery.c:1289
+#: ../panel-plugin/battery.c:1254 ../panel-plugin/battery.c:1295
 msgid "Run command in terminal"
 msgstr "Terminalde komut çalıştır"
 
-#: ../panel-plugin/battery.c:1261
-#: ../panel-plugin/battery.c:1301
+#: ../panel-plugin/battery.c:1267 ../panel-plugin/battery.c:1307
 msgid "Command:"
 msgstr "Komut:"
 
-#: ../panel-plugin/battery.c:1277
+#: ../panel-plugin/battery.c:1283
 msgid "Critical battery action:"
 msgstr "Pil seviyesi kritik olduğunda gerçekleştirilecek işlem:"
 
-#: ../panel-plugin/battery.c:1324
+#: ../panel-plugin/battery.c:1330
 msgid "Display label"
 msgstr "Etiketi göster"
 
-#: ../panel-plugin/battery.c:1327
+#: ../panel-plugin/battery.c:1333
 msgid "Display percentage"
 msgstr "Doluluk oranını göster"
 
-#: ../panel-plugin/battery.c:1330
+#: ../panel-plugin/battery.c:1336
 msgid "Display time"
 msgstr "Saati göster"
 
-#: ../panel-plugin/battery.c:1333
+#: ../panel-plugin/battery.c:1339
 msgid "Hide time/percentage when full"
 msgstr "Doluyken saati/doluluk oranını gizle"
 
-#: ../panel-plugin/battery.c:1336
+#: ../panel-plugin/battery.c:1342
 msgid "Display percentage in tooltip"
 msgstr "İpucunda doluluk oranını göster"
 
-#: ../panel-plugin/battery.c:1339
+#: ../panel-plugin/battery.c:1345
 msgid "Display time remaining in tooltip"
 msgstr "İpucunda kalan pil süresini göster"
 
-#: ../panel-plugin/battery.c:1342
+#: ../panel-plugin/battery.c:1348
 msgid "Display power"
 msgstr "Gücü göster"
 
-#: ../panel-plugin/battery.c:1345
+#: ../panel-plugin/battery.c:1351
 msgid "Display icon"
 msgstr "Simgeyi göster"
 
 #: ../panel-plugin/battmon.desktop.in.in.h:2
 msgid "Show and monitor the battery status"
 msgstr "Pil durumunu göster ve gözlemle"
-

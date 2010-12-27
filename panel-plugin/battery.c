@@ -3,6 +3,7 @@
  * Copyright (c) 2003 Edscott Wilson Garcia <edscott@users.sourceforge.net>
  * Copyright (c) 2005 Eduard Roccatello <eduard@xfce.org>
  * Copyright (c) 2006 Nick Schermer <nick@xfce.org>
+ * Copyright (c) 2010 Florian Rivoal <frivoal@xfce.org>
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -493,7 +494,12 @@ battmon.c:241: for each function it appears in.)
 
 
     if(acline) {
-        char *t=(charge<99.9)?_("(Charging from AC)"):_("(AC on-line)");
+        char *t;
+        if((battmon->method == BM_USE_ACPI) && (acpiinfo->present == 0)) {
+            t=_("(No battery, AC on-line)");
+        } else {
+            t=(charge<99.9)?_("(Charging from AC)"):_("(AC on-line)");
+        }
         if(battmon->options.tooltip_display_percentage) {
             g_snprintf(buffer, sizeof(buffer), "%d%% %s", charge,t);
         }

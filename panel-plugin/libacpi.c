@@ -28,6 +28,7 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include <dirent.h>
+#include <glob.h>
 
 #if HAVE_SYSCTL
 
@@ -244,6 +245,22 @@ int check_acpi_sysfs(void)
 		acpi_sysfs = 1;
 		return 0;
 	}
+}
+
+/* expand file name and fopen first match */
+static FILE *
+fopen_glob(const char *name, const char *mode)
+{
+  glob_t globbuf;
+  FILE *fd;
+
+  if (glob(name, 0, NULL, &globbuf) != 0)
+    return NULL;
+
+  fd = fopen(globbuf.gl_pathv[0], mode);
+  globfree(&globbuf);
+
+  return fd;
 }
 
 /* see if we have ACPI support */
@@ -971,7 +988,7 @@ int get_fan_status(void)
     	  else return 0;
     }
     proc_fan_status="/proc/acpi/fan/*/state";
-    if ( (fp=fopen(proc_fan_status, "r")) == NULL ) return 0;
+    if ( (fp=fopen_glob(proc_fan_status, "r")) == NULL ) return 0;
 
     fgets(line,255,fp);
     fclose(fp);
@@ -984,10 +1001,10 @@ const char *get_temperature(void)
 {
 #ifdef __linux__
   FILE *fp;
-  char *proc_temperature="/proc/acpi/thermal_zone/*0/temperature";
+  char *proc_temperature="/proc/acpi/thermal_zone/*/temperature";
   static char *p,line[256];
 
-  if ( (fp=fopen(proc_temperature, "r")) == NULL) return NULL;
+  if ( (fp=fopen_glob(proc_temperature, "r")) == NULL) return NULL;
   fgets(line,255,fp);
   fclose(fp);
   p=strtok(line," ");

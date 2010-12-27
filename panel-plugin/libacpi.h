@@ -78,6 +78,8 @@ ACADstate *acadstate=NULL;
 int batt_count;
 /* temp buffer */
 char buf[512];
+char buf2[512];
+int acpi_sysfs;
 #else
 extern int batt_count;
 extern ACPIstate *acpistate;

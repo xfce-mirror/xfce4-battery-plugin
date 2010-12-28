@@ -2,151 +2,146 @@
 # Copyright (C) 2008 THE xfce'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the xfce package.
 # Hunt Xu <huntxu@live.cn>", 2008.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce 4-battery-plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-27 23:53+0900\n"
+"POT-Creation-Date: 2010-12-28 11:06+0000\n"
 "PO-Revision-Date: 2008-12-04 18:19+0800\n"
 "Last-Translator: Hunt Xu <huntxu@live.cn>\n"
 "Language-Team: Chinese (simplified)\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 
-#: ../panel-plugin/battery.c:498
-#, fuzzy
+#: ../panel-plugin/battery.c:499
 msgid "(No battery, AC on-line)"
-msgstr "（已连接至交流电源）"
+msgstr "（没有电池，已连接至交流电源）"
 
-#: ../panel-plugin/battery.c:500
+#: ../panel-plugin/battery.c:501
 msgid "(Charging from AC)"
 msgstr "（从交流电源充电）"
 
-#: ../panel-plugin/battery.c:500
+#: ../panel-plugin/battery.c:501
 msgid "(AC on-line)"
 msgstr "（已连接至交流电源）"
 
-#: ../panel-plugin/battery.c:510
+#: ../panel-plugin/battery.c:511
 #, c-format
 msgid "%d%% (%02d:%02d) remaining"
 msgstr "剩余 %d%% (%02d:%02d)"
 
-#: ../panel-plugin/battery.c:512
+#: ../panel-plugin/battery.c:513
 #, c-format
 msgid "%02d:%02d remaining"
 msgstr "剩余 %02d:%02d"
 
-#: ../panel-plugin/battery.c:514
+#: ../panel-plugin/battery.c:515
 #, c-format
 msgid "%d%% remaining"
 msgstr "剩余 %d%%"
 
-#: ../panel-plugin/battery.c:516
+#: ../panel-plugin/battery.c:517
 #, c-format
 msgid "AC off-line"
 msgstr "交流电源已断开"
 
-#: ../panel-plugin/battery.c:580
-msgid ""
-"WARNING: Your battery has reached critical status. You should plug in or "
-"shutdown your computer now to avoid possible data loss."
+#: ../panel-plugin/battery.c:581
+msgid "WARNING: Your battery has reached critical status. You should plug in or shutdown your computer now to avoid possible data loss."
 msgstr "警告：您的电池电量已达临界值。请接上电源或者关机以避免数据丢失。"
 
-#: ../panel-plugin/battery.c:594
-msgid ""
-"WARNING: Your battery is running low. You should consider plugging in or "
-"shutting down your computer soon to avoid possible data loss."
+#: ../panel-plugin/battery.c:595
+msgid "WARNING: Your battery is running low. You should consider plugging in or shutting down your computer soon to avoid possible data loss."
 msgstr "警告：您的电池电量低。请接上电源或者关机以避免数据丢失。"
 
-#: ../panel-plugin/battery.c:679
+#: ../panel-plugin/battery.c:680
 msgid "Battery"
 msgstr "电池"
 
-#: ../panel-plugin/battery.c:1105
+#: ../panel-plugin/battery.c:1106
 msgid "Select file"
 msgstr "选择文件"
 
-#: ../panel-plugin/battery.c:1146
+#: ../panel-plugin/battery.c:1147
 msgid "Select command"
 msgstr "选择命令"
 
-#: ../panel-plugin/battery.c:1165
+#: ../panel-plugin/battery.c:1166
 #, c-format
 msgid "Unable to open the following url: %s"
 msgstr "无法打开以下网址：%s"
 
-#: ../panel-plugin/battery.c:1189 ../panel-plugin/battmon.desktop.in.in.h:1
+#: ../panel-plugin/battery.c:1190 ../panel-plugin/battmon.desktop.in.in.h:1
 msgid "Battery Monitor"
 msgstr "电池监视器"
 
-#: ../panel-plugin/battery.c:1218
+#: ../panel-plugin/battery.c:1219
 msgid "Low percentage:"
 msgstr "低电量百分比："
 
-#: ../panel-plugin/battery.c:1229
+#: ../panel-plugin/battery.c:1230
 msgid "Critical percentage:"
 msgstr "临界电量百分比："
 
-#: ../panel-plugin/battery.c:1242
+#: ../panel-plugin/battery.c:1243
 msgid "Low battery action:"
 msgstr "电量低时采取如下动作："
 
-#: ../panel-plugin/battery.c:1248 ../panel-plugin/battery.c:1289
+#: ../panel-plugin/battery.c:1249 ../panel-plugin/battery.c:1290
 msgid "Do nothing"
 msgstr "什么都不做"
 
-#: ../panel-plugin/battery.c:1250 ../panel-plugin/battery.c:1291
+#: ../panel-plugin/battery.c:1251 ../panel-plugin/battery.c:1292
 msgid "Display a warning message"
 msgstr "显示一条警告信息"
 
-#: ../panel-plugin/battery.c:1252 ../panel-plugin/battery.c:1293
+#: ../panel-plugin/battery.c:1253 ../panel-plugin/battery.c:1294
 msgid "Run command"
 msgstr "执行命令"
 
-#: ../panel-plugin/battery.c:1254 ../panel-plugin/battery.c:1295
+#: ../panel-plugin/battery.c:1255 ../panel-plugin/battery.c:1296
 msgid "Run command in terminal"
 msgstr "在终端中执行命令"
 
-#: ../panel-plugin/battery.c:1267 ../panel-plugin/battery.c:1307
+#: ../panel-plugin/battery.c:1268 ../panel-plugin/battery.c:1308
 msgid "Command:"
 msgstr "命令："
 
-#: ../panel-plugin/battery.c:1283
+#: ../panel-plugin/battery.c:1284
 msgid "Critical battery action:"
 msgstr "电量到达临界值时采取如下动作："
 
-#: ../panel-plugin/battery.c:1330
+#: ../panel-plugin/battery.c:1331
 msgid "Display label"
 msgstr "显示标签"
 
-#: ../panel-plugin/battery.c:1333
+#: ../panel-plugin/battery.c:1334
 msgid "Display percentage"
 msgstr "显示百分比"
 
-#: ../panel-plugin/battery.c:1336
+#: ../panel-plugin/battery.c:1337
 msgid "Display time"
 msgstr "显示时间"
 
-#: ../panel-plugin/battery.c:1339
+#: ../panel-plugin/battery.c:1340
 msgid "Hide time/percentage when full"
 msgstr "当电池电量满时隐藏时间与百分比"
 
-#: ../panel-plugin/battery.c:1342
+#: ../panel-plugin/battery.c:1343
 msgid "Display percentage in tooltip"
 msgstr "在工具提示中显示百分比"
 
-#: ../panel-plugin/battery.c:1345
+#: ../panel-plugin/battery.c:1346
 msgid "Display time remaining in tooltip"
 msgstr "在工具提示中显示剩余时间"
 
-#: ../panel-plugin/battery.c:1348
+#: ../panel-plugin/battery.c:1349
 msgid "Display power"
 msgstr "显示电源状态"
 
-#: ../panel-plugin/battery.c:1351
+#: ../panel-plugin/battery.c:1352
 msgid "Display icon"
 msgstr "显示图标"
 

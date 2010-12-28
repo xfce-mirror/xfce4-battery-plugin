@@ -32,7 +32,7 @@
 
 #if HAVE_SYSCTL
 
-#ifdef __NetBSD__
+#if defined(__NetBSD__) || defined (__OpenBSD__)
 #include <sys/param.h>
 /* CTLTYPE does not exist in NetBSD headers.
  * Defining it to 0x0f here won't do any harm though. */

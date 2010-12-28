@@ -29,6 +29,7 @@
 #elif __OpenBSD__
 #include <sys/param.h>
 #include <machine/apmvar.h>
+#define APMDEVICE "/dev/apm"
 #elif __NetBSD__
 #include <sys/param.h>
 #include <sys/ioctl.h>
@@ -210,7 +211,7 @@ detect_battery_info(t_battmon *battmon)
       battmon->method = BM_BROKEN;
       fd = open(APMDEVICE, O_RDONLY);
       if (fd == -1) return FALSE;
-      +      if (ioctl(fd, APM_IOC_GETPOWER, &apm) == -1) {
+            if (ioctl(fd, APM_IOC_GETPOWER, &apm) == -1) {
         close(fd);
              return FALSE;
     }
@@ -303,7 +304,7 @@ update_apm_status(t_battmon *battmon)
       battmon->method = BM_BROKEN;
       fd = open(APMDEVICE, O_RDONLY);
       if (fd == -1) return TRUE;
-      if (ioctl(fd, APM_IOC_GETPOWER, &apminfo) == -1)
+      if (ioctl(fd, APM_IOC_GETPOWER, &apm) == -1)
             return TRUE;
       close(fd);
       charge = apm.battery_life;

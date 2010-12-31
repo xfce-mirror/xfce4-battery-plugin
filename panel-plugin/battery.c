@@ -571,15 +571,16 @@ battmon.c:241: for each function it appears in.)
     }
 
     /* alarms */
-    /* FIXME: should put in a timeout to terminate the alarm boxes after one
-     * minute because if they are left open, they block the event loop for
-     * the panel, and that means the critical action will not be performed! */
     if (!acline && charge <= battmon->options.low_percentage){
         if(!battmon->critical && charge <= battmon->options.critical_percentage) {
                battmon->critical = TRUE;
+	       GtkWidget *dialog;
             if(battmon->options.action_on_critical == BM_MESSAGE){
 do_critical_warn:
-                xfce_warn(_("WARNING: Your battery has reached critical status. You should plug in or shutdown your computer now to avoid possible data loss."));
+                dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_WARNING, GTK_BUTTONS_CLOSE,
+                _("WARNING: Your battery has reached critical status. You should plug in or shutdown your computer now to avoid possible data loss."));
+                g_signal_connect_swapped (dialog, "response", G_CALLBACK (gtk_widget_destroy), dialog);
+		gtk_widget_show_all (dialog);
                 return TRUE;
             }
             if(battmon->options.action_on_critical == BM_COMMAND ||
@@ -591,9 +592,13 @@ do_critical_warn:
             }
         } else if (!battmon->low){
                 battmon->low = TRUE;
+	       GtkWidget *dialog;
             if(battmon->options.action_on_low == BM_MESSAGE){
 do_low_warn:
-                xfce_warn(_("WARNING: Your battery is running low. You should consider plugging in or shutting down your computer soon to avoid possible data loss."));
+                dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_WARNING, GTK_BUTTONS_CLOSE,
+                _("WARNING: Your battery is running low. You should consider plugging in or shutting down your computer soon to avoid possible data loss."));
+                g_signal_connect_swapped (dialog, "response", G_CALLBACK (gtk_widget_destroy), dialog);
+		gtk_widget_show_all (dialog);
                 return TRUE;
             }
             if(battmon->options.action_on_low == BM_COMMAND ||

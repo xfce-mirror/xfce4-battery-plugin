@@ -312,7 +312,7 @@ update_apm_status(t_battmon *battmon)
       acline = apm.ac_state ? TRUE : FALSE;
 
 #else
-#ifdef __linux__ || APMDEVICE
+#if defined(__linux__) || defined(APMDEVICE)
     struct apm_info apm;
 #endif
     DBG ("Updating battery status...");

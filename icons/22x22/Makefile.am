@@ -1,6 +1,6 @@
-iconsdir = $(datadir)/icons/hicolor/22x22/devices
+iconsdir = $(datadir)/icons/hicolor/22x22/apps
 icons_DATA =								\
-	battery.png
+	xfce4-battery-plugin.png
 
 EXTRA_DIST =								\
 	$(icons_DATA)

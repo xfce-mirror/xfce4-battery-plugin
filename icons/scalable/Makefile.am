@@ -1,6 +1,6 @@
-iconsdir = $(datadir)/icons/hicolor/scalable/devices
+iconsdir = $(datadir)/icons/hicolor/scalable/apps
 icons_DATA =								\
-	battery.svg
+	xfce4-battery-plugin.svg
 
 EXTRA_DIST =								\
 	$(icons_DATA)

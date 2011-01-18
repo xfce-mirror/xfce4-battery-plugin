@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-12 17:05+0000\n"
+"POT-Creation-Date: 2011-01-18 17:06+0000\n"
 "PO-Revision-Date: 2009-07-15 17:28+0100\n"
 "Last-Translator: Leandro Regueiro <leandro.regueiro@gmail.com>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
@@ -71,7 +71,7 @@ msgstr "Seleccione un ficheiro"
 
 #: ../panel-plugin/battery.c:1153
 msgid "Select command"
-msgstr "Seleccione un comando"
+msgstr "Seleccione unha orde"
 
 #: ../panel-plugin/battery.c:1172
 #, c-format
@@ -104,15 +104,15 @@ msgstr "Mostrar unha mensaxe de advertencia"
 
 #: ../panel-plugin/battery.c:1259 ../panel-plugin/battery.c:1300
 msgid "Run command"
-msgstr "Executar comando"
+msgstr "Executar orde"
 
 #: ../panel-plugin/battery.c:1261 ../panel-plugin/battery.c:1302
 msgid "Run command in terminal"
-msgstr "Executar o comando nun terminal"
+msgstr "Executar a orde nun terminal"
 
 #: ../panel-plugin/battery.c:1274 ../panel-plugin/battery.c:1314
 msgid "Command:"
-msgstr "Comando:"
+msgstr "Orde:"
 
 #: ../panel-plugin/battery.c:1290
 msgid "Critical battery action:"

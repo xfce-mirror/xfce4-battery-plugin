@@ -2,157 +2,148 @@
 # Copyright (C) 2006-2007 The Xfce development team.
 # This file is distributed under the same license as the xfce4-battery-plugin package.
 # Piarres Beobide <pi@beobide.net>, 2006.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-battery-plugin 0.5.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-27 23:53+0900\n"
+"POT-Creation-Date: 2011-01-25 17:06+0000\n"
 "PO-Revision-Date: 2008-11-09 15:38+0200\n"
 "Last-Translator: Piarres Beobide <pi@beobide.net>\n"
 "Language-Team: Basque <xfce-i18n@xfce.org>\n"
-"Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: eu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 1.2.0\n"
 
-#: ../panel-plugin/battery.c:498
-#, fuzzy
-msgid "(No battery, AC on-line)"
-msgstr "(AC sarean)"
-
 #: ../panel-plugin/battery.c:500
+msgid "(No battery, AC on-line)"
+msgstr "(Bateriarik ez, AC sarean)"
+
+#: ../panel-plugin/battery.c:502
 msgid "(Charging from AC)"
 msgstr "(Saretik kargatzen)"
 
-#: ../panel-plugin/battery.c:500
+#: ../panel-plugin/battery.c:502
 msgid "(AC on-line)"
 msgstr "(AC sarean)"
 
-#: ../panel-plugin/battery.c:510
+#: ../panel-plugin/battery.c:512
 #, c-format
 msgid "%d%% (%02d:%02d) remaining"
 msgstr "%d%% (%02d:%02d) gelditzen da"
 
-#: ../panel-plugin/battery.c:512
+#: ../panel-plugin/battery.c:514
 #, c-format
 msgid "%02d:%02d remaining"
 msgstr "%02d:%02d gelditzen da"
 
-#: ../panel-plugin/battery.c:514
+#: ../panel-plugin/battery.c:516
 #, c-format
 msgid "%d%% remaining"
 msgstr "%d%% gelditzen da"
 
-#: ../panel-plugin/battery.c:516
+#: ../panel-plugin/battery.c:518
 #, c-format
 msgid "AC off-line"
 msgstr "AC desaktibatuta"
 
-#: ../panel-plugin/battery.c:580
-msgid ""
-"WARNING: Your battery has reached critical status. You should plug in or "
-"shutdown your computer now to avoid possible data loss."
-msgstr ""
-"ABISUA: Bateriak egoera larrian dago. Sare elektrikora konektatu edo "
-"ordenagailua itzali beharko datu galerarik ez gertatzeko."
+#: ../panel-plugin/battery.c:581
+msgid "WARNING: Your battery has reached critical status. You should plug in or shutdown your computer now to avoid possible data loss."
+msgstr "ABISUA: Bateriak egoera larrian dago. Sare elektrikora konektatu edo ordenagailua itzali beharko datu galerarik ez gertatzeko."
 
-#: ../panel-plugin/battery.c:594
-msgid ""
-"WARNING: Your battery is running low. You should consider plugging in or "
-"shutting down your computer soon to avoid possible data loss."
-msgstr ""
-"ABISUA: Bateria karga baxuan dago. Sare elektrikora konektatu edo "
-"ordenagailua itzali beharko datu galerarik ez gertatzeko."
+#: ../panel-plugin/battery.c:599
+msgid "WARNING: Your battery is running low. You should consider plugging in or shutting down your computer soon to avoid possible data loss."
+msgstr "ABISUA: Bateria karga baxuan dago. Sare elektrikora konektatu edo ordenagailua itzali beharko datu galerarik ez gertatzeko."
 
-#: ../panel-plugin/battery.c:679
+#: ../panel-plugin/battery.c:686
 msgid "Battery"
 msgstr "Bateria"
 
-#: ../panel-plugin/battery.c:1105
+#: ../panel-plugin/battery.c:1112
 msgid "Select file"
 msgstr "Hautatu fitxategia"
 
-#: ../panel-plugin/battery.c:1146
+#: ../panel-plugin/battery.c:1153
 msgid "Select command"
 msgstr "Hautatu komandoa"
 
-#: ../panel-plugin/battery.c:1165
+#: ../panel-plugin/battery.c:1172
 #, c-format
 msgid "Unable to open the following url: %s"
 msgstr "Ezin da hurrengo url-a ireki: %s"
 
-#: ../panel-plugin/battery.c:1189 ../panel-plugin/battmon.desktop.in.in.h:1
+#: ../panel-plugin/battery.c:1196 ../panel-plugin/battmon.desktop.in.in.h:1
 msgid "Battery Monitor"
 msgstr "Bateria-karga monitorea"
 
-#: ../panel-plugin/battery.c:1218
+#: ../panel-plugin/battery.c:1225
 msgid "Low percentage:"
 msgstr "Bateria baxu ehunekoa:"
 
-#: ../panel-plugin/battery.c:1229
+#: ../panel-plugin/battery.c:1236
 msgid "Critical percentage:"
 msgstr "Larritasun ehunekoa:"
 
-#: ../panel-plugin/battery.c:1242
+#: ../panel-plugin/battery.c:1249
 msgid "Low battery action:"
 msgstr "Bateria baxu ekintza:"
 
-#: ../panel-plugin/battery.c:1248 ../panel-plugin/battery.c:1289
+#: ../panel-plugin/battery.c:1255 ../panel-plugin/battery.c:1296
 msgid "Do nothing"
 msgstr "Ez egin ezer"
 
-#: ../panel-plugin/battery.c:1250 ../panel-plugin/battery.c:1291
+#: ../panel-plugin/battery.c:1257 ../panel-plugin/battery.c:1298
 msgid "Display a warning message"
 msgstr "Ohartaratze mezua bistarazi"
 
-#: ../panel-plugin/battery.c:1252 ../panel-plugin/battery.c:1293
+#: ../panel-plugin/battery.c:1259 ../panel-plugin/battery.c:1300
 msgid "Run command"
 msgstr "Komandoa exekutatu"
 
-#: ../panel-plugin/battery.c:1254 ../panel-plugin/battery.c:1295
+#: ../panel-plugin/battery.c:1261 ../panel-plugin/battery.c:1302
 msgid "Run command in terminal"
 msgstr "Komandoa terminal batetan exekutatu"
 
-#: ../panel-plugin/battery.c:1267 ../panel-plugin/battery.c:1307
+#: ../panel-plugin/battery.c:1274 ../panel-plugin/battery.c:1314
 msgid "Command:"
 msgstr "Komandoa:"
 
-#: ../panel-plugin/battery.c:1283
+#: ../panel-plugin/battery.c:1290
 msgid "Critical battery action:"
 msgstr "Bateria larri ekintza:"
 
-#: ../panel-plugin/battery.c:1330
+#: ../panel-plugin/battery.c:1337
 msgid "Display label"
 msgstr "Etiketa bistarazi"
 
-#: ../panel-plugin/battery.c:1333
+#: ../panel-plugin/battery.c:1340
 msgid "Display percentage"
 msgstr "Ehunekoa bistarazi"
 
-#: ../panel-plugin/battery.c:1336
+#: ../panel-plugin/battery.c:1343
 msgid "Display time"
 msgstr "Denbora bistarazi"
 
-#: ../panel-plugin/battery.c:1339
+#: ../panel-plugin/battery.c:1346
 msgid "Hide time/percentage when full"
 msgstr "Denbora/ehunekoa ezkutatu betea dagoenenan"
 
-#: ../panel-plugin/battery.c:1342
+#: ../panel-plugin/battery.c:1349
 msgid "Display percentage in tooltip"
 msgstr "Ehunekoa bistarazi tresna-barran"
 
-#: ../panel-plugin/battery.c:1345
+#: ../panel-plugin/battery.c:1352
 msgid "Display time remaining in tooltip"
 msgstr "Falta den denbora bistarazi tresna-barran"
 
-#: ../panel-plugin/battery.c:1348
+#: ../panel-plugin/battery.c:1355
 msgid "Display power"
 msgstr "Bistarazi karga"
 
-#: ../panel-plugin/battery.c:1351
+#: ../panel-plugin/battery.c:1358
 msgid "Display icon"
 msgstr "Bistarazi ikonoa"
 

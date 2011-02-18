@@ -787,7 +787,7 @@ int read_acpi_state_sysfs(int battery)
 			acpistate->rcapacity = read_sysfs_int(buf);
 			acpistate->percentage = (((float) acpistate->rcapacity)/acpiinfo->last_full_capacity) * 100;
 		}
-		if (strcmp(name,"current_now") == 0)
+		if ((strcmp(name,"current_now") == 0) || (strcmp(name,"power_now") == 0))
 		{
 			sprintf(buf,"%s/%s",batteries[battery], name);
 			acpistate->prate = read_sysfs_int(buf);

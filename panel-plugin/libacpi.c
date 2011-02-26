@@ -1002,18 +1002,36 @@ const char *get_temperature(void)
 #ifdef __linux__
   FILE *fp;
   char *proc_temperature="/proc/acpi/thermal_zone/*/temperature";
-  static char *p,line[256];
+  char *sys_temperature="/sys/class/thermal/thermal_zone*/temp";
+  static char *p,*p2,line[256];
 
-  if ( (fp=fopen_glob(proc_temperature, "r")) == NULL) return NULL;
-  fgets(line,255,fp);
-  fclose(fp);
-  p=strtok(line," ");
-  if (!p) return NULL;
-  p=p+strlen(p)+1;
-  while (p && *p ==' ') p++;
-  if (*p==0) return NULL;
-  if (strchr(p,'\n')) p=strtok(p,"\n");
-  return (const char *)p;
+  if ( (fp=fopen_glob(proc_temperature, "r")) != NULL )
+  {
+    fgets(line,255,fp);
+    fclose(fp);
+    p=strtok(line," ");
+    if (!p) return NULL;
+    p=p+strlen(p)+1;
+    while (p && *p ==' ') p++;
+    if (*p==0) return NULL;
+    if (strchr(p,'\n')) p=strtok(p,"\n");
+    return (const char *)p;
+  }
+  else if ( (fp=fopen_glob(sys_temperature, "r")) != NULL )
+  {
+    fgets(line,255,fp);
+    fclose(fp);
+    p = line;
+    if (strchr(p,'\n')) *strchr(p,'\n') = 0;
+    if (strlen(p) <= 3) return NULL;
+    p2 = p + strlen(p) - 3;
+    strcpy(p2, " C");
+    return (const char *)p;
+  }
+  else
+  {
+    return NULL;
+  }
 #else
 #ifdef HAVE_SYSCTL
   static char buf[BUFSIZ];

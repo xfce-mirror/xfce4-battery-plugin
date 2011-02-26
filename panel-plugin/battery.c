@@ -775,6 +775,7 @@ battmon_create(XfcePanelPlugin *plugin)
     battmon->low = FALSE;
     battmon->critical = FALSE;
     battmon->ebox = gtk_event_box_new();
+    gtk_event_box_set_visible_window(battmon->ebox, FALSE);
     setup_battmon(battmon, xfce_panel_plugin_get_orientation (plugin));
     battmon->timeoutid = 0;
     battmon->flag = FALSE;

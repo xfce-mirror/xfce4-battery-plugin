@@ -559,14 +559,17 @@ battmon.c:241: for each function it appears in.)
     else {
       if(charge <= battmon->options.critical_percentage) {
         gtk_widget_modify_bg(battmon->battstatus, GTK_STATE_PRELIGHT, &(battmon->colorC));
+        gtk_widget_modify_bg(battmon->battstatus, GTK_STATE_SELECTED, &(battmon->colorC));
       }
       else if(charge <= battmon->options.low_percentage) {
         gtk_widget_modify_bg(battmon->battstatus, GTK_STATE_PRELIGHT, &(battmon->colorL));
+        gtk_widget_modify_bg(battmon->battstatus, GTK_STATE_SELECTED, &(battmon->colorL));
         battmon->critical = FALSE;
       }
       else {
             battmon->low = battmon->critical = FALSE;
         gtk_widget_modify_bg(battmon->battstatus, GTK_STATE_PRELIGHT, &(battmon->colorH));
+        gtk_widget_modify_bg(battmon->battstatus, GTK_STATE_SELECTED, &(battmon->colorH));
       }
     }
 

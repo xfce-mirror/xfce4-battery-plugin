@@ -2,157 +2,146 @@
 # Copyright (C) 2006-2007 The Xfce development team.
 # This file is distributed under the same license as the xfce4-battery-plugin package.
 # Andhika Padmawan <andhika.padmawan@gmail.com>, 2008.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-battery-plugin 0.5.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-27 23:53+0900\n"
+"POT-Creation-Date: 2011-03-19 23:05+0000\n"
 "PO-Revision-Date: 2008-06-19 08:55+0700\n"
 "Last-Translator: Andhika Padmawan <andhika.padmawan@gmail.com>\n"
 "Language-Team: Indonesian <id@li.org>\n"
-"Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: ../panel-plugin/battery.c:498
-#, fuzzy
-msgid "(No battery, AC on-line)"
-msgstr "(Terhubung dengan AC)"
+"Language: id\n"
 
 #: ../panel-plugin/battery.c:500
+msgid "(No battery, AC on-line)"
+msgstr "(Tak ada baterai, tersambung AC)"
+
+#: ../panel-plugin/battery.c:502
 msgid "(Charging from AC)"
 msgstr "(Mengisi dari AC)"
 
-#: ../panel-plugin/battery.c:500
+#: ../panel-plugin/battery.c:502
 msgid "(AC on-line)"
 msgstr "(Terhubung dengan AC)"
 
-#: ../panel-plugin/battery.c:510
+#: ../panel-plugin/battery.c:512
 #, c-format
 msgid "%d%% (%02d:%02d) remaining"
 msgstr "%d%% (%02d:%02d) lagi"
 
-#: ../panel-plugin/battery.c:512
+#: ../panel-plugin/battery.c:514
 #, c-format
 msgid "%02d:%02d remaining"
 msgstr "%02d:%02d lagi"
 
-#: ../panel-plugin/battery.c:514
+#: ../panel-plugin/battery.c:516
 #, c-format
 msgid "%d%% remaining"
 msgstr "%d%% lagi"
 
-#: ../panel-plugin/battery.c:516
+#: ../panel-plugin/battery.c:518
 #, c-format
 msgid "AC off-line"
 msgstr "AC terputus"
 
-#: ../panel-plugin/battery.c:580
-msgid ""
-"WARNING: Your battery has reached critical status. You should plug in or "
-"shutdown your computer now to avoid possible data loss."
-msgstr ""
-"PERINGATAN: Baterai anda telah mencapai status kritis. Anda harus "
-"mencolokkan listrik atau mematikan komputer anda sekarang untuk menghindari "
-"kemungkinan hilangnya data."
+#: ../panel-plugin/battery.c:584
+msgid "WARNING: Your battery has reached critical status. You should plug in or shutdown your computer now to avoid possible data loss."
+msgstr "PERINGATAN: Baterai anda telah mencapai status kritis. Anda harus mencolokkan listrik atau mematikan komputer anda sekarang untuk menghindari kemungkinan hilangnya data."
 
-#: ../panel-plugin/battery.c:594
-msgid ""
-"WARNING: Your battery is running low. You should consider plugging in or "
-"shutting down your computer soon to avoid possible data loss."
-msgstr ""
-"PERINGATAN: Baterai anda telah habis. Anda dapat mecolokkan listrik atau "
-"mematikan komputer anda sesegera mungkin untuk menghindari kemungkinan "
-"hilangnya data."
+#: ../panel-plugin/battery.c:602
+msgid "WARNING: Your battery is running low. You should consider plugging in or shutting down your computer soon to avoid possible data loss."
+msgstr "PERINGATAN: Baterai anda telah habis. Anda dapat mecolokkan listrik atau mematikan komputer anda sesegera mungkin untuk menghindari kemungkinan hilangnya data."
 
-#: ../panel-plugin/battery.c:679
+#: ../panel-plugin/battery.c:689
 msgid "Battery"
 msgstr "Baterai"
 
-#: ../panel-plugin/battery.c:1105
+#: ../panel-plugin/battery.c:1116
 msgid "Select file"
 msgstr "Pilih berkas"
 
-#: ../panel-plugin/battery.c:1146
+#: ../panel-plugin/battery.c:1157
 msgid "Select command"
 msgstr "Pilih perintah"
 
-#: ../panel-plugin/battery.c:1165
+#: ../panel-plugin/battery.c:1176
 #, c-format
 msgid "Unable to open the following url: %s"
 msgstr "Tak dapat membuka url berikut: %s"
 
-#: ../panel-plugin/battery.c:1189 ../panel-plugin/battmon.desktop.in.in.h:1
+#: ../panel-plugin/battery.c:1200 ../panel-plugin/battmon.desktop.in.in.h:1
 msgid "Battery Monitor"
 msgstr "Monitor Baterai"
 
-#: ../panel-plugin/battery.c:1218
+#: ../panel-plugin/battery.c:1229
 msgid "Low percentage:"
 msgstr "Persentase rendah:"
 
-#: ../panel-plugin/battery.c:1229
+#: ../panel-plugin/battery.c:1240
 msgid "Critical percentage:"
 msgstr "Persentasi kritis:"
 
-#: ../panel-plugin/battery.c:1242
+#: ../panel-plugin/battery.c:1253
 msgid "Low battery action:"
 msgstr "Aksi baterai habis:"
 
-#: ../panel-plugin/battery.c:1248 ../panel-plugin/battery.c:1289
+#: ../panel-plugin/battery.c:1259 ../panel-plugin/battery.c:1300
 msgid "Do nothing"
 msgstr "Tak lakukan apapun"
 
-#: ../panel-plugin/battery.c:1250 ../panel-plugin/battery.c:1291
+#: ../panel-plugin/battery.c:1261 ../panel-plugin/battery.c:1302
 msgid "Display a warning message"
 msgstr "Tampilkan pesan peringatan"
 
-#: ../panel-plugin/battery.c:1252 ../panel-plugin/battery.c:1293
+#: ../panel-plugin/battery.c:1263 ../panel-plugin/battery.c:1304
 msgid "Run command"
 msgstr "Jalankan perintah"
 
-#: ../panel-plugin/battery.c:1254 ../panel-plugin/battery.c:1295
+#: ../panel-plugin/battery.c:1265 ../panel-plugin/battery.c:1306
 msgid "Run command in terminal"
 msgstr "Jalankan perintah dalam terminal"
 
-#: ../panel-plugin/battery.c:1267 ../panel-plugin/battery.c:1307
+#: ../panel-plugin/battery.c:1278 ../panel-plugin/battery.c:1318
 msgid "Command:"
 msgstr "Perintah:"
 
-#: ../panel-plugin/battery.c:1283
+#: ../panel-plugin/battery.c:1294
 msgid "Critical battery action:"
 msgstr "Akse baterai kritis:"
 
-#: ../panel-plugin/battery.c:1330
+#: ../panel-plugin/battery.c:1341
 msgid "Display label"
 msgstr "Label tampilan"
 
-#: ../panel-plugin/battery.c:1333
+#: ../panel-plugin/battery.c:1344
 msgid "Display percentage"
 msgstr "Tampilan persentase"
 
-#: ../panel-plugin/battery.c:1336
+#: ../panel-plugin/battery.c:1347
 msgid "Display time"
 msgstr "Waktu tampilan"
 
-#: ../panel-plugin/battery.c:1339
+#: ../panel-plugin/battery.c:1350
 msgid "Hide time/percentage when full"
 msgstr "Sembunyikan waktu/persentase ketika penuh"
 
-#: ../panel-plugin/battery.c:1342
+#: ../panel-plugin/battery.c:1353
 msgid "Display percentage in tooltip"
 msgstr "Tampilkan persentasi dalam tip alat"
 
-#: ../panel-plugin/battery.c:1345
+#: ../panel-plugin/battery.c:1356
 msgid "Display time remaining in tooltip"
 msgstr "Tampilkan sisa waktu dalam tip alat"
 
-#: ../panel-plugin/battery.c:1348
+#: ../panel-plugin/battery.c:1359
 msgid "Display power"
 msgstr "Tampilkan energi"
 
-#: ../panel-plugin/battery.c:1351
+#: ../panel-plugin/battery.c:1362
 msgid "Display icon"
 msgstr "Tampilkan ikon"
 

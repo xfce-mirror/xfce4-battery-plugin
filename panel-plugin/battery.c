@@ -47,10 +47,10 @@
 #include <stdlib.h>
 
 #include <libxfce4util/libxfce4util.h>
-#include <libxfcegui4/libxfcegui4.h>
+#include <libxfce4ui/libxfce4ui.h>
 
 #include <gtk/gtk.h>
-#include <libxfce4panel/xfce-panel-plugin.h>
+#include <libxfce4panel/libxfce4panel.h>
 
 #include "libacpi.h"
 
@@ -591,7 +591,7 @@ do_critical_warn:
                 int interm=(battmon->options.action_on_critical == BM_COMMAND_TERM)?1:0;
                 if (!battmon->options.command_on_critical ||
                     !strlen(battmon->options.command_on_critical)) goto do_critical_warn;
-                xfce_exec (battmon->options.command_on_critical, interm, 0, NULL);
+                xfce_spawn_command_line_on_screen(NULL, battmon->options.command_on_critical, interm, FALSE, NULL);
             }
         } else if (!battmon->low){
                 battmon->low = TRUE;
@@ -609,7 +609,7 @@ do_low_warn:
                 int interm=(battmon->options.action_on_low == BM_COMMAND_TERM)?1:0;
                 if (!battmon->options.command_on_low ||
                     !strlen(battmon->options.command_on_low)) goto do_low_warn;
-                xfce_exec(battmon->options.command_on_low, interm, 0, NULL);
+                xfce_spawn_command_line_on_screen(NULL, battmon->options.command_on_low, interm, FALSE, NULL);
             }
         }
     }
@@ -867,7 +867,7 @@ battmon_create(XfcePanelPlugin *plugin)
     battmon->low = FALSE;
     battmon->critical = FALSE;
     battmon->ebox = gtk_event_box_new();
-    gtk_event_box_set_visible_window(battmon->ebox, FALSE);
+    gtk_event_box_set_visible_window(GTK_EVENT_BOX(battmon->ebox), FALSE);
 
 #if defined (LIBXFCE4PANEL_CHECK_VERSION) && LIBXFCE4PANEL_CHECK_VERSION (4,9,0)
     mode = xfce_panel_plugin_get_mode (plugin);

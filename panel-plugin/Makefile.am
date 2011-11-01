@@ -22,14 +22,14 @@ xfce4_battery_plugin_SOURCES =						\
 
 xfce4_battery_plugin_CFLAGS =						\
 	$(LIBXFCE4PANEL_CFLAGS)						\
-	$(LIBXFCEGUI4_CFLAGS)						\
+	$(LIBXFCE4UI_CFLAGS)						\
 	$(LIBXFCE4UTIL_CFLAGS)						\
 	$(GTK_CFLAGS)							\
 	$(PLATFORM_CFLAGS)
 
 xfce4_battery_plugin_LDADD =						\
 	$(LIBXFCE4PANEL_LIBS)						\
-	$(LIBXFCEGUI4_LIBS)						\
+	$(LIBXFCE4UI_LIBS)						\
 	$(LIBXFCE4UTIL_LIBS)						\
 	$(GTK_LIBS)
 

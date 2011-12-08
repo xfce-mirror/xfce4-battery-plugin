@@ -1,0 +1,157 @@
+# translation of xfce4-battery-plugin.master.untitled.po to Icelandic
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Sveinn í Felli <sveinki@nett.is>, 2011.
+msgid ""
+msgstr ""
+"Project-Id-Version: xfce4-battery-plugin.master.untitled\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-12-08 17:30+0000\n"
+"PO-Revision-Date: 2011-12-08 22:22+0000\n"
+"Last-Translator: Sveinn í Felli <sveinki@nett.is>\n"
+"Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: ../panel-plugin/battery.c:500
+msgid "(No battery, AC on-line)"
+msgstr ""
+
+#: ../panel-plugin/battery.c:502
+msgid "(Charging from AC)"
+msgstr ""
+
+#: ../panel-plugin/battery.c:502
+msgid "(AC on-line)"
+msgstr ""
+
+#: ../panel-plugin/battery.c:512
+#, c-format
+msgid "%d%% (%02d:%02d) remaining"
+msgstr "%d%% (%02d:%02d) eftir"
+
+#: ../panel-plugin/battery.c:514
+#, c-format
+msgid "%02d:%02d remaining"
+msgstr "%02d:%02d eftir"
+
+#: ../panel-plugin/battery.c:516
+#, c-format
+msgid "%d%% remaining"
+msgstr "%d%% eftir"
+
+#: ../panel-plugin/battery.c:518
+#, c-format
+msgid "AC off-line"
+msgstr ""
+
+#: ../panel-plugin/battery.c:584
+msgid ""
+"WARNING: Your battery has reached critical status. You should plug in or "
+"shutdown your computer now to avoid possible data loss."
+msgstr ""
+
+#: ../panel-plugin/battery.c:602
+msgid ""
+"WARNING: Your battery is running low. You should consider plugging in or "
+"shutting down your computer soon to avoid possible data loss."
+msgstr ""
+
+#: ../panel-plugin/battery.c:689
+msgid "Battery"
+msgstr "Rafhlaða"
+
+#: ../panel-plugin/battery.c:1116
+msgid "Select file"
+msgstr "Veldu skrá"
+
+#: ../panel-plugin/battery.c:1157
+msgid "Select command"
+msgstr "Veldu skipun"
+
+#: ../panel-plugin/battery.c:1176
+#, c-format
+msgid "Unable to open the following url: %s"
+msgstr "Get ekki opnað eftirfarandi slóð: %s"
+
+#: ../panel-plugin/battery.c:1200 ../panel-plugin/battmon.desktop.in.in.h:1
+msgid "Battery Monitor"
+msgstr "Rafhlöðueftirlit"
+
+#: ../panel-plugin/battery.c:1229
+msgid "Low percentage:"
+msgstr ""
+
+#: ../panel-plugin/battery.c:1240
+msgid "Critical percentage:"
+msgstr ""
+
+#: ../panel-plugin/battery.c:1253
+msgid "Low battery action:"
+msgstr ""
+
+#: ../panel-plugin/battery.c:1259 ../panel-plugin/battery.c:1300
+msgid "Do nothing"
+msgstr "Gera ekkert"
+
+#: ../panel-plugin/battery.c:1261 ../panel-plugin/battery.c:1302
+msgid "Display a warning message"
+msgstr "Birta aðvörun"
+
+#: ../panel-plugin/battery.c:1263 ../panel-plugin/battery.c:1304
+msgid "Run command"
+msgstr "Keyra skipun"
+
+#: ../panel-plugin/battery.c:1265 ../panel-plugin/battery.c:1306
+msgid "Run command in terminal"
+msgstr "Keyra skipun í skjáhermi"
+
+#: ../panel-plugin/battery.c:1278 ../panel-plugin/battery.c:1318
+msgid "Command:"
+msgstr "Skipun:"
+
+#: ../panel-plugin/battery.c:1294
+msgid "Critical battery action:"
+msgstr ""
+
+#: ../panel-plugin/battery.c:1341
+msgid "Display label"
+msgstr ""
+
+#: ../panel-plugin/battery.c:1344
+msgid "Display percentage"
+msgstr ""
+
+#: ../panel-plugin/battery.c:1347
+msgid "Display time"
+msgstr ""
+
+#: ../panel-plugin/battery.c:1350
+msgid "Hide time/percentage when full"
+msgstr ""
+
+#: ../panel-plugin/battery.c:1353
+msgid "Display percentage in tooltip"
+msgstr ""
+
+#: ../panel-plugin/battery.c:1356
+msgid "Display time remaining in tooltip"
+msgstr ""
+
+#: ../panel-plugin/battery.c:1359
+msgid "Display power"
+msgstr ""
+
+#: ../panel-plugin/battery.c:1362
+msgid "Display icon"
+msgstr ""
+
+#: ../panel-plugin/battmon.desktop.in.in.h:2
+msgid "Show and monitor the battery status"
+msgstr ""
+

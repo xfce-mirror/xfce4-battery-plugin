@@ -1,0 +1,160 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xfce4-battery-plugin\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-12-29 13:42+0000\n"
+"PO-Revision-Date: 2011-12-29 19:48+0200\n"
+"Last-Translator: Milen Milev <fanfolet@gmail.com>\n"
+"Language-Team: BULGARIAN\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Bulgarian\n"
+"X-Poedit-Country: BULGARIA\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: ../panel-plugin/battery.c:500
+msgid "(No battery, AC on-line)"
+msgstr "(Няма батерия, включено захранване)"
+
+#: ../panel-plugin/battery.c:502
+msgid "(Charging from AC)"
+msgstr "(Зареждане от захранването)"
+
+#: ../panel-plugin/battery.c:502
+msgid "(AC on-line)"
+msgstr "(включено захранване)"
+
+#: ../panel-plugin/battery.c:512
+#, c-format
+msgid "%d%% (%02d:%02d) remaining"
+msgstr "%d%% (%02d:%02d) остават"
+
+#: ../panel-plugin/battery.c:514
+#, c-format
+msgid "%02d:%02d remaining"
+msgstr "%02d:%02d остават"
+
+#: ../panel-plugin/battery.c:516
+#, c-format
+msgid "%d%% remaining"
+msgstr "%d%% остават"
+
+#: ../panel-plugin/battery.c:518
+#, c-format
+msgid "AC off-line"
+msgstr "Захранване изключено"
+
+#: ../panel-plugin/battery.c:584
+msgid "WARNING: Your battery has reached critical status. You should plug in or shutdown your computer now to avoid possible data loss."
+msgstr "ВНИМАНИЕ: Батерията е изтощена до критично ниво. Трябва да включите захранването или да изключите компютъра."
+
+#: ../panel-plugin/battery.c:602
+msgid "WARNING: Your battery is running low. You should consider plugging in or shutting down your computer soon to avoid possible data loss."
+msgstr "ВНИМАНИЕ: Батерията е изтощена. Трябва да включите захранването или да изключите компютъра."
+
+#: ../panel-plugin/battery.c:689
+msgid "Battery"
+msgstr "Батерия"
+
+#: ../panel-plugin/battery.c:1116
+msgid "Select file"
+msgstr "Избери файл"
+
+#: ../panel-plugin/battery.c:1157
+msgid "Select command"
+msgstr "Избери команда"
+
+#: ../panel-plugin/battery.c:1176
+#, c-format
+msgid "Unable to open the following url: %s"
+msgstr "Не може да се отвори следният URL: %s"
+
+#: ../panel-plugin/battery.c:1200
+#: ../panel-plugin/battmon.desktop.in.in.h:1
+msgid "Battery Monitor"
+msgstr "Наблюдение на батерията"
+
+#: ../panel-plugin/battery.c:1229
+msgid "Low percentage:"
+msgstr "Ниско ниво:"
+
+#: ../panel-plugin/battery.c:1240
+msgid "Critical percentage:"
+msgstr "Критично ниво:"
+
+#: ../panel-plugin/battery.c:1253
+msgid "Low battery action:"
+msgstr "Действия при изтощена батерия:"
+
+#: ../panel-plugin/battery.c:1259
+#: ../panel-plugin/battery.c:1300
+msgid "Do nothing"
+msgstr "Не прави нищо"
+
+#: ../panel-plugin/battery.c:1261
+#: ../panel-plugin/battery.c:1302
+msgid "Display a warning message"
+msgstr "Покажи предупреждение"
+
+#: ../panel-plugin/battery.c:1263
+#: ../panel-plugin/battery.c:1304
+msgid "Run command"
+msgstr "Изпълни команда"
+
+#: ../panel-plugin/battery.c:1265
+#: ../panel-plugin/battery.c:1306
+msgid "Run command in terminal"
+msgstr "Изпълни команда в терминал"
+
+#: ../panel-plugin/battery.c:1278
+#: ../panel-plugin/battery.c:1318
+msgid "Command:"
+msgstr "Команда:"
+
+#: ../panel-plugin/battery.c:1294
+msgid "Critical battery action:"
+msgstr "Действие при критично ниво на батерията:"
+
+#: ../panel-plugin/battery.c:1341
+msgid "Display label"
+msgstr "Покажи етикет"
+
+#: ../panel-plugin/battery.c:1344
+msgid "Display percentage"
+msgstr "Покажи проценти"
+
+#: ../panel-plugin/battery.c:1347
+msgid "Display time"
+msgstr "Покажи време"
+
+#: ../panel-plugin/battery.c:1350
+msgid "Hide time/percentage when full"
+msgstr "Скрий време/проценти, когато е напълно заредена"
+
+#: ../panel-plugin/battery.c:1353
+msgid "Display percentage in tooltip"
+msgstr "Покажи процентите в подсказката"
+
+#: ../panel-plugin/battery.c:1356
+msgid "Display time remaining in tooltip"
+msgstr "Покажи оставащото време в подсказката"
+
+#: ../panel-plugin/battery.c:1359
+msgid "Display power"
+msgstr "Покажи мощността"
+
+#: ../panel-plugin/battery.c:1362
+msgid "Display icon"
+msgstr "Покажи икона"
+
+#: ../panel-plugin/battmon.desktop.in.in.h:2
+msgid "Show and monitor the battery status"
+msgstr "Покажи и наблюдавай състоянието на батерията"
+

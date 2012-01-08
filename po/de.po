@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-battery-plugin 0.5.1svn-r3672\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-04 03:54+0000\n"
+"POT-Creation-Date: 2012-01-08 05:24+0000\n"
 "PO-Revision-Date: 2009-02-01 16:15+0100\n"
 "Last-Translator: Fabian Nowak <timystery@arcor.de>\n"
 "Language-Team: German\n"
@@ -20,7 +20,7 @@ msgstr ""
 #: ../panel-plugin/battery.c:500
 #, fuzzy
 msgid "(No battery, AC on-line)"
-msgstr "(keine Batterie, externe Stromzufuhr vorhanden)"
+msgstr "(Keine Batterie, externe Stromzufuhr vorhanden)"
 
 #: ../panel-plugin/battery.c:502
 msgid "(Charging from AC)"

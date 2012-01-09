@@ -2,19 +2,21 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Nuno Miguel <nunis@netcabo.pt>, 2007.
-# 
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-battery-plugin 0.5.0\n"
+"Project-Id-Version: xfce4-battery-plugin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-12-27 23:05+0000\n"
-"PO-Revision-Date: 2007-06-30 11:42+0100\n"
-"Last-Translator: Nuno Miguel <nunis@netcabo.pt>\n"
+"PO-Revision-Date: 2012-01-09 10:59-0000\n"
+"Last-Translator: Sérgio Marques <smarquespt@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
+"X-Poedit-Language: Portuguese\n"
+"X-Poedit-Country: PORTUGAL\n"
 
 #: ../panel-plugin/battery.c:499
 msgid "(No battery, AC on-line)"
@@ -22,7 +24,7 @@ msgstr "(Sem bateria e ligado à corrente)"
 
 #: ../panel-plugin/battery.c:501
 msgid "(Charging from AC)"
-msgstr "(Carregando da corrente)"
+msgstr "(A carregar da corrente)"
 
 #: ../panel-plugin/battery.c:501
 msgid "(AC on-line)"
@@ -50,11 +52,11 @@ msgstr "A trabalhar com bateria"
 
 #: ../panel-plugin/battery.c:581
 msgid "WARNING: Your battery has reached critical status. You should plug in or shutdown your computer now to avoid possible data loss."
-msgstr "Aviso: A sua bateria chegou ao estado crítico. Deve ligar à corrente ou desligar o computador para evitar perda de dados."
+msgstr "Aviso: a sua bateria chegou ao estado crítico. Deve ligar à corrente ou desligar o computador para evitar a perda de dados."
 
 #: ../panel-plugin/battery.c:595
 msgid "WARNING: Your battery is running low. You should consider plugging in or shutting down your computer soon to avoid possible data loss."
-msgstr "Aviso: A sua bateria está fraca. Considere ligar à corrente ou desligar o computador rapidamente para evitar perda de dados."
+msgstr "Aviso: a sua bateria está fraca. Considere ligar à corrente ou desligar o computador brevemente para evitar a perda de dados."
 
 #: ../panel-plugin/battery.c:680
 msgid "Battery"
@@ -62,18 +64,19 @@ msgstr "Bateria"
 
 #: ../panel-plugin/battery.c:1106
 msgid "Select file"
-msgstr "Seleccione o ficheiro"
+msgstr "Selecione o ficheiro"
 
 #: ../panel-plugin/battery.c:1147
 msgid "Select command"
-msgstr "Seleccione o comando"
+msgstr "Selecione o comando"
 
 #: ../panel-plugin/battery.c:1166
 #, c-format
 msgid "Unable to open the following url: %s"
-msgstr "Incapaz de abrir o seguinte url: %s"
+msgstr "Incapaz de abrir o url: %s"
 
-#: ../panel-plugin/battery.c:1190 ../panel-plugin/battmon.desktop.in.in.h:1
+#: ../panel-plugin/battery.c:1190
+#: ../panel-plugin/battmon.desktop.in.in.h:1
 msgid "Battery Monitor"
 msgstr "Monitor de bateria"
 
@@ -87,31 +90,36 @@ msgstr "Percentagem crítica:"
 
 #: ../panel-plugin/battery.c:1243
 msgid "Low battery action:"
-msgstr "Acção para bateria fraca:"
+msgstr "Ação para bateria fraca:"
 
-#: ../panel-plugin/battery.c:1249 ../panel-plugin/battery.c:1290
+#: ../panel-plugin/battery.c:1249
+#: ../panel-plugin/battery.c:1290
 msgid "Do nothing"
 msgstr "Nada fazer"
 
-#: ../panel-plugin/battery.c:1251 ../panel-plugin/battery.c:1292
+#: ../panel-plugin/battery.c:1251
+#: ../panel-plugin/battery.c:1292
 msgid "Display a warning message"
-msgstr "Mostrar uma mensagem de aviso"
+msgstr "Exibir mensagem de alerta"
 
-#: ../panel-plugin/battery.c:1253 ../panel-plugin/battery.c:1294
+#: ../panel-plugin/battery.c:1253
+#: ../panel-plugin/battery.c:1294
 msgid "Run command"
 msgstr "Executar comando"
 
-#: ../panel-plugin/battery.c:1255 ../panel-plugin/battery.c:1296
+#: ../panel-plugin/battery.c:1255
+#: ../panel-plugin/battery.c:1296
 msgid "Run command in terminal"
 msgstr "Executar comando no terminal"
 
-#: ../panel-plugin/battery.c:1268 ../panel-plugin/battery.c:1308
+#: ../panel-plugin/battery.c:1268
+#: ../panel-plugin/battery.c:1308
 msgid "Command:"
 msgstr "Comando:"
 
 #: ../panel-plugin/battery.c:1284
 msgid "Critical battery action:"
-msgstr "Acção para bateria crítica:"
+msgstr "Ação para bateria crítica:"
 
 #: ../panel-plugin/battery.c:1331
 msgid "Display label"
@@ -143,8 +151,9 @@ msgstr "Exibir energia"
 
 #: ../panel-plugin/battery.c:1352
 msgid "Display icon"
-msgstr "exibir ícone"
+msgstr "Exibir ícone"
 
 #: ../panel-plugin/battmon.desktop.in.in.h:2
 msgid "Show and monitor the battery status"
 msgstr "Mostrar e monitorizar o estado da bateria"
+

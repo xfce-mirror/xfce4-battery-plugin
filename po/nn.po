@@ -1,0 +1,155 @@
+# Norwegian Bokmal translations for xfce4-battery-plugin package.
+# Copyright (C) 2007 THE xfce4-battery-plugin'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the xfce4-battery-plugin package.
+# Terje Uriansrud <ter@operamail.com>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xfce4-battery-plugin 0.5.0svn-r2842\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-01-13 12:15+0000\n"
+"PO-Revision-Date: 2012-01-13 14:27+0100\n"
+"Last-Translator: Terje Uriansrud <ter@operamail.com>\n"
+"Language-Team: Norwegian Bokmal <i18n-nb@lister.ping.uio.no>\n"
+"Language: nb\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../panel-plugin/battery.c:500
+msgid "(No battery, AC on-line)"
+msgstr "(Ikkje batteri, nettdrift)"
+
+#: ../panel-plugin/battery.c:502
+msgid "(Charging from AC)"
+msgstr "(Lader frå nett)"
+
+#: ../panel-plugin/battery.c:502
+msgid "(AC on-line)"
+msgstr "(Nettdrift)"
+
+#: ../panel-plugin/battery.c:512
+#, c-format
+msgid "%d%% (%02d:%02d) remaining"
+msgstr "%d%% (%02d:%02d) igjen"
+
+#: ../panel-plugin/battery.c:514
+#, c-format
+msgid "%02d:%02d remaining"
+msgstr "%02d:%02d igjen"
+
+#: ../panel-plugin/battery.c:516
+#, c-format
+msgid "%d%% remaining"
+msgstr "%d%% igjen"
+
+#: ../panel-plugin/battery.c:518
+#, c-format
+msgid "AC off-line"
+msgstr "Batteridrift"
+
+#: ../panel-plugin/battery.c:584
+msgid ""
+"WARNING: Your battery has reached critical status. You should plug in or "
+"shutdown your computer now to avoid possible data loss."
+msgstr "Åtvaring: Batteriet har nådd kritisk lågt nivå. Du burde kopla til nettdrift eller skru av datamaskina no for å unngå tap av data."
+
+#: ../panel-plugin/battery.c:602
+msgid ""
+"WARNING: Your battery is running low. You should consider plugging in or "
+"shutting down your computer soon to avoid possible data loss."
+msgstr "Åtvaring: Batteriet byrjar å gå tomt for straum. Du burde vurdera å gå over til nettdrift eller skru av datamaskina snart for å unngå tap av data."
+
+#: ../panel-plugin/battery.c:689
+msgid "Battery"
+msgstr "Batteri"
+
+#: ../panel-plugin/battery.c:1116
+msgid "Select file"
+msgstr "Vel fil"
+
+#: ../panel-plugin/battery.c:1157
+msgid "Select command"
+msgstr "Vel kommando"
+
+#: ../panel-plugin/battery.c:1176
+#, c-format
+msgid "Unable to open the following url: %s"
+msgstr "Klarte ikkje opna url: %s"
+
+#: ../panel-plugin/battery.c:1200 ../panel-plugin/battmon.desktop.in.in.h:1
+msgid "Battery Monitor"
+msgstr "Batteriovervaking"
+
+#: ../panel-plugin/battery.c:1229
+msgid "Low percentage:"
+msgstr "Låg prosent:"
+
+#: ../panel-plugin/battery.c:1240
+msgid "Critical percentage:"
+msgstr "Kritisk prosent:"
+
+#: ../panel-plugin/battery.c:1253
+msgid "Low battery action:"
+msgstr "Handling ved lågt batteri"
+
+#: ../panel-plugin/battery.c:1259 ../panel-plugin/battery.c:1300
+msgid "Do nothing"
+msgstr "Gjer ingenting"
+
+#: ../panel-plugin/battery.c:1261 ../panel-plugin/battery.c:1302
+msgid "Display a warning message"
+msgstr "Vis ei åtvaring"
+
+#: ../panel-plugin/battery.c:1263 ../panel-plugin/battery.c:1304
+msgid "Run command"
+msgstr "Køyr kommando"
+
+#: ../panel-plugin/battery.c:1265 ../panel-plugin/battery.c:1306
+msgid "Run command in terminal"
+msgstr "Køyr kommando i terminal"
+
+#: ../panel-plugin/battery.c:1278 ../panel-plugin/battery.c:1318
+msgid "Command:"
+msgstr "Kommando:"
+
+#: ../panel-plugin/battery.c:1294
+msgid "Critical battery action:"
+msgstr "Handling ved kritisk batterinivå"
+
+#: ../panel-plugin/battery.c:1341
+msgid "Display label"
+msgstr "Vis etikett"
+
+#: ../panel-plugin/battery.c:1344
+msgid "Display percentage"
+msgstr "Vis prosent"
+
+#: ../panel-plugin/battery.c:1347
+msgid "Display time"
+msgstr "Vis tid"
+
+#: ../panel-plugin/battery.c:1350
+msgid "Hide time/percentage when full"
+msgstr "Skjul tid/prosent når fullada"
+
+#: ../panel-plugin/battery.c:1353
+msgid "Display percentage in tooltip"
+msgstr "Vis prosent i verktøytips"
+
+#: ../panel-plugin/battery.c:1356
+msgid "Display time remaining in tooltip"
+msgstr "Vis gjenverande tid i verktøytips"
+
+#: ../panel-plugin/battery.c:1359
+msgid "Display power"
+msgstr "Vis tilkoplingsmodus"
+
+#: ../panel-plugin/battery.c:1362
+msgid "Display icon"
+msgstr "Vis ikon"
+
+#: ../panel-plugin/battmon.desktop.in.in.h:2
+msgid "Show and monitor the battery status"
+msgstr "Vis og overvak batteristatus"

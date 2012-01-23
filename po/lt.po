@@ -1,0 +1,161 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Algimantas Margevičius <margevicius.algimantas@gmail.com>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: batery\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-01-23 12:18+0000\n"
+"PO-Revision-Date: 2012-01-23 14:39+0200\n"
+"Last-Translator: Algimantas Margevičius <margevicius.algimantas@gmail.com>\n"
+"Language-Team: Lietuvių <>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
+"%100<10 || n%100>=20) ? 1 : 2)\n"
+
+#: ../panel-plugin/battery.c:500
+msgid "(No battery, AC on-line)"
+msgstr "(Baterijos nėra, naudojama tinklo energija)"
+
+#: ../panel-plugin/battery.c:502
+msgid "(Charging from AC)"
+msgstr "(Įkraunama iš tinklo)"
+
+#: ../panel-plugin/battery.c:502
+msgid "(AC on-line)"
+msgstr "(įjungta į tinklą)"
+
+#: ../panel-plugin/battery.c:512
+#, c-format
+msgid "%d%% (%02d:%02d) remaining"
+msgstr "%d%% (%02d:%02d) liko"
+
+#: ../panel-plugin/battery.c:514
+#, c-format
+msgid "%02d:%02d remaining"
+msgstr "%02d:%02d liko"
+
+#: ../panel-plugin/battery.c:516
+#, c-format
+msgid "%d%% remaining"
+msgstr "%d%% liko"
+
+#: ../panel-plugin/battery.c:518
+#, c-format
+msgid "AC off-line"
+msgstr "AC atjungta"
+
+#: ../panel-plugin/battery.c:584
+msgid ""
+"WARNING: Your battery has reached critical status. You should plug in or "
+"shutdown your computer now to avoid possible data loss."
+msgstr ""
+"ĮSPĖJIMAS: Jūsų baterija pasiekė kritinį lygį. Jūs turėtumėte prijungti "
+"kompiuterį pakrovimui arba išjungti jį, nes kitaip galite prarasti duomenis."
+
+#: ../panel-plugin/battery.c:602
+msgid ""
+"WARNING: Your battery is running low. You should consider plugging in or "
+"shutting down your computer soon to avoid possible data loss."
+msgstr ""
+"ĮSPĖJIMAS: Jūsų baterijoje liko nedaug energijos. Jūs turėtumėte prijungti "
+"kompiuterį pakrovimui arba išjungti jį, nes kitaip galite prarasti duomenis."
+
+#: ../panel-plugin/battery.c:689
+msgid "Battery"
+msgstr "Akumuliatorius"
+
+#: ../panel-plugin/battery.c:1116
+msgid "Select file"
+msgstr "Pasirinkite failą"
+
+#: ../panel-plugin/battery.c:1157
+msgid "Select command"
+msgstr "Pasirinkti komandą"
+
+#: ../panel-plugin/battery.c:1176
+#, c-format
+msgid "Unable to open the following url: %s"
+msgstr "Nepavyko atverti šio url: %s"
+
+#: ../panel-plugin/battery.c:1200 ../panel-plugin/battmon.desktop.in.in.h:1
+msgid "Battery Monitor"
+msgstr "Baterijos stebėtojas"
+
+#: ../panel-plugin/battery.c:1229
+msgid "Low percentage:"
+msgstr "Žemas lygis:"
+
+#: ../panel-plugin/battery.c:1240
+msgid "Critical percentage:"
+msgstr "Kritinis lygis:"
+
+#: ../panel-plugin/battery.c:1253
+msgid "Low battery action:"
+msgstr "Kai baterijoje mažai energijos:"
+
+#: ../panel-plugin/battery.c:1259 ../panel-plugin/battery.c:1300
+msgid "Do nothing"
+msgstr "Nieko nedaryti"
+
+#: ../panel-plugin/battery.c:1261 ../panel-plugin/battery.c:1302
+msgid "Display a warning message"
+msgstr "Parodyti perspėjimo pranešimą"
+
+#: ../panel-plugin/battery.c:1263 ../panel-plugin/battery.c:1304
+msgid "Run command"
+msgstr "Vykdyti komandą"
+
+#: ../panel-plugin/battery.c:1265 ../panel-plugin/battery.c:1306
+msgid "Run command in terminal"
+msgstr "Vykdyti komandą terminale"
+
+#: ../panel-plugin/battery.c:1278 ../panel-plugin/battery.c:1318
+msgid "Command:"
+msgstr "Komanda:"
+
+#: ../panel-plugin/battery.c:1294
+msgid "Critical battery action:"
+msgstr "Kritinio baterijos lygio veiksmas:"
+
+#: ../panel-plugin/battery.c:1341
+msgid "Display label"
+msgstr "Rodyti užrašą"
+
+#: ../panel-plugin/battery.c:1344
+msgid "Display percentage"
+msgstr "Rodyti procentus"
+
+#: ../panel-plugin/battery.c:1347
+msgid "Display time"
+msgstr "Rodyti laiką"
+
+#: ../panel-plugin/battery.c:1350
+msgid "Hide time/percentage when full"
+msgstr "Slėpti laiką/procentus kai pilna"
+
+#: ../panel-plugin/battery.c:1353
+msgid "Display percentage in tooltip"
+msgstr "Rodyti procentus paaiškinimuose"
+
+#: ../panel-plugin/battery.c:1356
+msgid "Display time remaining in tooltip"
+msgstr "Paaiškinimuose rodyti likusį laiką"
+
+#: ../panel-plugin/battery.c:1359
+msgid "Display power"
+msgstr "Rodyti energiją"
+
+#: ../panel-plugin/battery.c:1362
+msgid "Display icon"
+msgstr "Rodyti piktogramą"
+
+#: ../panel-plugin/battmon.desktop.in.in.h:2
+msgid "Show and monitor the battery status"
+msgstr "Rodyti ir stebėti baterijos būseną"

@@ -626,7 +626,13 @@ battmon_icon (t_battmon *battmon)
 
     /* panel info */
     orientation = xfce_panel_plugin_get_orientation (battmon->plugin);
+
+#if defined (LIBXFCE4PANEL_CHECK_VERSION) && LIBXFCE4PANEL_CHECK_VERSION (4,9,0)
+    size = xfce_panel_plugin_get_size (battmon->plugin);
+    size /= xfce_panel_plugin_get_nrows (battmon->plugin) - 6;
+#else
     size = xfce_panel_plugin_get_size (battmon->plugin) - 6;
+#endif
 
         /* icon size is 41x64px */
     if (orientation == GTK_ORIENTATION_HORIZONTAL)

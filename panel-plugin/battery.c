@@ -653,24 +653,36 @@ battmon_icon (t_battmon *battmon)
     return icon;
 }
 
-
-static void setup_battmon(t_battmon *battmon, GtkOrientation orientation)
+static void setup_battmon(t_battmon      *battmon,
+                          GtkOrientation  orientation,
+                          GtkOrientation  panel_orientation)
 {
     GtkWidget *box,*vbox;
     GdkPixbuf *icon;
+    gint size;
 
+    size = xfce_panel_plugin_get_size (battmon->plugin);
     battmon->battstatus = gtk_progress_bar_new();
-    if (orientation == GTK_ORIENTATION_HORIZONTAL)
+
+    if (panel_orientation == GTK_ORIENTATION_HORIZONTAL)
     {
        gtk_progress_bar_set_orientation(GTK_PROGRESS_BAR(battmon->battstatus),
                GTK_PROGRESS_BOTTOM_TO_TOP);
+       gtk_widget_set_size_request(GTK_WIDGET(battmon->battstatus),
+               BORDER, size);
        box=gtk_hbox_new(FALSE, 0);
        battmon->vbox = gtk_hbox_new(FALSE, 0);
+       gtk_widget_set_size_request(GTK_WIDGET(battmon->plugin),
+               -1, size);
     } else {
        gtk_progress_bar_set_orientation(GTK_PROGRESS_BAR(battmon->battstatus),
                GTK_PROGRESS_LEFT_TO_RIGHT);
+       gtk_widget_set_size_request(GTK_WIDGET(battmon->battstatus),
+               size, BORDER);
        box=gtk_vbox_new(FALSE, 0);
        battmon->vbox = gtk_vbox_new(FALSE, 0);
+       gtk_widget_set_size_request(GTK_WIDGET(battmon->plugin),
+               size, -1);
     }
 
     gtk_container_set_border_width(GTK_CONTAINER(battmon->vbox), BORDER / 2);
@@ -697,34 +709,74 @@ static void setup_battmon(t_battmon *battmon, GtkOrientation orientation)
 
     gtk_box_pack_start(GTK_BOX(box),  GTK_WIDGET(battmon->battstatus), FALSE, FALSE, 2);
 
-    vbox = gtk_vbox_new(FALSE, 0);
+    if (orientation == GTK_ORIENTATION_HORIZONTAL)
+       vbox = gtk_vbox_new(FALSE, 0);
+    else
+       vbox = gtk_hbox_new(FALSE, 0);
 
     /* percent + rtime */
     gtk_box_pack_start(GTK_BOX(box), GTK_WIDGET(vbox), FALSE, FALSE, 0);
 
-      battmon->charge = (GtkLabel *)gtk_label_new("50%%");
-        gtk_box_pack_start(GTK_BOX(vbox),GTK_WIDGET(battmon->charge),TRUE, TRUE, 0);
+    battmon->charge = (GtkLabel *)gtk_label_new("50%%");
+    if (orientation == GTK_ORIENTATION_HORIZONTAL)
+      gtk_box_pack_start(GTK_BOX(vbox),GTK_WIDGET(battmon->charge),TRUE, TRUE, 0);
+    else
+      gtk_box_pack_end(GTK_BOX(vbox),GTK_WIDGET(battmon->charge),TRUE, TRUE, 0);
 
-      battmon->rtime = (GtkLabel *)gtk_label_new("01:00");
-    gtk_box_pack_start(GTK_BOX(vbox),GTK_WIDGET(battmon->rtime),TRUE, TRUE, 0);
+    battmon->rtime = (GtkLabel *)gtk_label_new("01:00");
+    if (orientation == GTK_ORIENTATION_HORIZONTAL)
+       gtk_box_pack_start(GTK_BOX(vbox),GTK_WIDGET(battmon->rtime),TRUE, TRUE, 0);
+    else
+       gtk_box_pack_end(GTK_BOX(vbox),GTK_WIDGET(battmon->rtime),TRUE, TRUE, 0);
 
-    vbox=gtk_vbox_new(FALSE, 0);
+    if (orientation == GTK_ORIENTATION_HORIZONTAL)
+       vbox = gtk_vbox_new(FALSE, 0);
+    else
+       vbox = gtk_hbox_new(FALSE, 0);
+
     gtk_box_pack_start(GTK_BOX(box), GTK_WIDGET(vbox), FALSE, FALSE, 0);
 
     battmon->alt_rtime = (GtkLabel *)gtk_label_new("01:00");
     gtk_box_pack_start(GTK_BOX(vbox),GTK_WIDGET(battmon->alt_rtime),TRUE, TRUE, 0);
 
-    vbox=gtk_vbox_new(FALSE, 0);
+    if (orientation == GTK_ORIENTATION_HORIZONTAL)
+       vbox = gtk_vbox_new(FALSE, 0);
+    else
+       vbox = gtk_hbox_new(FALSE, 0);
 
     /* ac-fan-temp */
     gtk_box_pack_start(GTK_BOX(box), GTK_WIDGET(vbox), FALSE, FALSE, 0);
 
     battmon->acfan = (GtkLabel *)gtk_label_new("AC FAN");
-        gtk_box_pack_start(GTK_BOX(vbox),GTK_WIDGET(battmon->acfan),TRUE, TRUE, 0);
+    if (orientation == GTK_ORIENTATION_HORIZONTAL)
+       gtk_box_pack_start(GTK_BOX(vbox),GTK_WIDGET(battmon->acfan),TRUE, TRUE, 0);
+    else
+       gtk_box_pack_end(GTK_BOX(vbox),GTK_WIDGET(battmon->acfan),TRUE, TRUE, 0);
 
       battmon->temp = (GtkLabel *)gtk_label_new("40°C");
-        gtk_box_pack_start(GTK_BOX(vbox),GTK_WIDGET(battmon->temp),TRUE, TRUE, 0);
+    if (orientation == GTK_ORIENTATION_HORIZONTAL)
+       gtk_box_pack_start(GTK_BOX(vbox),GTK_WIDGET(battmon->temp),TRUE, TRUE, 0);
+    else
+       gtk_box_pack_end(GTK_BOX(vbox),GTK_WIDGET(battmon->temp),TRUE, TRUE, 0);
 
+    if (orientation == GTK_ORIENTATION_HORIZONTAL)
+    {
+       gtk_label_set_angle(GTK_LABEL(battmon->label), 0);
+       gtk_label_set_angle(GTK_LABEL(battmon->charge), 0);
+       gtk_label_set_angle(GTK_LABEL(battmon->rtime), 0);
+       gtk_label_set_angle(GTK_LABEL(battmon->alt_rtime), 0);
+       gtk_label_set_angle(GTK_LABEL(battmon->acfan), 0);
+       gtk_label_set_angle(GTK_LABEL(battmon->temp), 0);
+    }
+    else
+    {
+       gtk_label_set_angle(GTK_LABEL(battmon->label), 270);
+       gtk_label_set_angle(GTK_LABEL(battmon->charge), 270);
+       gtk_label_set_angle(GTK_LABEL(battmon->rtime), 270);
+       gtk_label_set_angle(GTK_LABEL(battmon->alt_rtime), 270);
+       gtk_label_set_angle(GTK_LABEL(battmon->acfan), 270);
+       gtk_label_set_angle(GTK_LABEL(battmon->temp), 270);
+    }
 
     gtk_box_pack_start(GTK_BOX(battmon->vbox), box, FALSE, FALSE, 0);
     gtk_widget_show_all(battmon->vbox);
@@ -758,23 +810,53 @@ static void setup_battmon(t_battmon *battmon, GtkOrientation orientation)
     gtk_widget_set_size_request(battmon->ebox, -1, -1);
 }
 
+#if defined (LIBXFCE4PANEL_CHECK_VERSION) && LIBXFCE4PANEL_CHECK_VERSION (4,9,0)
 static gboolean
-battmon_set_orientation (XfcePanelPlugin *plugin, GtkOrientation orientation,
-                         t_battmon *battmon)
+battmon_set_mode (XfcePanelPlugin *plugin, XfcePanelPluginMode mode,
+                  t_battmon *battmon)
 {
+    GtkOrientation orientation, panel_orientation;
+
     if (battmon->timeoutid) g_source_remove(battmon->timeoutid);
     gtk_container_remove(GTK_CONTAINER(battmon->ebox), GTK_WIDGET(battmon->vbox));
-    setup_battmon(battmon,orientation);
+    orientation =
+      (mode != XFCE_PANEL_PLUGIN_MODE_VERTICAL) ?
+      GTK_ORIENTATION_HORIZONTAL : GTK_ORIENTATION_VERTICAL;
+    panel_orientation =
+      (mode == XFCE_PANEL_PLUGIN_MODE_HORIZONTAL) ?
+      GTK_ORIENTATION_HORIZONTAL : GTK_ORIENTATION_VERTICAL;
+    setup_battmon(battmon,orientation,panel_orientation);
     update_apm_status( battmon );
     battmon->timeoutid = g_timeout_add(1 * 1024, (GSourceFunc) update_apm_status, battmon);
 
     return TRUE;
 }
 
+#else
+
+static gboolean
+battmon_set_orientation (XfcePanelPlugin *plugin, GtkOrientation orientation,
+                         t_battmon *battmon)
+{
+    if (battmon->timeoutid) g_source_remove(battmon->timeoutid);
+    gtk_container_remove(GTK_CONTAINER(battmon->ebox), GTK_WIDGET(battmon->vbox));
+    setup_battmon(battmon,GTK_ORIENTATION_HORIZONTAL,orientation);
+    update_apm_status( battmon );
+    battmon->timeoutid = g_timeout_add(1 * 1024, (GSourceFunc) update_apm_status, battmon);
+
+    return TRUE;
+}
+#endif
+
 static t_battmon*
 battmon_create(XfcePanelPlugin *plugin)
 {
     t_battmon *battmon;
+    GtkOrientation panel_orientation;
+#if defined (LIBXFCE4PANEL_CHECK_VERSION) && LIBXFCE4PANEL_CHECK_VERSION (4,9,0)
+    GtkOrientation orientation;
+    XfcePanelPluginMode mode;
+#endif
 
     battmon = g_new(t_battmon, 1);
     init_options(&(battmon->options));
@@ -785,7 +867,20 @@ battmon_create(XfcePanelPlugin *plugin)
     battmon->critical = FALSE;
     battmon->ebox = gtk_event_box_new();
     gtk_event_box_set_visible_window(battmon->ebox, FALSE);
-    setup_battmon(battmon, xfce_panel_plugin_get_orientation (plugin));
+
+#if defined (LIBXFCE4PANEL_CHECK_VERSION) && LIBXFCE4PANEL_CHECK_VERSION (4,9,0)
+    mode = xfce_panel_plugin_get_mode (plugin);
+    orientation =
+      (mode != XFCE_PANEL_PLUGIN_MODE_VERTICAL) ?
+      GTK_ORIENTATION_HORIZONTAL : GTK_ORIENTATION_VERTICAL;
+    panel_orientation =
+      (mode == XFCE_PANEL_PLUGIN_MODE_HORIZONTAL) ?
+      GTK_ORIENTATION_HORIZONTAL : GTK_ORIENTATION_VERTICAL;
+#else
+    panel_orientation = xfce_panel_plugin_get_orientation (plugin);
+#endif
+    setup_battmon(battmon, GTK_ORIENTATION_HORIZONTAL, panel_orientation);
+
     battmon->timeoutid = 0;
     battmon->flag = FALSE;
     battmon->tips = gtk_tooltips_new ();
@@ -1413,7 +1508,11 @@ battmon_construct (XfcePanelPlugin *plugin)
 
     g_signal_connect (plugin, "size-changed", G_CALLBACK (battmon_set_size), battmon);
 
+#if defined (LIBXFCE4PANEL_CHECK_VERSION) && LIBXFCE4PANEL_CHECK_VERSION (4,9,0)
+    g_signal_connect (plugin, "mode-changed", G_CALLBACK (battmon_set_mode), battmon);
+#else
     g_signal_connect (plugin, "orientation-changed", G_CALLBACK (battmon_set_orientation), battmon);
+#endif
 
     gtk_container_add(GTK_CONTAINER(plugin), battmon->ebox);
 

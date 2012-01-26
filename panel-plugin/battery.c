@@ -629,7 +629,8 @@ battmon_icon (t_battmon *battmon)
 
 #if defined (LIBXFCE4PANEL_CHECK_VERSION) && LIBXFCE4PANEL_CHECK_VERSION (4,9,0)
     size = xfce_panel_plugin_get_size (battmon->plugin);
-    size /= xfce_panel_plugin_get_nrows (battmon->plugin) - 6;
+    size /= xfce_panel_plugin_get_nrows (battmon->plugin);
+    size -= 6;
 #else
     size = xfce_panel_plugin_get_size (battmon->plugin) - 6;
 #endif

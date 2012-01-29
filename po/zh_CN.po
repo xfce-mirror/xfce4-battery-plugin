@@ -3,13 +3,13 @@
 # This file is distributed under the same license as
 # the xfce4-battery-plugin package.
 # Hunt Xu <huntxu@live.cn>", 2008.
-# Chipong Luo <chipong_l@yahoo.com>, 2011.
+# Chipong Luo <chipong_l@yahoo.com>, 2011, 2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-battery-plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-09 04:11+0000\n"
+"POT-Creation-Date: 2012-01-29 01:42+0000\n"
 "PO-Revision-Date: 2008-12-04 18:19+0800\n"
 "Last-Translator: Chipong Luo <chipong_l@yahoo.com>\n"
 "Language-Team: Chinese (Simplified)\n"
@@ -20,11 +20,11 @@ msgstr ""
 
 #: ../panel-plugin/battery.c:500
 msgid "(No battery, AC on-line)"
-msgstr "(没有电池，交流电源已连接)"
+msgstr "(无电池，交流电源已连接)"
 
 #: ../panel-plugin/battery.c:502
 msgid "(Charging from AC)"
-msgstr "(从交流电源充电)"
+msgstr "(正在从交流电源充电)"
 
 #: ../panel-plugin/battery.c:502
 msgid "(AC on-line)"
@@ -33,17 +33,17 @@ msgstr "(交流电源已连接)"
 #: ../panel-plugin/battery.c:512
 #, c-format
 msgid "%d%% (%02d:%02d) remaining"
-msgstr "剩余 %d%%(%02d：%02d)"
+msgstr "%d%%(%02d：%02d)剩余"
 
 #: ../panel-plugin/battery.c:514
 #, c-format
 msgid "%02d:%02d remaining"
-msgstr "剩余 %02d：%02d"
+msgstr "%02d：%02d 剩余"
 
 #: ../panel-plugin/battery.c:516
 #, c-format
 msgid "%d%% remaining"
-msgstr "剩余 %d%%"
+msgstr "%d%% 剩余"
 
 #: ../panel-plugin/battery.c:518
 #, c-format
@@ -54,13 +54,17 @@ msgstr "交流电源已断开"
 msgid ""
 "WARNING: Your battery has reached critical status. You should plug in or "
 "shutdown your computer now to avoid possible data loss."
-msgstr "警告：您的电池电量已达临界值。请接上电源或者关机以避免数据丢失。"
+msgstr ""
+"警告：您的电池电量已达临界值。请接上电源"
+"或关闭计算机以避免数据丢失。"
 
 #: ../panel-plugin/battery.c:602
 msgid ""
 "WARNING: Your battery is running low. You should consider plugging in or "
 "shutting down your computer soon to avoid possible data loss."
-msgstr "警告：您的电池电量低。请接上电源或者关机以避免数据丢失。"
+msgstr ""
+"警告：您的电池电量低。请接上电源或者关闭"
+"计算机以避免数据丢失。"
 
 #: ../panel-plugin/battery.c:689
 msgid "Battery"
@@ -77,7 +81,7 @@ msgstr "选择命令"
 #: ../panel-plugin/battery.c:1176
 #, c-format
 msgid "Unable to open the following url: %s"
-msgstr "无法打开以下地址：%s"
+msgstr "未能打开以下地址：%s"
 
 #: ../panel-plugin/battery.c:1200 ../panel-plugin/battmon.desktop.in.in.h:1
 msgid "Battery Monitor"
@@ -145,7 +149,7 @@ msgstr "在工具提示中显示剩余时间"
 
 #: ../panel-plugin/battery.c:1359
 msgid "Display power"
-msgstr "显示电源状态"
+msgstr "显示电量"
 
 #: ../panel-plugin/battery.c:1362
 msgid "Display icon"

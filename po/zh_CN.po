@@ -3,13 +3,13 @@
 # This file is distributed under the same license as
 # the xfce4-battery-plugin package.
 # Hunt Xu <huntxu@live.cn>", 2008.
-# Chipong Luo <chipong_l@yahoo.com>, 2011, 2012.
+# Chipong Luo <chipong.luo@yahoo.com>, 2011, 2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-battery-plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-29 01:42+0000\n"
+"POT-Creation-Date: 2012-02-08 05:18+0000\n"
 "PO-Revision-Date: 2008-12-04 18:19+0800\n"
 "Last-Translator: Chipong Luo <chipong_l@yahoo.com>\n"
 "Language-Team: Chinese (Simplified)\n"
@@ -54,17 +54,13 @@ msgstr "交流电源已断开"
 msgid ""
 "WARNING: Your battery has reached critical status. You should plug in or "
 "shutdown your computer now to avoid possible data loss."
-msgstr ""
-"警告：您的电池电量已达临界值。请接上电源"
-"或关闭计算机以避免数据丢失。"
+msgstr "警告：您的电池电量已达临界值。请接上电源或关闭计算机以避免数据丢失。"
 
 #: ../panel-plugin/battery.c:602
 msgid ""
 "WARNING: Your battery is running low. You should consider plugging in or "
 "shutting down your computer soon to avoid possible data loss."
-msgstr ""
-"警告：您的电池电量低。请接上电源或者关闭"
-"计算机以避免数据丢失。"
+msgstr "警告：您的电池电量低。请接上电源或者关闭计算机以避免数据丢失。"
 
 #: ../panel-plugin/battery.c:689
 msgid "Battery"

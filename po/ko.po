@@ -1,0 +1,161 @@
+# Korean translation for the xfce4-battery-plugin package.
+# Copyright (C) 2003-2012 Benedikt Meurer et al.
+# This file is distributed under the same license as the xfce4-battery-plugin package.
+# Seong-ho Cho <darkcircle.0426@gmail.com>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xfce4-battery-plugin.master\n"
+"Report-Msgid-Bugs-To: xfce4-users-kr-i18n <xfce4-users-kr-i18n@lists.sourceforge.net>\n"
+"POT-Creation-Date: 2012-02-27 15:42+0000\n"
+"PO-Revision-Date: 2012-02-28 02:30+0900\n"
+"Last-Translator: Seong-ho, Cho <darkcircle.0426@gmail.com>\n"
+"Language-Team: xfce4-users-kr-i18n <xfce4-users-kr-i18n@lists.sourceforge.net>\n"
+"Language: Korean\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-Language: Korean\n"
+"X-Poedit-Country: KOREA, REPUBLIC OF\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: ../panel-plugin/battery.c:500
+msgid "(No battery, AC on-line)"
+msgstr "(배터리 없음, AC 연결됨)"
+
+#: ../panel-plugin/battery.c:502
+msgid "(Charging from AC)"
+msgstr "(AC로부터 충전중)"
+
+#: ../panel-plugin/battery.c:502
+msgid "(AC on-line)"
+msgstr "(AC 연결됨)"
+
+#: ../panel-plugin/battery.c:512
+#, c-format
+msgid "%d%% (%02d:%02d) remaining"
+msgstr "%d%% (%02d:%02d) 남음"
+
+#: ../panel-plugin/battery.c:514
+#, c-format
+msgid "%02d:%02d remaining"
+msgstr "%02d:%02d 남음"
+
+#: ../panel-plugin/battery.c:516
+#, c-format
+msgid "%d%% remaining"
+msgstr "%d%% 남음"
+
+#: ../panel-plugin/battery.c:518
+#, c-format
+msgid "AC off-line"
+msgstr "AC 연결되지 않음"
+
+#: ../panel-plugin/battery.c:584
+msgid "WARNING: Your battery has reached critical status. You should plug in or shutdown your computer now to avoid possible data loss."
+msgstr "경고: 배터리가 임계 상태에 도달했습니다. 가능한 데이터 유실을 방지하려면 전원을 연결하거나 컴퓨터를 끕니다."
+
+#: ../panel-plugin/battery.c:602
+msgid "WARNING: Your battery is running low. You should consider plugging in or shutting down your computer soon to avoid possible data loss."
+msgstr "경고: 배터리가 저수준에 있습니다. 가능한 데이터 유실을 방지하려면 전원을 연결하거나 컴퓨터를 끄는것을 고려하는 것이 좋습니다."
+
+#: ../panel-plugin/battery.c:689
+msgid "Battery"
+msgstr "배터리"
+
+#: ../panel-plugin/battery.c:1116
+msgid "Select file"
+msgstr "파일 선택"
+
+#: ../panel-plugin/battery.c:1157
+msgid "Select command"
+msgstr "명령 선택"
+
+#: ../panel-plugin/battery.c:1176
+#, c-format
+msgid "Unable to open the following url: %s"
+msgstr "다음 URL을 열 수 없습니다: %s"
+
+#: ../panel-plugin/battery.c:1200
+#: ../panel-plugin/battmon.desktop.in.in.h:1
+msgid "Battery Monitor"
+msgstr "배터리 감시자"
+
+#: ../panel-plugin/battery.c:1229
+msgid "Low percentage:"
+msgstr "저수준 백분율:"
+
+#: ../panel-plugin/battery.c:1240
+msgid "Critical percentage:"
+msgstr "임계 백분율:"
+
+#: ../panel-plugin/battery.c:1253
+msgid "Low battery action:"
+msgstr "저수준 배터리 동작:"
+
+#: ../panel-plugin/battery.c:1259
+#: ../panel-plugin/battery.c:1300
+msgid "Do nothing"
+msgstr "아무것도 안 함"
+
+#: ../panel-plugin/battery.c:1261
+#: ../panel-plugin/battery.c:1302
+msgid "Display a warning message"
+msgstr "경고 메시지 보임"
+
+#: ../panel-plugin/battery.c:1263
+#: ../panel-plugin/battery.c:1304
+msgid "Run command"
+msgstr "명령 실행"
+
+#: ../panel-plugin/battery.c:1265
+#: ../panel-plugin/battery.c:1306
+msgid "Run command in terminal"
+msgstr "터미널에서 명령 실행"
+
+#: ../panel-plugin/battery.c:1278
+#: ../panel-plugin/battery.c:1318
+msgid "Command:"
+msgstr "명령:"
+
+#: ../panel-plugin/battery.c:1294
+msgid "Critical battery action:"
+msgstr "임계 배터리 상태 동작:"
+
+#: ../panel-plugin/battery.c:1341
+msgid "Display label"
+msgstr "레이블 보이기"
+
+#: ../panel-plugin/battery.c:1344
+msgid "Display percentage"
+msgstr "백분율 보이기"
+
+#: ../panel-plugin/battery.c:1347
+msgid "Display time"
+msgstr "시간 보이기"
+
+#: ../panel-plugin/battery.c:1350
+msgid "Hide time/percentage when full"
+msgstr "배터리가 찼을 때 시간/백분율 숨기기"
+
+#: ../panel-plugin/battery.c:1353
+msgid "Display percentage in tooltip"
+msgstr "풍선 도움말로 백분율 보이기"
+
+#: ../panel-plugin/battery.c:1356
+msgid "Display time remaining in tooltip"
+msgstr "풍선 도움말로 남은 시간 보이기"
+
+#: ../panel-plugin/battery.c:1359
+msgid "Display power"
+msgstr "전원 보이기"
+
+#: ../panel-plugin/battery.c:1362
+msgid "Display icon"
+msgstr "아이콘 보이기"
+
+#: ../panel-plugin/battmon.desktop.in.in.h:2
+msgid "Show and monitor the battery status"
+msgstr "배터리 상태 보이고 감시하기"
+

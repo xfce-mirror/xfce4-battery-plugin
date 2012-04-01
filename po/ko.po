@@ -125,15 +125,15 @@ msgstr "임계 배터리 상태 동작:"
 
 #: ../panel-plugin/battery.c:1341
 msgid "Display label"
-msgstr "레이블 보이기"
+msgstr "레이블 보기"
 
 #: ../panel-plugin/battery.c:1344
 msgid "Display percentage"
-msgstr "백분율 보이기"
+msgstr "백분율 보기"
 
 #: ../panel-plugin/battery.c:1347
 msgid "Display time"
-msgstr "시간 보이기"
+msgstr "시간 보기"
 
 #: ../panel-plugin/battery.c:1350
 msgid "Hide time/percentage when full"
@@ -141,19 +141,19 @@ msgstr "배터리가 찼을 때 시간/백분율 숨기기"
 
 #: ../panel-plugin/battery.c:1353
 msgid "Display percentage in tooltip"
-msgstr "풍선 도움말로 백분율 보이기"
+msgstr "풍선 도움말로 백분율 보기"
 
 #: ../panel-plugin/battery.c:1356
 msgid "Display time remaining in tooltip"
-msgstr "풍선 도움말로 남은 시간 보이기"
+msgstr "풍선 도움말로 남은 시간 보기"
 
 #: ../panel-plugin/battery.c:1359
 msgid "Display power"
-msgstr "전원 보이기"
+msgstr "전원 보기"
 
 #: ../panel-plugin/battery.c:1362
 msgid "Display icon"
-msgstr "아이콘 보이기"
+msgstr "아이콘 보기"
 
 #: ../panel-plugin/battmon.desktop.in.in.h:2
 msgid "Show and monitor the battery status"

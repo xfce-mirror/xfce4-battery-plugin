@@ -22,7 +22,7 @@ msgstr ""
 
 #: ../panel-plugin/battery.c:500
 msgid "(No battery, AC on-line)"
-msgstr "(배터리 없음, AC 연결됨)"
+msgstr "(배터리 없음, AC 연결함)"
 
 #: ../panel-plugin/battery.c:502
 msgid "(Charging from AC)"
@@ -30,7 +30,7 @@ msgstr "(AC로부터 충전중)"
 
 #: ../panel-plugin/battery.c:502
 msgid "(AC on-line)"
-msgstr "(AC 연결됨)"
+msgstr "(AC 연결함)"
 
 #: ../panel-plugin/battery.c:512
 #, c-format

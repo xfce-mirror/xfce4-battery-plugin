@@ -80,7 +80,7 @@ msgstr "다음 URL을 열 수 없습니다: %s"
 #: ../panel-plugin/battery.c:1200
 #: ../panel-plugin/battmon.desktop.in.in.h:1
 msgid "Battery Monitor"
-msgstr "배터리 감시자"
+msgstr "배터리 감시기"
 
 #: ../panel-plugin/battery.c:1229
 msgid "Low percentage:"

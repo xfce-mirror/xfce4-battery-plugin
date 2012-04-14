@@ -7,48 +7,47 @@ INCLUDES =								\
 #
 # Battery plugin
 #
-plugindir =								\
-	$(libexecdir)/xfce4/panel-plugins
+plugindir = $(libdir)/xfce4/panel/plugins
 
-plugin_PROGRAMS =							\
-	xfce4-battery-plugin
+plugin_LTLIBRARIES = libbattery.la
 
-xfce4_battery_plugin_SOURCES =						\
+libbattery_la_SOURCES =							\
 	battery.c							\
 	libacpi.h							\
 	libacpi.c							\
 	libapm.h							\
 	libapm.c
 
-xfce4_battery_plugin_CFLAGS =						\
+libbattery_la_CFLAGS =							\
 	$(LIBXFCE4PANEL_CFLAGS)						\
 	$(LIBXFCE4UI_CFLAGS)						\
 	$(LIBXFCE4UTIL_CFLAGS)						\
 	$(GTK_CFLAGS)							\
 	$(PLATFORM_CFLAGS)
 
-xfce4_battery_plugin_LDADD =						\
+libbattery_la_LIBADD =							\
 	$(LIBXFCE4PANEL_LIBS)						\
 	$(LIBXFCE4UI_LIBS)						\
 	$(LIBXFCE4UTIL_LIBS)						\
 	$(GTK_LIBS)
 
+libbattery_la_LDFLAGS = \
+	-avoid-version \
+	-module \
+	-no-undefined \
+	-export-symbols-regex '^xfce_panel_module_(preinit|init|construct)' \
+	$(PLATFORM_LDFLAGS)
+
 #
 # Desktop file
 #
-desktopdir = $(datadir)/xfce4/panel-plugins
-desktop_in_in_files = battmon.desktop.in.in
-desktop_in_files = $(desktop_in_in_files:.desktop.in.in=.desktop.in)
-%.desktop.in: %.desktop.in.in
-	sed -e "s,\@libexecdir\@,$(libexecdir),g" < $< > $@
+desktopdir = $(datadir)/xfce4/panel/plugins
+desktop_in_files = battery.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
-EXTRA_DIST =								\
-	$(desktop_in_in_files)
+EXTRA_DIST = $(desktop_in_files)
 
-CLEANFILES =								\
-	$(desktop_in_files)						\
-	$(desktop_DATA)
+CLEANFILES = $(desktop_DATA)
 
 # vi:set ts=8 sw=8 noet ai nocindent syntax=automake:

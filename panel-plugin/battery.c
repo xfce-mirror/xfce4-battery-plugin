@@ -1538,5 +1538,5 @@ battmon_construct (XfcePanelPlugin *plugin)
 }
 
 /* register the plugin */
-XFCE_PANEL_PLUGIN_REGISTER_EXTERNAL (battmon_construct);
+XFCE_PANEL_PLUGIN_REGISTER (battmon_construct);
 

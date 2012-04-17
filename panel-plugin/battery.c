@@ -466,7 +466,7 @@ battmon.c:241: for each function it appears in.)
         gtk_widget_hide(battmon->image);
     }
 
-    if(battmon->options.display_percentage && !(battmon->options.hide_when_full && acline && charge >= 99)){
+    if(battmon->options.display_percentage && charge > 0 && !(battmon->options.hide_when_full && acline && charge >= 99)){
         gtk_widget_show((GtkWidget *)battmon->charge);
         g_snprintf(buffer, sizeof(buffer),"%d%% ", charge);
         gtk_label_set_text(battmon->charge,buffer);
@@ -474,7 +474,7 @@ battmon.c:241: for each function it appears in.)
         gtk_widget_hide((GtkWidget *)battmon->charge);
     }
 
-    if (battmon->options.display_time && !(battmon->options.hide_when_full && acline && charge >= 99 )){
+    if (battmon->options.display_time && charge > 0 && !(battmon->options.hide_when_full && acline && charge >= 99 )){
         GtkLabel *active_label;
         if ( battmon_time_labels_fits( battmon ) ) {
             active_label = battmon->rtime;

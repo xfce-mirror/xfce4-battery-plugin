@@ -1488,6 +1488,29 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
     gtk_widget_show_all (dlg);
 }
 
+static void
+battmon_show_about(XfcePanelPlugin *plugin, t_battmon *battmon)
+{
+   GdkPixbuf *icon;
+   const gchar *auth[] = {
+      "Benedikt Meurer <benny@xfce.org>", "Edscott Wilson <edscott@imp.mx>",
+      "Eduard Roccatello <eduard@xfce.org>", "Florian Rivoal <frivoal@xfce.org>",
+      "Landry Breuil <landry@xfce.org>", "Nick Schermer <nick@xfce.org>", NULL };
+   icon = xfce_panel_pixbuf_from_source("xfce4-battery-plugin", NULL, 32);
+   gtk_show_about_dialog(NULL,
+      "logo", icon,
+      "license", xfce_get_license_text (XFCE_LICENSE_TEXT_GPL),
+      "version", PACKAGE_VERSION,
+      "program-name", PACKAGE_NAME,
+      "comments", _("Show and monitor the battery status"),
+      "website", "http://goodies.xfce.org/projects/panel-plugins/xfce4-battery-plugin",
+      "copyright", _("Copyright (c) 2003-2012\n"),
+      "authors", auth, NULL);
+
+   if(icon)
+      g_object_unref(G_OBJECT(icon));
+}
+
 /* create the plugin */
 static void
 battmon_construct (XfcePanelPlugin *plugin)
@@ -1506,6 +1529,9 @@ battmon_construct (XfcePanelPlugin *plugin)
 
     xfce_panel_plugin_menu_show_configure (plugin);
     g_signal_connect (plugin, "configure-plugin", G_CALLBACK (battmon_create_options), battmon);
+
+    xfce_panel_plugin_menu_show_about(plugin);
+    g_signal_connect (plugin, "about", G_CALLBACK (battmon_show_about), battmon);
 
     g_signal_connect (plugin, "size-changed", G_CALLBACK (battmon_set_size), battmon);
 

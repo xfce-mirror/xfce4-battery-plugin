@@ -649,7 +649,7 @@ battmon_icon (t_battmon *battmon)
 
     /* try to load battery icon from your current icon theme */
     icon = gtk_icon_theme_load_icon (gtk_icon_theme_get_default (),
-                                     "battery", size , 0, NULL);
+                                     "xfce4-battery-plugin", size , 0, NULL);
 
     return icon;
 }

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-battery-plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-15 20:48+0200\n"
+"POT-Creation-Date: 2012-04-17 19:22+0200\n"
 "PO-Revision-Date: 2008-12-06 23:24+0900\n"
 "Last-Translator: Gheyret T.Kenji <gheyret@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
@@ -155,6 +155,10 @@ msgstr "توك مەنبەسىنى كۆرسەت"
 msgid "Display icon"
 msgstr "سىنبەلگە كۆرسەت"
 
-#: ../panel-plugin/battery.desktop.in.h:2
+#: ../panel-plugin/battery.c:1505 ../panel-plugin/battery.desktop.in.h:2
 msgid "Show and monitor the battery status"
 msgstr "توكدان ھالىتىنى كۆزىتىپ كۆرسەت"
+
+#: ../panel-plugin/battery.c:1507
+msgid "Copyright (c) 2003-2012\n"
+msgstr ""

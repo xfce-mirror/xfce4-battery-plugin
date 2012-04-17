@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-battery-plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-15 20:48+0200\n"
+"POT-Creation-Date: 2012-04-17 19:22+0200\n"
 "PO-Revision-Date: 2008-06-24 21:00+0300\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <fi@li.org>\n"
@@ -157,6 +157,10 @@ msgstr "Näytä lataus"
 msgid "Display icon"
 msgstr "Näytä kuvake"
 
-#: ../panel-plugin/battery.desktop.in.h:2
+#: ../panel-plugin/battery.c:1505 ../panel-plugin/battery.desktop.in.h:2
 msgid "Show and monitor the battery status"
 msgstr "Näytä ja valvo akun tilaa"
+
+#: ../panel-plugin/battery.c:1507
+msgid "Copyright (c) 2003-2012\n"
+msgstr ""

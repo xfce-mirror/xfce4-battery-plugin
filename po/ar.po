@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-battery-plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-15 20:48+0200\n"
+"POT-Creation-Date: 2012-04-17 19:22+0200\n"
 "PO-Revision-Date: 2011-08-18 22:58-0000\n"
 "Last-Translator: كريم أولاد الشلحة <herr.linux88@gmail.com>\n"
 "Language-Team: Arabic Xfce Translation Team <herr.lniux88@gmail.com>\n"
@@ -150,6 +150,10 @@ msgstr "عرض الطاقة"
 msgid "Display icon"
 msgstr "عرض أيقونة"
 
-#: ../panel-plugin/battery.desktop.in.h:2
+#: ../panel-plugin/battery.c:1505 ../panel-plugin/battery.desktop.in.h:2
 msgid "Show and monitor the battery status"
 msgstr "عرض و مراقبة حالة البطارية"
+
+#: ../panel-plugin/battery.c:1507
+msgid "Copyright (c) 2003-2012\n"
+msgstr ""

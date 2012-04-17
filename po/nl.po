@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-battery-plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-15 20:48+0200\n"
+"POT-Creation-Date: 2012-04-17 19:22+0200\n"
 "PO-Revision-Date: 2008-07-15 22:17+0200\n"
 "Last-Translator: Pjotr\n"
 "Language-Team: Dutch/Flemish\n"
@@ -157,6 +157,10 @@ msgstr "Geef energie weer"
 msgid "Display icon"
 msgstr "Geef pictogram weer"
 
-#: ../panel-plugin/battery.desktop.in.h:2
+#: ../panel-plugin/battery.c:1505 ../panel-plugin/battery.desktop.in.h:2
 msgid "Show and monitor the battery status"
 msgstr "Toon en bewaak de status van de accu"
+
+#: ../panel-plugin/battery.c:1507
+msgid "Copyright (c) 2003-2012\n"
+msgstr ""

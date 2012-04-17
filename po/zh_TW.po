@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-battery-plugin 0.5.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-15 20:48+0200\n"
+"POT-Creation-Date: 2012-04-17 19:22+0200\n"
 "PO-Revision-Date: 2011-11-18 02:24+0800\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (traditional) <xfce-i18n@xfce.org>\n"
@@ -151,6 +151,10 @@ msgstr "顯示電力"
 msgid "Display icon"
 msgstr "顯示圖示"
 
-#: ../panel-plugin/battery.desktop.in.h:2
+#: ../panel-plugin/battery.c:1505 ../panel-plugin/battery.desktop.in.h:2
 msgid "Show and monitor the battery status"
 msgstr "顯示並監視電池狀態"
+
+#: ../panel-plugin/battery.c:1507
+msgid "Copyright (c) 2003-2012\n"
+msgstr ""

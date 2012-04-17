@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-battery-plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-15 20:48+0200\n"
+"POT-Creation-Date: 2012-04-17 19:22+0200\n"
 "PO-Revision-Date: 2011-12-29 19:59+0200\n"
 "Last-Translator: Milen Milev <fanfolet@gmail.com>\n"
 "Language-Team: BULGARIAN\n"
@@ -156,6 +156,10 @@ msgstr "Покажи мощността"
 msgid "Display icon"
 msgstr "Покажи икона"
 
-#: ../panel-plugin/battery.desktop.in.h:2
+#: ../panel-plugin/battery.c:1505 ../panel-plugin/battery.desktop.in.h:2
 msgid "Show and monitor the battery status"
 msgstr "Покажи и наблюдавай състоянието на батерията"
+
+#: ../panel-plugin/battery.c:1507
+msgid "Copyright (c) 2003-2012\n"
+msgstr ""

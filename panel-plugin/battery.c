@@ -58,6 +58,7 @@
 #include <time.h>
 
 #define BORDER          8
+#define AC_COLOR        "#8888FF"
 #define HIGH_COLOR      "#00ff00"
 #define LOW_COLOR       "#ffff00"
 #define CRITICAL_COLOR  "#ff0000"
@@ -81,6 +82,10 @@ typedef struct
     char        *command_on_low;    char        *command_on_critical;
     float        hsize;
     float        vsize;
+    GdkColor        colorA;
+    GdkColor        colorH;
+    GdkColor        colorL;
+    GdkColor        colorC;
 } t_battmon_options;
 
 typedef struct
@@ -97,9 +102,6 @@ typedef struct
     gboolean        low;
     gboolean        critical;
     t_battmon_options    options;
-    GdkColor        colorH;
-    GdkColor        colorL;
-    GdkColor        colorC;
     GtkLabel        *label;
     GtkLabel        *charge;
     GtkLabel        *rtime;
@@ -107,6 +109,7 @@ typedef struct
     GtkLabel        *acfan;
     GtkLabel        *temp;
     GtkWidget        *image;
+    GtkRcStyle        *battstatus_style;
 } t_battmon;
 
 typedef struct
@@ -125,6 +128,14 @@ typedef struct
     GtkWidget        *om_action_critical;
     GtkWidget        *en_command_low;
     GtkWidget        *en_command_critical;
+    GtkWidget        *ac_color_button;
+    GtkWidget        *high_color_button;
+    GtkWidget        *low_color_button;
+    GtkWidget        *critical_color_button;
+    GtkWidget        *ac_color_background;
+    GtkWidget        *high_color_background;
+    GtkWidget        *low_color_background;
+    GtkWidget        *critical_color_background;
     t_battmon        *battmon;
 } t_battmon_dialog;
 
@@ -150,6 +161,10 @@ init_options(t_battmon_options *options)
     options->command_on_critical = NULL;
     options->hsize = 1.75;
     options->vsize = 0.5;
+    gdk_color_parse(AC_COLOR, &(options->colorA));
+    gdk_color_parse(HIGH_COLOR, &(options->colorH));
+    gdk_color_parse(LOW_COLOR, &(options->colorL));
+    gdk_color_parse(CRITICAL_COLOR, &(options->colorC));
 }
 
 gboolean
@@ -554,24 +569,26 @@ battmon.c:241: for each function it appears in.)
     /* bar colors and state flags */
     if (acline) {
       battmon->low = battmon->critical = FALSE;
-      gtk_widget_modify_bg(battmon->battstatus, GTK_STATE_PRELIGHT, NULL);
+      battmon->battstatus_style->bg[GTK_STATE_PRELIGHT] = (battmon->options.colorA);
+      battmon->battstatus_style->bg[GTK_STATE_SELECTED] = (battmon->options.colorA);
     }
     else {
       if(charge <= battmon->options.critical_percentage) {
-        gtk_widget_modify_bg(battmon->battstatus, GTK_STATE_PRELIGHT, &(battmon->colorC));
-        gtk_widget_modify_bg(battmon->battstatus, GTK_STATE_SELECTED, &(battmon->colorC));
+        battmon->battstatus_style->bg[GTK_STATE_PRELIGHT] = (battmon->options.colorC);
+        battmon->battstatus_style->bg[GTK_STATE_SELECTED] = (battmon->options.colorC);
       }
       else if(charge <= battmon->options.low_percentage) {
-        gtk_widget_modify_bg(battmon->battstatus, GTK_STATE_PRELIGHT, &(battmon->colorL));
-        gtk_widget_modify_bg(battmon->battstatus, GTK_STATE_SELECTED, &(battmon->colorL));
+        battmon->battstatus_style->bg[GTK_STATE_PRELIGHT] = (battmon->options.colorL);
+        battmon->battstatus_style->bg[GTK_STATE_SELECTED] = (battmon->options.colorL);
         battmon->critical = FALSE;
       }
       else {
             battmon->low = battmon->critical = FALSE;
-        gtk_widget_modify_bg(battmon->battstatus, GTK_STATE_PRELIGHT, &(battmon->colorH));
-        gtk_widget_modify_bg(battmon->battstatus, GTK_STATE_SELECTED, &(battmon->colorH));
+        battmon->battstatus_style->bg[GTK_STATE_PRELIGHT] = (battmon->options.colorH);
+        battmon->battstatus_style->bg[GTK_STATE_SELECTED] = (battmon->options.colorH);
       }
     }
+    gtk_widget_modify_style(GTK_WIDGET(battmon->battstatus),battmon->battstatus_style);
 
     /* alarms */
     if (!acline && charge <= battmon->options.low_percentage){
@@ -804,10 +821,17 @@ static void setup_battmon(t_battmon      *battmon,
     gtk_container_add(GTK_CONTAINER(battmon->ebox),GTK_WIDGET(battmon->vbox));
     gtk_widget_show(battmon->ebox);
 
+    battmon->battstatus_style = gtk_widget_get_modifier_style(battmon->battstatus);
+    if (!battmon->battstatus_style) {
+      battmon->battstatus_style = gtk_rc_style_new();
+    } else {
+            /* to free the style safely in any case */
+      gtk_rc_style_ref(battmon->battstatus_style);
+    }
 
-    gdk_color_parse(HIGH_COLOR, &(battmon->colorH));
-    gdk_color_parse(LOW_COLOR, &(battmon->colorL));
-    gdk_color_parse(CRITICAL_COLOR, &(battmon->colorC));
+    battmon->battstatus_style->color_flags[GTK_STATE_PRELIGHT] |= GTK_RC_BG;
+    battmon->battstatus_style->color_flags[GTK_STATE_SELECTED] |= GTK_RC_BG;
+
     gtk_widget_set_size_request(battmon->ebox, -1, -1);
 }
 
@@ -906,6 +930,7 @@ battmon_free(XfcePanelPlugin *plugin, t_battmon *battmon)
     /* free tooltip */
     gtk_tooltips_set_tip (battmon->tips, battmon->ebox, NULL, NULL);
     g_object_unref (G_OBJECT (battmon->tips));
+    gtk_rc_style_unref(battmon->battstatus_style);
 
     g_free(battmon);
 }
@@ -949,6 +974,15 @@ battmon_read_config(XfcePanelPlugin *plugin, t_battmon *battmon)
     battmon->options.action_on_critical = xfce_rc_read_int_entry (rc, "action_on_critical", 0);
 
     battmon->options.hide_when_full = xfce_rc_read_int_entry (rc, "hide_when_full", 0);
+
+    if ((value = xfce_rc_read_entry (rc, "colorA", NULL)) != NULL)
+      gdk_color_parse(value, &battmon->options.colorA);
+    if ((value = xfce_rc_read_entry (rc, "colorH", NULL)) != NULL)
+      gdk_color_parse(value, &battmon->options.colorH);
+    if ((value = xfce_rc_read_entry (rc, "colorL", NULL)) != NULL)
+      gdk_color_parse(value, &battmon->options.colorL);
+    if ((value = xfce_rc_read_entry (rc, "colorC", NULL)) != NULL)
+      gdk_color_parse(value, &battmon->options.colorC);
 
     if ((value =  xfce_rc_read_entry (rc, "command_on_low", NULL)) && *value)
         battmon->options.command_on_low = g_strdup (value);
@@ -997,6 +1031,34 @@ battmon_write_config(XfcePanelPlugin *plugin, t_battmon *battmon)
     xfce_rc_write_int_entry (rc, "action_on_critical", battmon->options.action_on_critical);
 
     xfce_rc_write_int_entry (rc, "hide_when_full", battmon->options.hide_when_full );
+
+    char colorA_str[8];
+    g_snprintf(colorA_str, 8, "#%02X%02X%02X",
+      (guint)battmon->options.colorA.red >> 8,
+      (guint)battmon->options.colorA.green >> 8,
+      (guint)battmon->options.colorA.blue >> 8);
+    xfce_rc_write_entry (rc, "colorA", colorA_str);
+
+    char colorH_str[8];
+    g_snprintf(colorH_str, 8, "#%02X%02X%02X",
+      (guint)battmon->options.colorH.red >> 8,
+      (guint)battmon->options.colorH.green >> 8,
+      (guint)battmon->options.colorH.blue >> 8);
+    xfce_rc_write_entry (rc, "colorH", colorH_str);
+
+    char colorL_str[8];
+    g_snprintf(colorL_str, 8, "#%02X%02X%02X",
+      (guint)battmon->options.colorL.red >> 8,
+      (guint)battmon->options.colorL.green >> 8,
+      (guint)battmon->options.colorL.blue >> 8);
+    xfce_rc_write_entry (rc, "colorL", colorL_str);
+
+    char colorC_str[8];
+    g_snprintf(colorC_str, 8, "#%02X%02X%02X",
+      (guint)battmon->options.colorC.red >> 8,
+      (guint)battmon->options.colorC.green >> 8,
+      (guint)battmon->options.colorC.blue >> 8);
+    xfce_rc_write_entry (rc, "colorC", colorC_str);
 
     xfce_rc_write_entry (rc, "command_on_low", battmon->options.command_on_low ? battmon->options.command_on_low : "");
 
@@ -1048,6 +1110,10 @@ static void refresh_dialog(t_battmon_dialog *dialog)
 
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(dialog->sb_low_percentage), battmon->options.low_percentage);
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(dialog->sb_critical_percentage), battmon->options.critical_percentage);
+    gtk_widget_modify_bg(GTK_WIDGET(dialog->ac_color_background), GTK_STATE_NORMAL, &battmon->options.colorA);
+    gtk_widget_modify_bg(GTK_WIDGET(dialog->high_color_background), GTK_STATE_NORMAL, &battmon->options.colorH);
+    gtk_widget_modify_bg(GTK_WIDGET(dialog->low_color_background), GTK_STATE_NORMAL, &battmon->options.colorL);
+    gtk_widget_modify_bg(GTK_WIDGET(dialog->critical_color_background), GTK_STATE_NORMAL, &battmon->options.colorC);
     gtk_option_menu_set_history(GTK_OPTION_MENU(dialog->om_action_low), battmon->options.action_on_low);
     if(battmon->options.command_on_low)
         gtk_entry_set_text(GTK_ENTRY(dialog->en_command_low), battmon->options.command_on_low);
@@ -1264,6 +1330,44 @@ command_browse_cb (GtkWidget *b, GtkEntry *entry)
     }
 }
 
+
+static void change_color(GtkWidget *button, t_battmon_dialog *dialog, GdkColor *color)
+{
+    GtkWidget *color_dialog;
+    GtkColorSelection *colorsel;
+    gint response;
+
+    color_dialog = gtk_color_selection_dialog_new(_("Select color"));
+    gtk_window_set_transient_for(GTK_WINDOW(color_dialog), GTK_WINDOW(gtk_widget_get_toplevel(button)));
+    colorsel = GTK_COLOR_SELECTION(GTK_COLOR_SELECTION_DIALOG(color_dialog)->colorsel);
+    gtk_color_selection_set_previous_color(colorsel, color);
+    gtk_color_selection_set_current_color(colorsel, color);
+    gtk_color_selection_set_has_palette(colorsel, TRUE);
+
+    response = gtk_dialog_run(GTK_DIALOG(color_dialog));
+    if (response == GTK_RESPONSE_OK) {
+        gtk_color_selection_get_current_color(colorsel, color);
+        refresh_dialog(dialog);
+        update_apm_status(dialog->battmon);
+    }
+
+    DBG("change_color");
+    gtk_widget_destroy(GTK_WIDGET(color_dialog));
+}
+
+static void change_color_ac(GtkWidget *button, t_battmon_dialog *dialog) {
+  change_color(button,dialog,&dialog->battmon->options.colorA);
+}
+static void change_color_high(GtkWidget *button, t_battmon_dialog *dialog) {
+  change_color(button,dialog,&dialog->battmon->options.colorH);
+}
+static void change_color_low(GtkWidget *button, t_battmon_dialog *dialog){
+  change_color(button,dialog,&dialog->battmon->options.colorL);
+}
+static void change_color_critical(GtkWidget *button, t_battmon_dialog *dialog){
+  change_color(button,dialog,&dialog->battmon->options.colorC);
+}
+
 static void
 battmon_dialog_response (GtkWidget *dlg, int response, t_battmon *battmon)
 {
@@ -1328,6 +1432,42 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
     hbox = gtk_hbox_new(FALSE, BORDER);
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
+    label = gtk_label_new(_("AC Color:"));
+    gtk_size_group_add_widget(sg,label);
+    gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
+    gtk_box_pack_start(GTK_BOX(hbox),label,FALSE,FALSE,0);
+
+    dialog->ac_color_button = gtk_button_new();
+    dialog->ac_color_background = gtk_drawing_area_new();
+    gtk_widget_modify_bg(dialog->ac_color_background, GTK_STATE_NORMAL, &battmon->options.colorA);
+    gtk_widget_set_size_request(dialog->ac_color_background, 64, 12);
+    gtk_container_add(GTK_CONTAINER(dialog->ac_color_button), dialog->ac_color_background);
+    gtk_widget_show(GTK_WIDGET(dialog->ac_color_button));
+    gtk_widget_show(GTK_WIDGET(dialog->ac_color_background));
+    gtk_box_pack_start(GTK_BOX(hbox), GTK_WIDGET(dialog->ac_color_button), FALSE, FALSE, 0);
+
+
+    hbox = gtk_hbox_new(FALSE, BORDER);
+    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
+
+    label = gtk_label_new(_("High Color:"));
+    gtk_size_group_add_widget(sg,label);
+    gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
+    gtk_box_pack_start(GTK_BOX(hbox),label,FALSE,FALSE,0);
+
+    dialog->high_color_button = gtk_button_new();
+    dialog->high_color_background = gtk_drawing_area_new();
+    gtk_widget_modify_bg(dialog->high_color_background, GTK_STATE_NORMAL, &battmon->options.colorH);
+    gtk_widget_set_size_request(dialog->high_color_background, 64, 12);
+    gtk_container_add(GTK_CONTAINER(dialog->high_color_button), dialog->high_color_background);
+    gtk_widget_show(GTK_WIDGET(dialog->high_color_button));
+    gtk_widget_show(GTK_WIDGET(dialog->high_color_background));
+    gtk_box_pack_start(GTK_BOX(hbox), GTK_WIDGET(dialog->high_color_button), FALSE, FALSE, 0);
+
+
+    hbox = gtk_hbox_new(FALSE, BORDER);
+    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
+
     label = gtk_label_new(_("Low percentage:"));
     gtk_size_group_add_widget(sg, label);
     gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
@@ -1335,6 +1475,16 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
 
     dialog->sb_low_percentage = gtk_spin_button_new_with_range(1, 100, 1);
     gtk_box_pack_start(GTK_BOX(hbox), dialog->sb_low_percentage, FALSE, FALSE, 0);
+
+    dialog->low_color_button = gtk_button_new();
+    dialog->low_color_background = gtk_drawing_area_new();
+    gtk_widget_modify_bg(dialog->low_color_background, GTK_STATE_NORMAL, &battmon->options.colorL);
+    gtk_widget_set_size_request(dialog->low_color_background, 64, 12);
+    gtk_container_add(GTK_CONTAINER(dialog->low_color_button), dialog->low_color_background);
+    gtk_widget_show(GTK_WIDGET(dialog->low_color_button));
+    gtk_widget_show(GTK_WIDGET(dialog->low_color_background));
+    gtk_box_pack_start(GTK_BOX(hbox), GTK_WIDGET(dialog->low_color_button), FALSE, FALSE, 0);
+
 
     hbox = gtk_hbox_new(FALSE, BORDER);
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
@@ -1346,6 +1496,15 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
 
     dialog->sb_critical_percentage = gtk_spin_button_new_with_range(1, 100, 1);
     gtk_box_pack_start(GTK_BOX(hbox), dialog->sb_critical_percentage, FALSE, FALSE, 0);
+
+    dialog->critical_color_button = gtk_button_new();
+    dialog->critical_color_background = gtk_drawing_area_new();
+    gtk_widget_modify_bg(dialog->critical_color_background, GTK_STATE_NORMAL, &battmon->options.colorC);
+    gtk_widget_set_size_request(dialog->critical_color_background, 64, 12);
+    gtk_container_add(GTK_CONTAINER(dialog->critical_color_button), dialog->critical_color_background);
+    gtk_widget_show(GTK_WIDGET(dialog->critical_color_button));
+    gtk_widget_show(GTK_WIDGET(dialog->critical_color_background));
+    gtk_box_pack_start(GTK_BOX(hbox), GTK_WIDGET(dialog->critical_color_button), FALSE, FALSE, 0);
 
     /* Low battery action settings */
 
@@ -1467,6 +1626,10 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
     /* Signal connections should be set after setting tate of toggle buttons...*/
     refresh_dialog(dialog);
 
+    g_signal_connect(dialog->ac_color_button, "clicked", G_CALLBACK(change_color_ac), dialog);
+    g_signal_connect(dialog->high_color_button, "clicked", G_CALLBACK(change_color_high), dialog);
+    g_signal_connect(dialog->low_color_button, "clicked", G_CALLBACK(change_color_low), dialog);
+    g_signal_connect(dialog->critical_color_button, "clicked", G_CALLBACK(change_color_critical), dialog);
     g_signal_connect(button, "clicked", G_CALLBACK(command_browse_cb), dialog->en_command_low);
     g_signal_connect(button2, "clicked", G_CALLBACK(command_browse_cb), dialog->en_command_critical);
     g_signal_connect(dialog->cb_disp_percentage, "toggled", G_CALLBACK(set_disp_percentage), dialog);

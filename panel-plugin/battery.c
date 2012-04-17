@@ -26,11 +26,7 @@
 
 #if (defined(__FreeBSD__) || defined(__FreeBSD_kernel__)) && (defined(i386) || defined(__i386__))
 #include <machine/apm_bios.h>
-#elif __OpenBSD__
-#include <sys/param.h>
-#include <machine/apmvar.h>
-#define APMDEVICE "/dev/apm"
-#elif __NetBSD__
+#elif (defined(__OpenBSD__) || defined(__NetBSD__))
 #include <sys/param.h>
 #include <sys/ioctl.h>
 #include <machine/apmvar.h>

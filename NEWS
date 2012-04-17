@@ -1,3 +1,11 @@
+1.0.1 (2012/04/17):
+===================
+* build the plugin as a module
+* port to libxfce4ui (bug #8095)
+* port to panel 4.9+ (bug #8393)
+* add about dialog
+* don't show percentage/time if charge is 0 (bug #8631)
+
 1.0.0 (2011/01/03):
 ===================
 

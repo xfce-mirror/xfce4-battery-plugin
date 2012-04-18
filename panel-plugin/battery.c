@@ -78,8 +78,6 @@ typedef struct
     int        action_on_low;
     int        action_on_critical;
     char        *command_on_low;    char        *command_on_critical;
-    float        hsize;
-    float        vsize;
     GdkColor        colorA;
     GdkColor        colorH;
     GdkColor        colorL;
@@ -159,8 +157,6 @@ init_options(t_battmon_options *options)
     options->action_on_critical = 1;
     options->command_on_low = NULL;
     options->command_on_critical = NULL;
-    options->hsize = 1.75;
-    options->vsize = 0.5;
     gdk_color_parse(AC_COLOR, &(options->colorA));
     gdk_color_parse(HIGH_COLOR, &(options->colorH));
     gdk_color_parse(LOW_COLOR, &(options->colorL));
@@ -645,7 +641,7 @@ battmon_icon (t_battmon *battmon)
 {
     GdkPixbuf      *icon;
     GtkOrientation  orientation;
-    gint            width, height, size;
+    gint            size;
 
     /* panel info */
     orientation = xfce_panel_plugin_get_orientation (battmon->plugin);
@@ -657,18 +653,6 @@ battmon_icon (t_battmon *battmon)
 #else
     size = xfce_panel_plugin_get_size (battmon->plugin) - 6;
 #endif
-
-        /* icon size is 41x64px */
-    if (orientation == GTK_ORIENTATION_HORIZONTAL)
-    {
-        height = size;
-        width = height * 0.625;
-    }
-    else /* vertical */
-    {
-        width = size;
-        height = width * 1.6;
-    }
 
     /* try to load battery icon from your current icon theme */
     icon = gtk_icon_theme_load_icon (gtk_icon_theme_get_default (),

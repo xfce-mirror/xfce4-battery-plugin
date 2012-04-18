@@ -96,7 +96,7 @@ msgstr "Seuil critique :"
 
 #: ../panel-plugin/battery.c:1355
 msgid "Low battery action:"
-msgstr "Action batterie faible"
+msgstr "Action batterie faible :"
 
 #: ../panel-plugin/battery.c:1361 ../panel-plugin/battery.c:1402
 msgid "Do nothing"

@@ -1007,6 +1007,10 @@ battmon_write_config(XfcePanelPlugin *plugin, t_battmon *battmon)
 {
     XfceRc *rc;
     gchar *file;
+    char colorA_str[8];
+    char colorH_str[8];
+    char colorL_str[8];
+    char colorC_str[8];
 
     if (!(file = xfce_panel_plugin_save_location (plugin, TRUE)))
         return;
@@ -1043,28 +1047,24 @@ battmon_write_config(XfcePanelPlugin *plugin, t_battmon *battmon)
 
     xfce_rc_write_int_entry (rc, "hide_when_full", battmon->options.hide_when_full );
 
-    char colorA_str[8];
     g_snprintf(colorA_str, 8, "#%02X%02X%02X",
       (guint)battmon->options.colorA.red >> 8,
       (guint)battmon->options.colorA.green >> 8,
       (guint)battmon->options.colorA.blue >> 8);
     xfce_rc_write_entry (rc, "colorA", colorA_str);
 
-    char colorH_str[8];
     g_snprintf(colorH_str, 8, "#%02X%02X%02X",
       (guint)battmon->options.colorH.red >> 8,
       (guint)battmon->options.colorH.green >> 8,
       (guint)battmon->options.colorH.blue >> 8);
     xfce_rc_write_entry (rc, "colorH", colorH_str);
 
-    char colorL_str[8];
     g_snprintf(colorL_str, 8, "#%02X%02X%02X",
       (guint)battmon->options.colorL.red >> 8,
       (guint)battmon->options.colorL.green >> 8,
       (guint)battmon->options.colorL.blue >> 8);
     xfce_rc_write_entry (rc, "colorL", colorL_str);
 
-    char colorC_str[8];
     g_snprintf(colorC_str, 8, "#%02X%02X%02X",
       (guint)battmon->options.colorC.red >> 8,
       (guint)battmon->options.colorC.green >> 8,

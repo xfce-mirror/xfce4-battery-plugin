@@ -69,7 +69,7 @@ typedef struct
     gboolean    display_power;    /* Options */
     gboolean    display_percentage;    /* Options */
     gboolean    display_time;
-        gboolean        hide_when_full;
+    gboolean    hide_when_full;
     gboolean    tooltip_display_percentage;
     gboolean    tooltip_display_time;
     int        low_percentage;
@@ -115,7 +115,7 @@ typedef struct
     GtkWidget        *cb_disp_label;
     GtkWidget        *cb_disp_percentage;
     GtkWidget        *cb_disp_time;
-        GtkWidget               *cb_hide_when_full;
+    GtkWidget        *cb_hide_when_full;
     GtkWidget        *cb_disp_tooltip_percentage;
     GtkWidget        *cb_disp_tooltip_time;
     GtkWidget        *cb_disp_icon;
@@ -1532,14 +1532,14 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
     gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
 
     menu = gtk_menu_new();
-        mi = gtk_menu_item_new_with_label(_("Do nothing"));
+    mi = gtk_menu_item_new_with_label(_("Do nothing"));
     gtk_menu_shell_append(GTK_MENU_SHELL(menu), mi);
-     mi = gtk_menu_item_new_with_label(_("Display a warning message"));
-        gtk_menu_shell_append(GTK_MENU_SHELL(menu), mi);
+    mi = gtk_menu_item_new_with_label(_("Display a warning message"));
+    gtk_menu_shell_append(GTK_MENU_SHELL(menu), mi);
     mi = gtk_menu_item_new_with_label(_("Run command"));
-        gtk_menu_shell_append(GTK_MENU_SHELL(menu), mi);
-     mi = gtk_menu_item_new_with_label(_("Run command in terminal"));
-        gtk_menu_shell_append(GTK_MENU_SHELL(menu), mi);
+    gtk_menu_shell_append(GTK_MENU_SHELL(menu), mi);
+    mi = gtk_menu_item_new_with_label(_("Run command in terminal"));
+    gtk_menu_shell_append(GTK_MENU_SHELL(menu), mi);
 
 
     dialog->om_action_low = gtk_option_menu_new();
@@ -1549,18 +1549,18 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
     /* Low battery command */
 
     hbox = gtk_hbox_new(FALSE, BORDER);
-      gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, TRUE, 0);
 
-        label = gtk_label_new(_("Command:"));
-        gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
-        gtk_size_group_add_widget(sg, label);
+    label = gtk_label_new(_("Command:"));
+    gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
+    gtk_size_group_add_widget(sg, label);
     gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
 
-        dialog->en_command_low = gtk_entry_new();
-        gtk_box_pack_start(GTK_BOX(hbox), dialog->en_command_low, FALSE, FALSE, 0);
+    dialog->en_command_low = gtk_entry_new();
+    gtk_box_pack_start(GTK_BOX(hbox), dialog->en_command_low, FALSE, FALSE, 0);
 
-        button = gtk_button_new_with_label("...");
-        gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
+    button = gtk_button_new_with_label("...");
+    gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 
     hbox = gtk_hbox_new(FALSE, BORDER);
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
@@ -1584,14 +1584,14 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
     gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
 
     menu = gtk_menu_new();
-        mi = gtk_menu_item_new_with_label(_("Do nothing"));
-        gtk_menu_shell_append(GTK_MENU_SHELL(menu), mi);
-     mi = gtk_menu_item_new_with_label(_("Display a warning message"));
-        gtk_menu_shell_append(GTK_MENU_SHELL(menu), mi);
+    mi = gtk_menu_item_new_with_label(_("Do nothing"));
+    gtk_menu_shell_append(GTK_MENU_SHELL(menu), mi);
+    mi = gtk_menu_item_new_with_label(_("Display a warning message"));
+    gtk_menu_shell_append(GTK_MENU_SHELL(menu), mi);
     mi = gtk_menu_item_new_with_label(_("Run command"));
-        gtk_menu_shell_append(GTK_MENU_SHELL(menu), mi);
-     mi = gtk_menu_item_new_with_label(_("Run command in terminal"));
-        gtk_menu_shell_append(GTK_MENU_SHELL(menu), mi);
+    gtk_menu_shell_append(GTK_MENU_SHELL(menu), mi);
+    mi = gtk_menu_item_new_with_label(_("Run command in terminal"));
+    gtk_menu_shell_append(GTK_MENU_SHELL(menu), mi);
 
     dialog->om_action_critical = gtk_option_menu_new();
     gtk_option_menu_set_menu(GTK_OPTION_MENU(dialog->om_action_critical), menu);
@@ -1600,18 +1600,18 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
     /* Critical battery command */
 
     hbox = gtk_hbox_new(FALSE, BORDER);
-      gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, TRUE, 0);
 
-        label = gtk_label_new(_("Command:"));
-        gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
-        gtk_size_group_add_widget(sg, label);
+    label = gtk_label_new(_("Command:"));
+    gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
+    gtk_size_group_add_widget(sg, label);
     gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
 
-        dialog->en_command_critical = gtk_entry_new();
+    dialog->en_command_critical = gtk_entry_new();
     gtk_box_pack_start(GTK_BOX(hbox), dialog->en_command_critical, FALSE, FALSE, 0);
 
-        button2 = gtk_button_new_with_label("...");
-        gtk_box_pack_start(GTK_BOX(hbox), button2, FALSE, FALSE, 0);
+    button2 = gtk_button_new_with_label("...");
+    gtk_box_pack_start(GTK_BOX(hbox), button2, FALSE, FALSE, 0);
 
     label = gtk_label_new_with_mnemonic (_("Levels and _actions"));
     gtk_widget_show (label);

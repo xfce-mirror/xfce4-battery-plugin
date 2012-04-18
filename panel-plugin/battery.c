@@ -282,6 +282,7 @@ battmon_time_labels_fits(t_battmon *battmon)
     labels_size += widget_size.height;
     gtk_widget_size_request( GTK_WIDGET(battmon->rtime), &widget_size );
     labels_size += widget_size.height;
+    DBG("label_fits() : labels_size = %d, plugin_size = %d", labels_size, plugin_size);
 
     return labels_size <= plugin_size;
 }

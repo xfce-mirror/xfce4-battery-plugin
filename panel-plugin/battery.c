@@ -469,15 +469,15 @@ battmon.c:241: for each function it appears in.)
     charge = CLAMP (charge, 0, 100);
     gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(battmon->battstatus), charge / 100.0);
     if(battmon->options.display_bar){
-        gtk_widget_show((GtkWidget *)battmon->battstatus);
+        gtk_widget_show(GTK_WIDGET(battmon->battstatus));
     } else {
-        gtk_widget_hide((GtkWidget *)battmon->battstatus);
+        gtk_widget_hide(GTK_WIDGET(battmon->battstatus));
     }
 
     if(battmon->options.display_label){
-        gtk_widget_show((GtkWidget *)battmon->label);
+        gtk_widget_show(GTK_WIDGET(battmon->label));
     } else {
-        gtk_widget_hide((GtkWidget *)battmon->label);
+        gtk_widget_hide(GTK_WIDGET(battmon->label));
     }
 
     if(battmon->options.display_icon){
@@ -487,30 +487,30 @@ battmon.c:241: for each function it appears in.)
     }
 
     if(battmon->options.display_percentage && charge > 0 && !(battmon->options.hide_when_full && acline && charge >= 99)){
-        gtk_widget_show((GtkWidget *)battmon->charge);
+        gtk_widget_show(GTK_WIDGET(battmon->charge));
         g_snprintf(buffer, sizeof(buffer),"%d%% ", charge);
         gtk_label_set_text(battmon->charge,buffer);
     } else {
-        gtk_widget_hide((GtkWidget *)battmon->charge);
+        gtk_widget_hide(GTK_WIDGET(battmon->charge));
     }
 
     if (battmon->options.display_time && charge > 0 && !(battmon->options.hide_when_full && acline && charge >= 99 )){
         GtkLabel *active_label;
         if ( battmon_time_labels_fits( battmon ) ) {
             active_label = battmon->rtime;
-            gtk_widget_hide( (GtkWidget*)battmon->alt_rtime );
+            gtk_widget_hide(GTK_WIDGET(battmon->alt_rtime));
         } else {
             active_label = battmon->alt_rtime;
-            gtk_widget_hide( (GtkWidget*)battmon->rtime );
+            gtk_widget_hide(GTK_WIDGET(battmon->rtime));
         }
 
-        gtk_widget_show((GtkWidget *)active_label);
+        gtk_widget_show(GTK_WIDGET(active_label));
         g_snprintf(buffer, sizeof(buffer),"%02d:%02d ",time_remaining/60,time_remaining%60);
         gtk_label_set_text(active_label,buffer);
 
     } else {
-        gtk_widget_hide((GtkWidget *)battmon->rtime);
-        gtk_widget_hide((GtkWidget *)battmon->alt_rtime);
+        gtk_widget_hide(GTK_WIDGET(battmon->rtime));
+        gtk_widget_hide(GTK_WIDGET(battmon->alt_rtime));
     }
 
 
@@ -541,8 +541,8 @@ battmon.c:241: for each function it appears in.)
     gtk_tooltips_set_tip (battmon->tips, battmon->ebox, buffer, NULL);
 
     if(battmon->options.display_power){
-      gtk_widget_show((GtkWidget *)battmon->acfan);
-      gtk_widget_show((GtkWidget *)battmon->temp);
+      gtk_widget_show(GTK_WIDGET(battmon->acfan));
+      gtk_widget_show(GTK_WIDGET(battmon->temp));
 
       fan=get_fan_status();
       if(acline && fan)
@@ -553,7 +553,7 @@ battmon.c:241: for each function it appears in.)
         gtk_label_set_text(battmon->acfan,"FAN");
       else {
           gtk_label_set_text(battmon->acfan,"");
-          gtk_widget_hide((GtkWidget *)battmon->acfan);
+          gtk_widget_hide(GTK_WIDGET(battmon->acfan));
       }
 
       temp=get_temperature();
@@ -562,11 +562,11 @@ battmon.c:241: for each function it appears in.)
         gtk_label_set_text(battmon->temp,temp);
       else {
           gtk_label_set_text(battmon->temp,"");
-          gtk_widget_hide((GtkWidget *)battmon->temp);
+          gtk_widget_hide(GTK_WIDGET(battmon->temp));
       }
     } else {
-      gtk_widget_hide((GtkWidget *)battmon->acfan);
-      gtk_widget_hide((GtkWidget *)battmon->temp);
+      gtk_widget_hide(GTK_WIDGET(battmon->acfan));
+      gtk_widget_hide(GTK_WIDGET(battmon->temp));
     }
 
     gtk_progress_bar_set_text(GTK_PROGRESS_BAR(battmon->battstatus), NULL);
@@ -804,24 +804,24 @@ static void setup_battmon(t_battmon      *battmon,
     gtk_box_pack_start(GTK_BOX(battmon->vbox), box, FALSE, FALSE, 0);
     gtk_widget_show_all(battmon->vbox);
     if(!battmon->options.display_bar)
-        gtk_widget_hide((GtkWidget *)battmon->battstatus);
+        gtk_widget_hide(GTK_WIDGET(battmon->battstatus));
     if(!battmon->options.display_label)
-        gtk_widget_hide((GtkWidget *)battmon->label);
+        gtk_widget_hide(GTK_WIDGET(battmon->label));
     if(!battmon->options.display_power){
-        gtk_widget_hide((GtkWidget *)battmon->acfan);
-        gtk_widget_hide((GtkWidget *)battmon->temp);
+        gtk_widget_hide(GTK_WIDGET(battmon->acfan));
+        gtk_widget_hide(GTK_WIDGET(battmon->temp));
     }
     if(!battmon->options.display_percentage){
-        gtk_widget_hide((GtkWidget *)battmon->charge);
+        gtk_widget_hide(GTK_WIDGET(battmon->charge));
     }
     if (!battmon->options.display_time){
-        gtk_widget_hide((GtkWidget *)battmon->rtime);
-        gtk_widget_hide((GtkWidget *)battmon->alt_rtime);
+        gtk_widget_hide(GTK_WIDGET(battmon->rtime));
+        gtk_widget_hide(GTK_WIDGET(battmon->alt_rtime));
     } else {
         if ( battmon_time_labels_fits(battmon) ) {
-        gtk_widget_hide((GtkWidget*)battmon->alt_rtime);
+        gtk_widget_hide(GTK_WIDGET(battmon->alt_rtime));
         } else {
-        gtk_widget_hide((GtkWidget*)battmon->rtime);
+        gtk_widget_hide(GTK_WIDGET(battmon->rtime));
         }
     }
 

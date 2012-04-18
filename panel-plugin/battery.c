@@ -964,7 +964,7 @@ battmon_read_config(XfcePanelPlugin *plugin, t_battmon *battmon)
 
     battmon->options.display_power = xfce_rc_read_bool_entry (rc, "display_power", FALSE);
 
-    battmon->options.display_percentage = xfce_rc_read_bool_entry (rc, "display_percentage", FALSE);
+    battmon->options.display_percentage = xfce_rc_read_bool_entry (rc, "display_percentage", TRUE);
 
     battmon->options.display_bar = xfce_rc_read_bool_entry (rc, "display_bar", TRUE);
 

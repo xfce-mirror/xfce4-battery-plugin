@@ -1633,14 +1633,20 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
     dialog->cb_disp_label = gtk_check_button_new_with_mnemonic(_("Display label"));
     gtk_box_pack_start(GTK_BOX(vbox2), dialog->cb_disp_label, FALSE, FALSE, 0);
 
-    dialog->cb_disp_percentage = gtk_check_button_new_with_mnemonic(_("Display percentage"));
-    gtk_box_pack_start(GTK_BOX(vbox2), dialog->cb_disp_percentage, FALSE, FALSE, 0);
+    dialog->cb_disp_icon = gtk_check_button_new_with_mnemonic(_("Display icon"));
+    gtk_box_pack_start(GTK_BOX(vbox2), dialog->cb_disp_icon, FALSE, FALSE, 0);
 
     dialog->cb_disp_bar = gtk_check_button_new_with_mnemonic(_("Display bar"));
     gtk_box_pack_start(GTK_BOX(vbox2), dialog->cb_disp_bar, FALSE, FALSE, 0);
 
+    dialog->cb_disp_percentage = gtk_check_button_new_with_mnemonic(_("Display percentage"));
+    gtk_box_pack_start(GTK_BOX(vbox2), dialog->cb_disp_percentage, FALSE, FALSE, 0);
+
     dialog->cb_disp_time = gtk_check_button_new_with_mnemonic(_("Display time"));
     gtk_box_pack_start(GTK_BOX(vbox2), dialog->cb_disp_time, FALSE, FALSE, 0);
+
+    dialog->cb_disp_power = gtk_check_button_new_with_mnemonic(_("Display power"));
+    gtk_box_pack_start(GTK_BOX(vbox2), dialog->cb_disp_power, FALSE, FALSE, 0);
 
     dialog->cb_hide_when_full = gtk_check_button_new_with_mnemonic(_("Hide time/percentage when full"));
     gtk_box_pack_start(GTK_BOX(vbox2), dialog->cb_hide_when_full, FALSE, FALSE, 0);
@@ -1650,12 +1656,6 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
 
     dialog->cb_disp_tooltip_time = gtk_check_button_new_with_mnemonic(_("Display time remaining in tooltip"));
     gtk_box_pack_start(GTK_BOX(vbox2), dialog->cb_disp_tooltip_time, FALSE, FALSE, 0);
-
-    dialog->cb_disp_power = gtk_check_button_new_with_mnemonic(_("Display power"));
-    gtk_box_pack_start(GTK_BOX(vbox2), dialog->cb_disp_power, FALSE, FALSE, 0);
-
-    dialog->cb_disp_icon = gtk_check_button_new_with_mnemonic(_("Display icon"));
-    gtk_box_pack_start(GTK_BOX(vbox2), dialog->cb_disp_icon, FALSE, FALSE, 0);
 
     label = gtk_label_new_with_mnemonic (_("_Display"));
     gtk_widget_show (label);

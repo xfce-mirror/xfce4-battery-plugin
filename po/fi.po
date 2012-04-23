@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-battery-plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-17 19:22+0200\n"
+"POT-Creation-Date: 2012-04-23 17:18+0200\n"
 "PO-Revision-Date: 2008-06-24 21:00+0300\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <fi@li.org>\n"
@@ -19,40 +19,40 @@ msgstr ""
 "X-Launchpad-Export-Date: 2008-06-21 16:04+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
-#: ../panel-plugin/battery.c:500
+#: ../panel-plugin/battery.c:551
 #, fuzzy
 msgid "(No battery, AC on-line)"
 msgstr "(Käytetään verkkovirtaa)"
 
-#: ../panel-plugin/battery.c:502
+#: ../panel-plugin/battery.c:553
 msgid "(Charging from AC)"
 msgstr "(Ladataan verkkovirrasta)"
 
-#: ../panel-plugin/battery.c:502
+#: ../panel-plugin/battery.c:553
 msgid "(AC on-line)"
 msgstr "(Käytetään verkkovirtaa)"
 
-#: ../panel-plugin/battery.c:512
+#: ../panel-plugin/battery.c:563
 #, c-format
 msgid "%d%% (%02d:%02d) remaining"
 msgstr "%d%% (%02d:%02d) jäljellä"
 
-#: ../panel-plugin/battery.c:514
+#: ../panel-plugin/battery.c:565
 #, c-format
 msgid "%02d:%02d remaining"
 msgstr "%02d:%02d jäljellä"
 
-#: ../panel-plugin/battery.c:516
+#: ../panel-plugin/battery.c:567
 #, c-format
 msgid "%d%% remaining"
 msgstr "%d%% jäljellä"
 
-#: ../panel-plugin/battery.c:518
+#: ../panel-plugin/battery.c:569
 #, c-format
 msgid "AC off-line"
 msgstr "Verkkovirta pois käytöstä"
 
-#: ../panel-plugin/battery.c:584
+#: ../panel-plugin/battery.c:637
 msgid ""
 "WARNING: Your battery has reached critical status. You should plug in or "
 "shutdown your computer now to avoid possible data loss."
@@ -60,7 +60,7 @@ msgstr ""
 "VAROITUS: Akkusi on lähes tyhjä. Kytke tietokoneesi heti verkkovirtaan tai "
 "sammuta se välttääksesi tiedon menetyksen."
 
-#: ../panel-plugin/battery.c:602
+#: ../panel-plugin/battery.c:655
 msgid ""
 "WARNING: Your battery is running low. You should consider plugging in or "
 "shutting down your computer soon to avoid possible data loss."
@@ -68,99 +68,145 @@ msgstr ""
 "VAROITUS: Akkusi virta on vähissä. Kytke koneesi pian verkkovirtaan tai "
 "sammuta se välttääksesi tiedon menetyksen."
 
-#: ../panel-plugin/battery.c:708
+#: ../panel-plugin/battery.c:709
 msgid "Battery"
 msgstr "Akku"
 
-#: ../panel-plugin/battery.c:1218
+#: ../panel-plugin/battery.c:1285
 msgid "Select file"
 msgstr "Valitse tiedosto"
 
-#: ../panel-plugin/battery.c:1259
+#: ../panel-plugin/battery.c:1326
 msgid "Select command"
 msgstr "Valitse komento"
 
-#: ../panel-plugin/battery.c:1278
+#: ../panel-plugin/battery.c:1341
+#, fuzzy
+msgid "Select color"
+msgstr "Valitse tiedosto"
+
+#: ../panel-plugin/battery.c:1383
 #, c-format
 msgid "Unable to open the following url: %s"
 msgstr "Seuraavaa osoitetta ei voitu avata: %s"
 
-#: ../panel-plugin/battery.c:1302 ../panel-plugin/battery.desktop.in.h:1
+#: ../panel-plugin/battery.c:1408 ../panel-plugin/battery.desktop.in.h:1
 msgid "Battery Monitor"
 msgstr "Akun seuraaja"
 
-#: ../panel-plugin/battery.c:1331
+#: ../panel-plugin/battery.c:1415
+msgid "Properties"
+msgstr ""
+
+#: ../panel-plugin/battery.c:1441
+msgid "On AC:"
+msgstr ""
+
+#: ../panel-plugin/battery.c:1458
+#, fuzzy
+msgid "Battery high:"
+msgstr "Akku"
+
+#: ../panel-plugin/battery.c:1475
+#, fuzzy
+msgid "Battery low:"
+msgstr "Akku"
+
+#: ../panel-plugin/battery.c:1492
+#, fuzzy
+msgid "Battery critical:"
+msgstr "Akun seuraaja"
+
+#: ../panel-plugin/battery.c:1506
+msgid "Bar _colors"
+msgstr ""
+
+#: ../panel-plugin/battery.c:1520
 msgid "Low percentage:"
 msgstr "Alhainen prosentti:"
 
-#: ../panel-plugin/battery.c:1342
-msgid "Critical percentage:"
-msgstr "Kriittinen prosentti:"
-
-#: ../panel-plugin/battery.c:1355
+#: ../panel-plugin/battery.c:1533
 msgid "Low battery action:"
 msgstr "Kun virta on vähissä:"
 
-#: ../panel-plugin/battery.c:1361 ../panel-plugin/battery.c:1402
+#: ../panel-plugin/battery.c:1539 ../panel-plugin/battery.c:1591
 msgid "Do nothing"
 msgstr "Älä tee mitään"
 
-#: ../panel-plugin/battery.c:1363 ../panel-plugin/battery.c:1404
+#: ../panel-plugin/battery.c:1541 ../panel-plugin/battery.c:1593
 msgid "Display a warning message"
 msgstr "Näytä varoitusviesti"
 
-#: ../panel-plugin/battery.c:1365 ../panel-plugin/battery.c:1406
+#: ../panel-plugin/battery.c:1543 ../panel-plugin/battery.c:1595
 msgid "Run command"
 msgstr "Suorita komento"
 
-#: ../panel-plugin/battery.c:1367 ../panel-plugin/battery.c:1408
+#: ../panel-plugin/battery.c:1545 ../panel-plugin/battery.c:1597
 msgid "Run command in terminal"
 msgstr "Suorita komento päätteessä"
 
-#: ../panel-plugin/battery.c:1380 ../panel-plugin/battery.c:1420
+#: ../panel-plugin/battery.c:1558 ../panel-plugin/battery.c:1609
 msgid "Command:"
 msgstr "Komento:"
 
-#: ../panel-plugin/battery.c:1396
+#: ../panel-plugin/battery.c:1572
+msgid "Critical percentage:"
+msgstr "Kriittinen prosentti:"
+
+#: ../panel-plugin/battery.c:1585
 msgid "Critical battery action:"
 msgstr "Kun akku on lähes tyhjä:"
 
-#: ../panel-plugin/battery.c:1443
+#: ../panel-plugin/battery.c:1620
+msgid "Levels and _actions"
+msgstr ""
+
+#: ../panel-plugin/battery.c:1633
 msgid "Display label"
 msgstr "Näytä selite"
 
-#: ../panel-plugin/battery.c:1446
-msgid "Display percentage"
-msgstr "Näytä prosentti"
-
-#: ../panel-plugin/battery.c:1449
-msgid "Display time"
-msgstr "Näytä aika"
-
-#: ../panel-plugin/battery.c:1452
-msgid "Hide time/percentage when full"
-msgstr "Piilota aika/prosentti, kun akku on täysi"
-
-#: ../panel-plugin/battery.c:1455
-msgid "Display percentage in tooltip"
-msgstr "Näytä prosentti työkaluvihjeessä"
-
-#: ../panel-plugin/battery.c:1458
-msgid "Display time remaining in tooltip"
-msgstr "Näytä jäljellä oleva aika työkaluvihjeessä"
-
-#: ../panel-plugin/battery.c:1461
-msgid "Display power"
-msgstr "Näytä lataus"
-
-#: ../panel-plugin/battery.c:1464
+#: ../panel-plugin/battery.c:1636
 msgid "Display icon"
 msgstr "Näytä kuvake"
 
-#: ../panel-plugin/battery.c:1505 ../panel-plugin/battery.desktop.in.h:2
+#: ../panel-plugin/battery.c:1639
+#, fuzzy
+msgid "Display bar"
+msgstr "Näytä selite"
+
+#: ../panel-plugin/battery.c:1642
+msgid "Display percentage"
+msgstr "Näytä prosentti"
+
+#: ../panel-plugin/battery.c:1645
+msgid "Display time"
+msgstr "Näytä aika"
+
+#: ../panel-plugin/battery.c:1648
+msgid "Display power"
+msgstr "Näytä lataus"
+
+#: ../panel-plugin/battery.c:1651
+msgid "Hide time/percentage when full"
+msgstr "Piilota aika/prosentti, kun akku on täysi"
+
+#: ../panel-plugin/battery.c:1654
+msgid "Display percentage in tooltip"
+msgstr "Näytä prosentti työkaluvihjeessä"
+
+#: ../panel-plugin/battery.c:1657
+msgid "Display time remaining in tooltip"
+msgstr "Näytä jäljellä oleva aika työkaluvihjeessä"
+
+#: ../panel-plugin/battery.c:1660
+#, fuzzy
+msgid "_Display"
+msgstr "Näytä aika"
+
+#: ../panel-plugin/battery.c:1707 ../panel-plugin/battery.desktop.in.h:2
 msgid "Show and monitor the battery status"
 msgstr "Näytä ja valvo akun tilaa"
 
-#: ../panel-plugin/battery.c:1507
+#: ../panel-plugin/battery.c:1709
 msgid "Copyright (c) 2003-2012\n"
 msgstr ""

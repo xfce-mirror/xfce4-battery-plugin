@@ -291,7 +291,7 @@ update_apm_status(t_battmon *battmon)
     int lcapacity, ccapacity;
     gboolean fan=FALSE;
     const char *temp;
-    static int old_state = BM_MISSING, new_state = BM_MISSING;
+    static int old_state = -1, new_state = BM_MISSING;
     gchar * icon_name = NULL;
     int time_remaining=0;
     gboolean acline;

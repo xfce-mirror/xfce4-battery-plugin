@@ -706,17 +706,17 @@ static void setup_battmon(t_battmon      *battmon,
 
     gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(battmon->battstatus), 0.0);
 
+    battmon->label = (GtkLabel *)gtk_label_new(_("Battery"));
+    gtk_box_pack_start(GTK_BOX(box),GTK_WIDGET(battmon->label),FALSE, FALSE, 0);
+
     battmon->image = xfce_panel_image_new_from_source("xfce4-battery-plugin");
     xfce_panel_image_set_size(XFCE_PANEL_IMAGE(battmon->image), size);
 
-    gtk_box_pack_start(GTK_BOX(box),GTK_WIDGET(battmon->image), FALSE, FALSE, 2);
+    gtk_box_pack_start(GTK_BOX(box),GTK_WIDGET(battmon->image), FALSE, FALSE, 0);
     /* init hide the widget */
     gtk_widget_hide(battmon->image);
 
-      battmon->label = (GtkLabel *)gtk_label_new(_("Battery"));
-        gtk_box_pack_start(GTK_BOX(box),GTK_WIDGET(battmon->label),FALSE, FALSE, 0);
-
-    gtk_box_pack_start(GTK_BOX(box),  GTK_WIDGET(battmon->battstatus), FALSE, FALSE, 2);
+    gtk_box_pack_start(GTK_BOX(box),  GTK_WIDGET(battmon->battstatus), FALSE, FALSE, 0);
 
     if (orientation == GTK_ORIENTATION_HORIZONTAL)
        vbox = gtk_vbox_new(FALSE, 0);

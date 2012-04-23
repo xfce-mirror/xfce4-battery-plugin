@@ -138,7 +138,7 @@ typedef struct
 
 enum {BM_DO_NOTHING, BM_MESSAGE, BM_COMMAND, BM_COMMAND_TERM};
 enum {BM_BROKEN, BM_USE_ACPI, BM_USE_APM};
-
+enum {BM_MISSING, BM_CRITICAL, BM_CRITICAL_CHARGING, BM_LOW, BM_LOW_CHARGING, BM_OK, BM_OK_CHARGING, BM_FULL, BM_FULL_CHARGING};
 
 static void
 init_options(t_battmon_options *options)
@@ -291,6 +291,8 @@ update_apm_status(t_battmon *battmon)
     int lcapacity, ccapacity;
     gboolean fan=FALSE;
     const char *temp;
+    static int old_state = BM_MISSING, new_state = BM_MISSING;
+    gchar * icon_name = NULL;
     int time_remaining=0;
     gboolean acline;
     gchar buffer[128];
@@ -478,6 +480,38 @@ battmon.c:241: for each function it appears in.)
     }
 
     if(battmon->options.display_icon){
+        if(charge == 0) {
+          /* battery missing */
+          icon_name = g_strdup("xfce4-battery-missing");
+          new_state = BM_MISSING;
+        } else if(charge <= battmon->options.critical_percentage) {
+          /* battery critical */
+          icon_name = g_strdup("xfce4-battery-critical");
+          new_state = BM_CRITICAL;
+        } else if(charge <= battmon->options.low_percentage) {
+          /* battery low */
+          icon_name = g_strdup("xfce4-battery-low");
+          new_state = BM_LOW;
+        } else if(charge < 99) {
+          /* battery ok */
+          icon_name = g_strdup("xfce4-battery-ok");
+          new_state = BM_OK;
+        } else {
+          /* battery full */
+          icon_name = g_strdup("xfce4-battery-full");
+          new_state = BM_FULL;
+        }
+        if (acline && new_state != BM_MISSING) {
+            new_state++;
+            gchar * tmp = g_strdup(icon_name); g_free(icon_name);
+            icon_name = g_strconcat(tmp, "-charging", NULL);
+        }
+        DBG("old_state=%d, new_state=%d, icon_name=%s", old_state, new_state, icon_name);
+        if (old_state != new_state)
+            xfce_panel_image_set_from_source(XFCE_PANEL_IMAGE(battmon->image), icon_name);
+        if (icon_name)
+            g_free(icon_name);
+        old_state = new_state;
         gtk_widget_show(battmon->image);
     } else {
         gtk_widget_hide(battmon->image);
@@ -636,31 +670,6 @@ do_low_warn:
     return TRUE;
 }
 
-static GdkPixbuf *
-battmon_icon (t_battmon *battmon)
-{
-    GdkPixbuf      *icon;
-    GtkOrientation  orientation;
-    gint            size;
-
-    /* panel info */
-    orientation = xfce_panel_plugin_get_orientation (battmon->plugin);
-
-#if defined (LIBXFCE4PANEL_CHECK_VERSION) && LIBXFCE4PANEL_CHECK_VERSION (4,9,0)
-    size = xfce_panel_plugin_get_size (battmon->plugin);
-    size /= xfce_panel_plugin_get_nrows (battmon->plugin);
-    size -= 6;
-#else
-    size = xfce_panel_plugin_get_size (battmon->plugin) - 6;
-#endif
-
-    /* try to load battery icon from your current icon theme */
-    icon = gtk_icon_theme_load_icon (gtk_icon_theme_get_default (),
-                                     "xfce4-battery-plugin", size , 0, NULL);
-
-    return icon;
-}
-
 static void setup_battmon(t_battmon      *battmon,
                           GtkOrientation  orientation,
                           GtkOrientation  panel_orientation)
@@ -697,16 +706,8 @@ static void setup_battmon(t_battmon      *battmon,
 
     gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(battmon->battstatus), 0.0);
 
-    icon  = battmon_icon (battmon);
-    if (icon)
-    {
-        battmon->image = gtk_image_new_from_pixbuf (icon);
-        g_object_unref (G_OBJECT (icon));
-    }
-    else
-    {
-        battmon->image = gtk_image_new_from_icon_name ("battery", GTK_ICON_SIZE_BUTTON);
-    }
+    battmon->image = xfce_panel_image_new_from_source("xfce4-battery-plugin");
+    xfce_panel_image_set_size(XFCE_PANEL_IMAGE(battmon->image), size);
 
     gtk_box_pack_start(GTK_BOX(box),GTK_WIDGET(battmon->image), FALSE, FALSE, 2);
     /* init hide the widget */
@@ -1067,7 +1068,7 @@ static gboolean
 battmon_set_size(XfcePanelPlugin *plugin, int size, t_battmon *battmon)
 {
     GdkPixbuf *icon;
-
+    DBG("set_size(%d)", size);
     if (xfce_panel_plugin_get_orientation (plugin) ==
             GTK_ORIENTATION_HORIZONTAL)
     {
@@ -1089,13 +1090,7 @@ battmon_set_size(XfcePanelPlugin *plugin, int size, t_battmon *battmon)
     }
 
     /* update the icon */
-    icon  = battmon_icon (battmon);
-    if (icon)
-    {
-        gtk_image_set_from_pixbuf (GTK_IMAGE (battmon->image), icon);
-        g_object_unref (G_OBJECT (icon));
-    }
-
+    xfce_panel_image_set_size(XFCE_PANEL_IMAGE(battmon->image), size);
     return TRUE;
 }
 

@@ -547,7 +547,7 @@ battmon.c:241: for each function it appears in.)
 
     if(acline) {
         char *t;
-        if((battmon->method == BM_USE_ACPI) && (acpiinfo->present == 0)) {
+        if(((battmon->method == BM_USE_ACPI) && (acpiinfo->present == 0)) || charge == 0) {
             t=_("(No battery, AC on-line)");
         } else {
             t=(charge<99.9)?_("(Charging from AC)"):_("(AC on-line)");

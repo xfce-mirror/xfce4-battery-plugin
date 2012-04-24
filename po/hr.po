@@ -7,50 +7,49 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-battery-plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-23 17:18+0200\n"
+"POT-Creation-Date: 2012-04-24 19:30+0000\n"
 "PO-Revision-Date: 2010-06-12 18:02+0200\n"
 "Last-Translator: Ivica Kolić<ikoli@yahoo.com> <>\n"
 "Language-Team: Croatian <>\n"
-"Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: hr\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: ../panel-plugin/battery.c:551
+#: ../panel-plugin/battery.c:554
 msgid "(No battery, AC on-line)"
 msgstr "(Nema baterije, AC on-line)"
 
-#: ../panel-plugin/battery.c:553
+#: ../panel-plugin/battery.c:556
 msgid "(Charging from AC)"
 msgstr "(Punjenje iz AC)"
 
-#: ../panel-plugin/battery.c:553
+#: ../panel-plugin/battery.c:556
 msgid "(AC on-line)"
 msgstr "(AC on-line)"
 
-#: ../panel-plugin/battery.c:563
+#: ../panel-plugin/battery.c:566
 #, c-format
 msgid "%d%% (%02d:%02d) remaining"
 msgstr "%d%% (%02d:%02d) preostalo"
 
-#: ../panel-plugin/battery.c:565
+#: ../panel-plugin/battery.c:568
 #, c-format
 msgid "%02d:%02d remaining"
 msgstr "%02d:%02d preostalo"
 
-#: ../panel-plugin/battery.c:567
+#: ../panel-plugin/battery.c:570
 #, c-format
 msgid "%d%% remaining"
 msgstr "%d%% preostalo"
 
-#: ../panel-plugin/battery.c:569
+#: ../panel-plugin/battery.c:572
 #, c-format
 msgid "AC off-line"
 msgstr "AC off-line"
 
-#: ../panel-plugin/battery.c:637
+#: ../panel-plugin/battery.c:640
 msgid ""
 "WARNING: Your battery has reached critical status. You should plug in or "
 "shutdown your computer now to avoid possible data loss."
@@ -58,7 +57,7 @@ msgstr ""
 "UPOZORENJE:Vaša baterija je dosegla kritični status.Trebate je uključiti ili "
 "isključiti računalo da izbjegnete gubitak podataka."
 
-#: ../panel-plugin/battery.c:655
+#: ../panel-plugin/battery.c:658
 msgid ""
 "WARNING: Your battery is running low. You should consider plugging in or "
 "shutting down your computer soon to avoid possible data loss."
@@ -66,145 +65,139 @@ msgstr ""
 "UPOZORENJE:Vaša se baterija prazni.Ramislite o uključivanju ili "
 "isključivanju računala uskoro da biste izbjegli gubitak podataka."
 
-#: ../panel-plugin/battery.c:709
+#: ../panel-plugin/battery.c:712
 msgid "Battery"
 msgstr "Baterija"
 
-#: ../panel-plugin/battery.c:1285
+#: ../panel-plugin/battery.c:1288
 msgid "Select file"
 msgstr "Odaberi datoteku"
 
-#: ../panel-plugin/battery.c:1326
+#: ../panel-plugin/battery.c:1329
 msgid "Select command"
 msgstr "Odaberi naredbu"
 
-#: ../panel-plugin/battery.c:1341
-#, fuzzy
+#: ../panel-plugin/battery.c:1344
 msgid "Select color"
-msgstr "Odaberi datoteku"
+msgstr "Odaberi boju"
 
-#: ../panel-plugin/battery.c:1383
+#: ../panel-plugin/battery.c:1386
 #, c-format
 msgid "Unable to open the following url: %s"
 msgstr "Neuspjeh u otvaranju slijedećeg url: %s"
 
-#: ../panel-plugin/battery.c:1408 ../panel-plugin/battery.desktop.in.h:1
+#: ../panel-plugin/battery.c:1411 ../panel-plugin/battery.desktop.in.h:1
 msgid "Battery Monitor"
 msgstr "Monitor baterije"
 
-#: ../panel-plugin/battery.c:1415
+#: ../panel-plugin/battery.c:1418
 msgid "Properties"
-msgstr ""
+msgstr "Osobitosti"
 
-#: ../panel-plugin/battery.c:1441
+#: ../panel-plugin/battery.c:1444
 msgid "On AC:"
 msgstr ""
 
-#: ../panel-plugin/battery.c:1458
-#, fuzzy
+#: ../panel-plugin/battery.c:1461
 msgid "Battery high:"
-msgstr "Baterija"
-
-#: ../panel-plugin/battery.c:1475
-#, fuzzy
-msgid "Battery low:"
-msgstr "Baterija"
-
-#: ../panel-plugin/battery.c:1492
-#, fuzzy
-msgid "Battery critical:"
-msgstr "Monitor baterije"
-
-#: ../panel-plugin/battery.c:1506
-msgid "Bar _colors"
 msgstr ""
 
-#: ../panel-plugin/battery.c:1520
+#: ../panel-plugin/battery.c:1478
+msgid "Battery low:"
+msgstr ""
+
+#: ../panel-plugin/battery.c:1495
+msgid "Battery critical:"
+msgstr "Baterija je kritično:"
+
+#: ../panel-plugin/battery.c:1509
+msgid "Bar _colors"
+msgstr "Boje _traka"
+
+#: ../panel-plugin/battery.c:1523
 msgid "Low percentage:"
 msgstr "Niski postotak:"
 
-#: ../panel-plugin/battery.c:1533
+#: ../panel-plugin/battery.c:1536
 msgid "Low battery action:"
 msgstr ""
 
-#: ../panel-plugin/battery.c:1539 ../panel-plugin/battery.c:1591
+#: ../panel-plugin/battery.c:1542 ../panel-plugin/battery.c:1594
 msgid "Do nothing"
 msgstr "Ne čini mišta"
 
-#: ../panel-plugin/battery.c:1541 ../panel-plugin/battery.c:1593
+#: ../panel-plugin/battery.c:1544 ../panel-plugin/battery.c:1596
 msgid "Display a warning message"
 msgstr "Prikaži poruku upozorenja"
 
-#: ../panel-plugin/battery.c:1543 ../panel-plugin/battery.c:1595
+#: ../panel-plugin/battery.c:1546 ../panel-plugin/battery.c:1598
 msgid "Run command"
 msgstr "Pokreni naredbu"
 
-#: ../panel-plugin/battery.c:1545 ../panel-plugin/battery.c:1597
+#: ../panel-plugin/battery.c:1548 ../panel-plugin/battery.c:1600
 msgid "Run command in terminal"
 msgstr "Pokreni naredbu u terminalu"
 
-#: ../panel-plugin/battery.c:1558 ../panel-plugin/battery.c:1609
+#: ../panel-plugin/battery.c:1561 ../panel-plugin/battery.c:1612
 msgid "Command:"
 msgstr "Naredba:"
 
-#: ../panel-plugin/battery.c:1572
+#: ../panel-plugin/battery.c:1575
 msgid "Critical percentage:"
 msgstr "Kritični postotak:"
 
-#: ../panel-plugin/battery.c:1585
+#: ../panel-plugin/battery.c:1588
 msgid "Critical battery action:"
 msgstr ""
 
-#: ../panel-plugin/battery.c:1620
+#: ../panel-plugin/battery.c:1623
 msgid "Levels and _actions"
 msgstr ""
 
-#: ../panel-plugin/battery.c:1633
+#: ../panel-plugin/battery.c:1636
 msgid "Display label"
 msgstr "Prikaži natips"
 
-#: ../panel-plugin/battery.c:1636
+#: ../panel-plugin/battery.c:1639
 msgid "Display icon"
 msgstr "Prikaži ikonu"
 
-#: ../panel-plugin/battery.c:1639
-#, fuzzy
-msgid "Display bar"
-msgstr "Prikaži natips"
-
 #: ../panel-plugin/battery.c:1642
+msgid "Display bar"
+msgstr "Prikaži traku"
+
+#: ../panel-plugin/battery.c:1645
 msgid "Display percentage"
 msgstr "Prikaži postotak"
 
-#: ../panel-plugin/battery.c:1645
+#: ../panel-plugin/battery.c:1648
 msgid "Display time"
 msgstr "Prikaži vrijeme"
 
-#: ../panel-plugin/battery.c:1648
+#: ../panel-plugin/battery.c:1651
 msgid "Display power"
 msgstr "Prikaži napajanje"
 
-#: ../panel-plugin/battery.c:1651
+#: ../panel-plugin/battery.c:1654
 msgid "Hide time/percentage when full"
 msgstr "Sakrij vrijeme/postotak kada je puna"
 
-#: ../panel-plugin/battery.c:1654
+#: ../panel-plugin/battery.c:1657
 msgid "Display percentage in tooltip"
 msgstr "Prikaži postotak u tooltip-u"
 
-#: ../panel-plugin/battery.c:1657
+#: ../panel-plugin/battery.c:1660
 msgid "Display time remaining in tooltip"
 msgstr "Prikaži preostalo vrijeme u tooltip-u"
 
-#: ../panel-plugin/battery.c:1660
-#, fuzzy
+#: ../panel-plugin/battery.c:1663
 msgid "_Display"
-msgstr "Prikaži vrijeme"
+msgstr "_Prikaži "
 
-#: ../panel-plugin/battery.c:1707 ../panel-plugin/battery.desktop.in.h:2
+#: ../panel-plugin/battery.c:1710 ../panel-plugin/battery.desktop.in.h:2
 msgid "Show and monitor the battery status"
 msgstr "Pokaži i prati status baterije"
 
-#: ../panel-plugin/battery.c:1709
+#: ../panel-plugin/battery.c:1712
 msgid "Copyright (c) 2003-2012\n"
-msgstr ""
+msgstr "Autorska prava (c) 2003-2012\n"

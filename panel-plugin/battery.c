@@ -466,6 +466,7 @@ battmon.c:241: for each function it appears in.)
 #endif
 #endif
     battmon->flag = FALSE;
+    DBG("method=%d, acline=%d, time_remaining=%d, charge=%d", battmon->method, acline, time_remaining, charge);
 
     charge = CLAMP (charge, 0, 100);
     gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(battmon->battstatus), charge / 100.0);

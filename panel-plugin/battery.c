@@ -325,6 +325,8 @@ update_apm_status(t_battmon *battmon)
       time_remaining = apm.minutes_left;
       acline = apm.ac_state ? TRUE : FALSE;
 
+      battmon->method = BM_USE_APM;
+
 #else
 #if defined(__linux__) || defined(APMDEVICE)
     struct apm_info apm;

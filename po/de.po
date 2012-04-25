@@ -97,25 +97,27 @@ msgid "Properties"
 msgstr "Eigenschaften"
 
 #: ../panel-plugin/battery.c:1444
-#, fuzzy
 msgid "On AC:"
 msgstr "Bei Netzversorgung:"
 
 #: ../panel-plugin/battery.c:1461
+#, fuzzy
 msgid "Battery high:"
-msgstr ""
+msgstr "Akkuzustand hoch:"
 
 #: ../panel-plugin/battery.c:1478
+#, fuzzy
 msgid "Battery low:"
-msgstr ""
+msgstr "Akkuzustand niedrig:"
 
 #: ../panel-plugin/battery.c:1495
+#, fuzzy
 msgid "Battery critical:"
-msgstr ""
+msgstr "Akkuzustand kritisch:"
 
 #: ../panel-plugin/battery.c:1509
 msgid "Bar _colors"
-msgstr ""
+msgstr "Balken_farben"
 
 #: ../panel-plugin/battery.c:1523
 msgid "Low percentage:"
@@ -155,7 +157,7 @@ msgstr "Ereignis bei kritischem Energiezustand:"
 
 #: ../panel-plugin/battery.c:1623
 msgid "Levels and _actions"
-msgstr ""
+msgstr "Zustände und _Aktionen"
 
 #: ../panel-plugin/battery.c:1636
 msgid "Display label"
@@ -167,7 +169,7 @@ msgstr "Symbol anzeigen"
 
 #: ../panel-plugin/battery.c:1642
 msgid "Display bar"
-msgstr ""
+msgstr "Balken anzeigen"
 
 #: ../panel-plugin/battery.c:1645
 msgid "Display percentage"
@@ -195,7 +197,7 @@ msgstr "Verbleibende Zeit in der Kurzhilfe anzeigen"
 
 #: ../panel-plugin/battery.c:1663
 msgid "_Display"
-msgstr ""
+msgstr "An_zeige"
 
 #: ../panel-plugin/battery.c:1710 ../panel-plugin/battery.desktop.in.h:2
 msgid "Show and monitor the battery status"

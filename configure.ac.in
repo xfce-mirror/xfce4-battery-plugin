@@ -3,6 +3,7 @@ dnl
 dnl 2003      Benedikt Meurer <benny@xfce.org>
 dnl 2006-2007 Nick Schermer <nick@xfce.org>
 dnl 2010      Florian Rivoal <frivoal@xfce.org>
+dnl 2012      Landry Breuil <landry@xfce.org>
 dnl
 
 dnl ***************************
@@ -10,7 +11,7 @@ dnl *** Version information ***
 dnl ***************************
 m4_define([battery_version_major], [1])
 m4_define([battery_version_minor], [0])
-m4_define([battery_version_micro], [1])
+m4_define([battery_version_micro], [2])
 m4_define([battery_version_build], [r@REVISION@])
 m4_define([battery_version_tag], [])
 m4_define([battery_version], [battery_version_major().battery_version_minor().battery_version_micro()ifelse(battery_version_tag(), [svn], [battery_version_tag()-battery_version_build()], [battery_version_tag()])])

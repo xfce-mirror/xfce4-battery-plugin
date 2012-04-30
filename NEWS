@@ -1,3 +1,14 @@
+1.0.2 (2012/04/30):
+===================
+* change icon depending on charge level/ac status (bug #7768)
+* install icons from xfpm
+* add AC color state and allow user-configurable colors (bug #6757)
+* implement read_acpi_state()/read_acpi_inof() on FreeBSD (bug #2814)
+* make the progressbar optional
+* improve battery removal detection
+* rework configuration dialog to use tabs
+* only display time if it's valid
+
 1.0.1 (2012/04/17):
 ===================
 * build the plugin as a module

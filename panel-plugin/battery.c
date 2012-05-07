@@ -62,6 +62,12 @@
 #define AVERAGING_CYCLE 5
 #define PLUGIN_WEBSITE  "http://goodies.xfce.org/projects/panel-plugins/xfce4-battery-plugin"
 
+#ifdef LIBXFCE4PANEL_CHECK_VERSION
+#if LIBXFCE4PANEL_CHECK_VERSION (4,9,0)
+#define HAS_PANEL_49
+#endif
+#endif
+
 typedef struct
 {
     gboolean    display_label;    /* Options */
@@ -677,11 +683,14 @@ static void setup_battmon(t_battmon      *battmon,
                           GtkOrientation  orientation,
                           GtkOrientation  panel_orientation)
 {
-    GtkWidget *box,*vbox;
+  GtkWidget *box,*vbox, *alignment;
     GdkPixbuf *icon;
     gint size;
 
     size = xfce_panel_plugin_get_size (battmon->plugin);
+#ifdef HAS_PANEL_49
+    size /= xfce_panel_plugin_get_nrows (battmon->plugin);
+#endif
     battmon->battstatus = gtk_progress_bar_new();
 
     if (panel_orientation == GTK_ORIENTATION_HORIZONTAL)
@@ -727,7 +736,9 @@ static void setup_battmon(t_battmon      *battmon,
        vbox = gtk_hbox_new(FALSE, 0);
 
     /* percent + rtime */
-    gtk_box_pack_start(GTK_BOX(box), GTK_WIDGET(vbox), FALSE, FALSE, 0);
+    alignment = gtk_alignment_new (0.5, 0.5, 0.0, 0.0);
+    gtk_container_add (GTK_CONTAINER(alignment), vbox);
+    gtk_box_pack_start(GTK_BOX(box), alignment, FALSE, FALSE, 0);
 
     battmon->charge = (GtkLabel *)gtk_label_new("50%%");
     if (orientation == GTK_ORIENTATION_HORIZONTAL)
@@ -757,7 +768,9 @@ static void setup_battmon(t_battmon      *battmon,
        vbox = gtk_hbox_new(FALSE, 0);
 
     /* ac-fan-temp */
-    gtk_box_pack_start(GTK_BOX(box), GTK_WIDGET(vbox), FALSE, FALSE, 0);
+    alignment = gtk_alignment_new (0.5, 0.5, 0.0, 0.0);
+    gtk_container_add (GTK_CONTAINER(alignment), vbox);
+    gtk_box_pack_start(GTK_BOX(box), alignment, FALSE, FALSE, 0);
 
     battmon->acfan = (GtkLabel *)gtk_label_new("AC FAN");
     if (orientation == GTK_ORIENTATION_HORIZONTAL)
@@ -831,7 +844,7 @@ static void setup_battmon(t_battmon      *battmon,
     gtk_widget_set_size_request(battmon->ebox, -1, -1);
 }
 
-#if defined (LIBXFCE4PANEL_CHECK_VERSION) && LIBXFCE4PANEL_CHECK_VERSION (4,9,0)
+#ifdef HAS_PANEL_49
 static gboolean
 battmon_set_mode (XfcePanelPlugin *plugin, XfcePanelPluginMode mode,
                   t_battmon *battmon)
@@ -874,7 +887,7 @@ battmon_create(XfcePanelPlugin *plugin)
 {
     t_battmon *battmon;
     GtkOrientation panel_orientation;
-#if defined (LIBXFCE4PANEL_CHECK_VERSION) && LIBXFCE4PANEL_CHECK_VERSION (4,9,0)
+#ifdef HAS_PANEL_49
     GtkOrientation orientation;
     XfcePanelPluginMode mode;
 #endif
@@ -889,7 +902,7 @@ battmon_create(XfcePanelPlugin *plugin)
     battmon->ebox = gtk_event_box_new();
     gtk_event_box_set_visible_window(GTK_EVENT_BOX(battmon->ebox), FALSE);
 
-#if defined (LIBXFCE4PANEL_CHECK_VERSION) && LIBXFCE4PANEL_CHECK_VERSION (4,9,0)
+#ifdef HAS_PANEL_49
     mode = xfce_panel_plugin_get_mode (plugin);
     orientation =
       (mode != XFCE_PANEL_PLUGIN_MODE_VERTICAL) ?
@@ -1071,6 +1084,9 @@ static gboolean
 battmon_set_size(XfcePanelPlugin *plugin, int size, t_battmon *battmon)
 {
     GdkPixbuf *icon;
+#ifdef HAS_PANEL_49
+    size /= xfce_panel_plugin_get_nrows (battmon->plugin);
+#endif
     DBG("set_size(%d)", size);
     if (xfce_panel_plugin_get_orientation (plugin) ==
             GTK_ORIENTATION_HORIZONTAL)
@@ -1740,7 +1756,7 @@ battmon_construct (XfcePanelPlugin *plugin)
 
     g_signal_connect (plugin, "size-changed", G_CALLBACK (battmon_set_size), battmon);
 
-#if defined (LIBXFCE4PANEL_CHECK_VERSION) && LIBXFCE4PANEL_CHECK_VERSION (4,9,0)
+#ifdef HAS_PANEL_49
     g_signal_connect (plugin, "mode-changed", G_CALLBACK (battmon_set_mode), battmon);
 #else
     g_signal_connect (plugin, "orientation-changed", G_CALLBACK (battmon_set_orientation), battmon);

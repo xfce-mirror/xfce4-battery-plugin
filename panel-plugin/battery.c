@@ -94,7 +94,6 @@ typedef struct
 {
     XfcePanelPlugin *plugin;
 
-    GtkTooltips        *tips;
     GtkWidget        *ebox, *timechargebox, *actempbox;
     GtkWidget        *battstatus;
     int            timeoutid;    /* To update apm status */
@@ -549,7 +548,7 @@ battmon.c:241: for each function it appears in.)
              g_snprintf(buffer, sizeof(buffer), _("AC off-line"));
     }
 
-    gtk_tooltips_set_tip (battmon->tips, battmon->ebox, buffer, NULL);
+    gtk_widget_set_tooltip_text(GTK_WIDGET(battmon->ebox), buffer);
 
     if(battmon->options.display_power){
       gtk_widget_show(GTK_WIDGET(battmon->acfan));
@@ -815,9 +814,6 @@ battmon_create(XfcePanelPlugin *plugin)
 
     battmon->timeoutid = 0;
     battmon->flag = FALSE;
-    battmon->tips = gtk_tooltips_new ();
-    g_object_ref (G_OBJECT (battmon->tips));
-    gtk_object_sink (GTK_OBJECT (battmon->tips));
 
     return battmon;
 }
@@ -834,9 +830,6 @@ battmon_free(XfcePanelPlugin *plugin, t_battmon *battmon)
     g_free (battmon->options.command_on_low);
     g_free (battmon->options.command_on_critical);
 
-    /* free tooltip */
-    gtk_tooltips_set_tip (battmon->tips, battmon->ebox, NULL, NULL);
-    g_object_unref (G_OBJECT (battmon->tips));
     gtk_rc_style_unref(battmon->battstatus_style);
 
     g_free(battmon);

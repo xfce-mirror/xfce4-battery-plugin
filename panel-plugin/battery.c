@@ -1758,6 +1758,7 @@ battmon_construct (XfcePanelPlugin *plugin)
 
 #ifdef HAS_PANEL_49
     g_signal_connect (plugin, "mode-changed", G_CALLBACK (battmon_set_mode), battmon);
+    xfce_panel_plugin_set_small (plugin, TRUE);
 #else
     g_signal_connect (plugin, "orientation-changed", G_CALLBACK (battmon_set_orientation), battmon);
 #endif

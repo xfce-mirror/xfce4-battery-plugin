@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-battery-plugin 0.5.1svn-r3672\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-25 12:45+0000\n"
+"POT-Creation-Date: 2012-05-06 19:00+0000\n"
 "PO-Revision-Date: 2009-02-01 16:15+0100\n"
 "Last-Translator: Fabian Nowak <timystery@arcor.de>\n"
 "Language-Team: German\n"
@@ -101,17 +101,14 @@ msgid "On AC:"
 msgstr "Bei Netzversorgung:"
 
 #: ../panel-plugin/battery.c:1461
-#, fuzzy
 msgid "Battery high:"
 msgstr "Akkuzustand hoch:"
 
 #: ../panel-plugin/battery.c:1478
-#, fuzzy
 msgid "Battery low:"
 msgstr "Akkuzustand niedrig:"
 
 #: ../panel-plugin/battery.c:1495
-#, fuzzy
 msgid "Battery critical:"
 msgstr "Akkuzustand kritisch:"
 

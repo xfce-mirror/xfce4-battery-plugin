@@ -95,8 +95,7 @@ typedef struct
     XfcePanelPlugin *plugin;
 
     GtkTooltips        *tips;
-    GtkWidget        *vbox;        /* Widgets */
-    GtkWidget        *ebox;
+    GtkWidget        *ebox, *timechargebox, *actempbox;
     GtkWidget        *battstatus;
     int            timeoutid;    /* To update apm status */
     int            method;
@@ -107,7 +106,6 @@ typedef struct
     GtkLabel        *label;
     GtkLabel        *charge;
     GtkLabel        *rtime;
-    GtkLabel        *alt_rtime;
     GtkLabel        *acfan;
     GtkLabel        *temp;
     GtkWidget        *image;
@@ -145,6 +143,8 @@ typedef struct
 enum {BM_DO_NOTHING, BM_MESSAGE, BM_COMMAND, BM_COMMAND_TERM};
 enum {BM_BROKEN, BM_USE_ACPI, BM_USE_APM};
 enum {BM_MISSING, BM_CRITICAL, BM_CRITICAL_CHARGING, BM_LOW, BM_LOW_CHARGING, BM_OK, BM_OK_CHARGING, BM_FULL, BM_FULL_CHARGING};
+
+static gboolean battmon_set_size(XfcePanelPlugin *plugin, int size, t_battmon *battmon);
 
 static void
 init_options(t_battmon_options *options)
@@ -268,25 +268,6 @@ detect_battery_info(t_battmon *battmon)
 
     return FALSE;
 #endif
-}
-
-static gboolean
-battmon_time_labels_fits(t_battmon *battmon)
-{
-  int plugin_size, labels_size;
-
-    GtkRequisition widget_size;
-    gtk_widget_size_request( GTK_WIDGET(battmon->plugin), &widget_size );
-    plugin_size = widget_size.height;
-
-    labels_size = 0;
-    gtk_widget_size_request( GTK_WIDGET(battmon->charge), &widget_size );
-    labels_size += widget_size.height;
-    gtk_widget_size_request( GTK_WIDGET(battmon->rtime), &widget_size );
-    labels_size += widget_size.height;
-    DBG("label_fits() : labels_size = %d, plugin_size = %d", labels_size, plugin_size);
-
-    return labels_size <= plugin_size;
 }
 
 static gboolean
@@ -535,22 +516,12 @@ battmon.c:241: for each function it appears in.)
     }
 
     if (battmon->options.display_time && time_remaining > 0 && !(battmon->options.hide_when_full && acline && charge >= 99 )){
-        GtkLabel *active_label;
-        if ( battmon_time_labels_fits( battmon ) ) {
-            active_label = battmon->rtime;
-            gtk_widget_hide(GTK_WIDGET(battmon->alt_rtime));
-        } else {
-            active_label = battmon->alt_rtime;
-            gtk_widget_hide(GTK_WIDGET(battmon->rtime));
-        }
-
-        gtk_widget_show(GTK_WIDGET(active_label));
+        gtk_widget_show(GTK_WIDGET(battmon->rtime));
         g_snprintf(buffer, sizeof(buffer),"%02d:%02d ",time_remaining/60,time_remaining%60);
-        gtk_label_set_text(active_label,buffer);
+        gtk_label_set_text(battmon->rtime,buffer);
 
     } else {
         gtk_widget_hide(GTK_WIDGET(battmon->rtime));
-        gtk_widget_hide(GTK_WIDGET(battmon->alt_rtime));
     }
 
 
@@ -679,11 +650,9 @@ do_low_warn:
     return TRUE;
 }
 
-static void setup_battmon(t_battmon      *battmon,
-                          GtkOrientation  orientation,
-                          GtkOrientation  panel_orientation)
+static void setup_battmon(t_battmon *battmon)
 {
-  GtkWidget *box,*vbox, *alignment;
+    GtkWidget *alignment;
     GdkPixbuf *icon;
     gint size;
 
@@ -691,120 +660,54 @@ static void setup_battmon(t_battmon      *battmon,
 #ifdef HAS_PANEL_49
     size /= xfce_panel_plugin_get_nrows (battmon->plugin);
 #endif
+
+    battmon->ebox = xfce_hvbox_new(xfce_panel_plugin_get_orientation(battmon->plugin), FALSE, 0);
+
     battmon->battstatus = gtk_progress_bar_new();
-
-    if (panel_orientation == GTK_ORIENTATION_HORIZONTAL)
-    {
-       gtk_progress_bar_set_orientation(GTK_PROGRESS_BAR(battmon->battstatus),
-               GTK_PROGRESS_BOTTOM_TO_TOP);
-       gtk_widget_set_size_request(GTK_WIDGET(battmon->battstatus),
-               BORDER, size);
-       box=gtk_hbox_new(FALSE, 0);
-       battmon->vbox = gtk_hbox_new(FALSE, 0);
-       gtk_widget_set_size_request(GTK_WIDGET(battmon->plugin),
-               -1, size);
-    } else {
-       gtk_progress_bar_set_orientation(GTK_PROGRESS_BAR(battmon->battstatus),
-               GTK_PROGRESS_LEFT_TO_RIGHT);
-       gtk_widget_set_size_request(GTK_WIDGET(battmon->battstatus),
-               size, BORDER);
-       box=gtk_vbox_new(FALSE, 0);
-       battmon->vbox = gtk_vbox_new(FALSE, 0);
-       gtk_widget_set_size_request(GTK_WIDGET(battmon->plugin),
-               size, -1);
-    }
-
-    gtk_container_set_border_width(GTK_CONTAINER(battmon->vbox), BORDER / 2);
 
     gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(battmon->battstatus), 0.0);
 
     battmon->label = (GtkLabel *)gtk_label_new(_("Battery"));
-    gtk_box_pack_start(GTK_BOX(box),GTK_WIDGET(battmon->label),FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(battmon->ebox),GTK_WIDGET(battmon->label),FALSE, FALSE, 0);
 
     battmon->image = xfce_panel_image_new_from_source("xfce4-battery-plugin");
     xfce_panel_image_set_size(XFCE_PANEL_IMAGE(battmon->image), size);
 
-    gtk_box_pack_start(GTK_BOX(box),GTK_WIDGET(battmon->image), FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(battmon->ebox),GTK_WIDGET(battmon->image), FALSE, FALSE, 0);
     /* init hide the widget */
     gtk_widget_hide(battmon->image);
 
-    gtk_box_pack_start(GTK_BOX(box),  GTK_WIDGET(battmon->battstatus), FALSE, FALSE, 0);
-
-    if (orientation == GTK_ORIENTATION_HORIZONTAL)
-       vbox = gtk_vbox_new(FALSE, 0);
-    else
-       vbox = gtk_hbox_new(FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(battmon->ebox),GTK_WIDGET(battmon->battstatus), FALSE, FALSE, 0);
 
     /* percent + rtime */
+    /* create the label hvbox with an orientation opposite to the panel */
+    battmon->timechargebox = xfce_hvbox_new(!xfce_panel_plugin_get_orientation(battmon->plugin), FALSE, 0);
+
     alignment = gtk_alignment_new (0.5, 0.5, 0.0, 0.0);
-    gtk_container_add (GTK_CONTAINER(alignment), vbox);
-    gtk_box_pack_start(GTK_BOX(box), alignment, FALSE, FALSE, 0);
+    gtk_container_add (GTK_CONTAINER(alignment), battmon->timechargebox);
+    gtk_box_pack_start(GTK_BOX(battmon->ebox), alignment, FALSE, FALSE, 0);
 
     battmon->charge = (GtkLabel *)gtk_label_new("50%%");
-    if (orientation == GTK_ORIENTATION_HORIZONTAL)
-      gtk_box_pack_start(GTK_BOX(vbox),GTK_WIDGET(battmon->charge),TRUE, TRUE, 0);
-    else
-      gtk_box_pack_end(GTK_BOX(vbox),GTK_WIDGET(battmon->charge),TRUE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(battmon->timechargebox),GTK_WIDGET(battmon->charge),TRUE, TRUE, 0);
 
     battmon->rtime = (GtkLabel *)gtk_label_new("01:00");
-    if (orientation == GTK_ORIENTATION_HORIZONTAL)
-       gtk_box_pack_start(GTK_BOX(vbox),GTK_WIDGET(battmon->rtime),TRUE, TRUE, 0);
-    else
-       gtk_box_pack_end(GTK_BOX(vbox),GTK_WIDGET(battmon->rtime),TRUE, TRUE, 0);
-
-    if (orientation == GTK_ORIENTATION_HORIZONTAL)
-       vbox = gtk_vbox_new(FALSE, 0);
-    else
-       vbox = gtk_hbox_new(FALSE, 0);
-
-    gtk_box_pack_start(GTK_BOX(box), GTK_WIDGET(vbox), FALSE, FALSE, 0);
-
-    battmon->alt_rtime = (GtkLabel *)gtk_label_new("01:00");
-    gtk_box_pack_start(GTK_BOX(vbox),GTK_WIDGET(battmon->alt_rtime),TRUE, TRUE, 0);
-
-    if (orientation == GTK_ORIENTATION_HORIZONTAL)
-       vbox = gtk_vbox_new(FALSE, 0);
-    else
-       vbox = gtk_hbox_new(FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(battmon->timechargebox),GTK_WIDGET(battmon->rtime),TRUE, TRUE, 0);
 
     /* ac-fan-temp */
+    /* create the label hvbox with an orientation opposite to the panel */
+    battmon->actempbox = xfce_hvbox_new(!xfce_panel_plugin_get_orientation(battmon->plugin), FALSE, 0);
+
     alignment = gtk_alignment_new (0.5, 0.5, 0.0, 0.0);
-    gtk_container_add (GTK_CONTAINER(alignment), vbox);
-    gtk_box_pack_start(GTK_BOX(box), alignment, FALSE, FALSE, 0);
+    gtk_container_add (GTK_CONTAINER(alignment), battmon->actempbox);
+    gtk_box_pack_start(GTK_BOX(battmon->ebox), alignment, FALSE, FALSE, 0);
 
     battmon->acfan = (GtkLabel *)gtk_label_new("AC FAN");
-    if (orientation == GTK_ORIENTATION_HORIZONTAL)
-       gtk_box_pack_start(GTK_BOX(vbox),GTK_WIDGET(battmon->acfan),TRUE, TRUE, 0);
-    else
-       gtk_box_pack_end(GTK_BOX(vbox),GTK_WIDGET(battmon->acfan),TRUE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(battmon->actempbox),GTK_WIDGET(battmon->acfan),TRUE, TRUE, 0);
 
-      battmon->temp = (GtkLabel *)gtk_label_new("40°C");
-    if (orientation == GTK_ORIENTATION_HORIZONTAL)
-       gtk_box_pack_start(GTK_BOX(vbox),GTK_WIDGET(battmon->temp),TRUE, TRUE, 0);
-    else
-       gtk_box_pack_end(GTK_BOX(vbox),GTK_WIDGET(battmon->temp),TRUE, TRUE, 0);
+    battmon->temp = (GtkLabel *)gtk_label_new("40°C");
+    gtk_box_pack_start(GTK_BOX(battmon->actempbox),GTK_WIDGET(battmon->temp),TRUE, TRUE, 0);
 
-    if (orientation == GTK_ORIENTATION_HORIZONTAL)
-    {
-       gtk_label_set_angle(GTK_LABEL(battmon->label), 0);
-       gtk_label_set_angle(GTK_LABEL(battmon->charge), 0);
-       gtk_label_set_angle(GTK_LABEL(battmon->rtime), 0);
-       gtk_label_set_angle(GTK_LABEL(battmon->alt_rtime), 0);
-       gtk_label_set_angle(GTK_LABEL(battmon->acfan), 0);
-       gtk_label_set_angle(GTK_LABEL(battmon->temp), 0);
-    }
-    else
-    {
-       gtk_label_set_angle(GTK_LABEL(battmon->label), 270);
-       gtk_label_set_angle(GTK_LABEL(battmon->charge), 270);
-       gtk_label_set_angle(GTK_LABEL(battmon->rtime), 270);
-       gtk_label_set_angle(GTK_LABEL(battmon->alt_rtime), 270);
-       gtk_label_set_angle(GTK_LABEL(battmon->acfan), 270);
-       gtk_label_set_angle(GTK_LABEL(battmon->temp), 270);
-    }
-
-    gtk_box_pack_start(GTK_BOX(battmon->vbox), box, FALSE, FALSE, 0);
-    gtk_widget_show_all(battmon->vbox);
+    gtk_widget_show_all(battmon->ebox);
     if(!battmon->options.display_bar)
         gtk_widget_hide(GTK_WIDGET(battmon->battstatus));
     if(!battmon->options.display_label)
@@ -818,16 +721,8 @@ static void setup_battmon(t_battmon      *battmon,
     }
     if (!battmon->options.display_time){
         gtk_widget_hide(GTK_WIDGET(battmon->rtime));
-        gtk_widget_hide(GTK_WIDGET(battmon->alt_rtime));
-    } else {
-        if ( battmon_time_labels_fits(battmon) ) {
-        gtk_widget_hide(GTK_WIDGET(battmon->alt_rtime));
-        } else {
-        gtk_widget_hide(GTK_WIDGET(battmon->rtime));
-        }
     }
 
-    gtk_container_add(GTK_CONTAINER(battmon->ebox),GTK_WIDGET(battmon->vbox));
     gtk_widget_show(battmon->ebox);
 
     battmon->battstatus_style = gtk_widget_get_modifier_style(battmon->battstatus);
@@ -844,24 +739,39 @@ static void setup_battmon(t_battmon      *battmon,
     gtk_widget_set_size_request(battmon->ebox, -1, -1);
 }
 
+static void
+battmon_set_labels_orientation(t_battmon *battmon, GtkOrientation orientation)
+{
+    gint angle = (orientation == GTK_ORIENTATION_HORIZONTAL ? 0 : 270);
+    gtk_label_set_angle(GTK_LABEL(battmon->label), angle);
+    gtk_label_set_angle(GTK_LABEL(battmon->charge), angle);
+    gtk_label_set_angle(GTK_LABEL(battmon->rtime), angle);
+    gtk_label_set_angle(GTK_LABEL(battmon->acfan), angle);
+    gtk_label_set_angle(GTK_LABEL(battmon->temp), angle);
+}
+
 #ifdef HAS_PANEL_49
 static gboolean
 battmon_set_mode (XfcePanelPlugin *plugin, XfcePanelPluginMode mode,
                   t_battmon *battmon)
 {
-    GtkOrientation orientation, panel_orientation;
+    GtkOrientation orientation;
+    DBG("set_mode(%d)", mode);
 
     if (battmon->timeoutid) g_source_remove(battmon->timeoutid);
-    gtk_container_remove(GTK_CONTAINER(battmon->ebox), GTK_WIDGET(battmon->vbox));
     orientation =
       (mode != XFCE_PANEL_PLUGIN_MODE_VERTICAL) ?
       GTK_ORIENTATION_HORIZONTAL : GTK_ORIENTATION_VERTICAL;
-    panel_orientation =
-      (mode == XFCE_PANEL_PLUGIN_MODE_HORIZONTAL) ?
-      GTK_ORIENTATION_HORIZONTAL : GTK_ORIENTATION_VERTICAL;
-    setup_battmon(battmon,orientation,panel_orientation);
+    xfce_hvbox_set_orientation(XFCE_HVBOX(battmon->ebox), orientation);
+    xfce_hvbox_set_orientation(XFCE_HVBOX(battmon->timechargebox), !orientation);
+    xfce_hvbox_set_orientation(XFCE_HVBOX(battmon->actempbox), !orientation);
+    gtk_progress_bar_set_orientation(GTK_PROGRESS_BAR(battmon->battstatus),
+               (orientation == GTK_ORIENTATION_HORIZONTAL ? GTK_PROGRESS_BOTTOM_TO_TOP : GTK_PROGRESS_LEFT_TO_RIGHT));
+    battmon_set_labels_orientation(battmon, orientation);
+    battmon_set_size(plugin, xfce_panel_plugin_get_size (plugin), battmon);
     update_apm_status( battmon );
     battmon->timeoutid = g_timeout_add(1 * 1024, (GSourceFunc) update_apm_status, battmon);
+    xfce_panel_plugin_set_small (plugin, (mode != XFCE_PANEL_PLUGIN_MODE_DESKBAR));
 
     return TRUE;
 }
@@ -872,9 +782,15 @@ static gboolean
 battmon_set_orientation (XfcePanelPlugin *plugin, GtkOrientation orientation,
                          t_battmon *battmon)
 {
+    DBG("set_orientation(%d)", orientation);
     if (battmon->timeoutid) g_source_remove(battmon->timeoutid);
-    gtk_container_remove(GTK_CONTAINER(battmon->ebox), GTK_WIDGET(battmon->vbox));
-    setup_battmon(battmon,GTK_ORIENTATION_HORIZONTAL,orientation);
+    xfce_hvbox_set_orientation(XFCE_HVBOX(battmon->ebox), orientation);
+    xfce_hvbox_set_orientation(XFCE_HVBOX(battmon->timechargebox), !orientation);
+    xfce_hvbox_set_orientation(XFCE_HVBOX(battmon->acfanbox), !orientation);
+    gtk_progress_bar_set_orientation(GTK_PROGRESS_BAR(battmon->battstatus),
+               (orientation == GTK_ORIENTATION_HORIZONTAL ? GTK_PROGRESS_BOTTOM_TO_TOP : GTK_PROGRESS_LEFT_TO_RIGHT)i);
+    battmon_set_labels_orientation(battmon, orientation);
+    battmon_set_size(plugin, xfce_panel_plugin_get_size (plugin), battmon);
     update_apm_status( battmon );
     battmon->timeoutid = g_timeout_add(1 * 1024, (GSourceFunc) update_apm_status, battmon);
 
@@ -886,34 +802,16 @@ static t_battmon*
 battmon_create(XfcePanelPlugin *plugin)
 {
     t_battmon *battmon;
-    GtkOrientation panel_orientation;
-#ifdef HAS_PANEL_49
-    GtkOrientation orientation;
-    XfcePanelPluginMode mode;
-#endif
 
     battmon = g_new(t_battmon, 1);
     init_options(&(battmon->options));
 
-        battmon->plugin = plugin;
+    battmon->plugin = plugin;
 
     battmon->low = FALSE;
     battmon->critical = FALSE;
-    battmon->ebox = gtk_event_box_new();
-    gtk_event_box_set_visible_window(GTK_EVENT_BOX(battmon->ebox), FALSE);
 
-#ifdef HAS_PANEL_49
-    mode = xfce_panel_plugin_get_mode (plugin);
-    orientation =
-      (mode != XFCE_PANEL_PLUGIN_MODE_VERTICAL) ?
-      GTK_ORIENTATION_HORIZONTAL : GTK_ORIENTATION_VERTICAL;
-    panel_orientation =
-      (mode == XFCE_PANEL_PLUGIN_MODE_HORIZONTAL) ?
-      GTK_ORIENTATION_HORIZONTAL : GTK_ORIENTATION_VERTICAL;
-#else
-    panel_orientation = xfce_panel_plugin_get_orientation (plugin);
-#endif
-    setup_battmon(battmon, GTK_ORIENTATION_HORIZONTAL, panel_orientation);
+    setup_battmon(battmon);
 
     battmon->timeoutid = 0;
     battmon->flag = FALSE;
@@ -1083,13 +981,18 @@ battmon_write_config(XfcePanelPlugin *plugin, t_battmon *battmon)
 static gboolean
 battmon_set_size(XfcePanelPlugin *plugin, int size, t_battmon *battmon)
 {
-    GdkPixbuf *icon;
+    GtkOrientation orientation;
 #ifdef HAS_PANEL_49
+    XfcePanelPluginMode mode = xfce_panel_plugin_get_mode(plugin);
+    orientation =
+      (mode != XFCE_PANEL_PLUGIN_MODE_VERTICAL) ?
+      GTK_ORIENTATION_HORIZONTAL : GTK_ORIENTATION_VERTICAL;
     size /= xfce_panel_plugin_get_nrows (battmon->plugin);
+#else
+    orientation = xfce_panel_plugin_get_orientation(plugin);
 #endif
     DBG("set_size(%d)", size);
-    if (xfce_panel_plugin_get_orientation (plugin) ==
-            GTK_ORIENTATION_HORIZONTAL)
+    if (orientation == GTK_ORIENTATION_HORIZONTAL)
     {
         /* force size of the panel plugin */
         gtk_widget_set_size_request(GTK_WIDGET(battmon->plugin),
@@ -1108,6 +1011,7 @@ battmon_set_size(XfcePanelPlugin *plugin, int size, t_battmon *battmon)
                 size, BORDER);
     }
 
+    gtk_container_set_border_width (GTK_CONTAINER (battmon->ebox), (size > 26 ? 2 : 0));
     /* update the icon */
     xfce_panel_image_set_size(XFCE_PANEL_IMAGE(battmon->image), size);
     return TRUE;

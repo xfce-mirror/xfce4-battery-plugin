@@ -762,11 +762,11 @@ battmon_set_mode (XfcePanelPlugin *plugin, XfcePanelPluginMode mode,
     orientation =
       (mode != XFCE_PANEL_PLUGIN_MODE_VERTICAL) ?
       GTK_ORIENTATION_HORIZONTAL : GTK_ORIENTATION_VERTICAL;
-    xfce_hvbox_set_orientation(XFCE_HVBOX(battmon->ebox), orientation);
+    xfce_hvbox_set_orientation(XFCE_HVBOX(battmon->ebox), xfce_panel_plugin_get_orientation(plugin));
     xfce_hvbox_set_orientation(XFCE_HVBOX(battmon->timechargebox), !orientation);
     xfce_hvbox_set_orientation(XFCE_HVBOX(battmon->actempbox), !orientation);
     gtk_progress_bar_set_orientation(GTK_PROGRESS_BAR(battmon->battstatus),
-               (orientation == GTK_ORIENTATION_HORIZONTAL ? GTK_PROGRESS_BOTTOM_TO_TOP : GTK_PROGRESS_LEFT_TO_RIGHT));
+               (xfce_panel_plugin_get_orientation(plugin) == GTK_ORIENTATION_HORIZONTAL ? GTK_PROGRESS_BOTTOM_TO_TOP : GTK_PROGRESS_LEFT_TO_RIGHT));
     battmon_set_labels_orientation(battmon, orientation);
     battmon_set_size(plugin, xfce_panel_plugin_get_size (plugin), battmon);
     update_apm_status( battmon );
@@ -981,18 +981,11 @@ battmon_write_config(XfcePanelPlugin *plugin, t_battmon *battmon)
 static gboolean
 battmon_set_size(XfcePanelPlugin *plugin, int size, t_battmon *battmon)
 {
-    GtkOrientation orientation;
 #ifdef HAS_PANEL_49
-    XfcePanelPluginMode mode = xfce_panel_plugin_get_mode(plugin);
-    orientation =
-      (mode != XFCE_PANEL_PLUGIN_MODE_VERTICAL) ?
-      GTK_ORIENTATION_HORIZONTAL : GTK_ORIENTATION_VERTICAL;
     size /= xfce_panel_plugin_get_nrows (battmon->plugin);
-#else
-    orientation = xfce_panel_plugin_get_orientation(plugin);
 #endif
     DBG("set_size(%d)", size);
-    if (orientation == GTK_ORIENTATION_HORIZONTAL)
+    if (xfce_panel_plugin_get_orientation(plugin) == GTK_ORIENTATION_HORIZONTAL)
     {
         /* force size of the panel plugin */
         gtk_widget_set_size_request(GTK_WIDGET(battmon->plugin),

@@ -11,7 +11,7 @@ dnl *** Version information ***
 dnl ***************************
 m4_define([battery_version_major], [1])
 m4_define([battery_version_minor], [0])
-m4_define([battery_version_micro], [2])
+m4_define([battery_version_micro], [3])
 m4_define([battery_version_build], [r@REVISION@])
 m4_define([battery_version_tag], [])
 m4_define([battery_version], [battery_version_major().battery_version_minor().battery_version_micro()ifelse(battery_version_tag(), [svn], [battery_version_tag()-battery_version_build()], [battery_version_tag()])])

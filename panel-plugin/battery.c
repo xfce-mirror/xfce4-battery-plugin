@@ -687,10 +687,10 @@ static void setup_battmon(t_battmon *battmon)
     gtk_box_pack_start(GTK_BOX(battmon->ebox), alignment, FALSE, FALSE, 0);
 
     battmon->charge = (GtkLabel *)gtk_label_new("50%%");
-    gtk_box_pack_start(GTK_BOX(battmon->timechargebox),GTK_WIDGET(battmon->charge),TRUE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(battmon->timechargebox),GTK_WIDGET(battmon->charge),TRUE, TRUE, 2);
 
     battmon->rtime = (GtkLabel *)gtk_label_new("01:00");
-    gtk_box_pack_start(GTK_BOX(battmon->timechargebox),GTK_WIDGET(battmon->rtime),TRUE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(battmon->timechargebox),GTK_WIDGET(battmon->rtime),TRUE, TRUE, 2);
 
     /* ac-fan-temp */
     /* create the label hvbox with an orientation opposite to the panel */

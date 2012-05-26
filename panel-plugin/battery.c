@@ -665,6 +665,8 @@ static void setup_battmon(t_battmon *battmon)
     battmon->battstatus = gtk_progress_bar_new();
 
     gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(battmon->battstatus), 0.0);
+    gtk_progress_bar_set_orientation(GTK_PROGRESS_BAR(battmon->battstatus),
+               (xfce_panel_plugin_get_orientation(battmon->plugin) == GTK_ORIENTATION_HORIZONTAL ? GTK_PROGRESS_BOTTOM_TO_TOP : GTK_PROGRESS_LEFT_TO_RIGHT));
 
     battmon->label = (GtkLabel *)gtk_label_new(_("Battery"));
     gtk_box_pack_start(GTK_BOX(battmon->ebox),GTK_WIDGET(battmon->label),FALSE, FALSE, 0);

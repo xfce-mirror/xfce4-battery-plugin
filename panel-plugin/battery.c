@@ -95,6 +95,7 @@ typedef struct
     XfcePanelPlugin *plugin;
 
     GtkWidget        *ebox, *timechargebox, *actempbox;
+    GtkWidget        *timechargealignment, *actempalignment;
     GtkWidget        *battstatus;
     int            timeoutid;    /* To update apm status */
     int            method;
@@ -508,6 +509,7 @@ battmon.c:241: for each function it appears in.)
 
     if(battmon->options.display_percentage && charge > 0 && !(battmon->options.hide_when_full && acline && charge >= 99)){
         gtk_widget_show(GTK_WIDGET(battmon->charge));
+        gtk_widget_show(GTK_WIDGET(battmon->timechargealignment));
         g_snprintf(buffer, sizeof(buffer),"%d%% ", charge);
         gtk_label_set_text(battmon->charge,buffer);
     } else {
@@ -516,11 +518,15 @@ battmon.c:241: for each function it appears in.)
 
     if (battmon->options.display_time && time_remaining > 0 && !(battmon->options.hide_when_full && acline && charge >= 99 )){
         gtk_widget_show(GTK_WIDGET(battmon->rtime));
+        gtk_widget_show(GTK_WIDGET(battmon->timechargealignment));
         g_snprintf(buffer, sizeof(buffer),"%02d:%02d ",time_remaining/60,time_remaining%60);
         gtk_label_set_text(battmon->rtime,buffer);
 
     } else {
         gtk_widget_hide(GTK_WIDGET(battmon->rtime));
+    }
+    if ((!battmon->options.display_time && !battmon->options.display_percentage) || (battmon->options.hide_when_full && acline && charge >= 99 )) {
+        gtk_widget_hide(GTK_WIDGET(battmon->timechargealignment));
     }
 
 
@@ -553,6 +559,7 @@ battmon.c:241: for each function it appears in.)
     if(battmon->options.display_power){
       gtk_widget_show(GTK_WIDGET(battmon->acfan));
       gtk_widget_show(GTK_WIDGET(battmon->temp));
+      gtk_widget_show_all(GTK_WIDGET(battmon->actempalignment));
 
       fan=get_fan_status();
       if(acline && fan)
@@ -577,6 +584,7 @@ battmon.c:241: for each function it appears in.)
     } else {
       gtk_widget_hide(GTK_WIDGET(battmon->acfan));
       gtk_widget_hide(GTK_WIDGET(battmon->temp));
+      gtk_widget_hide(GTK_WIDGET(battmon->actempalignment));
     }
 
     gtk_progress_bar_set_text(GTK_PROGRESS_BAR(battmon->battstatus), NULL);
@@ -651,7 +659,6 @@ do_low_warn:
 
 static void setup_battmon(t_battmon *battmon)
 {
-    GtkWidget *alignment;
     GdkPixbuf *icon;
     gint size;
 
@@ -669,7 +676,7 @@ static void setup_battmon(t_battmon *battmon)
                (xfce_panel_plugin_get_orientation(battmon->plugin) == GTK_ORIENTATION_HORIZONTAL ? GTK_PROGRESS_BOTTOM_TO_TOP : GTK_PROGRESS_LEFT_TO_RIGHT));
 
     battmon->label = (GtkLabel *)gtk_label_new(_("Battery"));
-    gtk_box_pack_start(GTK_BOX(battmon->ebox),GTK_WIDGET(battmon->label),FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(battmon->ebox),GTK_WIDGET(battmon->label),FALSE, FALSE, 2);
 
     battmon->image = xfce_panel_image_new_from_source("xfce4-battery-plugin");
     xfce_panel_image_set_size(XFCE_PANEL_IMAGE(battmon->image), size);
@@ -684,23 +691,23 @@ static void setup_battmon(t_battmon *battmon)
     /* create the label hvbox with an orientation opposite to the panel */
     battmon->timechargebox = xfce_hvbox_new(!xfce_panel_plugin_get_orientation(battmon->plugin), FALSE, 0);
 
-    alignment = gtk_alignment_new (0.5, 0.5, 0.0, 0.0);
-    gtk_container_add (GTK_CONTAINER(alignment), battmon->timechargebox);
-    gtk_box_pack_start(GTK_BOX(battmon->ebox), alignment, FALSE, FALSE, 0);
+    battmon->timechargealignment = gtk_alignment_new (0.5, 0.5, 0.0, 0.0);
+    gtk_container_add (GTK_CONTAINER(battmon->timechargealignment), battmon->timechargebox);
+    gtk_box_pack_start(GTK_BOX(battmon->ebox), battmon->timechargealignment, FALSE, FALSE, 2);
 
     battmon->charge = (GtkLabel *)gtk_label_new("50%%");
-    gtk_box_pack_start(GTK_BOX(battmon->timechargebox),GTK_WIDGET(battmon->charge),TRUE, TRUE, 2);
+    gtk_box_pack_start(GTK_BOX(battmon->timechargebox),GTK_WIDGET(battmon->charge),TRUE, TRUE, 0);
 
     battmon->rtime = (GtkLabel *)gtk_label_new("01:00");
-    gtk_box_pack_start(GTK_BOX(battmon->timechargebox),GTK_WIDGET(battmon->rtime),TRUE, TRUE, 2);
+    gtk_box_pack_start(GTK_BOX(battmon->timechargebox),GTK_WIDGET(battmon->rtime),TRUE, TRUE, 0);
 
     /* ac-fan-temp */
     /* create the label hvbox with an orientation opposite to the panel */
     battmon->actempbox = xfce_hvbox_new(!xfce_panel_plugin_get_orientation(battmon->plugin), FALSE, 0);
 
-    alignment = gtk_alignment_new (0.5, 0.5, 0.0, 0.0);
-    gtk_container_add (GTK_CONTAINER(alignment), battmon->actempbox);
-    gtk_box_pack_start(GTK_BOX(battmon->ebox), alignment, FALSE, FALSE, 0);
+    battmon->actempalignment = gtk_alignment_new (0.5, 0.5, 0.0, 0.0);
+    gtk_container_add (GTK_CONTAINER(battmon->actempalignment), battmon->actempbox);
+    gtk_box_pack_start(GTK_BOX(battmon->ebox), battmon->actempalignment, FALSE, FALSE, 2);
 
     battmon->acfan = (GtkLabel *)gtk_label_new("AC FAN");
     gtk_box_pack_start(GTK_BOX(battmon->actempbox),GTK_WIDGET(battmon->acfan),TRUE, TRUE, 0);
@@ -716,6 +723,7 @@ static void setup_battmon(t_battmon *battmon)
     if(!battmon->options.display_power){
         gtk_widget_hide(GTK_WIDGET(battmon->acfan));
         gtk_widget_hide(GTK_WIDGET(battmon->temp));
+        gtk_widget_hide(GTK_WIDGET(battmon->actempalignment));
     }
     if(!battmon->options.display_percentage){
         gtk_widget_hide(GTK_WIDGET(battmon->charge));
@@ -723,7 +731,9 @@ static void setup_battmon(t_battmon *battmon)
     if (!battmon->options.display_time){
         gtk_widget_hide(GTK_WIDGET(battmon->rtime));
     }
-
+    if (!battmon->options.display_time && !battmon->options.display_percentage) {
+        gtk_widget_hide(GTK_WIDGET(battmon->timechargealignment));
+    }
     gtk_widget_show(battmon->ebox);
 
     battmon->battstatus_style = gtk_widget_get_modifier_style(battmon->battstatus);
@@ -987,7 +997,7 @@ battmon_set_size(XfcePanelPlugin *plugin, int size, t_battmon *battmon)
                                 -1, size);
         /* size of the progressbar */
         gtk_widget_set_size_request(GTK_WIDGET(battmon->battstatus),
-                BORDER, size);
+                BORDER, size - BORDER);
     }
     else
     {
@@ -996,10 +1006,10 @@ battmon_set_size(XfcePanelPlugin *plugin, int size, t_battmon *battmon)
                 size, -1);
         /* size of the progressbar */
         gtk_widget_set_size_request(GTK_WIDGET(battmon->battstatus),
-                size, BORDER);
+                size - BORDER, BORDER);
     }
 
-    gtk_container_set_border_width (GTK_CONTAINER (battmon->ebox), (size > 26 ? 2 : 0));
+    gtk_container_set_border_width (GTK_CONTAINER (battmon->ebox), (size > 26 ? BORDER - 2 : 0));
     /* update the icon */
     xfce_panel_image_set_size(XFCE_PANEL_IMAGE(battmon->image), size);
     return TRUE;

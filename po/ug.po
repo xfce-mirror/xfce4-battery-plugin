@@ -2,8 +2,8 @@
 # Copyright (C) Eduard Roccatello <eduard@xfce.org>
 # This file is distributed under the same license as the xfce4-battery-plugin package.
 # Gheyret T.Kenji <gheyret@gmail.com>, 2010.
-# 
-# 
+#
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-battery-plugin\n"
@@ -14,13 +14,12 @@ msgstr ""
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../panel-plugin/battery.c:551
-#, fuzzy
 msgid "(No battery, AC on-line)"
-msgstr "(AC غا ئۇلاقلىق)"
+msgstr ""
 
 #: ../panel-plugin/battery.c:553
 msgid "(Charging from AC)"
@@ -54,17 +53,13 @@ msgstr "AC ئۇلانماپتۇ"
 msgid ""
 "WARNING: Your battery has reached critical status. You should plug in or "
 "shutdown your computer now to avoid possible data loss."
-msgstr ""
-"دىققەت: توكدان تۈگەي دەپلا قالدى، سانلىق ئاساسلارنىڭ يوقاپ كەتمەسلىكى ئۈچۈن "
-"توكقا ئۇلاش ياكى  كومپيۇتېرنى ئېتىشنى تېزدىن بېكىتىڭ."
+msgstr "دىققەت: توكدان تۈگەي دەپلا قالدى، سانلىق ئاساسلارنىڭ يوقاپ كەتمەسلىكى ئۈچۈن توكقا ئۇلاش ياكى  كومپيۇتېرنى ئېتىشنى تېزدىن بېكىتىڭ."
 
 #: ../panel-plugin/battery.c:655
 msgid ""
 "WARNING: Your battery is running low. You should consider plugging in or "
 "shutting down your computer soon to avoid possible data loss."
-msgstr ""
-"دىققەت: توكداننىڭ توكى ئاز قالدى. سانلىق ئاساسلارنىڭ يوقاپ كەتمەسلىكى ئۈچۈن "
-"توكقا ئۇلاش ياكى  كومپيۇتېرنى ئېتىشنى ئويلىشىپ كۆرۈڭ."
+msgstr "دىققەت: توكداننىڭ توكى ئاز قالدى. سانلىق ئاساسلارنىڭ يوقاپ كەتمەسلىكى ئۈچۈن توكقا ئۇلاش ياكى  كومپيۇتېرنى ئېتىشنى ئويلىشىپ كۆرۈڭ."
 
 #: ../panel-plugin/battery.c:709
 msgid "Battery"
@@ -79,9 +74,8 @@ msgid "Select command"
 msgstr "بۇيرۇق تاللا"
 
 #: ../panel-plugin/battery.c:1341
-#, fuzzy
 msgid "Select color"
-msgstr "ھۆججەت تاللا"
+msgstr "رەڭ تاللا"
 
 #: ../panel-plugin/battery.c:1383
 #, c-format
@@ -94,26 +88,23 @@ msgstr "توكدان كۆزەتكۈ"
 
 #: ../panel-plugin/battery.c:1415
 msgid "Properties"
-msgstr ""
+msgstr "خاسلىق"
 
 #: ../panel-plugin/battery.c:1441
 msgid "On AC:"
 msgstr ""
 
 #: ../panel-plugin/battery.c:1458
-#, fuzzy
 msgid "Battery high:"
-msgstr "توكدان"
+msgstr ""
 
 #: ../panel-plugin/battery.c:1475
-#, fuzzy
 msgid "Battery low:"
-msgstr "توكدان"
+msgstr ""
 
 #: ../panel-plugin/battery.c:1492
-#, fuzzy
 msgid "Battery critical:"
-msgstr "توكدان كۆزەتكۈ"
+msgstr ""
 
 #: ../panel-plugin/battery.c:1506
 msgid "Bar _colors"
@@ -168,9 +159,8 @@ msgid "Display icon"
 msgstr "سىنبەلگە كۆرسەت"
 
 #: ../panel-plugin/battery.c:1639
-#, fuzzy
 msgid "Display bar"
-msgstr "ئەن كۆرسەت"
+msgstr ""
 
 #: ../panel-plugin/battery.c:1642
 msgid "Display percentage"
@@ -197,9 +187,8 @@ msgid "Display time remaining in tooltip"
 msgstr "قالغان ۋاقىتنى tooltip تا كۆرسەت"
 
 #: ../panel-plugin/battery.c:1660
-#, fuzzy
 msgid "_Display"
-msgstr "ۋاقىت كۆرسەت"
+msgstr "كۆرسەت(_D)"
 
 #: ../panel-plugin/battery.c:1707 ../panel-plugin/battery.desktop.in.h:2
 msgid "Show and monitor the battery status"

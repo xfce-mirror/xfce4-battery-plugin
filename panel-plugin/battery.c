@@ -985,9 +985,11 @@ battmon_write_config(XfcePanelPlugin *plugin, t_battmon *battmon)
 static gboolean
 battmon_set_size(XfcePanelPlugin *plugin, int size, t_battmon *battmon)
 {
+    int border_width;
 #ifdef HAS_PANEL_49
     size /= xfce_panel_plugin_get_nrows (battmon->plugin);
 #endif
+    border_width = size > 26 ? 2 : 1;
     DBG("set_size(%d)", size);
     if (xfce_panel_plugin_get_orientation(plugin) == GTK_ORIENTATION_HORIZONTAL)
     {
@@ -996,7 +998,7 @@ battmon_set_size(XfcePanelPlugin *plugin, int size, t_battmon *battmon)
                                 -1, size);
         /* size of the progressbar */
         gtk_widget_set_size_request(GTK_WIDGET(battmon->battstatus),
-                BORDER, size - BORDER);
+                8, -1);
     }
     else
     {
@@ -1005,12 +1007,12 @@ battmon_set_size(XfcePanelPlugin *plugin, int size, t_battmon *battmon)
                 size, -1);
         /* size of the progressbar */
         gtk_widget_set_size_request(GTK_WIDGET(battmon->battstatus),
-                size - BORDER, BORDER);
+                -1, 8);
     }
 
-    gtk_container_set_border_width (GTK_CONTAINER (battmon->ebox), (size > 26 ? BORDER - 2 : 0));
+    gtk_container_set_border_width (GTK_CONTAINER (battmon->ebox), border_width);
     /* update the icon */
-    xfce_panel_image_set_size(XFCE_PANEL_IMAGE(battmon->image), size);
+    xfce_panel_image_set_size(XFCE_PANEL_IMAGE(battmon->image), size - (2 * border_width));
     return TRUE;
 }
 

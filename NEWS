@@ -1,3 +1,8 @@
+1.0.5 (2012/05/30):
+* Better compliance with the panel plugin HIG
+* Don't set labels orientation on 4.8 panels (bug #8961)
+* Set progressbar orientation in setup_battmon (bug #8935)
+
 1.0.4 (2012/05/14):
 ===================
 * Fix compilation with panel version < 4.9

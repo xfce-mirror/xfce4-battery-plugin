@@ -1,14 +1,14 @@
-# translation of xfce4-battery-plugin.master.untitled.po to Icelandic
+# translation of is.po to Icelandic
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Sveinn í Felli <sveinki@nett.is>, 2011.
+# Sveinn í Felli <sveinki@nett.is>, 2011, 2012.
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-battery-plugin.master.untitled\n"
+"Project-Id-Version: is\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-04-23 17:18+0200\n"
-"PO-Revision-Date: 2011-12-08 22:22+0000\n"
+"PO-Revision-Date: 2012-07-02 17:03+0000\n"
 "Last-Translator: Sveinn í Felli <sveinki@nett.is>\n"
 "Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
 "Language: \n"
@@ -75,9 +75,8 @@ msgid "Select command"
 msgstr "Veldu skipun"
 
 #: ../panel-plugin/battery.c:1341
-#, fuzzy
 msgid "Select color"
-msgstr "Veldu skrá"
+msgstr "Veldu lit"
 
 #: ../panel-plugin/battery.c:1383
 #, c-format
@@ -90,30 +89,27 @@ msgstr "Rafhlöðueftirlit"
 
 #: ../panel-plugin/battery.c:1415
 msgid "Properties"
-msgstr ""
+msgstr "Eiginleikar"
 
 #: ../panel-plugin/battery.c:1441
 msgid "On AC:"
 msgstr ""
 
 #: ../panel-plugin/battery.c:1458
-#, fuzzy
 msgid "Battery high:"
-msgstr "Rafhlaða"
+msgstr "Mikið á rafhlöðu:"
 
 #: ../panel-plugin/battery.c:1475
-#, fuzzy
 msgid "Battery low:"
-msgstr "Rafhlaða"
+msgstr "Lítið eftir á rafhlöðu:"
 
 #: ../panel-plugin/battery.c:1492
-#, fuzzy
 msgid "Battery critical:"
-msgstr "Rafhlöðueftirlit"
+msgstr "Rafhlaða að tæmast:"
 
 #: ../panel-plugin/battery.c:1506
 msgid "Bar _colors"
-msgstr ""
+msgstr "_Litir á stöplum"
 
 #: ../panel-plugin/battery.c:1520
 msgid "Low percentage:"
@@ -161,7 +157,7 @@ msgstr ""
 
 #: ../panel-plugin/battery.c:1636
 msgid "Display icon"
-msgstr ""
+msgstr "Birta táknmynd"
 
 #: ../panel-plugin/battery.c:1639
 msgid "Display bar"
@@ -193,7 +189,7 @@ msgstr ""
 
 #: ../panel-plugin/battery.c:1660
 msgid "_Display"
-msgstr ""
+msgstr "B_irting"
 
 #: ../panel-plugin/battery.c:1707 ../panel-plugin/battery.desktop.in.h:2
 msgid "Show and monitor the battery status"
@@ -201,4 +197,5 @@ msgstr ""
 
 #: ../panel-plugin/battery.c:1709
 msgid "Copyright (c) 2003-2012\n"
-msgstr ""
+msgstr "Höfundarréttur (c) 2003-2012\n"
+

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: is\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-04-23 17:18+0200\n"
-"PO-Revision-Date: 2012-07-02 17:03+0000\n"
+"PO-Revision-Date: 2012-07-03 20:10+0000\n"
 "Last-Translator: Sveinn í Felli <sveinki@nett.is>\n"
 "Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
 "Language: \n"
@@ -20,15 +20,15 @@ msgstr ""
 
 #: ../panel-plugin/battery.c:551
 msgid "(No battery, AC on-line)"
-msgstr ""
+msgstr "(Engin rafhlaða, tengt við rafkerfi)"
 
 #: ../panel-plugin/battery.c:553
 msgid "(Charging from AC)"
-msgstr ""
+msgstr "(Hleð inn frá rafkerfi)"
 
 #: ../panel-plugin/battery.c:553
 msgid "(AC on-line)"
-msgstr ""
+msgstr "(Tengt við rafkerfi)"
 
 #: ../panel-plugin/battery.c:563
 #, c-format
@@ -48,19 +48,19 @@ msgstr "%d%% eftir"
 #: ../panel-plugin/battery.c:569
 #, c-format
 msgid "AC off-line"
-msgstr ""
+msgstr "(Ekki tengt við rafkerfi)"
 
 #: ../panel-plugin/battery.c:637
 msgid ""
 "WARNING: Your battery has reached critical status. You should plug in or "
 "shutdown your computer now to avoid possible data loss."
-msgstr ""
+msgstr "AÐVÖRUN: Rafhlaðan á hættulega litla hleðslu eftir. Þú ættir að gera ráðstafanir til að tengja tölvuna við rafmagn eða slökkva á henni til að forðast hugsanlegt gagnatap."
 
 #: ../panel-plugin/battery.c:655
 msgid ""
 "WARNING: Your battery is running low. You should consider plugging in or "
 "shutting down your computer soon to avoid possible data loss."
-msgstr ""
+msgstr "AÐVÖRUN: Rafhlaðan á litla hleðslu eftir. Þú ættir að gera ráðstafanir til að tengja tölvuna við rafmagn eða slökkva á henni til að forðast hugsanlegt gagnatap."
 
 #: ../panel-plugin/battery.c:709
 msgid "Battery"
@@ -93,7 +93,7 @@ msgstr "Eiginleikar"
 
 #: ../panel-plugin/battery.c:1441
 msgid "On AC:"
-msgstr ""
+msgstr "Þegar tengt við rafkerfi:"
 
 #: ../panel-plugin/battery.c:1458
 msgid "Battery high:"
@@ -113,11 +113,11 @@ msgstr "_Litir á stöplum"
 
 #: ../panel-plugin/battery.c:1520
 msgid "Low percentage:"
-msgstr ""
+msgstr "Lág hleðsla (%):"
 
 #: ../panel-plugin/battery.c:1533
 msgid "Low battery action:"
-msgstr ""
+msgstr "Aðgerð við lága hleðslu:"
 
 #: ../panel-plugin/battery.c:1539 ../panel-plugin/battery.c:1591
 msgid "Do nothing"
@@ -141,19 +141,19 @@ msgstr "Skipun:"
 
 #: ../panel-plugin/battery.c:1572
 msgid "Critical percentage:"
-msgstr ""
+msgstr "Hættulega lág hleðsla (%):"
 
 #: ../panel-plugin/battery.c:1585
 msgid "Critical battery action:"
-msgstr ""
+msgstr "Aðgerð við hættulega lága hleðslu:"
 
 #: ../panel-plugin/battery.c:1620
 msgid "Levels and _actions"
-msgstr ""
+msgstr "Stig og _aðgerðir"
 
 #: ../panel-plugin/battery.c:1633
 msgid "Display label"
-msgstr ""
+msgstr "Birta skýringu"
 
 #: ../panel-plugin/battery.c:1636
 msgid "Display icon"
@@ -161,31 +161,31 @@ msgstr "Birta táknmynd"
 
 #: ../panel-plugin/battery.c:1639
 msgid "Display bar"
-msgstr ""
+msgstr "Birta súlu"
 
 #: ../panel-plugin/battery.c:1642
 msgid "Display percentage"
-msgstr ""
+msgstr "Birta prósentu"
 
 #: ../panel-plugin/battery.c:1645
 msgid "Display time"
-msgstr ""
+msgstr "Birta tíma"
 
 #: ../panel-plugin/battery.c:1648
 msgid "Display power"
-msgstr ""
+msgstr "Birta orku"
 
 #: ../panel-plugin/battery.c:1651
 msgid "Hide time/percentage when full"
-msgstr ""
+msgstr "Fela tíma/prósentu þegar fullt"
 
 #: ../panel-plugin/battery.c:1654
 msgid "Display percentage in tooltip"
-msgstr ""
+msgstr "Birta prósentuhlutfall sem eftir er í vísbendingu"
 
 #: ../panel-plugin/battery.c:1657
 msgid "Display time remaining in tooltip"
-msgstr ""
+msgstr "Birta tímann sem eftir er í vísbendingu"
 
 #: ../panel-plugin/battery.c:1660
 msgid "_Display"
@@ -193,7 +193,7 @@ msgstr "B_irting"
 
 #: ../panel-plugin/battery.c:1707 ../panel-plugin/battery.desktop.in.h:2
 msgid "Show and monitor the battery status"
-msgstr ""
+msgstr "Birta tog fylgjast með stöðu rafhlöðu"
 
 #: ../panel-plugin/battery.c:1709
 msgid "Copyright (c) 2003-2012\n"

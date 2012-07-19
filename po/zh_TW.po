@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: xfce4-battery-plugin 0.5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-07-19 08:30+0000\n"
-"PO-Revision-Date: 2012-07-19 18:43+0800\n"
+"PO-Revision-Date: 2012-07-19 18:53+0800\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (traditional) <xfce-i18n@xfce.org>\n"
 "Language: zh_TW\n"
@@ -104,7 +104,7 @@ msgstr "電量臨界點："
 
 #: ../panel-plugin/battery.c:1428
 msgid "Bar _colors"
-msgstr "橫條色彩(_C)"
+msgstr "長條色彩(_C)"
 
 #: ../panel-plugin/battery.c:1442
 msgid "Low percentage:"

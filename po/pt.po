@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: xfce4-battery-plugin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-04-23 17:18+0200\n"
-"PO-Revision-Date: 2012-01-09 10:59-0000\n"
+"PO-Revision-Date: 2012-07-31 12:49-0000\n"
 "Last-Translator: Sérgio Marques <smarquespt@gmail.com>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: ../panel-plugin/battery.c:551
 msgid "(No battery, AC on-line)"
-msgstr "(Sem bateria e ligado à corrente)"
+msgstr "(Sem bateria, ligado à corrente)"
 
 #: ../panel-plugin/battery.c:553
 msgid "(Charging from AC)"
@@ -48,23 +48,15 @@ msgstr "%d%% restante"
 #: ../panel-plugin/battery.c:569
 #, c-format
 msgid "AC off-line"
-msgstr "A trabalhar com bateria"
+msgstr "Com bateria"
 
 #: ../panel-plugin/battery.c:637
-msgid ""
-"WARNING: Your battery has reached critical status. You should plug in or "
-"shutdown your computer now to avoid possible data loss."
-msgstr ""
-"Aviso: a sua bateria chegou ao estado crítico. Deve ligar à corrente ou "
-"desligar o computador para evitar a perda de dados."
+msgid "WARNING: Your battery has reached critical status. You should plug in or shutdown your computer now to avoid possible data loss."
+msgstr "Aviso: a sua bateria chegou ao estado crítico. Deve ligar à corrente ou desligar o computador para evitar a perda de dados."
 
 #: ../panel-plugin/battery.c:655
-msgid ""
-"WARNING: Your battery is running low. You should consider plugging in or "
-"shutting down your computer soon to avoid possible data loss."
-msgstr ""
-"Aviso: a sua bateria está fraca. Considere ligar à corrente ou desligar o "
-"computador brevemente para evitar a perda de dados."
+msgid "WARNING: Your battery is running low. You should consider plugging in or shutting down your computer soon to avoid possible data loss."
+msgstr "Aviso: a sua bateria está fraca. Considere ligar à corrente ou desligar o computador brevemente para evitar a perda de dados."
 
 #: ../panel-plugin/battery.c:709
 msgid "Battery"
@@ -87,7 +79,8 @@ msgstr "Selecione a cor"
 msgid "Unable to open the following url: %s"
 msgstr "Incapaz de abrir o url: %s"
 
-#: ../panel-plugin/battery.c:1408 ../panel-plugin/battery.desktop.in.h:1
+#: ../panel-plugin/battery.c:1408
+#: ../panel-plugin/battery.desktop.in.h:1
 msgid "Battery Monitor"
 msgstr "Monitor de bateria"
 
@@ -117,29 +110,34 @@ msgstr "_Cores da barra"
 
 #: ../panel-plugin/battery.c:1520
 msgid "Low percentage:"
-msgstr "Baixa percentagem:"
+msgstr "Percentagem baixa:"
 
 #: ../panel-plugin/battery.c:1533
 msgid "Low battery action:"
 msgstr "Ação para bateria fraca:"
 
-#: ../panel-plugin/battery.c:1539 ../panel-plugin/battery.c:1591
+#: ../panel-plugin/battery.c:1539
+#: ../panel-plugin/battery.c:1591
 msgid "Do nothing"
 msgstr "Nada fazer"
 
-#: ../panel-plugin/battery.c:1541 ../panel-plugin/battery.c:1593
+#: ../panel-plugin/battery.c:1541
+#: ../panel-plugin/battery.c:1593
 msgid "Display a warning message"
 msgstr "Exibir mensagem de alerta"
 
-#: ../panel-plugin/battery.c:1543 ../panel-plugin/battery.c:1595
+#: ../panel-plugin/battery.c:1543
+#: ../panel-plugin/battery.c:1595
 msgid "Run command"
 msgstr "Executar comando"
 
-#: ../panel-plugin/battery.c:1545 ../panel-plugin/battery.c:1597
+#: ../panel-plugin/battery.c:1545
+#: ../panel-plugin/battery.c:1597
 msgid "Run command in terminal"
 msgstr "Executar comando no terminal"
 
-#: ../panel-plugin/battery.c:1558 ../panel-plugin/battery.c:1609
+#: ../panel-plugin/battery.c:1558
+#: ../panel-plugin/battery.c:1609
 msgid "Command:"
 msgstr "Comando:"
 
@@ -195,10 +193,12 @@ msgstr "Exibir tempo restante como aviso "
 msgid "_Display"
 msgstr "_Exibição"
 
-#: ../panel-plugin/battery.c:1707 ../panel-plugin/battery.desktop.in.h:2
+#: ../panel-plugin/battery.c:1707
+#: ../panel-plugin/battery.desktop.in.h:2
 msgid "Show and monitor the battery status"
 msgstr "Mostrar e monitorizar o estado da bateria"
 
 #: ../panel-plugin/battery.c:1709
 msgid "Copyright (c) 2003-2012\n"
-msgstr "Copyright (c) 2003-2012\n"
+msgstr "Direitos de autor (c) 2003-2012\n"
+

@@ -1,13 +1,13 @@
 # Uyghur translation for xfce4-battery-plugin.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Gheyret Kenji <gheyret@gmail.com>, 2012.
+# Gheyret Kenji <gheyret@gmail.com>, YEAR.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-battery-plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-06 20:33+0000\n"
+"POT-Creation-Date: 2012-10-24 02:24+0000\n"
 "PO-Revision-Date: 2011-11-09 16:10+0900\n"
 "Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
@@ -46,7 +46,7 @@ msgstr "%d%% قالدى"
 #: ../panel-plugin/battery.c:554
 #, c-format
 msgid "AC off-line"
-msgstr "AC غا ئۇلانماپتۇ"
+msgstr "AC ئۇلانماپتۇ"
 
 #: ../panel-plugin/battery.c:624
 msgid ""
@@ -179,11 +179,11 @@ msgstr "تولۇق توكلانغاندا ۋاقىت ۋە ئاز قالدۇق پ
 
 #: ../panel-plugin/battery.c:1576
 msgid "Display percentage in tooltip"
-msgstr "قالدۇقنى كۆرسەتمىدە كۆرسەت"
+msgstr "پىرسەنتنى كۆرسەتمىدە كۆرسەت"
 
 #: ../panel-plugin/battery.c:1579
 msgid "Display time remaining in tooltip"
-msgstr "قالغان ۋاقىتنى كۆرسەتمىدە كۆرسەت"
+msgstr "قالدۇقنى كۆرسەتمىدە كۆرسەت"
 
 #: ../panel-plugin/battery.c:1582
 msgid "_Display"

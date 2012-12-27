@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-battery-plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-19 10:03+0000\n"
+"POT-Creation-Date: 2012-12-27 07:12+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Urmas <dwqwt3i02@sneakemail.com>\n"
 "Language-Team: None <->\n"
@@ -110,7 +110,7 @@ msgstr "Критический заряд батареи:"
 
 #: ../panel-plugin/battery.c:1428
 msgid "Bar _colors"
-msgstr ""
+msgstr "_Цвет полос"
 
 #: ../panel-plugin/battery.c:1442
 msgid "Low percentage:"
@@ -161,9 +161,8 @@ msgid "Display icon"
 msgstr "Значок"
 
 #: ../panel-plugin/battery.c:1561
-#, fuzzy
 msgid "Display bar"
-msgstr "Метка"
+msgstr "Отображать полосы"
 
 #: ../panel-plugin/battery.c:1564
 msgid "Display percentage"

@@ -2,7 +2,7 @@
 # Copyright (C) The Xfce development team.
 # This file is distributed under the same license as the
 # xfce4-battery-plugin package.
-# Pjotr, 2011.
+# Pjotr <pjotrvertaalt@gmail.com> , 2011 - 2013.
 #
 msgid ""
 msgstr ""
@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-04-23 17:18+0200\n"
 "PO-Revision-Date: 2008-07-15 22:17+0200\n"
-"Last-Translator: Pjotr\n"
+"Last-Translator: Pjotr pjotrvertaalt@gmail.com\n"
 "Language-Team: Dutch/Flemish\n"
 "Language: nl (Dutch)\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: ../panel-plugin/battery.c:551
 msgid "(No battery, AC on-line)"
-msgstr " (Geen accu, actieve netstroomvoeding)"
+msgstr "(Geen accu, actieve netstroomvoeding)"
 
 #: ../panel-plugin/battery.c:553
 msgid "(Charging from AC)"
@@ -28,7 +28,7 @@ msgstr "(Aan het opladen via netstroom)"
 
 #: ../panel-plugin/battery.c:553
 msgid "(AC on-line)"
-msgstr " (Netstroomvoeding actief)"
+msgstr "(Netstroomvoeding actief)"
 
 #: ../panel-plugin/battery.c:563
 #, c-format
@@ -55,7 +55,7 @@ msgid ""
 "WARNING: Your battery has reached critical status. You should plug in or "
 "shutdown your computer now to avoid possible data loss."
 msgstr ""
-"WAARSCHUWING: De accu heeft kritieke status bereikt. U zou uw computer op "
+"WAARSCHUWING: De accu heeft de kritieke status bereikt. U zou uw computer op "
 "netstroom moeten aansluiten of uitzetten, om mogelijk gegevensverlies te "
 "voorkomen."
 
@@ -91,7 +91,7 @@ msgstr "Kan de volgende URL niet openen: %s"
 
 #: ../panel-plugin/battery.c:1408 ../panel-plugin/battery.desktop.in.h:1
 msgid "Battery Monitor"
-msgstr "Accu Monitor"
+msgstr "Accubewaker"
 
 #: ../panel-plugin/battery.c:1415
 msgid "Properties"
@@ -135,7 +135,7 @@ msgstr "Toon een waarschuwing"
 
 #: ../panel-plugin/battery.c:1543 ../panel-plugin/battery.c:1595
 msgid "Run command"
-msgstr "Een opdracht uitvoeren"
+msgstr "Voer een opdracht uit"
 
 #: ../panel-plugin/battery.c:1545 ../panel-plugin/battery.c:1597
 msgid "Run command in terminal"
@@ -187,7 +187,7 @@ msgstr "Verberg tijd/percentage wanneer vol"
 
 #: ../panel-plugin/battery.c:1654
 msgid "Display percentage in tooltip"
-msgstr "Geef percentage in de gereedschaptip weer"
+msgstr "Geef percentage weer in de gereedschaptip"
 
 #: ../panel-plugin/battery.c:1657
 msgid "Display time remaining in tooltip"

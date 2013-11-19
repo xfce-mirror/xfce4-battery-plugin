@@ -1,16 +1,16 @@
-# Czech translation of the xfce4-battery-plugin package.
-# Copyright (C) 2006-2007 The Xfce development team.
-# This file is distributed under the same license as the xfce4-battery-plugin package.
-# Michal Várady <miko.vaji@gmail.com>, 2006-2011.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-battery-plugin 0.5.0\n"
+"Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-13 19:57+0000\n"
-"PO-Revision-Date: 2011-01-15 10:09+0100\n"
-"Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
-"Language-Team: Czech <xfce-i18n@xfce.org>\n"
+"POT-Creation-Date: 2013-07-03 20:48+0200\n"
+"PO-Revision-Date: 2013-11-19 12:24+0000\n"
+"Last-Translator: Nick <nick@xfce.org>\n"
+"Language-Team: Czech (http://www.transifex.com/projects/p/xfce/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -53,18 +53,13 @@ msgstr "Odpojeno od sítě"
 msgid ""
 "WARNING: Your battery has reached critical status. You should plug in or "
 "shutdown your computer now to avoid possible data loss."
-msgstr ""
-"VAROVÁNÍ: Baterie dosáhla kritického stavu. Měli byste připojit počítač do "
-"elektrické sítě nebo jej vypnout, abyste předešli možné ztrátě dat."
+msgstr "VAROVÁNÍ: Baterie dosáhla kritického stavu. Měli byste připojit počítač do elektrické sítě nebo jej vypnout, abyste předešli možné ztrátě dat."
 
 #: ../panel-plugin/battery.c:642
 msgid ""
 "WARNING: Your battery is running low. You should consider plugging in or "
 "shutting down your computer soon to avoid possible data loss."
-msgstr ""
-"VAROVÁNÍ: Úroveň nabití baterie je nízká. Měli byste zvážit připojení "
-"počítače do elektrické sítě nebo jej v dohledné době vypnout, abyste "
-"předešli ztrátě dat."
+msgstr "VAROVÁNÍ: Úroveň nabití baterie je nízká. Měli byste zvážit připojení počítače do elektrické sítě nebo jej v dohledné době vypnout, abyste předešli ztrátě dat."
 
 #: ../panel-plugin/battery.c:678
 msgid "Battery"
@@ -202,6 +197,3 @@ msgstr "Zobrazit a monitorovat stav baterie"
 #: ../panel-plugin/battery.c:1631
 msgid "Copyright (c) 2003-2012\n"
 msgstr "Copyright (c) 2003-2012\n"
-
-#~ msgid "Configure Battery Monitor"
-#~ msgstr "Nastavit sledování baterie"

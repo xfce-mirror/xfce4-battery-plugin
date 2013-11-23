@@ -1,0 +1,200 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Cedric31 <cvalmary@yahoo.fr>, 2013
+msgid ""
+msgstr ""
+"Project-Id-Version: Xfce Panel Plugins\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-07-03 20:48+0200\n"
+"PO-Revision-Date: 2013-11-23 17:12+0000\n"
+"Last-Translator: Cedric31 <cvalmary@yahoo.fr>\n"
+"Language-Team: Occitan (post 1500) (http://www.transifex.com/projects/p/xfce/language/oc/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: oc\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: ../panel-plugin/battery.c:536
+msgid "(No battery, AC on-line)"
+msgstr "(Pas de batariá, sector brancat)"
+
+#: ../panel-plugin/battery.c:538
+msgid "(Charging from AC)"
+msgstr "(Batariá en carga)"
+
+#: ../panel-plugin/battery.c:538
+msgid "(AC on-line)"
+msgstr "(Sector brancat)"
+
+#: ../panel-plugin/battery.c:548
+#, c-format
+msgid "%d%% (%02d:%02d) remaining"
+msgstr "%d%% (%02d:%02d) restants"
+
+#: ../panel-plugin/battery.c:550
+#, c-format
+msgid "%02d:%02d remaining"
+msgstr "%02d:%02d restants"
+
+#: ../panel-plugin/battery.c:552
+#, c-format
+msgid "%d%% remaining"
+msgstr "%d%% restants"
+
+#: ../panel-plugin/battery.c:554
+#, c-format
+msgid "AC off-line"
+msgstr "Sector desbrancat"
+
+#: ../panel-plugin/battery.c:624
+msgid ""
+"WARNING: Your battery has reached critical status. You should plug in or "
+"shutdown your computer now to avoid possible data loss."
+msgstr "ATENCION : La batariá a atench un sulhet critic. Es conselhat de brancar lo cargador o d'atudar l'ordenador per evitar tota pèrda de donadas."
+
+#: ../panel-plugin/battery.c:642
+msgid ""
+"WARNING: Your battery is running low. You should consider plugging in or "
+"shutting down your computer soon to avoid possible data loss."
+msgstr "ATENCION : La batariá es febla. Es conselhat de brancar lo cargador o d'atudar l'ordenador per evitar tota pèrda de donadas."
+
+#: ../panel-plugin/battery.c:678
+msgid "Battery"
+msgstr "Batariá"
+
+#: ../panel-plugin/battery.c:1207
+msgid "Select file"
+msgstr "Seleccionar un fichièr"
+
+#: ../panel-plugin/battery.c:1248
+msgid "Select command"
+msgstr "Seleccionar una comanda"
+
+#: ../panel-plugin/battery.c:1263
+msgid "Select color"
+msgstr "Seleccionar una color"
+
+#: ../panel-plugin/battery.c:1305
+#, c-format
+msgid "Unable to open the following url: %s"
+msgstr "Impossible de dobrir l'URL seguenta : %s"
+
+#: ../panel-plugin/battery.c:1330 ../panel-plugin/battery.desktop.in.h:1
+msgid "Battery Monitor"
+msgstr "Monitor de batariá"
+
+#: ../panel-plugin/battery.c:1337
+msgid "Properties"
+msgstr "Proprietats"
+
+#: ../panel-plugin/battery.c:1363
+msgid "On AC:"
+msgstr "Sus cargador :"
+
+#: ../panel-plugin/battery.c:1380
+msgid "Battery high:"
+msgstr "Nivèl de batariá naut :"
+
+#: ../panel-plugin/battery.c:1397
+msgid "Battery low:"
+msgstr "Nivèl de batariá bas :"
+
+#: ../panel-plugin/battery.c:1414
+msgid "Battery critical:"
+msgstr "Nivèl de batariá critic :"
+
+#: ../panel-plugin/battery.c:1428
+msgid "Bar _colors"
+msgstr "_Colors de la barra"
+
+#: ../panel-plugin/battery.c:1442
+msgid "Low percentage:"
+msgstr "Percentatge feble :"
+
+#: ../panel-plugin/battery.c:1455
+msgid "Low battery action:"
+msgstr "Accion batariá febla :"
+
+#: ../panel-plugin/battery.c:1461 ../panel-plugin/battery.c:1513
+msgid "Do nothing"
+msgstr "Far pas res"
+
+#: ../panel-plugin/battery.c:1463 ../panel-plugin/battery.c:1515
+msgid "Display a warning message"
+msgstr "Afichar un messatge d'avertiment"
+
+#: ../panel-plugin/battery.c:1465 ../panel-plugin/battery.c:1517
+msgid "Run command"
+msgstr "Aviar una comanda"
+
+#: ../panel-plugin/battery.c:1467 ../panel-plugin/battery.c:1519
+msgid "Run command in terminal"
+msgstr "Aviar una comanda dins un terminal"
+
+#: ../panel-plugin/battery.c:1480 ../panel-plugin/battery.c:1531
+msgid "Command:"
+msgstr "Comanda :"
+
+#: ../panel-plugin/battery.c:1494
+msgid "Critical percentage:"
+msgstr "Percentatge critic :"
+
+#: ../panel-plugin/battery.c:1507
+msgid "Critical battery action:"
+msgstr "Accion sus batariá critica :"
+
+#: ../panel-plugin/battery.c:1542
+msgid "Levels and _actions"
+msgstr "Nivèls e _accions"
+
+#: ../panel-plugin/battery.c:1555
+msgid "Display label"
+msgstr "Afichar l'etiqueta"
+
+#: ../panel-plugin/battery.c:1558
+msgid "Display icon"
+msgstr "Afichar l'icòna"
+
+#: ../panel-plugin/battery.c:1561
+msgid "Display bar"
+msgstr "Afichar la barra"
+
+#: ../panel-plugin/battery.c:1564
+msgid "Display percentage"
+msgstr "Afichar percentatge"
+
+#: ../panel-plugin/battery.c:1567
+msgid "Display time"
+msgstr "Afichar lo temps"
+
+#: ../panel-plugin/battery.c:1570
+msgid "Display power"
+msgstr "Afichar la font"
+
+#: ../panel-plugin/battery.c:1573
+msgid "Hide time/percentage when full"
+msgstr "Amagar lo temps/percentatge quand la batariá es cargada"
+
+#: ../panel-plugin/battery.c:1576
+msgid "Display percentage in tooltip"
+msgstr "Afichar percentatge dins l'infobulla"
+
+#: ../panel-plugin/battery.c:1579
+msgid "Display time remaining in tooltip"
+msgstr "Afichar lo temps restant dins l'infobulla"
+
+#: ../panel-plugin/battery.c:1582
+msgid "_Display"
+msgstr "Afichatge"
+
+#: ../panel-plugin/battery.c:1629 ../panel-plugin/battery.desktop.in.h:2
+msgid "Show and monitor the battery status"
+msgstr "Afichar e seguir l'estat de la batariá"
+
+#: ../panel-plugin/battery.c:1631
+msgid "Copyright (c) 2003-2012\n"
+msgstr "Copyright (c) 2003-2012\n"

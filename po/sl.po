@@ -1,0 +1,200 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# anthonmanix <anthon.manix@gmail.com>, 2013
+msgid ""
+msgstr ""
+"Project-Id-Version: Xfce Panel Plugins\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-07-03 20:48+0200\n"
+"PO-Revision-Date: 2013-12-02 21:32+0000\n"
+"Last-Translator: anthonmanix <anthon.manix@gmail.com>\n"
+"Language-Team: Slovenian (http://www.transifex.com/projects/p/xfce/language/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#: ../panel-plugin/battery.c:536
+msgid "(No battery, AC on-line)"
+msgstr "(Ni baterije, AC priklopljeno)"
+
+#: ../panel-plugin/battery.c:538
+msgid "(Charging from AC)"
+msgstr "(Polnjenje iz AC)"
+
+#: ../panel-plugin/battery.c:538
+msgid "(AC on-line)"
+msgstr "(AC priklopljeno)"
+
+#: ../panel-plugin/battery.c:548
+#, c-format
+msgid "%d%% (%02d:%02d) remaining"
+msgstr "%d%% (%02d:%02d) preostalo"
+
+#: ../panel-plugin/battery.c:550
+#, c-format
+msgid "%02d:%02d remaining"
+msgstr "%02d:%02d preostalo"
+
+#: ../panel-plugin/battery.c:552
+#, c-format
+msgid "%d%% remaining"
+msgstr "%d%% preostalo"
+
+#: ../panel-plugin/battery.c:554
+#, c-format
+msgid "AC off-line"
+msgstr "AC odklopljeno"
+
+#: ../panel-plugin/battery.c:624
+msgid ""
+"WARNING: Your battery has reached critical status. You should plug in or "
+"shutdown your computer now to avoid possible data loss."
+msgstr "OPOZORILO: Vaša baterija je dosegla kritičen status. Priklopite na napajanje ali izklopite vaš računalnik, da preprečite morebitno izgubo podatkov."
+
+#: ../panel-plugin/battery.c:642
+msgid ""
+"WARNING: Your battery is running low. You should consider plugging in or "
+"shutting down your computer soon to avoid possible data loss."
+msgstr "OPOZORILO: Vaša baterija je skoraj prazna. Razmislite o priklopite na napajanje ali izklopu vašega računalnika, da preprečite morebitno izgubo podatkov."
+
+#: ../panel-plugin/battery.c:678
+msgid "Battery"
+msgstr "Baterija"
+
+#: ../panel-plugin/battery.c:1207
+msgid "Select file"
+msgstr "Izberi datoteko"
+
+#: ../panel-plugin/battery.c:1248
+msgid "Select command"
+msgstr "Izberi ukaz"
+
+#: ../panel-plugin/battery.c:1263
+msgid "Select color"
+msgstr "Izberi barvo"
+
+#: ../panel-plugin/battery.c:1305
+#, c-format
+msgid "Unable to open the following url: %s"
+msgstr "Naslova URL ni mogoče odpreti: %s"
+
+#: ../panel-plugin/battery.c:1330 ../panel-plugin/battery.desktop.in.h:1
+msgid "Battery Monitor"
+msgstr "Nadzornik baterije"
+
+#: ../panel-plugin/battery.c:1337
+msgid "Properties"
+msgstr "Lastnosti"
+
+#: ../panel-plugin/battery.c:1363
+msgid "On AC:"
+msgstr "Na AC:"
+
+#: ../panel-plugin/battery.c:1380
+msgid "Battery high:"
+msgstr "Visoko stanje baterije:"
+
+#: ../panel-plugin/battery.c:1397
+msgid "Battery low:"
+msgstr "Nizko stanje baterije:"
+
+#: ../panel-plugin/battery.c:1414
+msgid "Battery critical:"
+msgstr "Kritično stanje baterije:"
+
+#: ../panel-plugin/battery.c:1428
+msgid "Bar _colors"
+msgstr "_Barve proge:"
+
+#: ../panel-plugin/battery.c:1442
+msgid "Low percentage:"
+msgstr "Nizek odstotek:"
+
+#: ../panel-plugin/battery.c:1455
+msgid "Low battery action:"
+msgstr "Dejanje nizkega stanja baterije:"
+
+#: ../panel-plugin/battery.c:1461 ../panel-plugin/battery.c:1513
+msgid "Do nothing"
+msgstr "Ne naredi ničesar"
+
+#: ../panel-plugin/battery.c:1463 ../panel-plugin/battery.c:1515
+msgid "Display a warning message"
+msgstr "Prikaži opozorilno sporočilo"
+
+#: ../panel-plugin/battery.c:1465 ../panel-plugin/battery.c:1517
+msgid "Run command"
+msgstr "Zaženi ukaz"
+
+#: ../panel-plugin/battery.c:1467 ../panel-plugin/battery.c:1519
+msgid "Run command in terminal"
+msgstr "Zaženi ukaz v terminalu"
+
+#: ../panel-plugin/battery.c:1480 ../panel-plugin/battery.c:1531
+msgid "Command:"
+msgstr "Ukaz:"
+
+#: ../panel-plugin/battery.c:1494
+msgid "Critical percentage:"
+msgstr "Kritičen odstotek:"
+
+#: ../panel-plugin/battery.c:1507
+msgid "Critical battery action:"
+msgstr "Dejanje kritičnega stanja baterije:"
+
+#: ../panel-plugin/battery.c:1542
+msgid "Levels and _actions"
+msgstr "Nivoji in dejanj_a"
+
+#: ../panel-plugin/battery.c:1555
+msgid "Display label"
+msgstr "Prikaži oznako"
+
+#: ../panel-plugin/battery.c:1558
+msgid "Display icon"
+msgstr "Prikaži ikono"
+
+#: ../panel-plugin/battery.c:1561
+msgid "Display bar"
+msgstr "Prikaži progo"
+
+#: ../panel-plugin/battery.c:1564
+msgid "Display percentage"
+msgstr "Prikaži odstotek"
+
+#: ../panel-plugin/battery.c:1567
+msgid "Display time"
+msgstr "Prikaži čas"
+
+#: ../panel-plugin/battery.c:1570
+msgid "Display power"
+msgstr "Prikaži napajanje"
+
+#: ../panel-plugin/battery.c:1573
+msgid "Hide time/percentage when full"
+msgstr "Skrij čas/odstotek, ko je polna"
+
+#: ../panel-plugin/battery.c:1576
+msgid "Display percentage in tooltip"
+msgstr "Prikaz odstotka v orodnem namigu"
+
+#: ../panel-plugin/battery.c:1579
+msgid "Display time remaining in tooltip"
+msgstr "Prikaz preostalega časa v orodnem namigu"
+
+#: ../panel-plugin/battery.c:1582
+msgid "_Display"
+msgstr "_Prikaz"
+
+#: ../panel-plugin/battery.c:1629 ../panel-plugin/battery.desktop.in.h:2
+msgid "Show and monitor the battery status"
+msgstr "Prikaži in nadzoruj stanje baterije"
+
+#: ../panel-plugin/battery.c:1631
+msgid "Copyright (c) 2003-2012\n"
+msgstr "Avtorske pravice (c) 2003-2012\n"

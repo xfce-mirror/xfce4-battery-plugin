@@ -1,0 +1,200 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Umidjon Almasov <u.almasov@gmail.com>, 2013
+msgid ""
+msgstr ""
+"Project-Id-Version: Xfce Panel Plugins\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-07-03 20:48+0200\n"
+"PO-Revision-Date: 2014-01-10 09:09+0000\n"
+"Last-Translator: Umidjon Almasov <u.almasov@gmail.com>\n"
+"Language-Team: Uzbek (Latin) (http://www.transifex.com/projects/p/xfce/language/uz@Latn/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: uz@Latn\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: ../panel-plugin/battery.c:536
+msgid "(No battery, AC on-line)"
+msgstr "(Batareya yo'q, elektr tarmog'iga ulangan)"
+
+#: ../panel-plugin/battery.c:538
+msgid "(Charging from AC)"
+msgstr "(Elektr tarmog'idan quvvat olinmoqda)"
+
+#: ../panel-plugin/battery.c:538
+msgid "(AC on-line)"
+msgstr "(Elektr tarmog'iga ulangan)"
+
+#: ../panel-plugin/battery.c:548
+#, c-format
+msgid "%d%% (%02d:%02d) remaining"
+msgstr "%d%% (%02d:%02d) qoldi"
+
+#: ../panel-plugin/battery.c:550
+#, c-format
+msgid "%02d:%02d remaining"
+msgstr "%02d:%02d qoldi"
+
+#: ../panel-plugin/battery.c:552
+#, c-format
+msgid "%d%% remaining"
+msgstr "%d%% qoldi"
+
+#: ../panel-plugin/battery.c:554
+#, c-format
+msgid "AC off-line"
+msgstr "Elektr tarmog'iga ulanmagan"
+
+#: ../panel-plugin/battery.c:624
+msgid ""
+"WARNING: Your battery has reached critical status. You should plug in or "
+"shutdown your computer now to avoid possible data loss."
+msgstr "OGOHLANTIRISH: Batareya kritik holatiga yetib keldi. Ehtimoliy ma'lumot yo'qotishni oldini olish uchun hozir elektr tarmog'iga ulanish yoki kompyuterni o'chirish kerak."
+
+#: ../panel-plugin/battery.c:642
+msgid ""
+"WARNING: Your battery is running low. You should consider plugging in or "
+"shutting down your computer soon to avoid possible data loss."
+msgstr "OGOHLANTIRISH: Batareya past holatiga yetib keldi. Ehtimoliy ma'lumot yo'qotishni oldini olish uchun tez orada elektr tarmog'iga ulanish yoki kompyuterni o'chirish tavsiya etiladi."
+
+#: ../panel-plugin/battery.c:678
+msgid "Battery"
+msgstr "Batareya"
+
+#: ../panel-plugin/battery.c:1207
+msgid "Select file"
+msgstr "Faylni tanlash"
+
+#: ../panel-plugin/battery.c:1248
+msgid "Select command"
+msgstr "Buyruqni tanlash"
+
+#: ../panel-plugin/battery.c:1263
+msgid "Select color"
+msgstr "Rangni tanlash"
+
+#: ../panel-plugin/battery.c:1305
+#, c-format
+msgid "Unable to open the following url: %s"
+msgstr "Quyidagi URL manzilini ochib bo'lmadi: %s"
+
+#: ../panel-plugin/battery.c:1330 ../panel-plugin/battery.desktop.in.h:1
+msgid "Battery Monitor"
+msgstr "Batareiya monitori"
+
+#: ../panel-plugin/battery.c:1337
+msgid "Properties"
+msgstr "Xususiyatlar"
+
+#: ../panel-plugin/battery.c:1363
+msgid "On AC:"
+msgstr "Elektr tarmog'iga ulanganda:"
+
+#: ../panel-plugin/battery.c:1380
+msgid "Battery high:"
+msgstr "Batareiyaning yuqori holati:"
+
+#: ../panel-plugin/battery.c:1397
+msgid "Battery low:"
+msgstr "Batareiyaning past holati:"
+
+#: ../panel-plugin/battery.c:1414
+msgid "Battery critical:"
+msgstr "Batareyaning kritik holati:"
+
+#: ../panel-plugin/battery.c:1428
+msgid "Bar _colors"
+msgstr "Panel _ranglari"
+
+#: ../panel-plugin/battery.c:1442
+msgid "Low percentage:"
+msgstr "Past foiz:"
+
+#: ../panel-plugin/battery.c:1455
+msgid "Low battery action:"
+msgstr "Batareyaning past holatidagi harakat:"
+
+#: ../panel-plugin/battery.c:1461 ../panel-plugin/battery.c:1513
+msgid "Do nothing"
+msgstr "Hech narsa qilinmasin"
+
+#: ../panel-plugin/battery.c:1463 ../panel-plugin/battery.c:1515
+msgid "Display a warning message"
+msgstr "Ogohlantiruvchi xabarni ko'rsatish"
+
+#: ../panel-plugin/battery.c:1465 ../panel-plugin/battery.c:1517
+msgid "Run command"
+msgstr "Buyruqni bajarish"
+
+#: ../panel-plugin/battery.c:1467 ../panel-plugin/battery.c:1519
+msgid "Run command in terminal"
+msgstr "Buyruqni terminalda bajarish"
+
+#: ../panel-plugin/battery.c:1480 ../panel-plugin/battery.c:1531
+msgid "Command:"
+msgstr "Buyruq:"
+
+#: ../panel-plugin/battery.c:1494
+msgid "Critical percentage:"
+msgstr "Kritik foiz:"
+
+#: ../panel-plugin/battery.c:1507
+msgid "Critical battery action:"
+msgstr "Batareyaning kritik holatidagi harakat:"
+
+#: ../panel-plugin/battery.c:1542
+msgid "Levels and _actions"
+msgstr "Darajalar va _harakatlar"
+
+#: ../panel-plugin/battery.c:1555
+msgid "Display label"
+msgstr "Belgini ko'rsatish"
+
+#: ../panel-plugin/battery.c:1558
+msgid "Display icon"
+msgstr "Nishonchani ko'rsatish"
+
+#: ../panel-plugin/battery.c:1561
+msgid "Display bar"
+msgstr "Panelni ko'rsatish"
+
+#: ../panel-plugin/battery.c:1564
+msgid "Display percentage"
+msgstr "Foizni ko'rsatish"
+
+#: ../panel-plugin/battery.c:1567
+msgid "Display time"
+msgstr "Vaqtni ko'rsatish"
+
+#: ../panel-plugin/battery.c:1570
+msgid "Display power"
+msgstr "Quvvatini ko'rsatish"
+
+#: ../panel-plugin/battery.c:1573
+msgid "Hide time/percentage when full"
+msgstr "To'lganda vaqtni/foizni yashirish"
+
+#: ../panel-plugin/battery.c:1576
+msgid "Display percentage in tooltip"
+msgstr "Qalqiydigan ko‘rsatmalarda foizni ko'rsatish"
+
+#: ../panel-plugin/battery.c:1579
+msgid "Display time remaining in tooltip"
+msgstr "Qalqiydigan ko‘rsatmalarda qolgan vaqtni ko'rsatish"
+
+#: ../panel-plugin/battery.c:1582
+msgid "_Display"
+msgstr "_Ko'rsatish"
+
+#: ../panel-plugin/battery.c:1629 ../panel-plugin/battery.desktop.in.h:2
+msgid "Show and monitor the battery status"
+msgstr "Batareya holatini ko'rsatish va kuzatish"
+
+#: ../panel-plugin/battery.c:1631
+msgid "Copyright (c) 2003-2012\n"
+msgstr "Mualliflik huquqi (c) 2003-2012\n"

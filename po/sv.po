@@ -5,13 +5,14 @@
 # Translators:
 # Daniel Nylander <po@danielnylander.se>, 2008-2009
 # peterdenk <peter@skypay.se>, 2014
+# peterdenk <peter@skypay.se>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-03 20:48+0200\n"
-"PO-Revision-Date: 2014-01-24 21:30+0000\n"
-"Last-Translator: peterdenk <peter@skypay.se>\n"
+"PO-Revision-Date: 2014-02-20 20:35+0000\n"
+"Last-Translator: PavelNicklasson <pavelnicklasson@bahnhof.se>\n"
 "Language-Team: Swedish (http://www.transifex.com/projects/p/xfce/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -94,23 +95,23 @@ msgstr "Egenskaper"
 
 #: ../panel-plugin/battery.c:1363
 msgid "On AC:"
-msgstr ""
+msgstr "På extern ström:"
 
 #: ../panel-plugin/battery.c:1380
 msgid "Battery high:"
-msgstr ""
+msgstr "Batteri högt:"
 
 #: ../panel-plugin/battery.c:1397
 msgid "Battery low:"
-msgstr ""
+msgstr "Batteri lågt:"
 
 #: ../panel-plugin/battery.c:1414
 msgid "Battery critical:"
-msgstr ""
+msgstr "Batteri kritiskt:"
 
 #: ../panel-plugin/battery.c:1428
 msgid "Bar _colors"
-msgstr ""
+msgstr "Stapelf_ärger"
 
 #: ../panel-plugin/battery.c:1442
 msgid "Low percentage:"
@@ -150,7 +151,7 @@ msgstr "Åtgärd för kritisk batterikapacitet:"
 
 #: ../panel-plugin/battery.c:1542
 msgid "Levels and _actions"
-msgstr ""
+msgstr "Nivåer och _åtgärder"
 
 #: ../panel-plugin/battery.c:1555
 msgid "Display label"
@@ -162,7 +163,7 @@ msgstr "Visa ikon"
 
 #: ../panel-plugin/battery.c:1561
 msgid "Display bar"
-msgstr ""
+msgstr "Visa stapel"
 
 #: ../panel-plugin/battery.c:1564
 msgid "Display percentage"
@@ -190,7 +191,7 @@ msgstr "Visa återstående tid i verktygstips"
 
 #: ../panel-plugin/battery.c:1582
 msgid "_Display"
-msgstr ""
+msgstr "_Visa"
 
 #: ../panel-plugin/battery.c:1629 ../panel-plugin/battery.desktop.in.h:2
 msgid "Show and monitor the battery status"

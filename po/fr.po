@@ -1,20 +1,24 @@
-# French translation of the xfce4-battery-plugin package.
-# Copyright (C) 2006-2007 The Xfce development team.
-# This file is distributed under the same license as the xfce4-battery-plugin package.
-# Maximilian Schleiss <maximilian@xfce.org>, 2006.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # 
+# Translators:
+# jc1 <jc1.quebecos@gmail.com>, 2013
+# Maximilian Schleiss <maximilian@xfce.org>, 2006
+# Urien Desterres <urien.desterres@gmail.com>, 2014
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-battery-plugin 0.5.0\n"
+"Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-15 21:39+0000\n"
-"PO-Revision-Date: 2006-12-22 18:02+0100\n"
-"Last-Translator: Maximilian Schleiss <maximilian@xfce.org>\n"
-"Language-Team: French <xfce-i18n@xfce.org>\n"
+"POT-Creation-Date: 2013-07-03 20:48+0200\n"
+"PO-Revision-Date: 2014-06-06 10:19+0000\n"
+"Last-Translator: Urien Desterres <urien.desterres@gmail.com>\n"
+"Language-Team: French (http://www.transifex.com/projects/p/xfce-panel-plugins/language/fr/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: ../panel-plugin/battery.c:536
 msgid "(No battery, AC on-line)"
@@ -52,18 +56,13 @@ msgstr "Secteur débranché"
 msgid ""
 "WARNING: Your battery has reached critical status. You should plug in or "
 "shutdown your computer now to avoid possible data loss."
-msgstr ""
-"ATTENTION : La batterie a atteint un seuil critique. Il est conseillé de "
-"brancher le chargeur ou d'éteindre l'ordinateur pour éviter toute perte de "
-"données."
+msgstr "ATTENTION : La batterie a atteint un seuil critique. Il est conseillé de brancher le chargeur ou d'éteindre l'ordinateur pour éviter toute perte de données."
 
 #: ../panel-plugin/battery.c:642
 msgid ""
 "WARNING: Your battery is running low. You should consider plugging in or "
 "shutting down your computer soon to avoid possible data loss."
-msgstr ""
-"ATTENTION : La batterie est faible. Il est conseillé de brancher le chargeur "
-"ou d'éteindre l'ordinateur pour éviter toute perte de données."
+msgstr "ATTENTION : La batterie est faible. Il est conseillé de brancher le chargeur ou d'éteindre l'ordinateur pour éviter toute perte de données."
 
 #: ../panel-plugin/battery.c:678
 msgid "Battery"
@@ -84,7 +83,7 @@ msgstr "Sélectionner une couleur"
 #: ../panel-plugin/battery.c:1305
 #, c-format
 msgid "Unable to open the following url: %s"
-msgstr "Échec à l'ouverture du lien : %s"
+msgstr "Impossible d'ouvrir l'URL suivante : %s"
 
 #: ../panel-plugin/battery.c:1330 ../panel-plugin/battery.desktop.in.h:1
 msgid "Battery Monitor"
@@ -112,7 +111,7 @@ msgstr "Niveau de batterie critique :"
 
 #: ../panel-plugin/battery.c:1428
 msgid "Bar _colors"
-msgstr "Couleurs de la barre"
+msgstr "_Couleurs de la barre"
 
 #: ../panel-plugin/battery.c:1442
 msgid "Low percentage:"
@@ -136,7 +135,7 @@ msgstr "Lancer une commande"
 
 #: ../panel-plugin/battery.c:1467 ../panel-plugin/battery.c:1519
 msgid "Run command in terminal"
-msgstr "Lancer une commande dans la console"
+msgstr "Lancer une commande dans un terminal"
 
 #: ../panel-plugin/battery.c:1480 ../panel-plugin/battery.c:1531
 msgid "Command:"
@@ -144,11 +143,11 @@ msgstr "Commande :"
 
 #: ../panel-plugin/battery.c:1494
 msgid "Critical percentage:"
-msgstr "Seuil critique :"
+msgstr "Pourcentage critique :"
 
 #: ../panel-plugin/battery.c:1507
 msgid "Critical battery action:"
-msgstr "Action seuil critique :"
+msgstr "Action sur batterie critique :"
 
 #: ../panel-plugin/battery.c:1542
 msgid "Levels and _actions"
@@ -156,7 +155,7 @@ msgstr "Niveaux et _actions"
 
 #: ../panel-plugin/battery.c:1555
 msgid "Display label"
-msgstr "Afficher label"
+msgstr "Afficher l'étiquette"
 
 #: ../panel-plugin/battery.c:1558
 msgid "Display icon"
@@ -184,11 +183,11 @@ msgstr "Cacher le temps/pourcentage quand la batterie est chargée"
 
 #: ../panel-plugin/battery.c:1576
 msgid "Display percentage in tooltip"
-msgstr "Afficher pourcentage dans la bulle"
+msgstr "Afficher le pourcentage dans l’infobulle"
 
 #: ../panel-plugin/battery.c:1579
 msgid "Display time remaining in tooltip"
-msgstr "Afficher le temps restant dans la bulle"
+msgstr "Afficher le temps restant dans l'info-bulle"
 
 #: ../panel-plugin/battery.c:1582
 msgid "_Display"

@@ -125,8 +125,8 @@ typedef struct
     GtkWidget        *cb_disp_icon;
     GtkWidget        *sb_low_percentage;
     GtkWidget        *sb_critical_percentage;
-    GtkWidget        *om_action_low;
-    GtkWidget        *om_action_critical;
+    GtkWidget        *co_action_low;
+    GtkWidget        *co_action_critical;
     GtkWidget        *en_command_low;
     GtkWidget        *en_command_critical;
     GtkWidget        *ac_color_button;
@@ -1027,12 +1027,12 @@ static void refresh_dialog(t_battmon_dialog *dialog)
     gtk_widget_modify_bg(GTK_WIDGET(dialog->high_color_background), GTK_STATE_NORMAL, &battmon->options.colorH);
     gtk_widget_modify_bg(GTK_WIDGET(dialog->low_color_background), GTK_STATE_NORMAL, &battmon->options.colorL);
     gtk_widget_modify_bg(GTK_WIDGET(dialog->critical_color_background), GTK_STATE_NORMAL, &battmon->options.colorC);
-    gtk_option_menu_set_history(GTK_OPTION_MENU(dialog->om_action_low), battmon->options.action_on_low);
+    gtk_combo_box_set_active(GTK_COMBO_BOX(dialog->co_action_low), battmon->options.action_on_low);
     if(battmon->options.command_on_low)
         gtk_entry_set_text(GTK_ENTRY(dialog->en_command_low), battmon->options.command_on_low);
     else
         gtk_entry_set_text(GTK_ENTRY(dialog->en_command_low), "");
-    gtk_option_menu_set_history(GTK_OPTION_MENU(dialog->om_action_critical), battmon->options.action_on_critical);
+    gtk_combo_box_set_active(GTK_COMBO_BOX(dialog->co_action_critical), battmon->options.action_on_critical);
     if(battmon->options.command_on_critical)
         gtk_entry_set_text(GTK_ENTRY(dialog->en_command_critical), battmon->options.command_on_critical);
     else
@@ -1146,24 +1146,24 @@ set_critical_percentage(GtkSpinButton *sb, t_battmon_dialog *dialog)
 }
 
 static void
-set_action_low(GtkOptionMenu *om, t_battmon_dialog *dialog)
+set_action_low(GtkComboBoxText *co, t_battmon_dialog *dialog)
 {
     t_battmon *battmon = dialog->battmon;
 
-    battmon->options.action_on_low = gtk_option_menu_get_history(om);
+    battmon->options.action_on_low = gtk_combo_box_get_active(GTK_COMBO_BOX(co));
 
-    gtk_widget_set_sensitive(dialog->en_command_low, (gtk_option_menu_get_history(om) > 1) ? 1 : 0);
+    gtk_widget_set_sensitive(dialog->en_command_low, (battmon->options.action_on_low > 1) ? 1 : 0);
     update_apm_status(dialog->battmon);
 }
 
 static void
-set_action_critical(GtkOptionMenu *om, t_battmon_dialog *dialog)
+set_action_critical(GtkComboBoxText *co, t_battmon_dialog *dialog)
 {
     t_battmon *battmon = dialog->battmon;
 
-    battmon->options.action_on_critical = gtk_option_menu_get_history(om);
+    battmon->options.action_on_critical = gtk_combo_box_get_active(GTK_COMBO_BOX(co));
 
-    gtk_widget_set_sensitive(dialog->en_command_critical, (gtk_option_menu_get_history(om) > 1) ? 1 : 0);
+    gtk_widget_set_sensitive(dialog->en_command_critical, (battmon->options.action_on_critical > 1) ? 1 : 0);
     update_apm_status(dialog->battmon);
 }
 
@@ -1316,7 +1316,7 @@ static void
 battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
 {
     GtkWidget *dlg;
-    GtkWidget *vbox, *vbox2, *hbox, *label, *menu, *mi, *button, *button2;
+    GtkWidget *vbox, *vbox2, *hbox, *label, *button, *button2;
     GtkWidget *notebook;
     GtkSizeGroup *sg;
     t_battmon_dialog *dialog;
@@ -1457,20 +1457,12 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
     gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
     gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
 
-    menu = gtk_menu_new();
-    mi = gtk_menu_item_new_with_label(_("Do nothing"));
-    gtk_menu_shell_append(GTK_MENU_SHELL(menu), mi);
-    mi = gtk_menu_item_new_with_label(_("Display a warning message"));
-    gtk_menu_shell_append(GTK_MENU_SHELL(menu), mi);
-    mi = gtk_menu_item_new_with_label(_("Run command"));
-    gtk_menu_shell_append(GTK_MENU_SHELL(menu), mi);
-    mi = gtk_menu_item_new_with_label(_("Run command in terminal"));
-    gtk_menu_shell_append(GTK_MENU_SHELL(menu), mi);
-
-
-    dialog->om_action_low = gtk_option_menu_new();
-    gtk_option_menu_set_menu(GTK_OPTION_MENU(dialog->om_action_low), menu);
-    gtk_box_pack_start(GTK_BOX(hbox), dialog->om_action_low, FALSE, FALSE, 0);
+    dialog->co_action_low = gtk_combo_box_text_new();
+    gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(dialog->co_action_low), _("Do nothing"));
+    gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(dialog->co_action_low), _("Display a warning message"));
+    gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(dialog->co_action_low), _("Run command"));
+    gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(dialog->co_action_low), _("Run command in terminal"));
+    gtk_box_pack_start(GTK_BOX(hbox), dialog->co_action_low, FALSE, FALSE, 0);
 
     /* Low battery command */
 
@@ -1509,19 +1501,12 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
     gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
     gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
 
-    menu = gtk_menu_new();
-    mi = gtk_menu_item_new_with_label(_("Do nothing"));
-    gtk_menu_shell_append(GTK_MENU_SHELL(menu), mi);
-    mi = gtk_menu_item_new_with_label(_("Display a warning message"));
-    gtk_menu_shell_append(GTK_MENU_SHELL(menu), mi);
-    mi = gtk_menu_item_new_with_label(_("Run command"));
-    gtk_menu_shell_append(GTK_MENU_SHELL(menu), mi);
-    mi = gtk_menu_item_new_with_label(_("Run command in terminal"));
-    gtk_menu_shell_append(GTK_MENU_SHELL(menu), mi);
-
-    dialog->om_action_critical = gtk_option_menu_new();
-    gtk_option_menu_set_menu(GTK_OPTION_MENU(dialog->om_action_critical), menu);
-    gtk_box_pack_start(GTK_BOX(hbox), dialog->om_action_critical, FALSE, FALSE, 0);
+    dialog->co_action_critical = gtk_combo_box_text_new();
+    gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(dialog->co_action_critical), _("Do nothing"));
+    gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(dialog->co_action_critical), _("Display a warning message"));
+    gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(dialog->co_action_critical), _("Run command"));
+    gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(dialog->co_action_critical), _("Run command in terminal"));
+    gtk_box_pack_start(GTK_BOX(hbox), dialog->co_action_critical, FALSE, FALSE, 0);
 
     /* Critical battery command */
 
@@ -1604,8 +1589,8 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
 
     g_signal_connect(dialog->sb_low_percentage, "value-changed", G_CALLBACK(set_low_percentage), dialog);
     g_signal_connect(dialog->sb_critical_percentage, "value-changed", G_CALLBACK(set_critical_percentage), dialog);
-    g_signal_connect(dialog->om_action_low, "changed", G_CALLBACK(set_action_low), dialog);
-    g_signal_connect(dialog->om_action_critical, "changed", G_CALLBACK(set_action_critical), dialog);
+    g_signal_connect(dialog->co_action_low, "changed", G_CALLBACK(set_action_low), dialog);
+    g_signal_connect(dialog->co_action_critical, "changed", G_CALLBACK(set_action_critical), dialog);
     g_signal_connect(dialog->en_command_low, "focus-out-event", G_CALLBACK(set_command_low), dialog);
     g_signal_connect(dialog->en_command_critical, "focus-out-event", G_CALLBACK(set_command_critical), dialog);
 

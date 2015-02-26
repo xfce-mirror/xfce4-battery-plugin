@@ -6,14 +6,15 @@
 # Elias Julkunen <elias.julkunen@gmail.com>, 2006
 # Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2008
 # Jiri Grönroos <jiri.gronroos@iki.fi>, 2013
+# Pasi Lallinaho <pasi@shimmerproject.org>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-03 20:48+0200\n"
-"PO-Revision-Date: 2013-11-11 21:36+0000\n"
-"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
-"Language-Team: Finnish (http://www.transifex.com/projects/p/xfce/language/fi/)\n"
+"PO-Revision-Date: 2015-02-26 00:28+0000\n"
+"Last-Translator: Pasi Lallinaho <pasi@shimmerproject.org>\n"
+"Language-Team: Finnish (http://www.transifex.com/projects/p/xfce-panel-plugins/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -22,7 +23,7 @@ msgstr ""
 
 #: ../panel-plugin/battery.c:536
 msgid "(No battery, AC on-line)"
-msgstr ""
+msgstr "(Ei akkua, käytetään verkkovirtaa)"
 
 #: ../panel-plugin/battery.c:538
 msgid "(Charging from AC)"
@@ -95,23 +96,23 @@ msgstr "Ominaisuudet"
 
 #: ../panel-plugin/battery.c:1363
 msgid "On AC:"
-msgstr ""
+msgstr "Verkkovirralla:"
 
 #: ../panel-plugin/battery.c:1380
 msgid "Battery high:"
-msgstr ""
+msgstr "Kun akussa on paljon virtaa jäljellä:"
 
 #: ../panel-plugin/battery.c:1397
 msgid "Battery low:"
-msgstr ""
+msgstr "Kun akku on vähissä:"
 
 #: ../panel-plugin/battery.c:1414
 msgid "Battery critical:"
-msgstr ""
+msgstr "Kun virta on kriittisen vähissä:"
 
 #: ../panel-plugin/battery.c:1428
 msgid "Bar _colors"
-msgstr ""
+msgstr "Palkin _värit:"
 
 #: ../panel-plugin/battery.c:1442
 msgid "Low percentage:"
@@ -151,7 +152,7 @@ msgstr "Kun akku on lähes tyhjä:"
 
 #: ../panel-plugin/battery.c:1542
 msgid "Levels and _actions"
-msgstr ""
+msgstr "Tasot ja _toiminnot"
 
 #: ../panel-plugin/battery.c:1555
 msgid "Display label"
@@ -163,7 +164,7 @@ msgstr "Näytä kuvake"
 
 #: ../panel-plugin/battery.c:1561
 msgid "Display bar"
-msgstr ""
+msgstr "Näytä palkki"
 
 #: ../panel-plugin/battery.c:1564
 msgid "Display percentage"
@@ -191,7 +192,7 @@ msgstr "Näytä jäljellä oleva aika työkaluvihjeessä"
 
 #: ../panel-plugin/battery.c:1582
 msgid "_Display"
-msgstr ""
+msgstr "_Näytä"
 
 #: ../panel-plugin/battery.c:1629 ../panel-plugin/battery.desktop.in.h:2
 msgid "Show and monitor the battery status"

@@ -29,6 +29,7 @@
 #include <sys/types.h>
 #include <dirent.h>
 #include <glob.h>
+#include <unistd.h>
 
 #ifdef __FreeBSD__
 #include <fcntl.h>
@@ -52,7 +53,6 @@ static int      acpifd;
 #include <sys/sysctl.h>
 #include <err.h>
 #include <errno.h>
-#include <unistd.h>
 
 #endif
 

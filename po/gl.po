@@ -1,213 +1,201 @@
-# Galician translation of xfce4-battery-plugin
-# Copyright (C) 2008-2009 Leandro Regueiro
-# This file is distributed under the same license as the xfce package.
-#
-# Leandro Regueiro <leandro.regueiro@gmail.com>, 2008, 2009.
-#
-# Proxecto Trasno - Adaptación do software libre á lingua galega:  Se desexas
-# colaborar connosco, podes atopar máis información en <http://trasno.net>
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Leandro Regueiro <leandro.regueiro@gmail.com>, 2008-2009
+# Xosé <xosecalvo@gmail.com>, 2015
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-23 17:18+0200\n"
-"PO-Revision-Date: 2009-07-15 17:28+0100\n"
-"Last-Translator: Leandro Regueiro <leandro.regueiro@gmail.com>\n"
-"Language-Team: Galician <proxecto@trasno.net>\n"
-"Language: gl\n"
+"POT-Creation-Date: 2013-07-03 20:48+0200\n"
+"PO-Revision-Date: 2015-09-20 19:30+0000\n"
+"Last-Translator: Xosé <xosecalvo@gmail.com>\n"
+"Language-Team: Galician (http://www.transifex.com/xfce/xfce-panel-plugins/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"Language: gl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../panel-plugin/battery.c:551
+#: ../panel-plugin/battery.c:536
 msgid "(No battery, AC on-line)"
 msgstr "(Non hai batería, conectado á rede eléctrica)"
 
-#: ../panel-plugin/battery.c:553
+#: ../panel-plugin/battery.c:538
 msgid "(Charging from AC)"
 msgstr "(Cargando da rede eléctrica)"
 
-#: ../panel-plugin/battery.c:553
+#: ../panel-plugin/battery.c:538
 msgid "(AC on-line)"
 msgstr "(Conectado á rede eléctrica)"
 
-#: ../panel-plugin/battery.c:563
+#: ../panel-plugin/battery.c:548
 #, c-format
 msgid "%d%% (%02d:%02d) remaining"
 msgstr "%d%% (%02d:%02d) restante"
 
-#: ../panel-plugin/battery.c:565
+#: ../panel-plugin/battery.c:550
 #, c-format
 msgid "%02d:%02d remaining"
 msgstr "quedan %02d:%02d"
 
-#: ../panel-plugin/battery.c:567
+#: ../panel-plugin/battery.c:552
 #, c-format
 msgid "%d%% remaining"
 msgstr "Quedan %d%%"
 
-#: ../panel-plugin/battery.c:569
+#: ../panel-plugin/battery.c:554
 #, c-format
 msgid "AC off-line"
 msgstr "Desconectado da rede eléctrica"
 
-#: ../panel-plugin/battery.c:637
+#: ../panel-plugin/battery.c:624
 msgid ""
 "WARNING: Your battery has reached critical status. You should plug in or "
 "shutdown your computer now to avoid possible data loss."
-msgstr ""
-"ADVERTENCIA: A batería chegou a un estado crítico. Debe enchufala ou apagar "
-"o ordenador agora para evitar unha posible perda de datos."
+msgstr "ADVERTENCIA: A batería chegou a un estado crítico. Debe enchufala ou apagar o ordenador agora para evitar unha posible perda de datos."
 
-#: ../panel-plugin/battery.c:655
+#: ../panel-plugin/battery.c:642
 msgid ""
 "WARNING: Your battery is running low. You should consider plugging in or "
 "shutting down your computer soon to avoid possible data loss."
-msgstr ""
-"ADVERTENCIA: A batería estase esgotando. Deberia considerar enchufala ou "
-"apagar o ordenador pronto para evitar unha posible perda de datos."
+msgstr "ADVERTENCIA: A batería estase esgotando. Deberia considerar enchufala ou apagar o ordenador pronto para evitar unha posible perda de datos."
 
-#: ../panel-plugin/battery.c:709
+#: ../panel-plugin/battery.c:678
 msgid "Battery"
 msgstr "Batería"
 
-#: ../panel-plugin/battery.c:1285
+#: ../panel-plugin/battery.c:1207
 msgid "Select file"
 msgstr "Seleccione un ficheiro"
 
-#: ../panel-plugin/battery.c:1326
+#: ../panel-plugin/battery.c:1248
 msgid "Select command"
 msgstr "Seleccione unha orde"
 
-#: ../panel-plugin/battery.c:1341
-#, fuzzy
+#: ../panel-plugin/battery.c:1263
 msgid "Select color"
-msgstr "Seleccione un ficheiro"
+msgstr "Seleccionar cor"
 
-#: ../panel-plugin/battery.c:1383
+#: ../panel-plugin/battery.c:1305
 #, c-format
 msgid "Unable to open the following url: %s"
 msgstr "Non foi posible abrir o seguinte url: %s"
 
-#: ../panel-plugin/battery.c:1408 ../panel-plugin/battery.desktop.in.h:1
+#: ../panel-plugin/battery.c:1330 ../panel-plugin/battery.desktop.in.h:1
 msgid "Battery Monitor"
 msgstr "Monitor da Batería"
 
-#: ../panel-plugin/battery.c:1415
+#: ../panel-plugin/battery.c:1337
 msgid "Properties"
-msgstr ""
+msgstr "Propiedades"
 
-#: ../panel-plugin/battery.c:1441
+#: ../panel-plugin/battery.c:1363
 msgid "On AC:"
-msgstr ""
+msgstr "Conectado á rede:"
 
-#: ../panel-plugin/battery.c:1458
-#, fuzzy
+#: ../panel-plugin/battery.c:1380
 msgid "Battery high:"
-msgstr "Batería"
+msgstr "Batería alta:"
 
-#: ../panel-plugin/battery.c:1475
-#, fuzzy
+#: ../panel-plugin/battery.c:1397
 msgid "Battery low:"
-msgstr "Batería"
+msgstr "Batería baixa:"
 
-#: ../panel-plugin/battery.c:1492
-#, fuzzy
+#: ../panel-plugin/battery.c:1414
 msgid "Battery critical:"
-msgstr "Monitor da Batería"
+msgstr "Batería en estado crítico:"
 
-#: ../panel-plugin/battery.c:1506
+#: ../panel-plugin/battery.c:1428
 msgid "Bar _colors"
-msgstr ""
+msgstr "_Cores da barra"
 
-#: ../panel-plugin/battery.c:1520
+#: ../panel-plugin/battery.c:1442
 msgid "Low percentage:"
 msgstr "Porcentaxe baixa:"
 
-#: ../panel-plugin/battery.c:1533
+#: ../panel-plugin/battery.c:1455
 msgid "Low battery action:"
 msgstr "Acción para cando a batería está baixa:"
 
-#: ../panel-plugin/battery.c:1539 ../panel-plugin/battery.c:1591
+#: ../panel-plugin/battery.c:1461 ../panel-plugin/battery.c:1513
 msgid "Do nothing"
 msgstr "Non facer nada"
 
-#: ../panel-plugin/battery.c:1541 ../panel-plugin/battery.c:1593
+#: ../panel-plugin/battery.c:1463 ../panel-plugin/battery.c:1515
 msgid "Display a warning message"
 msgstr "Mostrar unha mensaxe de advertencia"
 
-#: ../panel-plugin/battery.c:1543 ../panel-plugin/battery.c:1595
+#: ../panel-plugin/battery.c:1465 ../panel-plugin/battery.c:1517
 msgid "Run command"
 msgstr "Executar orde"
 
-#: ../panel-plugin/battery.c:1545 ../panel-plugin/battery.c:1597
+#: ../panel-plugin/battery.c:1467 ../panel-plugin/battery.c:1519
 msgid "Run command in terminal"
 msgstr "Executar a orde nun terminal"
 
-#: ../panel-plugin/battery.c:1558 ../panel-plugin/battery.c:1609
+#: ../panel-plugin/battery.c:1480 ../panel-plugin/battery.c:1531
 msgid "Command:"
 msgstr "Orde:"
 
-#: ../panel-plugin/battery.c:1572
+#: ../panel-plugin/battery.c:1494
 msgid "Critical percentage:"
 msgstr "Porcentaxe crítica:"
 
-#: ../panel-plugin/battery.c:1585
+#: ../panel-plugin/battery.c:1507
 msgid "Critical battery action:"
 msgstr "Acción para cando a batería está crítica:"
 
-#: ../panel-plugin/battery.c:1620
+#: ../panel-plugin/battery.c:1542
 msgid "Levels and _actions"
-msgstr ""
+msgstr "Niveis e _accións"
 
-#: ../panel-plugin/battery.c:1633
+#: ../panel-plugin/battery.c:1555
 msgid "Display label"
 msgstr "Mostrar unha etiqueta"
 
-#: ../panel-plugin/battery.c:1636
+#: ../panel-plugin/battery.c:1558
 msgid "Display icon"
 msgstr "Mostrar unha icona"
 
-#: ../panel-plugin/battery.c:1639
-#, fuzzy
+#: ../panel-plugin/battery.c:1561
 msgid "Display bar"
-msgstr "Mostrar unha etiqueta"
+msgstr "Mostrar a barra"
 
-#: ../panel-plugin/battery.c:1642
+#: ../panel-plugin/battery.c:1564
 msgid "Display percentage"
 msgstr "Mostrar a porcentaxe"
 
-#: ../panel-plugin/battery.c:1645
+#: ../panel-plugin/battery.c:1567
 msgid "Display time"
 msgstr "Mostrar o tempo"
 
-#: ../panel-plugin/battery.c:1648
+#: ../panel-plugin/battery.c:1570
 msgid "Display power"
 msgstr "Mostrar a enerxía"
 
-#: ../panel-plugin/battery.c:1651
+#: ../panel-plugin/battery.c:1573
 msgid "Hide time/percentage when full"
 msgstr "Ocultar tempo/porcentaxe cando estea cargada"
 
-#: ../panel-plugin/battery.c:1654
+#: ../panel-plugin/battery.c:1576
 msgid "Display percentage in tooltip"
 msgstr "Mostrar a porcentaxe na notificación"
 
-#: ../panel-plugin/battery.c:1657
+#: ../panel-plugin/battery.c:1579
 msgid "Display time remaining in tooltip"
 msgstr "Mostrar o tempo restante na notificación"
 
-#: ../panel-plugin/battery.c:1660
-#, fuzzy
+#: ../panel-plugin/battery.c:1582
 msgid "_Display"
-msgstr "Mostrar o tempo"
+msgstr "_Mostrar"
 
-#: ../panel-plugin/battery.c:1707 ../panel-plugin/battery.desktop.in.h:2
+#: ../panel-plugin/battery.c:1629 ../panel-plugin/battery.desktop.in.h:2
 msgid "Show and monitor the battery status"
 msgstr "Mostrar e monitorizar o estado da batería"
 
-#: ../panel-plugin/battery.c:1709
+#: ../panel-plugin/battery.c:1631
 msgid "Copyright (c) 2003-2012\n"
-msgstr ""
+msgstr "Copyright (c) 2003-2012\n"

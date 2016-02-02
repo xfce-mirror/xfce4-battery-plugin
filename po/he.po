@@ -1,0 +1,200 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Elishai Eliyahu <e1907@mm.st>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Xfce Panel Plugins\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-07-03 20:48+0200\n"
+"PO-Revision-Date: 2016-02-02 17:56+0000\n"
+"Last-Translator: Elishai Eliyahu <e1907@mm.st>\n"
+"Language-Team: Hebrew (http://www.transifex.com/xfce/xfce-panel-plugins/language/he/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: he\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../panel-plugin/battery.c:536
+msgid "(No battery, AC on-line)"
+msgstr "(אין סוללה, זרם חילופין מחובר)"
+
+#: ../panel-plugin/battery.c:538
+msgid "(Charging from AC)"
+msgstr "(טוען מזרם חילופין)"
+
+#: ../panel-plugin/battery.c:538
+msgid "(AC on-line)"
+msgstr "(זרם חילופין מחובר)"
+
+#: ../panel-plugin/battery.c:548
+#, c-format
+msgid "%d%% (%02d:%02d) remaining"
+msgstr "%d%% (%02d:%02d) נשאר"
+
+#: ../panel-plugin/battery.c:550
+#, c-format
+msgid "%02d:%02d remaining"
+msgstr "%02d:%02d נשאר"
+
+#: ../panel-plugin/battery.c:552
+#, c-format
+msgid "%d%% remaining"
+msgstr "%d%% נשאר"
+
+#: ../panel-plugin/battery.c:554
+#, c-format
+msgid "AC off-line"
+msgstr "זרם חילופין מנותק"
+
+#: ../panel-plugin/battery.c:624
+msgid ""
+"WARNING: Your battery has reached critical status. You should plug in or "
+"shutdown your computer now to avoid possible data loss."
+msgstr "אזהרה: הסוללה שלך הגיעה לסטטוס קריטי. אתה צריך להתחבר או לכבות את המחשב שלך עכשיו למנוע איבוד מידע אפשרי."
+
+#: ../panel-plugin/battery.c:642
+msgid ""
+"WARNING: Your battery is running low. You should consider plugging in or "
+"shutting down your computer soon to avoid possible data loss."
+msgstr "אזהרה: הסוללה שלך מתרוקנת. אתה צריך לשקול להתחבר או לכבות את המחשב שלך בקרוב למנוע איבוד מידע אפשרי."
+
+#: ../panel-plugin/battery.c:678
+msgid "Battery"
+msgstr "סוללה"
+
+#: ../panel-plugin/battery.c:1207
+msgid "Select file"
+msgstr "בחר קובץ"
+
+#: ../panel-plugin/battery.c:1248
+msgid "Select command"
+msgstr "בחר פקודה"
+
+#: ../panel-plugin/battery.c:1263
+msgid "Select color"
+msgstr "בחר צבע"
+
+#: ../panel-plugin/battery.c:1305
+#, c-format
+msgid "Unable to open the following url: %s"
+msgstr "לא יכול לפתוח את הכתובת הבאה: %s "
+
+#: ../panel-plugin/battery.c:1330 ../panel-plugin/battery.desktop.in.h:1
+msgid "Battery Monitor"
+msgstr "עוקב סוללה"
+
+#: ../panel-plugin/battery.c:1337
+msgid "Properties"
+msgstr "מאפיינים"
+
+#: ../panel-plugin/battery.c:1363
+msgid "On AC:"
+msgstr "בזרם חילופין:"
+
+#: ../panel-plugin/battery.c:1380
+msgid "Battery high:"
+msgstr "פסגת סוללה:"
+
+#: ../panel-plugin/battery.c:1397
+msgid "Battery low:"
+msgstr "שפל סוללה:"
+
+#: ../panel-plugin/battery.c:1414
+msgid "Battery critical:"
+msgstr "סוללה קריטית:"
+
+#: ../panel-plugin/battery.c:1428
+msgid "Bar _colors"
+msgstr "צבעי סרגל"
+
+#: ../panel-plugin/battery.c:1442
+msgid "Low percentage:"
+msgstr "אחוז נמוך:"
+
+#: ../panel-plugin/battery.c:1455
+msgid "Low battery action:"
+msgstr "פעולת סוללה נמוכה:"
+
+#: ../panel-plugin/battery.c:1461 ../panel-plugin/battery.c:1513
+msgid "Do nothing"
+msgstr "אל תעשה כלום"
+
+#: ../panel-plugin/battery.c:1463 ../panel-plugin/battery.c:1515
+msgid "Display a warning message"
+msgstr "הצג מסר אזהרה "
+
+#: ../panel-plugin/battery.c:1465 ../panel-plugin/battery.c:1517
+msgid "Run command"
+msgstr "הרץ פקודה"
+
+#: ../panel-plugin/battery.c:1467 ../panel-plugin/battery.c:1519
+msgid "Run command in terminal"
+msgstr "הרץ פקודה במסוף"
+
+#: ../panel-plugin/battery.c:1480 ../panel-plugin/battery.c:1531
+msgid "Command:"
+msgstr "פקודה:"
+
+#: ../panel-plugin/battery.c:1494
+msgid "Critical percentage:"
+msgstr "אחוז קריטי:"
+
+#: ../panel-plugin/battery.c:1507
+msgid "Critical battery action:"
+msgstr "פעולת סוללה קריטית:"
+
+#: ../panel-plugin/battery.c:1542
+msgid "Levels and _actions"
+msgstr "רמות ופעולות"
+
+#: ../panel-plugin/battery.c:1555
+msgid "Display label"
+msgstr "הצג תווית"
+
+#: ../panel-plugin/battery.c:1558
+msgid "Display icon"
+msgstr "הצג אייקון"
+
+#: ../panel-plugin/battery.c:1561
+msgid "Display bar"
+msgstr "הצג סרגל"
+
+#: ../panel-plugin/battery.c:1564
+msgid "Display percentage"
+msgstr "הצג אחוז"
+
+#: ../panel-plugin/battery.c:1567
+msgid "Display time"
+msgstr "הצג זמן"
+
+#: ../panel-plugin/battery.c:1570
+msgid "Display power"
+msgstr "הצג הספק"
+
+#: ../panel-plugin/battery.c:1573
+msgid "Hide time/percentage when full"
+msgstr "הסתר זמן/אחוז כאשר מלאה"
+
+#: ../panel-plugin/battery.c:1576
+msgid "Display percentage in tooltip"
+msgstr "הצג אחוז בטיפ עזר"
+
+#: ../panel-plugin/battery.c:1579
+msgid "Display time remaining in tooltip"
+msgstr "הצג זמן שנשאר בטיפ עזר"
+
+#: ../panel-plugin/battery.c:1582
+msgid "_Display"
+msgstr "הצג"
+
+#: ../panel-plugin/battery.c:1629 ../panel-plugin/battery.desktop.in.h:2
+msgid "Show and monitor the battery status"
+msgstr "הצג ועקוב אחר סטטוס סוללה"
+
+#: ../panel-plugin/battery.c:1631
+msgid "Copyright (c) 2003-2012\n"
+msgstr "זכות יוצרים (c) 2003-2012\n"

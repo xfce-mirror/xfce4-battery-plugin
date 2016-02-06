@@ -1,208 +1,201 @@
-# translation of el.po to Greek
+# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
-# Evaggelos Balaskas <ebalaskas@ebalaskas.gr>, 2008.
-# Efstathios Iosifidis <iosifidis@opensuse.org>, 2012.
-#
+# 
+# Translators:
+# Efstathios Iosifidis <iosifidis@opensuse.org>, 2012
+# ebal <ebalaskas@ebalaskas.gr>, 2008
 msgid ""
 msgstr ""
-"Project-Id-Version: el\n"
+"Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-19 22:39+0000\n"
-"PO-Revision-Date: 2012-05-20 11:44+0300\n"
-"Last-Translator: Efstathios Iosifidis <iosifidis@opensuse.org>\n"
-"Language-Team: Ελληνικά, Σύγχρονα <opensuse-translation-el@opensuse.org>\n"
-"Language: el\n"
+"POT-Creation-Date: 2013-07-03 20:48+0200\n"
+"PO-Revision-Date: 2016-02-06 19:01+0000\n"
+"Last-Translator: Nick Schermer <nick@xfce.org>\n"
+"Language-Team: Greek (http://www.transifex.com/xfce/xfce-panel-plugins/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bits\n"
-"X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: el\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../panel-plugin/battery.c:530
+#: ../panel-plugin/battery.c:536
 msgid "(No battery, AC on-line)"
 msgstr "(Χωρίς μπαταρία, AC στην πρίζα)"
 
-#: ../panel-plugin/battery.c:532
+#: ../panel-plugin/battery.c:538
 msgid "(Charging from AC)"
 msgstr "(Φόρτωση από το AC)"
 
-#: ../panel-plugin/battery.c:532
+#: ../panel-plugin/battery.c:538
 msgid "(AC on-line)"
 msgstr "(AC στην πρίζα)"
 
-#: ../panel-plugin/battery.c:542
+#: ../panel-plugin/battery.c:548
 #, c-format
 msgid "%d%% (%02d:%02d) remaining"
 msgstr "%d%% (%02d:%02d) απομένει"
 
-#: ../panel-plugin/battery.c:544
+#: ../panel-plugin/battery.c:550
 #, c-format
 msgid "%02d:%02d remaining"
 msgstr "%02d:%02d απομένει"
 
-#: ../panel-plugin/battery.c:546
+#: ../panel-plugin/battery.c:552
 #, c-format
 msgid "%d%% remaining"
 msgstr "%d%% απομένει"
 
-#: ../panel-plugin/battery.c:548
+#: ../panel-plugin/battery.c:554
 #, c-format
 msgid "AC off-line"
 msgstr "AC εκτός πρίζας"
 
-#: ../panel-plugin/battery.c:616
+#: ../panel-plugin/battery.c:624
 msgid ""
 "WARNING: Your battery has reached critical status. You should plug in or "
 "shutdown your computer now to avoid possible data loss."
-msgstr ""
-"ΠΡΟΕΙΔΟΠΟΙΗΣΗ: Η μπαταρία έχει φτάσει σε κρίσιμο επίπεδο. Θα πρέπει είτε να "
-"μπει στην πρίζα ή να κλείσετε τον υπολογιστή τώρα ώστε να αποφύγετε απώλεια "
-"δεδομένων."
+msgstr "ΠΡΟΕΙΔΟΠΟΙΗΣΗ: Η μπαταρία έχει φτάσει σε κρίσιμο επίπεδο. Θα πρέπει είτε να μπει στην πρίζα ή να κλείσετε τον υπολογιστή τώρα ώστε να αποφύγετε απώλεια δεδομένων."
 
-#: ../panel-plugin/battery.c:634
+#: ../panel-plugin/battery.c:642
 msgid ""
 "WARNING: Your battery is running low. You should consider plugging in or "
 "shutting down your computer soon to avoid possible data loss."
-msgstr ""
-"ΠΡΟΕΙΔΟΠΟΙΗΣΗ: Η μπαταρία είναι σε χαμηλό επίπεδο. Θα πρέπει να εξετάσετε "
-"είτε να βάλετε στην πρίζα είτε να κλείσετε τον υπολογιστή σας σύντομα ώστε "
-"να αποφύγετε πιθανή απώλεια δεδομένων."
+msgstr "ΠΡΟΕΙΔΟΠΟΙΗΣΗ: Η μπαταρία είναι σε χαμηλό επίπεδο. Θα πρέπει να εξετάσετε είτε να βάλετε στην πρίζα είτε να κλείσετε τον υπολογιστή σας σύντομα ώστε να αποφύγετε πιθανή απώλεια δεδομένων."
 
-#: ../panel-plugin/battery.c:669
+#: ../panel-plugin/battery.c:678
 msgid "Battery"
 msgstr "Μπαταρία"
 
-#: ../panel-plugin/battery.c:1194
+#: ../panel-plugin/battery.c:1207
 msgid "Select file"
 msgstr "Επιλογή αρχείου"
 
-#: ../panel-plugin/battery.c:1235
+#: ../panel-plugin/battery.c:1248
 msgid "Select command"
 msgstr "Επιλογή εντολής"
 
-#: ../panel-plugin/battery.c:1250
+#: ../panel-plugin/battery.c:1263
 msgid "Select color"
 msgstr "Επιλογή χρώματος"
 
-#: ../panel-plugin/battery.c:1292
+#: ../panel-plugin/battery.c:1305
 #, c-format
 msgid "Unable to open the following url: %s"
 msgstr "Δεν ήταν δυνατή η πρόσβαση στο εξής url: %s"
 
-#: ../panel-plugin/battery.c:1317 ../panel-plugin/battery.desktop.in.h:1
+#: ../panel-plugin/battery.c:1330 ../panel-plugin/battery.desktop.in.h:1
 msgid "Battery Monitor"
 msgstr "Παρακολούθηση μπαταρίας"
 
-#: ../panel-plugin/battery.c:1324
+#: ../panel-plugin/battery.c:1337
 msgid "Properties"
 msgstr "Ιδιότητες"
 
-#: ../panel-plugin/battery.c:1350
+#: ../panel-plugin/battery.c:1363
 msgid "On AC:"
 msgstr "Σε τροφοδοσία AC:"
 
-#: ../panel-plugin/battery.c:1367
+#: ../panel-plugin/battery.c:1380
 msgid "Battery high:"
 msgstr "Μπαταρία υψηλή:"
 
-#: ../panel-plugin/battery.c:1384
+#: ../panel-plugin/battery.c:1397
 msgid "Battery low:"
 msgstr "Μπαταρία χαμηλή:"
 
-#: ../panel-plugin/battery.c:1401
+#: ../panel-plugin/battery.c:1414
 msgid "Battery critical:"
 msgstr "Μπαταρία κρίσιμη:"
 
-#: ../panel-plugin/battery.c:1415
+#: ../panel-plugin/battery.c:1428
 msgid "Bar _colors"
 msgstr "_Χρώματα γραμμής"
 
-#: ../panel-plugin/battery.c:1429
+#: ../panel-plugin/battery.c:1442
 msgid "Low percentage:"
 msgstr "Χαμηλό ποσοστό:"
 
-#: ../panel-plugin/battery.c:1442
+#: ../panel-plugin/battery.c:1455
 msgid "Low battery action:"
 msgstr "Χαμηλή ενέργεια μπαταρίας:"
 
-#: ../panel-plugin/battery.c:1448 ../panel-plugin/battery.c:1500
+#: ../panel-plugin/battery.c:1461 ../panel-plugin/battery.c:1513
 msgid "Do nothing"
 msgstr "Μην κάνεις τίποτα"
 
-#: ../panel-plugin/battery.c:1450 ../panel-plugin/battery.c:1502
+#: ../panel-plugin/battery.c:1463 ../panel-plugin/battery.c:1515
 msgid "Display a warning message"
 msgstr "Εμφάνιση προειδοποιητικού μηνύματος"
 
-#: ../panel-plugin/battery.c:1452 ../panel-plugin/battery.c:1504
+#: ../panel-plugin/battery.c:1465 ../panel-plugin/battery.c:1517
 msgid "Run command"
 msgstr "Εκτέλεση εντολής"
 
-#: ../panel-plugin/battery.c:1454 ../panel-plugin/battery.c:1506
+#: ../panel-plugin/battery.c:1467 ../panel-plugin/battery.c:1519
 msgid "Run command in terminal"
 msgstr "Εκτέλεση εντολής σε τερματικό"
 
-#: ../panel-plugin/battery.c:1467 ../panel-plugin/battery.c:1518
+#: ../panel-plugin/battery.c:1480 ../panel-plugin/battery.c:1531
 msgid "Command:"
 msgstr "Εντολή:"
 
-#: ../panel-plugin/battery.c:1481
+#: ../panel-plugin/battery.c:1494
 msgid "Critical percentage:"
 msgstr "Κρίσιμο ποσοστό:"
 
-#: ../panel-plugin/battery.c:1494
+#: ../panel-plugin/battery.c:1507
 msgid "Critical battery action:"
 msgstr "Κρίσιμη ενέργεια μπαταρίας:"
 
-#: ../panel-plugin/battery.c:1529
+#: ../panel-plugin/battery.c:1542
 msgid "Levels and _actions"
 msgstr "Επίπεδα και _ενέργειες"
 
-#: ../panel-plugin/battery.c:1542
+#: ../panel-plugin/battery.c:1555
 msgid "Display label"
 msgstr "Εμφάνιση ετικέτας"
 
-#: ../panel-plugin/battery.c:1545
+#: ../panel-plugin/battery.c:1558
 msgid "Display icon"
 msgstr "Εμφάνιση εικονιδίου"
 
-#: ../panel-plugin/battery.c:1548
+#: ../panel-plugin/battery.c:1561
 msgid "Display bar"
 msgstr "Εμφάνιση γραμμής"
 
-#: ../panel-plugin/battery.c:1551
+#: ../panel-plugin/battery.c:1564
 msgid "Display percentage"
 msgstr "Εμφάνιση ποσοστού"
 
-#: ../panel-plugin/battery.c:1554
+#: ../panel-plugin/battery.c:1567
 msgid "Display time"
 msgstr "Εμφάνιση ώρας"
 
-#: ../panel-plugin/battery.c:1557
+#: ../panel-plugin/battery.c:1570
 msgid "Display power"
 msgstr "Εμφάνιση ρεύματος"
 
-#: ../panel-plugin/battery.c:1560
+#: ../panel-plugin/battery.c:1573
 msgid "Hide time/percentage when full"
 msgstr "Απόκρυψη ώρας/ποσοστού όταν γεμίσει"
 
-#: ../panel-plugin/battery.c:1563
+#: ../panel-plugin/battery.c:1576
 msgid "Display percentage in tooltip"
 msgstr "Εμφάνιση ποσοστού στην μπάρα εργαλείων"
 
-#: ../panel-plugin/battery.c:1566
+#: ../panel-plugin/battery.c:1579
 msgid "Display time remaining in tooltip"
 msgstr "Εμφάνιση εναπομείνωντας ώρας στην μπάρα εργαλείων"
 
-#: ../panel-plugin/battery.c:1569
+#: ../panel-plugin/battery.c:1582
 msgid "_Display"
 msgstr "_Εμφάνιση"
 
-#: ../panel-plugin/battery.c:1616 ../panel-plugin/battery.desktop.in.h:2
+#: ../panel-plugin/battery.c:1629 ../panel-plugin/battery.desktop.in.h:2
 msgid "Show and monitor the battery status"
 msgstr "Εμφάνιση και παρακολούθηση της κατάστασης της μπαταρίας"
 
-#: ../panel-plugin/battery.c:1618
+#: ../panel-plugin/battery.c:1631
 msgid "Copyright (c) 2003-2012\n"
 msgstr "Πνευματικά Δικαιώματα (c) 2003-2012\n"

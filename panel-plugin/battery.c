@@ -698,7 +698,11 @@ static void setup_battmon(t_battmon *battmon)
     /* create the label hvbox with an orientation opposite to the panel */
     battmon->timechargebox = gtk_box_new(!xfce_panel_plugin_get_orientation(battmon->plugin), 0);
 
-    battmon->timechargealignment = gtk_alignment_new (0.5, 0.5, 0.0, 0.0);
+    /* Should be removed(was a GtkAligment)? */
+    battmon->timechargealignment = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
+    gtk_widget_set_halign(GTK_WIDGET(battmon->timechargealignment), GTK_ALIGN_CENTER);
+    gtk_widget_set_valign(GTK_WIDGET(battmon->timechargealignment), GTK_ALIGN_CENTER);
+
     gtk_container_add (GTK_CONTAINER(battmon->timechargealignment), battmon->timechargebox);
     gtk_box_pack_start(GTK_BOX(battmon->ebox), battmon->timechargealignment, FALSE, FALSE, 2);
 
@@ -712,7 +716,11 @@ static void setup_battmon(t_battmon *battmon)
     /* create the label hvbox with an orientation opposite to the panel */
     battmon->actempbox = gtk_box_new(!xfce_panel_plugin_get_orientation(battmon->plugin), 0);
 
-    battmon->actempalignment = gtk_alignment_new (0.5, 0.5, 0.0, 0.0);
+    /* Should be removed(was a GtkAligment)? */
+    battmon->actempalignment = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
+    gtk_widget_set_halign(GTK_WIDGET(battmon->actempalignment), GTK_ALIGN_CENTER);
+    gtk_widget_set_valign(GTK_WIDGET(battmon->actempalignment), GTK_ALIGN_CENTER);
+
     gtk_container_add (GTK_CONTAINER(battmon->actempalignment), battmon->actempbox);
     gtk_box_pack_start(GTK_BOX(battmon->ebox), battmon->actempalignment, FALSE, FALSE, 2);
 

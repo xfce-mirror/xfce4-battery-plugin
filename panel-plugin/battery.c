@@ -62,12 +62,6 @@
 #define AVERAGING_CYCLE 5
 #define PLUGIN_WEBSITE  "http://goodies.xfce.org/projects/panel-plugins/xfce4-battery-plugin"
 
-#ifdef LIBXFCE4PANEL_CHECK_VERSION
-#if LIBXFCE4PANEL_CHECK_VERSION (4,9,0)
-#define HAS_PANEL_49
-#endif
-#endif
-
 typedef struct
 {
     gboolean    display_label;    /* Options */
@@ -668,9 +662,7 @@ static void setup_battmon(t_battmon *battmon)
     gint size;
 
     size = xfce_panel_plugin_get_size (battmon->plugin);
-#ifdef HAS_PANEL_49
     size /= xfce_panel_plugin_get_nrows (battmon->plugin);
-#endif
 
     battmon->ebox = gtk_box_new(xfce_panel_plugin_get_orientation(battmon->plugin), 0);
 
@@ -765,7 +757,6 @@ battmon_set_labels_orientation(t_battmon *battmon, GtkOrientation orientation)
     gtk_label_set_angle(GTK_LABEL(battmon->temp), angle);
 }
 
-#ifdef HAS_PANEL_49
 static gboolean
 battmon_set_mode (XfcePanelPlugin *plugin, XfcePanelPluginMode mode,
                   t_battmon *battmon)
@@ -794,27 +785,6 @@ battmon_set_mode (XfcePanelPlugin *plugin, XfcePanelPluginMode mode,
 
     return TRUE;
 }
-
-#else
-
-static gboolean
-battmon_set_orientation (XfcePanelPlugin *plugin, GtkOrientation orientation,
-                         t_battmon *battmon)
-{
-    DBG("set_orientation(%d)", orientation);
-    if (battmon->timeoutid) g_source_remove(battmon->timeoutid);
-    gtk_orientable_set_orientation(GTK_ORIENTABLE(battmon->ebox), orientation);
-    gtk_orientable_set_orientation(GTK_ORIENTABLE(battmon->timechargebox), !orientation);
-    gtk_orientable_set_orientation(GTK_ORIENTABLE(battmon->actempbox), !orientation);
-    gtk_progress_bar_set_orientation(GTK_PROGRESS_BAR(battmon->battstatus),
-               (orientation == GTK_ORIENTATION_HORIZONTAL ? GTK_PROGRESS_BOTTOM_TO_TOP : GTK_PROGRESS_LEFT_TO_RIGHT));
-    battmon_set_size(plugin, xfce_panel_plugin_get_size (plugin), battmon);
-    update_apm_status( battmon );
-    battmon->timeoutid = g_timeout_add(1 * 1024, (GSourceFunc) update_apm_status, battmon);
-
-    return TRUE;
-}
-#endif
 
 static t_battmon*
 battmon_create(XfcePanelPlugin *plugin)
@@ -981,9 +951,8 @@ static gboolean
 battmon_set_size(XfcePanelPlugin *plugin, int size, t_battmon *battmon)
 {
     int border_width;
-#ifdef HAS_PANEL_49
+
     size /= xfce_panel_plugin_get_nrows (battmon->plugin);
-#endif
     border_width = size > 26 ? 2 : 1;
     DBG("set_size(%d)", size);
     if (xfce_panel_plugin_get_orientation(plugin) == GTK_ORIENTATION_HORIZONTAL)
@@ -1611,12 +1580,8 @@ battmon_construct (XfcePanelPlugin *plugin)
 
     g_signal_connect (plugin, "size-changed", G_CALLBACK (battmon_set_size), battmon);
 
-#ifdef HAS_PANEL_49
     g_signal_connect (plugin, "mode-changed", G_CALLBACK (battmon_set_mode), battmon);
     xfce_panel_plugin_set_small (plugin, TRUE);
-#else
-    g_signal_connect (plugin, "orientation-changed", G_CALLBACK (battmon_set_orientation), battmon);
-#endif
 
     gtk_container_add(GTK_CONTAINER(plugin), battmon->ebox);
 

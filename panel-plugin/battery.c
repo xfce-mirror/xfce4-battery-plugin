@@ -677,8 +677,10 @@ static void setup_battmon(t_battmon *battmon)
     battmon->battstatus = gtk_progress_bar_new();
 
     gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(battmon->battstatus), 0.0);
-    gtk_progress_bar_set_orientation(GTK_PROGRESS_BAR(battmon->battstatus),
-               (xfce_panel_plugin_get_orientation(battmon->plugin) == GTK_ORIENTATION_HORIZONTAL ? GTK_PROGRESS_BOTTOM_TO_TOP : GTK_PROGRESS_LEFT_TO_RIGHT));
+    gtk_orientable_set_orientation(GTK_ORIENTABLE(battmon->battstatus),
+                                   !xfce_panel_plugin_get_orientation(battmon->plugin));
+    gtk_progress_bar_set_inverted(GTK_PROGRESS_BAR(battmon->battstatus),
+                                  (xfce_panel_plugin_get_orientation(battmon->plugin) == GTK_ORIENTATION_HORIZONTAL));
 
     battmon->label = (GtkLabel *)gtk_label_new(_("Battery"));
     gtk_box_pack_start(GTK_BOX(battmon->ebox),GTK_WIDGET(battmon->label),FALSE, FALSE, 2);
@@ -767,11 +769,15 @@ battmon_set_mode (XfcePanelPlugin *plugin, XfcePanelPluginMode mode,
     orientation =
       (mode != XFCE_PANEL_PLUGIN_MODE_VERTICAL) ?
       GTK_ORIENTATION_HORIZONTAL : GTK_ORIENTATION_VERTICAL;
-    xfce_hvbox_set_orientation(XFCE_HVBOX(battmon->ebox), xfce_panel_plugin_get_orientation(plugin));
-    xfce_hvbox_set_orientation(XFCE_HVBOX(battmon->timechargebox), !orientation);
-    xfce_hvbox_set_orientation(XFCE_HVBOX(battmon->actempbox), !orientation);
-    gtk_progress_bar_set_orientation(GTK_PROGRESS_BAR(battmon->battstatus),
-               (xfce_panel_plugin_get_orientation(plugin) == GTK_ORIENTATION_HORIZONTAL ? GTK_PROGRESS_BOTTOM_TO_TOP : GTK_PROGRESS_LEFT_TO_RIGHT));
+    gtk_orientable_set_orientation(GTK_ORIENTABLE(battmon->ebox), xfce_panel_plugin_get_orientation(plugin));
+    gtk_orientable_set_orientation(GTK_ORIENTABLE(battmon->timechargebox), !orientation);
+    gtk_orientable_set_orientation(GTK_ORIENTABLE(battmon->actempbox), !orientation);
+
+    gtk_orientable_set_orientation (GTK_ORIENTABLE(battmon->battstatus),
+                                    !(xfce_panel_plugin_get_orientation(plugin)));
+    gtk_progress_bar_set_inverted (GTK_PROGRESS_BAR(battmon->battstatus),
+                                   (xfce_panel_plugin_get_orientation(plugin) == GTK_ORIENTATION_HORIZONTAL));
+
     battmon_set_labels_orientation(battmon, orientation);
     battmon_set_size(plugin, xfce_panel_plugin_get_size (plugin), battmon);
     update_apm_status( battmon );
@@ -789,9 +795,9 @@ battmon_set_orientation (XfcePanelPlugin *plugin, GtkOrientation orientation,
 {
     DBG("set_orientation(%d)", orientation);
     if (battmon->timeoutid) g_source_remove(battmon->timeoutid);
-    xfce_hvbox_set_orientation(XFCE_HVBOX(battmon->ebox), orientation);
-    xfce_hvbox_set_orientation(XFCE_HVBOX(battmon->timechargebox), !orientation);
-    xfce_hvbox_set_orientation(XFCE_HVBOX(battmon->actempbox), !orientation);
+    gtk_orientable_set_orientation(GTK_ORIENTABLE(battmon->ebox), orientation);
+    gtk_orientable_set_orientation(GTK_ORIENTABLE(battmon->timechargebox), !orientation);
+    gtk_orientable_set_orientation(GTK_ORIENTABLE(battmon->actempbox), !orientation);
     gtk_progress_bar_set_orientation(GTK_PROGRESS_BAR(battmon->battstatus),
                (orientation == GTK_ORIENTATION_HORIZONTAL ? GTK_PROGRESS_BOTTOM_TO_TOP : GTK_PROGRESS_LEFT_TO_RIGHT));
     battmon_set_size(plugin, xfce_panel_plugin_get_size (plugin), battmon);

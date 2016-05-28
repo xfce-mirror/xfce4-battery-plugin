@@ -1204,8 +1204,8 @@ select_file_name (const char *title, const char *path, GtkWidget * parent)
 
     fs = gtk_file_chooser_dialog_new (t, GTK_WINDOW(parent),
                                GTK_FILE_CHOOSER_ACTION_OPEN,
-                               GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                               GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
+                               "gtk-cancel", GTK_RESPONSE_CANCEL,
+                               "gtk-open", GTK_RESPONSE_ACCEPT,
                                NULL);
 
     if (path && *path && g_file_test (path, G_FILE_TEST_EXISTS))
@@ -1312,9 +1312,9 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
 
     dlg = xfce_titled_dialog_new_with_buttons (_("Battery Monitor"),
                                                   GTK_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (plugin))),
-                                                  GTK_DIALOG_DESTROY_WITH_PARENT | GTK_DIALOG_NO_SEPARATOR,
-                                                  GTK_STOCK_HELP, GTK_RESPONSE_HELP,
-                                                  GTK_STOCK_CLOSE, GTK_RESPONSE_OK,
+                                                  GTK_DIALOG_DESTROY_WITH_PARENT,
+                                                  "gtk-help", GTK_RESPONSE_HELP,
+                                                  "gtk-close", GTK_RESPONSE_OK,
                                                   NULL);
 
     xfce_titled_dialog_set_subtitle (XFCE_TITLED_DIALOG (dlg), _("Properties"));

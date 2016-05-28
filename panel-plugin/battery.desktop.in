@@ -6,3 +6,4 @@ _Comment=Show and monitor the battery status
 Icon=xfce4-battery-plugin
 X-XFCE-Internal=FALSE
 X-XFCE-Module=battery
+X-XFCE-API=2.0

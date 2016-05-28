@@ -1328,8 +1328,8 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
 
     notebook = gtk_notebook_new ();
     gtk_widget_show (notebook);
-    gtk_box_pack_start (GTK_BOX (GTK_DIALOG(dlg)->vbox), GTK_WIDGET(notebook),
     gtk_container_set_border_width (GTK_CONTAINER(notebook), BORDER);
+    gtk_box_pack_start (GTK_BOX (gtk_dialog_get_content_area(GTK_DIALOG(dlg))), GTK_WIDGET(notebook),
                         TRUE, TRUE, 0);
 
 

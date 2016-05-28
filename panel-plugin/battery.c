@@ -84,10 +84,10 @@ typedef struct
     int        action_on_low;
     int        action_on_critical;
     char        *command_on_low;    char        *command_on_critical;
-    GdkColor        colorA;
-    GdkColor        colorH;
-    GdkColor        colorL;
-    GdkColor        colorC;
+    GdkRGBA         colorA;
+    GdkRGBA         colorH;
+    GdkRGBA         colorL;
+    GdkRGBA         colorC;
 } t_battmon_options;
 
 typedef struct
@@ -163,10 +163,10 @@ init_options(t_battmon_options *options)
     options->action_on_critical = 1;
     options->command_on_low = NULL;
     options->command_on_critical = NULL;
-    gdk_color_parse(AC_COLOR, &(options->colorA));
-    gdk_color_parse(HIGH_COLOR, &(options->colorH));
-    gdk_color_parse(LOW_COLOR, &(options->colorL));
-    gdk_color_parse(CRITICAL_COLOR, &(options->colorC));
+    gdk_rgba_parse(&(options->colorA), AC_COLOR);
+    gdk_rgba_parse(&(options->colorH), HIGH_COLOR);
+    gdk_rgba_parse(&(options->colorL), LOW_COLOR);
+    gdk_rgba_parse(&(options->colorC), CRITICAL_COLOR);
 }
 
 gboolean
@@ -889,13 +889,13 @@ battmon_read_config(XfcePanelPlugin *plugin, t_battmon *battmon)
     battmon->options.hide_when_full = xfce_rc_read_int_entry (rc, "hide_when_full", 0);
 
     if ((value = xfce_rc_read_entry (rc, "colorA", NULL)) != NULL)
-      gdk_color_parse(value, &battmon->options.colorA);
+      gdk_rgba_parse(&battmon->options.colorA, value);
     if ((value = xfce_rc_read_entry (rc, "colorH", NULL)) != NULL)
-      gdk_color_parse(value, &battmon->options.colorH);
+      gdk_rgba_parse(&battmon->options.colorH, value);
     if ((value = xfce_rc_read_entry (rc, "colorL", NULL)) != NULL)
-      gdk_color_parse(value, &battmon->options.colorL);
+      gdk_rgba_parse(&battmon->options.colorL, value);
     if ((value = xfce_rc_read_entry (rc, "colorC", NULL)) != NULL)
-      gdk_color_parse(value, &battmon->options.colorC);
+      gdk_rgba_parse(&battmon->options.colorC, value);
 
     if ((value =  xfce_rc_read_entry (rc, "command_on_low", NULL)) && *value)
         battmon->options.command_on_low = g_strdup (value);
@@ -911,10 +911,7 @@ battmon_write_config(XfcePanelPlugin *plugin, t_battmon *battmon)
 {
     XfceRc *rc;
     gchar *file;
-    char colorA_str[8];
-    char colorH_str[8];
-    char colorL_str[8];
-    char colorC_str[8];
+    gchar *color_str;
 
     if (!(file = xfce_panel_plugin_save_location (plugin, TRUE)))
         return;
@@ -951,29 +948,21 @@ battmon_write_config(XfcePanelPlugin *plugin, t_battmon *battmon)
 
     xfce_rc_write_int_entry (rc, "hide_when_full", battmon->options.hide_when_full );
 
-    g_snprintf(colorA_str, 8, "#%02X%02X%02X",
-      (guint)battmon->options.colorA.red >> 8,
-      (guint)battmon->options.colorA.green >> 8,
-      (guint)battmon->options.colorA.blue >> 8);
-    xfce_rc_write_entry (rc, "colorA", colorA_str);
+    color_str = gdk_rgba_to_string (&battmon->options.colorA);
+    xfce_rc_write_entry (rc, "colorA", color_str);
+    g_free (color_str);
 
-    g_snprintf(colorH_str, 8, "#%02X%02X%02X",
-      (guint)battmon->options.colorH.red >> 8,
-      (guint)battmon->options.colorH.green >> 8,
-      (guint)battmon->options.colorH.blue >> 8);
-    xfce_rc_write_entry (rc, "colorH", colorH_str);
+    color_str = gdk_rgba_to_string (&battmon->options.colorH);
+    xfce_rc_write_entry (rc, "colorH", color_str);
+    g_free (color_str);
 
-    g_snprintf(colorL_str, 8, "#%02X%02X%02X",
-      (guint)battmon->options.colorL.red >> 8,
-      (guint)battmon->options.colorL.green >> 8,
-      (guint)battmon->options.colorL.blue >> 8);
-    xfce_rc_write_entry (rc, "colorL", colorL_str);
+    color_str = gdk_rgba_to_string (&battmon->options.colorL);
+    xfce_rc_write_entry (rc, "colorL", color_str);
+    g_free (color_str);
 
-    g_snprintf(colorC_str, 8, "#%02X%02X%02X",
-      (guint)battmon->options.colorC.red >> 8,
-      (guint)battmon->options.colorC.green >> 8,
-      (guint)battmon->options.colorC.blue >> 8);
-    xfce_rc_write_entry (rc, "colorC", colorC_str);
+    color_str = gdk_rgba_to_string (&battmon->options.colorC);
+    xfce_rc_write_entry (rc, "colorC", color_str);
+    g_free (color_str);
 
     xfce_rc_write_entry (rc, "command_on_low", battmon->options.command_on_low ? battmon->options.command_on_low : "");
 

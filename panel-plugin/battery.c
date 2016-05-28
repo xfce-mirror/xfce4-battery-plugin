@@ -5,6 +5,7 @@
  * Copyright (c) 2006 Nick Schermer <nick@xfce.org>
  * Copyright (c) 2010 Florian Rivoal <frivoal@xfce.org>
  * Copyright (c) 2012 Landry Breuil <landry@xfce.org>
+ * Copyright (c) 2016 Andre Miranda <andre42m@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -1540,7 +1541,8 @@ battmon_show_about(XfcePanelPlugin *plugin, t_battmon *battmon)
    const gchar *auth[] = {
       "Benedikt Meurer <benny@xfce.org>", "Edscott Wilson <edscott@imp.mx>",
       "Eduard Roccatello <eduard@xfce.org>", "Florian Rivoal <frivoal@xfce.org>",
-      "Landry Breuil <landry@xfce.org>", "Nick Schermer <nick@xfce.org>", NULL };
+      "Landry Breuil <landry@xfce.org>", "Nick Schermer <nick@xfce.org>",
+      "Andre Miranda <andre42m@gmail.com>", NULL };
    icon = xfce_panel_pixbuf_from_source("xfce4-battery-plugin", NULL, 32);
    gtk_show_about_dialog(NULL,
       "logo", icon,
@@ -1549,7 +1551,7 @@ battmon_show_about(XfcePanelPlugin *plugin, t_battmon *battmon)
       "program-name", PACKAGE_NAME,
       "comments", _("Show and monitor the battery status"),
       "website", "http://goodies.xfce.org/projects/panel-plugins/xfce4-battery-plugin",
-      "copyright", _("Copyright (c) 2003-2012\n"),
+      "copyright", _("Copyright (c) 2003-2016\n"),
       "authors", auth, NULL);
 
    if(icon)

@@ -1328,14 +1328,14 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
 
     notebook = gtk_notebook_new ();
     gtk_widget_show (notebook);
-    gtk_container_border_width (GTK_CONTAINER(notebook), BORDER);
     gtk_box_pack_start (GTK_BOX (GTK_DIALOG(dlg)->vbox), GTK_WIDGET(notebook),
+    gtk_container_set_border_width (GTK_CONTAINER(notebook), BORDER);
                         TRUE, TRUE, 0);
 
 
     /* Bar colors */
-    gtk_container_border_width (GTK_CONTAINER(vbox), BORDER);
     vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, BORDER);
+    gtk_container_set_border_width (GTK_CONTAINER(vbox), BORDER);
 
     /* Create size group to keep widgets aligned */
     sg = gtk_size_group_new(GTK_SIZE_GROUP_HORIZONTAL);
@@ -1401,8 +1401,8 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
     sg = gtk_size_group_new(GTK_SIZE_GROUP_HORIZONTAL);
 
     /* Low and Critical percentage settings */
-    gtk_container_border_width (GTK_CONTAINER(vbox), BORDER);
     vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, BORDER);
+    gtk_container_set_border_width (GTK_CONTAINER(vbox), BORDER);
     hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, BORDER);
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
@@ -1501,8 +1501,8 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
 
     /* Create checkbox options */
 
-    gtk_container_border_width (GTK_CONTAINER(vbox2), BORDER);
     vbox2 = gtk_box_new(GTK_ORIENTATION_VERTICAL, BORDER);
+    gtk_container_set_border_width (GTK_CONTAINER(vbox2), BORDER);
 
     dialog->cb_disp_label = gtk_check_button_new_with_mnemonic(_("Display label"));
     gtk_box_pack_start(GTK_BOX(vbox2), dialog->cb_disp_label, FALSE, FALSE, 0);

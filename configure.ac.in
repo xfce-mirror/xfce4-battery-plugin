@@ -29,7 +29,7 @@ AC_CANONICAL_TARGET()
 dnl ***************************
 dnl *** Initialize automake ***
 dnl ***************************
-AM_INIT_AUTOMAKE([1.8 dist-bzip2 tar-ustar])
+AM_INIT_AUTOMAKE([1.8 dist-bzip2 tar-ustar no-dist-gzip])
 AM_CONFIG_HEADER([config.h])
 AM_MAINTAINER_MODE()
 

@@ -1,3 +1,8 @@
+1.0.99 (2016/06/05):
+===================
+* port to gtk+3/libxfce4ui-2/libxfce4panel-2.0
+* Fix build on aarch64 (bug #11724)
+
 1.0.5 (2012/05/30):
 * Better compliance with the panel plugin HIG
 * Don't set labels orientation on 4.8 panels (bug #8961)

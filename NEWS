@@ -1,3 +1,8 @@
+1.1.0 (2016/11/01):
+===================
+* Fix progressbar css styling with Gtk 3.20
+* Set min-width/height to 4px
+
 1.0.99 (2016/06/05):
 ===================
 * port to gtk+3/libxfce4ui-2/libxfce4panel-2.0

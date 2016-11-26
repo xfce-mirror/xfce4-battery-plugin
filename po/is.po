@@ -4,15 +4,15 @@
 # 
 # Translators:
 # Sveinn í Felli <sv1@fellsnet.is>, 2014
-# Sveinn í Felli <sv1@fellsnet.is>, 2014
+# Sveinn í Felli <sv1@fellsnet.is>, 2014,2016
 # Sveinn í Felli <sv1@fellsnet.is>, 2011-2012
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-03 20:48+0200\n"
-"PO-Revision-Date: 2016-01-23 12:13+0000\n"
-"Last-Translator: Nick Schermer <nick@xfce.org>\n"
+"POT-Creation-Date: 2016-05-29 12:30+0200\n"
+"PO-Revision-Date: 2016-11-26 09:53+0000\n"
+"Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic (http://www.transifex.com/xfce/xfce-panel-plugins/language/is/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,34 +20,34 @@ msgstr ""
 "Language: is\n"
 "Plural-Forms: nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);\n"
 
-#: ../panel-plugin/battery.c:536
+#: ../panel-plugin/battery.c:526
 msgid "(No battery, AC on-line)"
 msgstr "(Engin rafhlaða, tengt við rafkerfi)"
 
-#: ../panel-plugin/battery.c:538
+#: ../panel-plugin/battery.c:528
 msgid "(Charging from AC)"
 msgstr "(Hleð inn frá rafkerfi)"
 
-#: ../panel-plugin/battery.c:538
+#: ../panel-plugin/battery.c:528
 msgid "(AC on-line)"
 msgstr "(Tengt við rafkerfi)"
 
-#: ../panel-plugin/battery.c:548
+#: ../panel-plugin/battery.c:538
 #, c-format
 msgid "%d%% (%02d:%02d) remaining"
 msgstr "%d%% (%02d:%02d) eftir"
 
-#: ../panel-plugin/battery.c:550
+#: ../panel-plugin/battery.c:540
 #, c-format
 msgid "%02d:%02d remaining"
 msgstr "%02d:%02d eftir"
 
-#: ../panel-plugin/battery.c:552
+#: ../panel-plugin/battery.c:542
 #, c-format
 msgid "%d%% remaining"
 msgstr "%d%% eftir"
 
-#: ../panel-plugin/battery.c:554
+#: ../panel-plugin/battery.c:544
 #, c-format
 msgid "AC off-line"
 msgstr "(Ekki tengt við rafkerfi)"
@@ -68,135 +68,131 @@ msgstr "AÐVÖRUN: Rafhlaðan á litla hleðslu eftir. Þú ættir að gera rá�
 msgid "Battery"
 msgstr "Rafhlaða"
 
-#: ../panel-plugin/battery.c:1207
+#: ../panel-plugin/battery.c:1173
 msgid "Select file"
 msgstr "Veldu skrá"
 
-#: ../panel-plugin/battery.c:1248
+#: ../panel-plugin/battery.c:1214
 msgid "Select command"
 msgstr "Veldu skipun"
 
-#: ../panel-plugin/battery.c:1263
-msgid "Select color"
-msgstr "Veldu lit"
-
-#: ../panel-plugin/battery.c:1305
+#: ../panel-plugin/battery.c:1258
 #, c-format
 msgid "Unable to open the following url: %s"
 msgstr "Get ekki opnað eftirfarandi slóð: %s"
 
-#: ../panel-plugin/battery.c:1330 ../panel-plugin/battery.desktop.in.h:1
+#: ../panel-plugin/battery.c:1283 ../panel-plugin/battery.desktop.in.h:1
 msgid "Battery Monitor"
 msgstr "Rafhlöðueftirlit"
 
-#: ../panel-plugin/battery.c:1337
+#: ../panel-plugin/battery.c:1290
 msgid "Properties"
 msgstr "Eiginleikar"
 
-#: ../panel-plugin/battery.c:1363
+#: ../panel-plugin/battery.c:1316
 msgid "On AC:"
 msgstr "Þegar tengt við rafkerfi:"
 
-#: ../panel-plugin/battery.c:1380
+#: ../panel-plugin/battery.c:1329
 msgid "Battery high:"
 msgstr "Mikið á rafhlöðu:"
 
-#: ../panel-plugin/battery.c:1397
+#: ../panel-plugin/battery.c:1342
 msgid "Battery low:"
 msgstr "Lítið eftir á rafhlöðu:"
 
-#: ../panel-plugin/battery.c:1414
+#: ../panel-plugin/battery.c:1355
 msgid "Battery critical:"
 msgstr "Rafhlaða að tæmast:"
 
-#: ../panel-plugin/battery.c:1428
+#: ../panel-plugin/battery.c:1365
 msgid "Bar _colors"
 msgstr "_Litir á stöplum"
 
-#: ../panel-plugin/battery.c:1442
+#: ../panel-plugin/battery.c:1379
 msgid "Low percentage:"
 msgstr "Lág hleðsla (%):"
 
-#: ../panel-plugin/battery.c:1455
+#: ../panel-plugin/battery.c:1392
 msgid "Low battery action:"
 msgstr "Aðgerð við lága hleðslu:"
 
-#: ../panel-plugin/battery.c:1461 ../panel-plugin/battery.c:1513
+#: ../panel-plugin/battery.c:1398 ../panel-plugin/battery.c:1442
 msgid "Do nothing"
 msgstr "Gera ekkert"
 
-#: ../panel-plugin/battery.c:1463 ../panel-plugin/battery.c:1515
+#: ../panel-plugin/battery.c:1399 ../panel-plugin/battery.c:1443
 msgid "Display a warning message"
 msgstr "Birta aðvörun"
 
-#: ../panel-plugin/battery.c:1465 ../panel-plugin/battery.c:1517
+#: ../panel-plugin/battery.c:1400 ../panel-plugin/battery.c:1444
 msgid "Run command"
 msgstr "Keyra skipun"
 
-#: ../panel-plugin/battery.c:1467 ../panel-plugin/battery.c:1519
+#: ../panel-plugin/battery.c:1401 ../panel-plugin/battery.c:1445
 msgid "Run command in terminal"
 msgstr "Keyra skipun í skjáhermi"
 
-#: ../panel-plugin/battery.c:1480 ../panel-plugin/battery.c:1531
+#: ../panel-plugin/battery.c:1409 ../panel-plugin/battery.c:1453
 msgid "Command:"
 msgstr "Skipun:"
 
-#: ../panel-plugin/battery.c:1494
+#: ../panel-plugin/battery.c:1423
 msgid "Critical percentage:"
 msgstr "Hættulega lág hleðsla (%):"
 
-#: ../panel-plugin/battery.c:1507
+#: ../panel-plugin/battery.c:1436
 msgid "Critical battery action:"
 msgstr "Aðgerð við hættulega lága hleðslu:"
 
-#: ../panel-plugin/battery.c:1542
+#: ../panel-plugin/battery.c:1464
 msgid "Levels and _actions"
 msgstr "Stig og _aðgerðir"
 
-#: ../panel-plugin/battery.c:1555
+#: ../panel-plugin/battery.c:1477
 msgid "Display label"
 msgstr "Birta skýringu"
 
-#: ../panel-plugin/battery.c:1558
+#: ../panel-plugin/battery.c:1480
 msgid "Display icon"
 msgstr "Birta táknmynd"
 
-#: ../panel-plugin/battery.c:1561
+#: ../panel-plugin/battery.c:1483
 msgid "Display bar"
 msgstr "Birta súlu"
 
-#: ../panel-plugin/battery.c:1564
+#: ../panel-plugin/battery.c:1486
 msgid "Display percentage"
 msgstr "Birta prósentu"
 
-#: ../panel-plugin/battery.c:1567
+#: ../panel-plugin/battery.c:1489
 msgid "Display time"
 msgstr "Birta tíma"
 
-#: ../panel-plugin/battery.c:1570
+#: ../panel-plugin/battery.c:1492
 msgid "Display power"
 msgstr "Birta orku"
 
-#: ../panel-plugin/battery.c:1573
+#: ../panel-plugin/battery.c:1495
 msgid "Hide time/percentage when full"
 msgstr "Fela tíma/prósentu þegar fullt"
 
-#: ../panel-plugin/battery.c:1576
+#: ../panel-plugin/battery.c:1498
 msgid "Display percentage in tooltip"
 msgstr "Birta prósentuhlutfall sem eftir er í vísbendingu"
 
-#: ../panel-plugin/battery.c:1579
+#: ../panel-plugin/battery.c:1501
 msgid "Display time remaining in tooltip"
 msgstr "Birta tímann sem eftir er í vísbendingu"
 
-#: ../panel-plugin/battery.c:1582
+#: ../panel-plugin/battery.c:1504
 msgid "_Display"
 msgstr "B_irting"
 
-#: ../panel-plugin/battery.c:1629 ../panel-plugin/battery.desktop.in.h:2
+#: ../panel-plugin/battery.c:1552 ../panel-plugin/battery.desktop.in.h:2
 msgid "Show and monitor the battery status"
 msgstr "Birta tog fylgjast með stöðu rafhlöðu"
 
-#: ../panel-plugin/battery.c:1631
-msgid "Copyright (c) 2003-2012\n"
-msgstr "Höfundarréttur (c) 2003-2012\n"
+#: ../panel-plugin/battery.c:1554
+msgid "Copyright (c) 2003-2016\n"
+msgstr "Höfundarréttur (c) 2003-2016\n"

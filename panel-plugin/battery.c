@@ -616,7 +616,7 @@ battmon.c:241: for each function it appears in.)
         GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
     g_free(css);
 #else
-    gtk_widget_override_background_color (widget, GTK_STATE_FLAG_NORMAL, color);
+    gtk_widget_override_background_color (GTK_WIDGET (battmon->battstatus), GTK_STATE_FLAG_NORMAL, color);
 #endif
 
     /* alarms */

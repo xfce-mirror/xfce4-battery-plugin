@@ -601,9 +601,13 @@ battmon.c:241: for each function it appears in.)
 
 #if GTK_CHECK_VERSION (3, 16, 0)
 #if GTK_CHECK_VERSION (3, 20, 0)
-    gchar *css = g_strdup_printf("progressbar trough { min-width: 4px; min-height: 4px; } \
-                                  progressbar progress { min-width: 4px; min-height: 4px; \
+    gchar * cssminsizes = "min-width: 4px; min-height: 0px";
+    if (gtk_orientable_get_orientation(GTK_ORIENTABLE(battmon->battstatus)) == GTK_ORIENTATION_HORIZONTAL)
+        cssminsizes = "min-width: 0px; min-height: 4px";
+    gchar * css = g_strdup_printf("progressbar trough { %s } \
+                                   progressbar progress { %s ; \
                                                          background-color: %s; background-image: none; }",
+                                 cssminsizes, cssminsizes,
 #else
     gchar *css = g_strdup_printf("progressbar progress { background-color: %s; background-image: none; }",
 #endif

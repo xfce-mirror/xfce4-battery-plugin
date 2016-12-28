@@ -801,7 +801,6 @@ battmon_set_mode (XfcePanelPlugin *plugin, XfcePanelPluginMode mode,
     battmon_set_labels_orientation(battmon, orientation);
     battmon_set_size(plugin, xfce_panel_plugin_get_size (plugin), battmon);
     update_apm_status( battmon );
-    battmon->timeoutid = g_timeout_add(1 * 1024, (GSourceFunc) update_apm_status, battmon);
     xfce_panel_plugin_set_small (plugin, (mode != XFCE_PANEL_PLUGIN_MODE_DESKBAR));
 
     return TRUE;

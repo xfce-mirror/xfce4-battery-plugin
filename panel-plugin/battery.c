@@ -674,7 +674,6 @@ do_low_warn:
 
 static void setup_battmon(t_battmon *battmon)
 {
-    GdkPixbuf *icon;
     gint size;
 
     size = xfce_panel_plugin_get_size (battmon->plugin);

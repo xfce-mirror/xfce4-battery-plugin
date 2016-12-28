@@ -273,6 +273,9 @@ update_apm_status(t_battmon *battmon)
     int time_remaining=0;
     gboolean acline;
     gchar buffer[128];
+#if GTK_CHECK_VERSION (3, 16, 0)
+    gchar *css, *color_str;
+#endif
 
     static int update_time = AVERAGING_CYCLE;
     static int sum_lcapacity = 0;
@@ -600,18 +603,19 @@ battmon.c:241: for each function it appears in.)
     }
 
 #if GTK_CHECK_VERSION (3, 16, 0)
+    color_str = gdk_rgba_to_string (color);
 #if GTK_CHECK_VERSION (3, 20, 0)
     gchar * cssminsizes = "min-width: 4px; min-height: 0px";
     if (gtk_orientable_get_orientation(GTK_ORIENTABLE(battmon->battstatus)) == GTK_ORIENTATION_HORIZONTAL)
         cssminsizes = "min-width: 0px; min-height: 4px";
-    gchar * css = g_strdup_printf("progressbar trough { %s } \
+    css = g_strdup_printf("progressbar trough { %s } \
                                    progressbar progress { %s ; \
                                                          background-color: %s; background-image: none; }",
                                  cssminsizes, cssminsizes,
 #else
-    gchar *css = g_strdup_printf("progressbar progress { background-color: %s; background-image: none; }",
+    css = g_strdup_printf("progressbar progress { background-color: %s; background-image: none; }",
 #endif
-                                 gdk_rgba_to_string(color));
+                                 color_str);
     GtkCssProvider *css_provider = gtk_css_provider_new ();
     gtk_css_provider_load_from_data (css_provider, css, strlen(css), NULL);
     gtk_style_context_add_provider (
@@ -619,6 +623,7 @@ battmon.c:241: for each function it appears in.)
         GTK_STYLE_PROVIDER (css_provider),
         GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
     g_free(css);
+    g_free(color_str);
 #else
     gtk_widget_override_background_color (GTK_WIDGET (battmon->battstatus), GTK_STATE_FLAG_NORMAL, color);
 #endif

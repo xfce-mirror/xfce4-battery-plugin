@@ -103,7 +103,10 @@ typedef struct
     GtkLabel        *rtime;
     GtkLabel        *acfan;
     GtkLabel        *temp;
-    GtkWidget        *image;
+    GtkWidget       *image;
+#if GTK_CHECK_VERSION (3, 16, 0)
+    GtkCssProvider  *css_provider;
+#endif
 } t_battmon;
 
 typedef struct
@@ -616,12 +619,7 @@ battmon.c:241: for each function it appears in.)
     css = g_strdup_printf("progressbar progress { background-color: %s; background-image: none; }",
 #endif
                                  color_str);
-    GtkCssProvider *css_provider = gtk_css_provider_new ();
-    gtk_css_provider_load_from_data (css_provider, css, strlen(css), NULL);
-    gtk_style_context_add_provider (
-        GTK_STYLE_CONTEXT (gtk_widget_get_style_context (GTK_WIDGET (battmon->battstatus))),
-        GTK_STYLE_PROVIDER (css_provider),
-        GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+    gtk_css_provider_load_from_data (battmon->css_provider, css, strlen(css), NULL);
     g_free(css);
     g_free(color_str);
 #else
@@ -688,6 +686,14 @@ static void setup_battmon(t_battmon *battmon)
                                    !xfce_panel_plugin_get_orientation(battmon->plugin));
     gtk_progress_bar_set_inverted(GTK_PROGRESS_BAR(battmon->battstatus),
                                   (xfce_panel_plugin_get_orientation(battmon->plugin) == GTK_ORIENTATION_HORIZONTAL));
+
+#if GTK_CHECK_VERSION (3, 16, 0)
+    battmon->css_provider = gtk_css_provider_new();
+    gtk_style_context_add_provider(
+        GTK_STYLE_CONTEXT (gtk_widget_get_style_context (GTK_WIDGET (battmon->battstatus))),
+        GTK_STYLE_PROVIDER (battmon->css_provider),
+        GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+#endif
 
     battmon->label = (GtkLabel *)gtk_label_new(_("Battery"));
     gtk_box_pack_start(GTK_BOX(battmon->ebox),GTK_WIDGET(battmon->label),FALSE, FALSE, 2);

@@ -785,7 +785,6 @@ battmon_set_mode (XfcePanelPlugin *plugin, XfcePanelPluginMode mode,
     GtkOrientation orientation;
     DBG("set_mode(%d)", mode);
 
-    if (battmon->timeoutid) g_source_remove(battmon->timeoutid);
     orientation =
       (mode != XFCE_PANEL_PLUGIN_MODE_VERTICAL) ?
       GTK_ORIENTATION_HORIZONTAL : GTK_ORIENTATION_VERTICAL;

@@ -104,9 +104,7 @@ typedef struct
     GtkLabel        *acfan;
     GtkLabel        *temp;
     GtkWidget       *image;
-#if GTK_CHECK_VERSION (3, 16, 0)
     GtkCssProvider  *css_provider;
-#endif
 } t_battmon;
 
 typedef struct
@@ -276,9 +274,7 @@ update_apm_status(t_battmon *battmon)
     int time_remaining=0;
     gboolean acline;
     gchar buffer[128];
-#if GTK_CHECK_VERSION (3, 16, 0)
     gchar *css, *color_str;
-#endif
 
     static int update_time = AVERAGING_CYCLE;
     static int sum_lcapacity = 0;
@@ -605,7 +601,6 @@ battmon.c:241: for each function it appears in.)
       }
     }
 
-#if GTK_CHECK_VERSION (3, 16, 0)
     color_str = gdk_rgba_to_string (color);
 #if GTK_CHECK_VERSION (3, 20, 0)
     gchar * cssminsizes = "min-width: 4px; min-height: 0px";
@@ -622,9 +617,6 @@ battmon.c:241: for each function it appears in.)
     gtk_css_provider_load_from_data (battmon->css_provider, css, strlen(css), NULL);
     g_free(css);
     g_free(color_str);
-#else
-    gtk_widget_override_background_color (GTK_WIDGET (battmon->battstatus), GTK_STATE_FLAG_NORMAL, color);
-#endif
 
     /* alarms */
     if (!acline && charge <= battmon->options.low_percentage){
@@ -687,13 +679,11 @@ static void setup_battmon(t_battmon *battmon)
     gtk_progress_bar_set_inverted(GTK_PROGRESS_BAR(battmon->battstatus),
                                   (xfce_panel_plugin_get_orientation(battmon->plugin) == GTK_ORIENTATION_HORIZONTAL));
 
-#if GTK_CHECK_VERSION (3, 16, 0)
     battmon->css_provider = gtk_css_provider_new();
     gtk_style_context_add_provider(
         GTK_STYLE_CONTEXT (gtk_widget_get_style_context (GTK_WIDGET (battmon->battstatus))),
         GTK_STYLE_PROVIDER (battmon->css_provider),
         GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
-#endif
 
     battmon->label = (GtkLabel *)gtk_label_new(_("Battery"));
     gtk_box_pack_start(GTK_BOX(battmon->ebox),GTK_WIDGET(battmon->label),FALSE, FALSE, 2);

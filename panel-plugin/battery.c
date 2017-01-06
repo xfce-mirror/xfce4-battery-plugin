@@ -616,7 +616,7 @@ battmon.c:241: for each function it appears in.)
                                                          background-color: %s; background-image: none; }",
                                  cssminsizes, cssminsizes,
 #else
-    css = g_strdup_printf("progressbar progress { background-color: %s; background-image: none; }",
+    css = g_strdup_printf(".progressbar progress { background-color: %s; background-image: none; }",
 #endif
                                  color_str);
     gtk_css_provider_load_from_data (battmon->css_provider, css, strlen(css), NULL);

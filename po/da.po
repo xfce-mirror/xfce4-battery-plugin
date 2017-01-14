@@ -5,13 +5,13 @@
 # Translators:
 # Jens Hyllegaard <jens.hyllegaard@gmail.com>, 2007
 # Per Kongstad <p_kongstad@op.pl>, 2009
-# scootergrisen, 2016
+# scootergrisen, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-05-29 12:30+0200\n"
-"PO-Revision-Date: 2016-12-08 23:28+0000\n"
+"PO-Revision-Date: 2017-01-14 14:16+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-panel-plugins/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -91,7 +91,7 @@ msgstr "Egenskaber"
 
 #: ../panel-plugin/battery.c:1316
 msgid "On AC:"
-msgstr "På lysnet"
+msgstr "På lysnet:"
 
 #: ../panel-plugin/battery.c:1329
 msgid "Battery high:"
@@ -103,7 +103,7 @@ msgstr "Batteriniveau lavt:"
 
 #: ../panel-plugin/battery.c:1355
 msgid "Battery critical:"
-msgstr "Batteri kritisk"
+msgstr "Batteri kritisk:"
 
 #: ../panel-plugin/battery.c:1365
 msgid "Bar _colors"

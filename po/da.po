@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-05-29 12:30+0200\n"
-"PO-Revision-Date: 2017-01-14 14:16+0000\n"
+"PO-Revision-Date: 2017-01-16 10:33+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-panel-plugins/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -79,7 +79,7 @@ msgstr "Vælg kommando"
 #: ../panel-plugin/battery.c:1258
 #, c-format
 msgid "Unable to open the following url: %s"
-msgstr "Kunne ikke åbne denne url: %s"
+msgstr "Kunne ikke åbne den følgende url: %s"
 
 #: ../panel-plugin/battery.c:1283 ../panel-plugin/battery.desktop.in.h:1
 msgid "Battery Monitor"

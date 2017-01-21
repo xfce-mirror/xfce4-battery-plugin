@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-05-29 12:30+0200\n"
-"PO-Revision-Date: 2017-01-16 10:33+0000\n"
+"PO-Revision-Date: 2017-01-21 19:39+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-panel-plugins/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -151,7 +151,7 @@ msgstr "Niveau og _handlinger"
 
 #: ../panel-plugin/battery.c:1477
 msgid "Display label"
-msgstr "Vis mærkat"
+msgstr "Vis etiket"
 
 #: ../panel-plugin/battery.c:1480
 msgid "Display icon"

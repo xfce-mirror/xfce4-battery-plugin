@@ -4,13 +4,13 @@
 # 
 # Translators:
 # Algimantas Margevičius <margevicius.algimantas@gmail.com>, 2012
-# Moo, 2016
+# Moo, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-05-29 12:30+0200\n"
-"PO-Revision-Date: 2016-09-14 09:02+0000\n"
+"PO-Revision-Date: 2017-02-23 10:18+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/xfce/xfce-panel-plugins/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -150,7 +150,7 @@ msgstr "Lygiai ir _veiksmai"
 
 #: ../panel-plugin/battery.c:1477
 msgid "Display label"
-msgstr "Rodyti užrašą"
+msgstr "Rodyti etiketę"
 
 #: ../panel-plugin/battery.c:1480
 msgid "Display icon"

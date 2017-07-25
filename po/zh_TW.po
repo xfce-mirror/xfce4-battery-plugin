@@ -1,202 +1,198 @@
-# Chinese Traditional translation of the xfce4-battery-plugin package.
-# Copyright (C) 2006-2007 The Xfce development team.
-# This file is distributed under the same license as the xfce4-battery-plugin package.
-# Dsewnr Lu <dsewnr@gmail.com>, 2007.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Dsewnr Lu <dsewnr@gmail.com>, 2007
+# Jeff Huang <s8321414@gmail.com>, 2016
+# Walter Cheuk <wwycheuk@gmail.com>, 2013
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-battery-plugin 0.5.0\n"
+"Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-19 08:30+0000\n"
-"PO-Revision-Date: 2012-07-19 18:53+0800\n"
-"Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
-"Language-Team: Chinese (traditional) <xfce-i18n@xfce.org>\n"
-"Language: zh_TW\n"
+"POT-Creation-Date: 2016-05-29 12:30+0200\n"
+"PO-Revision-Date: 2017-07-25 11:28+0000\n"
+"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
+"Language-Team: Chinese (Taiwan) (http://www.transifex.com/xfce/xfce-panel-plugins/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../panel-plugin/battery.c:536
+#: ../panel-plugin/battery.c:526
 msgid "(No battery, AC on-line)"
 msgstr "(無電池，已連接 AC)"
 
-#: ../panel-plugin/battery.c:538
+#: ../panel-plugin/battery.c:528
 msgid "(Charging from AC)"
 msgstr "(正從 AC 充電)"
 
-#: ../panel-plugin/battery.c:538
+#: ../panel-plugin/battery.c:528
 msgid "(AC on-line)"
 msgstr "(已連接 AC)"
 
-#: ../panel-plugin/battery.c:548
+#: ../panel-plugin/battery.c:538
 #, c-format
 msgid "%d%% (%02d:%02d) remaining"
 msgstr "剩餘 %d%% (%02d:%02d)"
 
-#: ../panel-plugin/battery.c:550
+#: ../panel-plugin/battery.c:540
 #, c-format
 msgid "%02d:%02d remaining"
 msgstr "剩餘 %02d:%02d"
 
-#: ../panel-plugin/battery.c:552
+#: ../panel-plugin/battery.c:542
 #, c-format
 msgid "%d%% remaining"
 msgstr "剩餘 %d%%"
 
-#: ../panel-plugin/battery.c:554
+#: ../panel-plugin/battery.c:544
 #, c-format
 msgid "AC off-line"
 msgstr "AC 已拔除"
 
 #: ../panel-plugin/battery.c:624
-msgid "WARNING: Your battery has reached critical status. You should plug in or shutdown your computer now to avoid possible data loss."
+msgid ""
+"WARNING: Your battery has reached critical status. You should plug in or "
+"shutdown your computer now to avoid possible data loss."
 msgstr "警告：您的電量已達危急狀態！您應該立刻插入電源，或關閉電腦以避免資料流失。"
 
 #: ../panel-plugin/battery.c:642
-msgid "WARNING: Your battery is running low. You should consider plugging in or shutting down your computer soon to avoid possible data loss."
+msgid ""
+"WARNING: Your battery is running low. You should consider plugging in or "
+"shutting down your computer soon to avoid possible data loss."
 msgstr "警告：您電池正處於低電量！您應該考慮盡快插入電源，或關閉電腦以避免資料流失。"
 
 #: ../panel-plugin/battery.c:678
 msgid "Battery"
 msgstr "電池"
 
-#: ../panel-plugin/battery.c:1207
+#: ../panel-plugin/battery.c:1173
 msgid "Select file"
 msgstr "選取檔案"
 
-#: ../panel-plugin/battery.c:1248
+#: ../panel-plugin/battery.c:1214
 msgid "Select command"
 msgstr "選取指令"
 
-#: ../panel-plugin/battery.c:1263
-msgid "Select color"
-msgstr "選取色彩"
-
-#: ../panel-plugin/battery.c:1305
+#: ../panel-plugin/battery.c:1258
 #, c-format
 msgid "Unable to open the following url: %s"
-msgstr "無法開啟下網址：%s"
+msgstr "無法開啟以下網址：%s"
 
-#: ../panel-plugin/battery.c:1330
-#: ../panel-plugin/battery.desktop.in.h:1
+#: ../panel-plugin/battery.c:1283 ../panel-plugin/battery.desktop.in.h:1
 msgid "Battery Monitor"
 msgstr "電池監視器"
 
-#: ../panel-plugin/battery.c:1337
+#: ../panel-plugin/battery.c:1290
 msgid "Properties"
 msgstr "屬性"
 
-#: ../panel-plugin/battery.c:1363
+#: ../panel-plugin/battery.c:1316
 msgid "On AC:"
 msgstr "使用 AC："
 
-#: ../panel-plugin/battery.c:1380
+#: ../panel-plugin/battery.c:1329
 msgid "Battery high:"
 msgstr "電量高："
 
-#: ../panel-plugin/battery.c:1397
+#: ../panel-plugin/battery.c:1342
 msgid "Battery low:"
 msgstr "電量低："
 
-#: ../panel-plugin/battery.c:1414
+#: ../panel-plugin/battery.c:1355
 msgid "Battery critical:"
 msgstr "電量臨界點："
 
-#: ../panel-plugin/battery.c:1428
+#: ../panel-plugin/battery.c:1365
 msgid "Bar _colors"
 msgstr "長條色彩(_C)"
 
-#: ../panel-plugin/battery.c:1442
+#: ../panel-plugin/battery.c:1379
 msgid "Low percentage:"
 msgstr "低電量百分比："
 
-#: ../panel-plugin/battery.c:1455
+#: ../panel-plugin/battery.c:1392
 msgid "Low battery action:"
 msgstr "低電量動作:"
 
-#: ../panel-plugin/battery.c:1461
-#: ../panel-plugin/battery.c:1513
+#: ../panel-plugin/battery.c:1398 ../panel-plugin/battery.c:1442
 msgid "Do nothing"
 msgstr "不做任何動作"
 
-#: ../panel-plugin/battery.c:1463
-#: ../panel-plugin/battery.c:1515
+#: ../panel-plugin/battery.c:1399 ../panel-plugin/battery.c:1443
 msgid "Display a warning message"
 msgstr "顯示警告訊息"
 
-#: ../panel-plugin/battery.c:1465
-#: ../panel-plugin/battery.c:1517
+#: ../panel-plugin/battery.c:1400 ../panel-plugin/battery.c:1444
 msgid "Run command"
 msgstr "執行指令"
 
-#: ../panel-plugin/battery.c:1467
-#: ../panel-plugin/battery.c:1519
+#: ../panel-plugin/battery.c:1401 ../panel-plugin/battery.c:1445
 msgid "Run command in terminal"
 msgstr "以終端機執行指令"
 
-#: ../panel-plugin/battery.c:1480
-#: ../panel-plugin/battery.c:1531
+#: ../panel-plugin/battery.c:1409 ../panel-plugin/battery.c:1453
 msgid "Command:"
 msgstr "指令："
 
-#: ../panel-plugin/battery.c:1494
+#: ../panel-plugin/battery.c:1423
 msgid "Critical percentage:"
 msgstr "危急電量百分比："
 
-#: ../panel-plugin/battery.c:1507
+#: ../panel-plugin/battery.c:1436
 msgid "Critical battery action:"
 msgstr "危急電量動作："
 
-#: ../panel-plugin/battery.c:1542
+#: ../panel-plugin/battery.c:1464
 msgid "Levels and _actions"
 msgstr "等級與動作(_A)"
 
-#: ../panel-plugin/battery.c:1555
+#: ../panel-plugin/battery.c:1477
 msgid "Display label"
 msgstr "顯示標籤"
 
-#: ../panel-plugin/battery.c:1558
+#: ../panel-plugin/battery.c:1480
 msgid "Display icon"
 msgstr "顯示圖示"
 
-#: ../panel-plugin/battery.c:1561
+#: ../panel-plugin/battery.c:1483
 msgid "Display bar"
 msgstr "顯示橫條"
 
-#: ../panel-plugin/battery.c:1564
+#: ../panel-plugin/battery.c:1486
 msgid "Display percentage"
 msgstr "顯示百分比"
 
-#: ../panel-plugin/battery.c:1567
+#: ../panel-plugin/battery.c:1489
 msgid "Display time"
 msgstr "顯示剩餘時間"
 
-#: ../panel-plugin/battery.c:1570
+#: ../panel-plugin/battery.c:1492
 msgid "Display power"
 msgstr "顯示電力"
 
-#: ../panel-plugin/battery.c:1573
+#: ../panel-plugin/battery.c:1495
 msgid "Hide time/percentage when full"
 msgstr "當電量充飽時隱藏剩餘時間/百分比"
 
-#: ../panel-plugin/battery.c:1576
+#: ../panel-plugin/battery.c:1498
 msgid "Display percentage in tooltip"
 msgstr "以提示框顯示百分比"
 
-#: ../panel-plugin/battery.c:1579
+#: ../panel-plugin/battery.c:1501
 msgid "Display time remaining in tooltip"
 msgstr "以提示框顯示剩餘時間"
 
-#: ../panel-plugin/battery.c:1582
+#: ../panel-plugin/battery.c:1504
 msgid "_Display"
 msgstr "顯示(_D)"
 
-#: ../panel-plugin/battery.c:1629
-#: ../panel-plugin/battery.desktop.in.h:2
+#: ../panel-plugin/battery.c:1552 ../panel-plugin/battery.desktop.in.h:2
 msgid "Show and monitor the battery status"
 msgstr "顯示並監視電池狀態"
 
-#: ../panel-plugin/battery.c:1631
-msgid "Copyright (c) 2003-2012\n"
-msgstr "著作權 (c) 2003-2012\n"
-
+#: ../panel-plugin/battery.c:1554
+msgid "Copyright (c) 2003-2016\n"
+msgstr "Copyright (c) 2003-2016\n"

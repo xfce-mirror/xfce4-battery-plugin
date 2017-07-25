@@ -1,210 +1,196 @@
-# Albanian translation of the xfce4-battery-plugin package.
-# Copyright (C) 2006-2007 The Xfce development team.
-# This file is distributed under the same license as the xfce4-battery-plugin package.
-# Besnik Bleta <besnik@programeshqip.org>, 2007.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Besnik <besnik@programeshqip.org>, 2007
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-battery-plugin 0.5.0\n"
+"Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-23 17:18+0200\n"
-"PO-Revision-Date: 2008-11-04 22:50+0200\n"
-"Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
-"Language-Team: Albanian <xfce-i18n@xfce.org>\n"
-"Language: sq\n"
+"POT-Creation-Date: 2016-05-29 12:30+0200\n"
+"PO-Revision-Date: 2017-07-25 11:28+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"Language-Team: Albanian (http://www.transifex.com/xfce/xfce-panel-plugins/language/sq/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: sq\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../panel-plugin/battery.c:551
-#, fuzzy
+#: ../panel-plugin/battery.c:526
 msgid "(No battery, AC on-line)"
-msgstr "(AC on-line)"
+msgstr ""
 
-#: ../panel-plugin/battery.c:553
+#: ../panel-plugin/battery.c:528
 msgid "(Charging from AC)"
 msgstr "(Po e ngarkon prej AC-së)"
 
-#: ../panel-plugin/battery.c:553
+#: ../panel-plugin/battery.c:528
 msgid "(AC on-line)"
 msgstr "(AC on-line)"
 
-#: ../panel-plugin/battery.c:563
+#: ../panel-plugin/battery.c:538
 #, c-format
 msgid "%d%% (%02d:%02d) remaining"
 msgstr "akoma %d%% (%02d:%02d)"
 
-#: ../panel-plugin/battery.c:565
+#: ../panel-plugin/battery.c:540
 #, c-format
 msgid "%02d:%02d remaining"
 msgstr "%02d: akoma %02d"
 
-#: ../panel-plugin/battery.c:567
+#: ../panel-plugin/battery.c:542
 #, c-format
 msgid "%d%% remaining"
 msgstr "akoma %d%%"
 
-#: ../panel-plugin/battery.c:569
+#: ../panel-plugin/battery.c:544
 #, c-format
 msgid "AC off-line"
 msgstr "AC off-line"
 
-#: ../panel-plugin/battery.c:637
+#: ../panel-plugin/battery.c:624
 msgid ""
 "WARNING: Your battery has reached critical status. You should plug in or "
 "shutdown your computer now to avoid possible data loss."
-msgstr ""
-"KUJDES: Bateria juaj ka mbërritur në gjendjen kritike. Do të duhej ta vini "
-"në prizë ose fikni kompjuterin tuaj për të shmangur humbje të dhënash."
+msgstr "KUJDES: Bateria juaj ka mbërritur në gjendjen kritike. Do të duhej ta vini në prizë ose fikni kompjuterin tuaj për të shmangur humbje të dhënash."
 
-#: ../panel-plugin/battery.c:655
+#: ../panel-plugin/battery.c:642
 msgid ""
 "WARNING: Your battery is running low. You should consider plugging in or "
 "shutting down your computer soon to avoid possible data loss."
-msgstr ""
-"KUJDES: Bateria juaj po shkarkohet. Do të duhej të shihnit mundësinë e "
-"vënies në prizë ose fikjes së kompjuterit tuaj sa më shpejt për të shmangur "
-"humbje të dhënash."
+msgstr "KUJDES: Bateria juaj po shkarkohet. Do të duhej të shihnit mundësinë e vënies në prizë ose fikjes së kompjuterit tuaj sa më shpejt për të shmangur humbje të dhënash."
 
-#: ../panel-plugin/battery.c:709
+#: ../panel-plugin/battery.c:678
 msgid "Battery"
 msgstr "Bateri"
 
-#: ../panel-plugin/battery.c:1285
+#: ../panel-plugin/battery.c:1173
 msgid "Select file"
 msgstr "Përzgjidhni kartelë"
 
-#: ../panel-plugin/battery.c:1326
+#: ../panel-plugin/battery.c:1214
 msgid "Select command"
 msgstr "Përzgjidhni urdhër"
 
-#: ../panel-plugin/battery.c:1341
-#, fuzzy
-msgid "Select color"
-msgstr "Përzgjidhni kartelë"
-
-#: ../panel-plugin/battery.c:1383
+#: ../panel-plugin/battery.c:1258
 #, c-format
 msgid "Unable to open the following url: %s"
 msgstr "I pazoti të hapë url-në vijuese: %s"
 
-#: ../panel-plugin/battery.c:1408 ../panel-plugin/battery.desktop.in.h:1
+#: ../panel-plugin/battery.c:1283 ../panel-plugin/battery.desktop.in.h:1
 msgid "Battery Monitor"
 msgstr "Mbikëqyrës Baterie"
 
-#: ../panel-plugin/battery.c:1415
+#: ../panel-plugin/battery.c:1290
 msgid "Properties"
-msgstr ""
+msgstr "Veti"
 
-#: ../panel-plugin/battery.c:1441
+#: ../panel-plugin/battery.c:1316
 msgid "On AC:"
 msgstr ""
 
-#: ../panel-plugin/battery.c:1458
-#, fuzzy
+#: ../panel-plugin/battery.c:1329
 msgid "Battery high:"
-msgstr "Bateri"
+msgstr ""
 
-#: ../panel-plugin/battery.c:1475
-#, fuzzy
+#: ../panel-plugin/battery.c:1342
 msgid "Battery low:"
-msgstr "Bateri"
+msgstr ""
 
-#: ../panel-plugin/battery.c:1492
-#, fuzzy
+#: ../panel-plugin/battery.c:1355
 msgid "Battery critical:"
-msgstr "Mbikëqyrës Baterie"
+msgstr ""
 
-#: ../panel-plugin/battery.c:1506
+#: ../panel-plugin/battery.c:1365
 msgid "Bar _colors"
 msgstr ""
 
-#: ../panel-plugin/battery.c:1520
+#: ../panel-plugin/battery.c:1379
 msgid "Low percentage:"
 msgstr "Përqindje e ulët:"
 
-#: ../panel-plugin/battery.c:1533
+#: ../panel-plugin/battery.c:1392
 msgid "Low battery action:"
 msgstr "Veprim kur bateria është dobët:"
 
-#: ../panel-plugin/battery.c:1539 ../panel-plugin/battery.c:1591
+#: ../panel-plugin/battery.c:1398 ../panel-plugin/battery.c:1442
 msgid "Do nothing"
 msgstr "Mos bëj gjë"
 
-#: ../panel-plugin/battery.c:1541 ../panel-plugin/battery.c:1593
+#: ../panel-plugin/battery.c:1399 ../panel-plugin/battery.c:1443
 msgid "Display a warning message"
 msgstr "Shfaq një mesazh sinjalizimi"
 
-#: ../panel-plugin/battery.c:1543 ../panel-plugin/battery.c:1595
+#: ../panel-plugin/battery.c:1400 ../panel-plugin/battery.c:1444
 msgid "Run command"
 msgstr "Xhiro një urdhër"
 
-#: ../panel-plugin/battery.c:1545 ../panel-plugin/battery.c:1597
+#: ../panel-plugin/battery.c:1401 ../panel-plugin/battery.c:1445
 msgid "Run command in terminal"
 msgstr "Xhiro urdhër në terminal"
 
-#: ../panel-plugin/battery.c:1558 ../panel-plugin/battery.c:1609
+#: ../panel-plugin/battery.c:1409 ../panel-plugin/battery.c:1453
 msgid "Command:"
 msgstr "Urdhër:"
 
-#: ../panel-plugin/battery.c:1572
+#: ../panel-plugin/battery.c:1423
 msgid "Critical percentage:"
 msgstr "Përqindje kritike:"
 
-#: ../panel-plugin/battery.c:1585
+#: ../panel-plugin/battery.c:1436
 msgid "Critical battery action:"
 msgstr "Veprim kur bateria është në gjendje kritike:"
 
-#: ../panel-plugin/battery.c:1620
+#: ../panel-plugin/battery.c:1464
 msgid "Levels and _actions"
 msgstr ""
 
-#: ../panel-plugin/battery.c:1633
+#: ../panel-plugin/battery.c:1477
 msgid "Display label"
 msgstr "Shfaq etiketë"
 
-#: ../panel-plugin/battery.c:1636
+#: ../panel-plugin/battery.c:1480
 msgid "Display icon"
 msgstr "Shfaq ikonë"
 
-#: ../panel-plugin/battery.c:1639
-#, fuzzy
+#: ../panel-plugin/battery.c:1483
 msgid "Display bar"
-msgstr "Shfaq etiketë"
+msgstr ""
 
-#: ../panel-plugin/battery.c:1642
+#: ../panel-plugin/battery.c:1486
 msgid "Display percentage"
 msgstr "Shfaq përqindje"
 
-#: ../panel-plugin/battery.c:1645
+#: ../panel-plugin/battery.c:1489
 msgid "Display time"
 msgstr "Shfaq kohë"
 
-#: ../panel-plugin/battery.c:1648
+#: ../panel-plugin/battery.c:1492
 msgid "Display power"
 msgstr "Shfaqje fuqi"
 
-#: ../panel-plugin/battery.c:1651
+#: ../panel-plugin/battery.c:1495
 msgid "Hide time/percentage when full"
 msgstr "Fshih kohë/përqindje kur të jetë plot"
 
-#: ../panel-plugin/battery.c:1654
+#: ../panel-plugin/battery.c:1498
 msgid "Display percentage in tooltip"
 msgstr "Shfaq përqindje si ndihmëz"
 
-#: ../panel-plugin/battery.c:1657
+#: ../panel-plugin/battery.c:1501
 msgid "Display time remaining in tooltip"
 msgstr "Shfaqe kohën e mbetur si ndihmëz"
 
-#: ../panel-plugin/battery.c:1660
-#, fuzzy
+#: ../panel-plugin/battery.c:1504
 msgid "_Display"
-msgstr "Shfaq kohë"
+msgstr ""
 
-#: ../panel-plugin/battery.c:1707 ../panel-plugin/battery.desktop.in.h:2
+#: ../panel-plugin/battery.c:1552 ../panel-plugin/battery.desktop.in.h:2
 msgid "Show and monitor the battery status"
 msgstr "Shfaq dhe mbikëqyr"
 
-#: ../panel-plugin/battery.c:1709
-msgid "Copyright (c) 2003-2012\n"
+#: ../panel-plugin/battery.c:1554
+msgid "Copyright (c) 2003-2016\n"
 msgstr ""

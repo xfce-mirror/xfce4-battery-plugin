@@ -1,209 +1,196 @@
-# Norwegian Bokmal translations for xfce4-battery-plugin package.
-# Copyright (C) 2007 THE xfce4-battery-plugin'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the xfce4-battery-plugin package.
-# Terje Uriansrud <ter@operamail.com>, 2007.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Terje Uriansrud <ter@operamail.com>, 2007
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-battery-plugin 0.5.0svn-r2842\n"
+"Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-23 17:18+0200\n"
-"PO-Revision-Date: 2012-01-13 14:27+0100\n"
-"Last-Translator: Terje Uriansrud <ter@operamail.com>\n"
-"Language-Team: Norwegian Bokmal <i18n-nb@lister.ping.uio.no>\n"
-"Language: nb\n"
+"POT-Creation-Date: 2016-05-29 12:30+0200\n"
+"PO-Revision-Date: 2017-07-25 11:28+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"Language-Team: Norwegian Nynorsk (http://www.transifex.com/xfce/xfce-panel-plugins/language/nn/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: nn\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../panel-plugin/battery.c:551
+#: ../panel-plugin/battery.c:526
 msgid "(No battery, AC on-line)"
 msgstr "(Ikkje batteri, nettdrift)"
 
-#: ../panel-plugin/battery.c:553
+#: ../panel-plugin/battery.c:528
 msgid "(Charging from AC)"
 msgstr "(Lader frå nett)"
 
-#: ../panel-plugin/battery.c:553
+#: ../panel-plugin/battery.c:528
 msgid "(AC on-line)"
 msgstr "(Nettdrift)"
 
-#: ../panel-plugin/battery.c:563
+#: ../panel-plugin/battery.c:538
 #, c-format
 msgid "%d%% (%02d:%02d) remaining"
 msgstr "%d%% (%02d:%02d) igjen"
 
-#: ../panel-plugin/battery.c:565
+#: ../panel-plugin/battery.c:540
 #, c-format
 msgid "%02d:%02d remaining"
 msgstr "%02d:%02d igjen"
 
-#: ../panel-plugin/battery.c:567
+#: ../panel-plugin/battery.c:542
 #, c-format
 msgid "%d%% remaining"
 msgstr "%d%% igjen"
 
-#: ../panel-plugin/battery.c:569
+#: ../panel-plugin/battery.c:544
 #, c-format
 msgid "AC off-line"
 msgstr "Batteridrift"
 
-#: ../panel-plugin/battery.c:637
+#: ../panel-plugin/battery.c:624
 msgid ""
 "WARNING: Your battery has reached critical status. You should plug in or "
 "shutdown your computer now to avoid possible data loss."
-msgstr ""
-"Åtvaring: Batteriet har nådd kritisk lågt nivå. Du burde kopla til nettdrift "
-"eller skru av datamaskina no for å unngå tap av data."
+msgstr "Åtvaring: Batteriet har nådd kritisk lågt nivå. Du burde kopla til nettdrift eller skru av datamaskina no for å unngå tap av data."
 
-#: ../panel-plugin/battery.c:655
+#: ../panel-plugin/battery.c:642
 msgid ""
 "WARNING: Your battery is running low. You should consider plugging in or "
 "shutting down your computer soon to avoid possible data loss."
-msgstr ""
-"Åtvaring: Batteriet byrjar å gå tomt for straum. Du burde vurdera å gå over "
-"til nettdrift eller skru av datamaskina snart for å unngå tap av data."
+msgstr "Åtvaring: Batteriet byrjar å gå tomt for straum. Du burde vurdera å gå over til nettdrift eller skru av datamaskina snart for å unngå tap av data."
 
-#: ../panel-plugin/battery.c:709
+#: ../panel-plugin/battery.c:678
 msgid "Battery"
 msgstr "Batteri"
 
-#: ../panel-plugin/battery.c:1285
+#: ../panel-plugin/battery.c:1173
 msgid "Select file"
 msgstr "Vel fil"
 
-#: ../panel-plugin/battery.c:1326
+#: ../panel-plugin/battery.c:1214
 msgid "Select command"
 msgstr "Vel kommando"
 
-#: ../panel-plugin/battery.c:1341
-#, fuzzy
-msgid "Select color"
-msgstr "Vel fil"
-
-#: ../panel-plugin/battery.c:1383
+#: ../panel-plugin/battery.c:1258
 #, c-format
 msgid "Unable to open the following url: %s"
 msgstr "Klarte ikkje opna url: %s"
 
-#: ../panel-plugin/battery.c:1408 ../panel-plugin/battery.desktop.in.h:1
+#: ../panel-plugin/battery.c:1283 ../panel-plugin/battery.desktop.in.h:1
 msgid "Battery Monitor"
 msgstr "Batteriovervaking"
 
-#: ../panel-plugin/battery.c:1415
+#: ../panel-plugin/battery.c:1290
 msgid "Properties"
 msgstr ""
 
-#: ../panel-plugin/battery.c:1441
+#: ../panel-plugin/battery.c:1316
 msgid "On AC:"
 msgstr ""
 
-#: ../panel-plugin/battery.c:1458
-#, fuzzy
+#: ../panel-plugin/battery.c:1329
 msgid "Battery high:"
-msgstr "Batteri"
+msgstr ""
 
-#: ../panel-plugin/battery.c:1475
-#, fuzzy
+#: ../panel-plugin/battery.c:1342
 msgid "Battery low:"
-msgstr "Batteri"
+msgstr ""
 
-#: ../panel-plugin/battery.c:1492
-#, fuzzy
+#: ../panel-plugin/battery.c:1355
 msgid "Battery critical:"
-msgstr "Batteriovervaking"
+msgstr ""
 
-#: ../panel-plugin/battery.c:1506
+#: ../panel-plugin/battery.c:1365
 msgid "Bar _colors"
 msgstr ""
 
-#: ../panel-plugin/battery.c:1520
+#: ../panel-plugin/battery.c:1379
 msgid "Low percentage:"
 msgstr "Låg prosent:"
 
-#: ../panel-plugin/battery.c:1533
+#: ../panel-plugin/battery.c:1392
 msgid "Low battery action:"
 msgstr "Handling ved lågt batteri:"
 
-#: ../panel-plugin/battery.c:1539 ../panel-plugin/battery.c:1591
+#: ../panel-plugin/battery.c:1398 ../panel-plugin/battery.c:1442
 msgid "Do nothing"
 msgstr "Gjer ingenting"
 
-#: ../panel-plugin/battery.c:1541 ../panel-plugin/battery.c:1593
+#: ../panel-plugin/battery.c:1399 ../panel-plugin/battery.c:1443
 msgid "Display a warning message"
 msgstr "Vis ei åtvaring"
 
-#: ../panel-plugin/battery.c:1543 ../panel-plugin/battery.c:1595
+#: ../panel-plugin/battery.c:1400 ../panel-plugin/battery.c:1444
 msgid "Run command"
 msgstr "Køyr kommando"
 
-#: ../panel-plugin/battery.c:1545 ../panel-plugin/battery.c:1597
+#: ../panel-plugin/battery.c:1401 ../panel-plugin/battery.c:1445
 msgid "Run command in terminal"
 msgstr "Køyr kommando i terminal"
 
-#: ../panel-plugin/battery.c:1558 ../panel-plugin/battery.c:1609
+#: ../panel-plugin/battery.c:1409 ../panel-plugin/battery.c:1453
 msgid "Command:"
 msgstr "Kommando:"
 
-#: ../panel-plugin/battery.c:1572
+#: ../panel-plugin/battery.c:1423
 msgid "Critical percentage:"
 msgstr "Kritisk prosent:"
 
-#: ../panel-plugin/battery.c:1585
+#: ../panel-plugin/battery.c:1436
 msgid "Critical battery action:"
 msgstr "Handling ved kritisk batterinivå:"
 
-#: ../panel-plugin/battery.c:1620
+#: ../panel-plugin/battery.c:1464
 msgid "Levels and _actions"
 msgstr ""
 
-#: ../panel-plugin/battery.c:1633
+#: ../panel-plugin/battery.c:1477
 msgid "Display label"
 msgstr "Vis etikett"
 
-#: ../panel-plugin/battery.c:1636
+#: ../panel-plugin/battery.c:1480
 msgid "Display icon"
 msgstr "Vis ikon"
 
-#: ../panel-plugin/battery.c:1639
-#, fuzzy
+#: ../panel-plugin/battery.c:1483
 msgid "Display bar"
-msgstr "Vis etikett"
+msgstr ""
 
-#: ../panel-plugin/battery.c:1642
+#: ../panel-plugin/battery.c:1486
 msgid "Display percentage"
 msgstr "Vis prosent"
 
-#: ../panel-plugin/battery.c:1645
+#: ../panel-plugin/battery.c:1489
 msgid "Display time"
 msgstr "Vis tid"
 
-#: ../panel-plugin/battery.c:1648
+#: ../panel-plugin/battery.c:1492
 msgid "Display power"
 msgstr "Vis tilkoplingsmodus"
 
-#: ../panel-plugin/battery.c:1651
+#: ../panel-plugin/battery.c:1495
 msgid "Hide time/percentage when full"
 msgstr "Skjul tid/prosent når fullada"
 
-#: ../panel-plugin/battery.c:1654
+#: ../panel-plugin/battery.c:1498
 msgid "Display percentage in tooltip"
 msgstr "Vis prosent i verktøytips"
 
-#: ../panel-plugin/battery.c:1657
+#: ../panel-plugin/battery.c:1501
 msgid "Display time remaining in tooltip"
 msgstr "Vis gjenverande tid i verktøytips"
 
-#: ../panel-plugin/battery.c:1660
-#, fuzzy
+#: ../panel-plugin/battery.c:1504
 msgid "_Display"
-msgstr "Vis tid"
+msgstr ""
 
-#: ../panel-plugin/battery.c:1707 ../panel-plugin/battery.desktop.in.h:2
+#: ../panel-plugin/battery.c:1552 ../panel-plugin/battery.desktop.in.h:2
 msgid "Show and monitor the battery status"
 msgstr "Vis og overvak batteristatus"
 
-#: ../panel-plugin/battery.c:1709
-msgid "Copyright (c) 2003-2012\n"
+#: ../panel-plugin/battery.c:1554
+msgid "Copyright (c) 2003-2016\n"
 msgstr ""

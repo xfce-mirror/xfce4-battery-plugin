@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Elias Julkunen <elias.julkunen@gmail.com>, 2006
-# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2008
+# Jari Rahkonen <inactive+jari@transifex.com>, 2008
 # Jiri Grönroos <jiri.gronroos@iki.fi>, 2013
 # Pasi Lallinaho <pasi@shimmerproject.org>, 2015,2017
 msgid ""
@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-05-29 12:30+0200\n"
-"PO-Revision-Date: 2017-02-02 15:26+0000\n"
+"PO-Revision-Date: 2017-07-25 11:28+0000\n"
 "Last-Translator: Pasi Lallinaho <pasi@shimmerproject.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/xfce/xfce-panel-plugins/language/fi/)\n"
 "MIME-Version: 1.0\n"

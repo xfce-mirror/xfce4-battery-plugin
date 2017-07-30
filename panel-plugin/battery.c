@@ -996,7 +996,6 @@ static void refresh_dialog(t_battmon_dialog *dialog)
 
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(dialog->sb_low_percentage), battmon->options.low_percentage);
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(dialog->sb_critical_percentage), battmon->options.critical_percentage);
-    gtk_color_button_new_with_rgba(&battmon->options.colorA);
     gtk_color_chooser_set_rgba(GTK_COLOR_CHOOSER(dialog->ac_color_button), &battmon->options.colorA);
     gtk_color_chooser_set_rgba(GTK_COLOR_CHOOSER(dialog->high_color_button), &battmon->options.colorH);
     gtk_color_chooser_set_rgba(GTK_COLOR_CHOOSER(dialog->low_color_button), &battmon->options.colorL);

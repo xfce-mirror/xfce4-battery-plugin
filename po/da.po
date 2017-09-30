@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-05-29 12:30+0200\n"
-"PO-Revision-Date: 2017-09-19 18:06+0000\n"
+"PO-Revision-Date: 2017-09-30 19:21+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-panel-plugins/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -22,15 +22,15 @@ msgstr ""
 
 #: ../panel-plugin/battery.c:526
 msgid "(No battery, AC on-line)"
-msgstr "(Intet batteri, AC tilkoblet)"
+msgstr "(Intet batteri, strømforsyning tilkoblet)"
 
 #: ../panel-plugin/battery.c:528
 msgid "(Charging from AC)"
-msgstr "(Oplader via AC)"
+msgstr "(Oplader via strømforsyning)"
 
 #: ../panel-plugin/battery.c:528
 msgid "(AC on-line)"
-msgstr "(AC tilkoblet)"
+msgstr "(Strømforsyning tilkoblet)"
 
 #: ../panel-plugin/battery.c:538
 #, c-format
@@ -50,7 +50,7 @@ msgstr "%d%% tilbage"
 #: ../panel-plugin/battery.c:544
 #, c-format
 msgid "AC off-line"
-msgstr "AC frakoblet"
+msgstr "Strømforsyning frakoblet"
 
 #: ../panel-plugin/battery.c:624
 msgid ""
@@ -91,7 +91,7 @@ msgstr "Egenskaber"
 
 #: ../panel-plugin/battery.c:1316
 msgid "On AC:"
-msgstr "På lysnet:"
+msgstr "På strømforsyning:"
 
 #: ../panel-plugin/battery.c:1329
 msgid "Battery high:"

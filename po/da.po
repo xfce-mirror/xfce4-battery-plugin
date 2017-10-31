@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-05-29 12:30+0200\n"
-"PO-Revision-Date: 2017-09-30 19:21+0000\n"
+"PO-Revision-Date: 2017-10-31 09:04+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-panel-plugins/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -56,13 +56,13 @@ msgstr "Strømforsyning frakoblet"
 msgid ""
 "WARNING: Your battery has reached critical status. You should plug in or "
 "shutdown your computer now to avoid possible data loss."
-msgstr "ADVARSEL: Dit batteri er næsten helt fladt. Du bør tilslutte din computer til en strømkilde, eller lukke den ned nu, for at undgå muligt datatab."
+msgstr "ADVARSEL: Dit batteri er næsten helt afladt. Du bør tilslutte din computer til en strømkilde, eller lukke den ned nu, for at undgå muligt datatab."
 
 #: ../panel-plugin/battery.c:642
 msgid ""
 "WARNING: Your battery is running low. You should consider plugging in or "
 "shutting down your computer soon to avoid possible data loss."
-msgstr "ADVARSEL: Dit batteri er ved at være fladt. Du bør overveje at tilslutte din computer til en strømkilde, eller lukke den ned, for at undgå muligt datatab."
+msgstr "ADVARSEL: Dit batteri er ved at være afladt. Du bør overveje at tilslutte din computer til en strømkilde, eller lukke den ned, for at undgå muligt datatab."
 
 #: ../panel-plugin/battery.c:678
 msgid "Battery"
@@ -103,7 +103,7 @@ msgstr "Batteriniveau lavt:"
 
 #: ../panel-plugin/battery.c:1355
 msgid "Battery critical:"
-msgstr "Batteri kritisk:"
+msgstr "Batteriniveau kritisk:"
 
 #: ../panel-plugin/battery.c:1365
 msgid "Bar _colors"
@@ -111,7 +111,7 @@ msgstr "Bjælke_farver"
 
 #: ../panel-plugin/battery.c:1379
 msgid "Low percentage:"
-msgstr "Lav procentdel:"
+msgstr "Lav procent:"
 
 #: ../panel-plugin/battery.c:1392
 msgid "Low battery action:"
@@ -139,7 +139,7 @@ msgstr "Kommando:"
 
 #: ../panel-plugin/battery.c:1423
 msgid "Critical percentage:"
-msgstr "Kritisk procentdel:"
+msgstr "Kritisk procent:"
 
 #: ../panel-plugin/battery.c:1436
 msgid "Critical battery action:"
@@ -163,7 +163,7 @@ msgstr "Vis bjælke"
 
 #: ../panel-plugin/battery.c:1486
 msgid "Display percentage"
-msgstr "Vis procentdel"
+msgstr "Vis procent"
 
 #: ../panel-plugin/battery.c:1489
 msgid "Display time"
@@ -175,11 +175,11 @@ msgstr "Vis strøm"
 
 #: ../panel-plugin/battery.c:1495
 msgid "Hide time/percentage when full"
-msgstr "Skjul tid/procentdel når fuld"
+msgstr "Skjul tid/procent når fuld"
 
 #: ../panel-plugin/battery.c:1498
 msgid "Display percentage in tooltip"
-msgstr "Vis procentdel i værktøjstip"
+msgstr "Vis procent i værktøjstip"
 
 #: ../panel-plugin/battery.c:1501
 msgid "Display time remaining in tooltip"
@@ -191,7 +191,7 @@ msgstr "_Vis"
 
 #: ../panel-plugin/battery.c:1552 ../panel-plugin/battery.desktop.in.h:2
 msgid "Show and monitor the battery status"
-msgstr "Vis og overvåg batteristatus"
+msgstr "Vis og overvåg batteriets status"
 
 #: ../panel-plugin/battery.c:1554
 msgid "Copyright (c) 2003-2016\n"

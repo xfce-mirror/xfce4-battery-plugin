@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-05-29 12:30+0200\n"
-"PO-Revision-Date: 2017-09-19 18:06+0000\n"
+"PO-Revision-Date: 2017-12-31 14:01+0000\n"
 "Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-panel-plugins/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -23,15 +23,15 @@ msgstr ""
 
 #: ../panel-plugin/battery.c:526
 msgid "(No battery, AC on-line)"
-msgstr "(Sense bateria, amb corrent elèctric)"
+msgstr "(sense bateria, amb corrent elèctric)"
 
 #: ../panel-plugin/battery.c:528
 msgid "(Charging from AC)"
-msgstr "(Carregant del corrent)"
+msgstr "(carregant del corrent)"
 
 #: ../panel-plugin/battery.c:528
 msgid "(AC on-line)"
-msgstr "(Amb corrent elèctric)"
+msgstr "(amb corrent elèctric)"
 
 #: ../panel-plugin/battery.c:538
 #, c-format
@@ -80,7 +80,7 @@ msgstr "Seleccioneu l'ordre"
 #: ../panel-plugin/battery.c:1258
 #, c-format
 msgid "Unable to open the following url: %s"
-msgstr "No s'ha pogut obrir l'url: %s"
+msgstr "No es pot obrir l'url següent: %s"
 
 #: ../panel-plugin/battery.c:1283 ../panel-plugin/battery.desktop.in.h:1
 msgid "Battery Monitor"
@@ -108,7 +108,7 @@ msgstr "Bateria crítica:"
 
 #: ../panel-plugin/battery.c:1365
 msgid "Bar _colors"
-msgstr "_Color de la barra:"
+msgstr "_Colors de les barres"
 
 #: ../panel-plugin/battery.c:1379
 msgid "Low percentage:"
@@ -152,7 +152,7 @@ msgstr "Nivells i _accions"
 
 #: ../panel-plugin/battery.c:1477
 msgid "Display label"
-msgstr "Mostra etiqueta"
+msgstr "Mostra l'etiqueta"
 
 #: ../panel-plugin/battery.c:1480
 msgid "Display icon"
@@ -176,7 +176,7 @@ msgstr "Mostra l'energia"
 
 #: ../panel-plugin/battery.c:1495
 msgid "Hide time/percentage when full"
-msgstr "Oculta el temps o el percentatge quan estigui ple"
+msgstr "Oculta el temps o el percentatge quan estigui plena"
 
 #: ../panel-plugin/battery.c:1498
 msgid "Display percentage in tooltip"
@@ -188,7 +188,7 @@ msgstr "Mostra el temps restant al quadre de text emergent"
 
 #: ../panel-plugin/battery.c:1504
 msgid "_Display"
-msgstr "Mos_tra"
+msgstr "_Visualització"
 
 #: ../panel-plugin/battery.c:1552 ../panel-plugin/battery.desktop.in.h:2
 msgid "Show and monitor the battery status"

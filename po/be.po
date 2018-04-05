@@ -1,0 +1,195 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: Xfce Panel Plugins\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-05-29 12:30+0200\n"
+"PO-Revision-Date: 2018-04-05 22:02+0000\n"
+"Last-Translator: Zmicer Turok <zmicerturok@gmail.com>\n"
+"Language-Team: Belarusian (http://www.transifex.com/xfce/xfce-panel-plugins/language/be/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: be\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: ../panel-plugin/battery.c:526
+msgid "(No battery, AC on-line)"
+msgstr "(Батарэі няма, працуе ад сеткі)"
+
+#: ../panel-plugin/battery.c:528
+msgid "(Charging from AC)"
+msgstr "(Насілкоўваецца ад сеткі)"
+
+#: ../panel-plugin/battery.c:528
+msgid "(AC on-line)"
+msgstr "(Ад сеткі)"
+
+#: ../panel-plugin/battery.c:538
+#, c-format
+msgid "%d%% (%02d:%02d) remaining"
+msgstr "%d%% (%02d:%02d) засталося"
+
+#: ../panel-plugin/battery.c:540
+#, c-format
+msgid "%02d:%02d remaining"
+msgstr "%02d:%02d засталося"
+
+#: ../panel-plugin/battery.c:542
+#, c-format
+msgid "%d%% remaining"
+msgstr "%d%% засталося"
+
+#: ../panel-plugin/battery.c:544
+#, c-format
+msgid "AC off-line"
+msgstr "Адлучана"
+
+#: ../panel-plugin/battery.c:624
+msgid ""
+"WARNING: Your battery has reached critical status. You should plug in or "
+"shutdown your computer now to avoid possible data loss."
+msgstr "УВАГА: Узровень зараду батарэі крытычна нізкі. Неабходна падлучыць кампутар да электрасеткі, альбо выключыць, каб пазбегнуць страты даных."
+
+#: ../panel-plugin/battery.c:642
+msgid ""
+"WARNING: Your battery is running low. You should consider plugging in or "
+"shutting down your computer soon to avoid possible data loss."
+msgstr "УВАГА: Батарэя разраджана. Хутка вы мусіце падлучыць кампутар да электрасеткі, альбо выключыць, каб пазбегнуць страты даных."
+
+#: ../panel-plugin/battery.c:678
+msgid "Battery"
+msgstr "Батарэя"
+
+#: ../panel-plugin/battery.c:1173
+msgid "Select file"
+msgstr "Абраць файл"
+
+#: ../panel-plugin/battery.c:1214
+msgid "Select command"
+msgstr "Абраць загад"
+
+#: ../panel-plugin/battery.c:1258
+#, c-format
+msgid "Unable to open the following url: %s"
+msgstr "Не атрымалася адкрыць наступны адрас: %s"
+
+#: ../panel-plugin/battery.c:1283 ../panel-plugin/battery.desktop.in.h:1
+msgid "Battery Monitor"
+msgstr "Індыкатар батарэі"
+
+#: ../panel-plugin/battery.c:1290
+msgid "Properties"
+msgstr "Уласцівасці"
+
+#: ../panel-plugin/battery.c:1316
+msgid "On AC:"
+msgstr "Пры сілкаванні ад сеткі"
+
+#: ../panel-plugin/battery.c:1329
+msgid "Battery high:"
+msgstr "Высокі ўзровень зараду батарэі:"
+
+#: ../panel-plugin/battery.c:1342
+msgid "Battery low:"
+msgstr "Нізкі ўзровень зараду батарэі:"
+
+#: ../panel-plugin/battery.c:1355
+msgid "Battery critical:"
+msgstr "Крытычны ўзровень зараду батарэі:"
+
+#: ../panel-plugin/battery.c:1365
+msgid "Bar _colors"
+msgstr "_Колер палос"
+
+#: ../panel-plugin/battery.c:1379
+msgid "Low percentage:"
+msgstr "Узровень нізкага зараду батарэі:"
+
+#: ../panel-plugin/battery.c:1392
+msgid "Low battery action:"
+msgstr "Дзеянне пры нізкім узроўні зараду батарэі:"
+
+#: ../panel-plugin/battery.c:1398 ../panel-plugin/battery.c:1442
+msgid "Do nothing"
+msgstr "Нічога не рабіць"
+
+#: ../panel-plugin/battery.c:1399 ../panel-plugin/battery.c:1443
+msgid "Display a warning message"
+msgstr "Паказваць папярэджанне"
+
+#: ../panel-plugin/battery.c:1400 ../panel-plugin/battery.c:1444
+msgid "Run command"
+msgstr "Запусціць загад"
+
+#: ../panel-plugin/battery.c:1401 ../panel-plugin/battery.c:1445
+msgid "Run command in terminal"
+msgstr "Запусціць загад у тэрмінале"
+
+#: ../panel-plugin/battery.c:1409 ../panel-plugin/battery.c:1453
+msgid "Command:"
+msgstr "Загад:"
+
+#: ../panel-plugin/battery.c:1423
+msgid "Critical percentage:"
+msgstr "Узровень крытычна нізкага зараду:"
+
+#: ../panel-plugin/battery.c:1436
+msgid "Critical battery action:"
+msgstr "Дзеянне пры крытычна нізкім ўзроўні зараду батарэі:"
+
+#: ../panel-plugin/battery.c:1464
+msgid "Levels and _actions"
+msgstr "Узроўні і _дзеянні"
+
+#: ../panel-plugin/battery.c:1477
+msgid "Display label"
+msgstr "Адмеціна"
+
+#: ../panel-plugin/battery.c:1480
+msgid "Display icon"
+msgstr "Значок"
+
+#: ../panel-plugin/battery.c:1483
+msgid "Display bar"
+msgstr "Паказваць палосы"
+
+#: ../panel-plugin/battery.c:1486
+msgid "Display percentage"
+msgstr "Узровень у адсотках"
+
+#: ../panel-plugin/battery.c:1489
+msgid "Display time"
+msgstr "Застаўшыся час"
+
+#: ../panel-plugin/battery.c:1492
+msgid "Display power"
+msgstr "Падлучэнне да сеткі"
+
+#: ../panel-plugin/battery.c:1495
+msgid "Hide time/percentage when full"
+msgstr "Хаваць пры поўным узроўні зараду"
+
+#: ../panel-plugin/battery.c:1498
+msgid "Display percentage in tooltip"
+msgstr "Адлюстроўваць у падказцы ўзровень зараду ў адсотках"
+
+#: ../panel-plugin/battery.c:1501
+msgid "Display time remaining in tooltip"
+msgstr "Адлюстроўваць у падказцы застаўшыся час працы"
+
+#: ../panel-plugin/battery.c:1504
+msgid "_Display"
+msgstr "_Дысплей"
+
+#: ../panel-plugin/battery.c:1552 ../panel-plugin/battery.desktop.in.h:2
+msgid "Show and monitor the battery status"
+msgstr "Адсочвае стан батарэі"
+
+#: ../panel-plugin/battery.c:1554
+msgid "Copyright (c) 2003-2016\n"
+msgstr "Copyright (c) 2003-2016\n"

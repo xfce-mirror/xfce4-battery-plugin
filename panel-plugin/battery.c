@@ -55,7 +55,6 @@
 #include <sys/time.h>
 #include <time.h>
 
-#define BORDER          6
 #define AC_COLOR        "#8888FF"
 #define HIGH_COLOR      "#00ff00"
 #define LOW_COLOR       "#ffff00"
@@ -1301,28 +1300,26 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
     g_signal_connect (dlg, "response", G_CALLBACK (battmon_dialog_response),
                       battmon);
 
-    gtk_container_set_border_width (GTK_CONTAINER (dlg), 2);
-
     notebook = gtk_notebook_new ();
     gtk_widget_show (notebook);
-    gtk_container_set_border_width (GTK_CONTAINER(notebook), BORDER);
+    gtk_container_set_border_width (GTK_CONTAINER(notebook), 6);
     gtk_box_pack_start (GTK_BOX (gtk_dialog_get_content_area(GTK_DIALOG(dlg))), GTK_WIDGET(notebook),
                         TRUE, TRUE, 0);
 
-
     /* Bar colors */
-    vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, BORDER);
-    gtk_container_set_border_width (GTK_CONTAINER(vbox), BORDER);
+    vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 6);
+    gtk_container_set_border_width (GTK_CONTAINER(vbox), 12);
 
     /* Create size group to keep widgets aligned */
     sg = gtk_size_group_new(GTK_SIZE_GROUP_HORIZONTAL);
 
-    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, BORDER);
+    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 12);
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
     label = gtk_label_new(_("On AC:"));
     gtk_size_group_add_widget(sg,label);
     gtk_widget_set_valign(label, GTK_ALIGN_CENTER);
+    gtk_label_set_xalign (GTK_LABEL (label), 0.0f);
     gtk_box_pack_start(GTK_BOX(hbox),label,FALSE,FALSE,0);
 
     dialog->ac_color_button = gtk_color_button_new_with_rgba(&battmon->options.colorA);
@@ -1330,12 +1327,13 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
     gtk_widget_show(GTK_WIDGET(dialog->ac_color_button));
     gtk_box_pack_start(GTK_BOX(hbox), GTK_WIDGET(dialog->ac_color_button), FALSE, FALSE, 0);
 
-    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, BORDER);
+    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 12);
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
     label = gtk_label_new(_("Battery high:"));
     gtk_size_group_add_widget(sg,label);
     gtk_widget_set_valign(label, GTK_ALIGN_CENTER);
+    gtk_label_set_xalign (GTK_LABEL (label), 0.0f);
     gtk_box_pack_start(GTK_BOX(hbox),label,FALSE,FALSE,0);
 
     dialog->high_color_button = gtk_color_button_new_with_rgba(&battmon->options.colorH);
@@ -1343,12 +1341,13 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
     gtk_widget_show(GTK_WIDGET(dialog->high_color_button));
     gtk_box_pack_start(GTK_BOX(hbox), GTK_WIDGET(dialog->high_color_button), FALSE, FALSE, 0);
 
-    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, BORDER);
+    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 12);
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
     label = gtk_label_new(_("Battery low:"));
     gtk_size_group_add_widget(sg,label);
     gtk_widget_set_valign(label, GTK_ALIGN_CENTER);
+    gtk_label_set_xalign (GTK_LABEL (label), 0.0f);
     gtk_box_pack_start(GTK_BOX(hbox),label,FALSE,FALSE,0);
 
     dialog->low_color_button = gtk_color_button_new_with_rgba(&battmon->options.colorL);
@@ -1356,12 +1355,13 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
     gtk_widget_show(GTK_WIDGET(dialog->low_color_button));
     gtk_box_pack_start(GTK_BOX(hbox), GTK_WIDGET(dialog->low_color_button), FALSE, FALSE, 0);
 
-    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, BORDER);
+    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 12);
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
     label = gtk_label_new(_("Battery critical:"));
     gtk_size_group_add_widget(sg,label);
     gtk_widget_set_valign(label, GTK_ALIGN_CENTER);
+    gtk_label_set_xalign (GTK_LABEL (label), 0.0f);
     gtk_box_pack_start(GTK_BOX(hbox),label,FALSE,FALSE,0);
 
     dialog->critical_color_button = gtk_color_button_new_with_rgba(&battmon->options.colorC);
@@ -1378,14 +1378,15 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
     sg = gtk_size_group_new(GTK_SIZE_GROUP_HORIZONTAL);
 
     /* Low and Critical percentage settings */
-    vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, BORDER);
-    gtk_container_set_border_width (GTK_CONTAINER(vbox), BORDER);
-    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, BORDER);
+    vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 6);
+    gtk_container_set_border_width (GTK_CONTAINER(vbox), 12);
+    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 12);
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
     label = gtk_label_new(_("Low percentage:"));
     gtk_size_group_add_widget(sg, label);
     gtk_widget_set_valign(label, GTK_ALIGN_CENTER);
+    gtk_label_set_xalign (GTK_LABEL (label), 0.0f);
     gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
 
     dialog->sb_low_percentage = gtk_spin_button_new_with_range(1, 100, 1);
@@ -1393,12 +1394,13 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
 
     /* Low battery action settings */
 
-    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, BORDER);
+    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 12);
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
     label = gtk_label_new(_("Low battery action:"));
     gtk_size_group_add_widget(sg, label);
     gtk_widget_set_valign(label, GTK_ALIGN_CENTER);
+    gtk_label_set_xalign (GTK_LABEL (label), 0.0f);
     gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
 
     dialog->co_action_low = gtk_combo_box_text_new();
@@ -1410,11 +1412,12 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
 
     /* Low battery command */
 
-    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, BORDER);
+    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 12);
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, TRUE, 0);
 
     label = gtk_label_new(_("Command:"));
     gtk_widget_set_valign(label, GTK_ALIGN_CENTER);
+    gtk_label_set_xalign (GTK_LABEL (label), 0.0f);
     gtk_size_group_add_widget(sg, label);
     gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
 
@@ -1424,12 +1427,14 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
     button = gtk_button_new_with_label("...");
     gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 
-    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, BORDER);
+    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 12);
+    gtk_widget_set_margin_top (GTK_WIDGET (hbox), 12);
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
     label = gtk_label_new(_("Critical percentage:"));
     gtk_size_group_add_widget(sg, label);
     gtk_widget_set_valign(label, GTK_ALIGN_CENTER);
+    gtk_label_set_xalign (GTK_LABEL (label), 0.0f);
     gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
 
     dialog->sb_critical_percentage = gtk_spin_button_new_with_range(1, 100, 1);
@@ -1437,12 +1442,13 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
 
     /* Critical battery action settings */
 
-    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, BORDER);
+    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 12);
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
     label = gtk_label_new(_("Critical battery action:"));
     gtk_size_group_add_widget(sg, label);
     gtk_widget_set_valign(label, GTK_ALIGN_CENTER);
+    gtk_label_set_xalign (GTK_LABEL (label), 0.0f);
     gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
 
     dialog->co_action_critical = gtk_combo_box_text_new();
@@ -1454,11 +1460,12 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
 
     /* Critical battery command */
 
-    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, BORDER);
+    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 12);
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, TRUE, 0);
 
     label = gtk_label_new(_("Command:"));
     gtk_widget_set_valign(label, GTK_ALIGN_CENTER);
+    gtk_label_set_xalign (GTK_LABEL (label), 0.0f);
     gtk_size_group_add_widget(sg, label);
     gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
 
@@ -1478,8 +1485,8 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
 
     /* Create checkbox options */
 
-    vbox2 = gtk_box_new(GTK_ORIENTATION_VERTICAL, BORDER);
-    gtk_container_set_border_width (GTK_CONTAINER(vbox2), BORDER);
+    vbox2 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 6);
+    gtk_container_set_border_width (GTK_CONTAINER(vbox2), 12);
 
     dialog->cb_disp_label = gtk_check_button_new_with_mnemonic(_("Display label"));
     gtk_box_pack_start(GTK_BOX(vbox2), dialog->cb_disp_label, FALSE, FALSE, 0);

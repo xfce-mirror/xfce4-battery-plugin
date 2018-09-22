@@ -1,3 +1,11 @@
+1.1.1 (2018/09/22):
+===================
+* Avoid memory leaks
+* Bump to minimal Gtk to 3.16
+* Only set progressbar width or height depending on the orientation (Bug #12942)
+* Create a single GtkCssProvider in setup_battmon() (Bug #12975)
+* Improved spacing and layout in dialogs (Bug #14659)
+
 1.1.0 (2016/11/01):
 ===================
 * Fix progressbar css styling with Gtk 3.20

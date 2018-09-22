@@ -16,6 +16,7 @@
 1.0.4 (2012/05/14):
 ===================
 * Fix compilation with panel version < 4.9
+
 1.0.3 (2012/05/13):
 ===================
 * Improve plugin UI in vertical/deskbar/multirows panels
@@ -41,19 +42,11 @@
 
 1.0.0 (2011/01/03):
 ===================
-
 * Translated in 15 more languages, for a total of 38
-
 * Make the warning messages non modal, fixing bug #3008
-
 * Fix fan and temperature detection, fixing bug #2884
-
 * Showing "No battery, AC online" when no battery is inserted
-
 * Fix compilation on OpenBSD
-
 * Fix compilation on amd64 FreeBSD, fixing bug #3811
-
 * Fix compile issue on linux, fixing bug #3938
-
 * Various other small compile fixes and cleanup

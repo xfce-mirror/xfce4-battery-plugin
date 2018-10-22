@@ -5,14 +5,14 @@
 # Translators:
 # Carles Muñoz Gorriz <carlesmu@internautas.org>, 2006-2007
 # Davidmp <medipas@gmail.com>, 2016
-# Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>, 2017
+# Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>, 2017-2018
 # Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-05-29 12:30+0200\n"
-"PO-Revision-Date: 2017-12-31 14:01+0000\n"
+"PO-Revision-Date: 2018-10-22 10:27+0000\n"
 "Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-panel-plugins/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -180,11 +180,11 @@ msgstr "Oculta el temps o el percentatge quan estigui plena"
 
 #: ../panel-plugin/battery.c:1498
 msgid "Display percentage in tooltip"
-msgstr "Mostra el percentatge al quadre de text emergent"
+msgstr "Mostra el percentatge a l'indicador de funció"
 
 #: ../panel-plugin/battery.c:1501
 msgid "Display time remaining in tooltip"
-msgstr "Mostra el temps restant al quadre de text emergent"
+msgstr "Mostra el temps restant a l'indicador de funció"
 
 #: ../panel-plugin/battery.c:1504
 msgid "_Display"

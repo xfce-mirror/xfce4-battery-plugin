@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-05-29 12:30+0200\n"
-"PO-Revision-Date: 2018-10-22 10:27+0000\n"
+"PO-Revision-Date: 2018-10-22 20:41+0000\n"
 "Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-panel-plugins/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -112,7 +112,7 @@ msgstr "_Colors de les barres"
 
 #: ../panel-plugin/battery.c:1379
 msgid "Low percentage:"
-msgstr "baixa (percentatge):"
+msgstr "Baixa (percentatge):"
 
 #: ../panel-plugin/battery.c:1392
 msgid "Low battery action:"

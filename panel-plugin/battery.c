@@ -691,8 +691,6 @@ static void setup_battmon(t_battmon *battmon)
     xfce_panel_image_set_size(XFCE_PANEL_IMAGE(battmon->image), size);
 
     gtk_box_pack_start(GTK_BOX(battmon->ebox),GTK_WIDGET(battmon->image), FALSE, FALSE, 0);
-    /* init hide the widget */
-    gtk_widget_hide(battmon->image);
 
     gtk_box_pack_start(GTK_BOX(battmon->ebox),GTK_WIDGET(battmon->battstatus), FALSE, FALSE, 0);
 
@@ -737,6 +735,8 @@ static void setup_battmon(t_battmon *battmon)
         gtk_widget_hide(GTK_WIDGET(battmon->battstatus));
     if(!battmon->options.display_label)
         gtk_widget_hide(GTK_WIDGET(battmon->label));
+    if(!battmon->options.display_icon)
+        gtk_widget_hide(battmon->image);
     if(!battmon->options.display_power){
         gtk_widget_hide(GTK_WIDGET(battmon->acfan));
         gtk_widget_hide(GTK_WIDGET(battmon->temp));
@@ -751,7 +751,6 @@ static void setup_battmon(t_battmon *battmon)
     if (!battmon->options.display_time && !battmon->options.display_percentage) {
         gtk_widget_hide(GTK_WIDGET(battmon->timechargealignment));
     }
-    gtk_widget_show(battmon->ebox);
 
     gtk_widget_set_size_request(battmon->ebox, -1, -1);
 }
@@ -806,8 +805,6 @@ battmon_create(XfcePanelPlugin *plugin)
 
     battmon->low = FALSE;
     battmon->critical = FALSE;
-
-    setup_battmon(battmon);
 
     battmon->timeoutid = 0;
     battmon->flag = FALSE;
@@ -1583,6 +1580,8 @@ battmon_construct (XfcePanelPlugin *plugin)
     battmon = battmon_create (plugin);
 
     battmon_read_config (plugin, battmon);
+
+    setup_battmon (battmon);
 
     g_signal_connect (plugin, "free-data", G_CALLBACK (battmon_free), battmon);
 

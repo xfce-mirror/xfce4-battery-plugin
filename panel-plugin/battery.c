@@ -706,10 +706,10 @@ static void setup_battmon(t_battmon *battmon)
     gtk_container_add (GTK_CONTAINER(battmon->timechargealignment), battmon->timechargebox);
     gtk_box_pack_start(GTK_BOX(battmon->ebox), battmon->timechargealignment, FALSE, FALSE, 2);
 
-    battmon->charge = (GtkLabel *)gtk_label_new("50%%");
+    battmon->charge = (GtkLabel *)gtk_label_new("--");
     gtk_box_pack_start(GTK_BOX(battmon->timechargebox),GTK_WIDGET(battmon->charge),TRUE, TRUE, 0);
 
-    battmon->rtime = (GtkLabel *)gtk_label_new("01:00");
+    battmon->rtime = (GtkLabel *)gtk_label_new("--");
     gtk_box_pack_start(GTK_BOX(battmon->timechargebox),GTK_WIDGET(battmon->rtime),TRUE, TRUE, 0);
 
     /* ac-fan-temp */
@@ -724,10 +724,10 @@ static void setup_battmon(t_battmon *battmon)
     gtk_container_add (GTK_CONTAINER(battmon->actempalignment), battmon->actempbox);
     gtk_box_pack_start(GTK_BOX(battmon->ebox), battmon->actempalignment, FALSE, FALSE, 2);
 
-    battmon->acfan = (GtkLabel *)gtk_label_new("AC FAN");
+    battmon->acfan = (GtkLabel *)gtk_label_new("--");
     gtk_box_pack_start(GTK_BOX(battmon->actempbox),GTK_WIDGET(battmon->acfan),TRUE, TRUE, 0);
 
-    battmon->temp = (GtkLabel *)gtk_label_new("40°C");
+    battmon->temp = (GtkLabel *)gtk_label_new("--");
     gtk_box_pack_start(GTK_BOX(battmon->actempbox),GTK_WIDGET(battmon->temp),TRUE, TRUE, 0);
 
     gtk_widget_show_all(battmon->ebox);

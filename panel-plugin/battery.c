@@ -194,9 +194,8 @@ detect_battery_info(t_battmon *battmon)
 static gboolean
 update_apm_status(t_battmon *battmon)
 {
-    int charge=0, rate;
-
-    int lcapacity, ccapacity;
+    int present=0, charge=0, rate=0;
+    int lcapacity=0, ccapacity=0;
     gboolean fan=FALSE;
     const char *temp;
     static int old_state = -1, new_state = BM_MISSING;
@@ -270,10 +269,10 @@ update_apm_status(t_battmon *battmon)
     if(battmon->method == BM_USE_ACPI) {
         int i;
         acline = read_acad_state();
-        lcapacity = rate = ccapacity = 0;
         for (i=0;i<batt_count;i++) {
           if ( !read_acpi_info(i) || !read_acpi_state(i) )
             continue;
+          present = 1;
           lcapacity += acpiinfo->last_full_capacity;
           ccapacity += acpistate->rcapacity;
           rate += acpistate->prate;
@@ -340,7 +339,7 @@ update_apm_status(t_battmon *battmon)
     }
 
     if(battmon->options.display_icon){
-        if((battmon->method == BM_USE_ACPI && acpiinfo->present == 0) || (battmon->method == BM_USE_APM && charge == 0)) {
+        if((battmon->method == BM_USE_ACPI && present == 0) || (battmon->method == BM_USE_APM && charge == 0)) {
           /* battery missing */
           icon_name = g_strdup("xfce4-battery-missing");
           new_state = BM_MISSING;
@@ -402,7 +401,7 @@ update_apm_status(t_battmon *battmon)
 
     if(acline) {
         char *t;
-        if((battmon->method == BM_USE_ACPI && acpiinfo->present == 0) || (battmon->method == BM_USE_APM && charge == 0)) {
+        if((battmon->method == BM_USE_ACPI && present == 0) || (battmon->method == BM_USE_APM && charge == 0)) {
             t=_("(No battery, AC on-line)");
         } else {
             t=(charge<99.9)?_("(Charging from AC)"):_("(AC on-line)");

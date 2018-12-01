@@ -88,8 +88,6 @@ typedef struct
     GtkWidget        *timechargealignment, *actempalignment;
     GtkWidget        *battstatus;
     int            timeoutid;    /* To update apm status */
-    int            method;
-    gboolean        flag;
     gboolean        low;
     gboolean        critical;
     t_battmon_options    options;
@@ -155,45 +153,10 @@ init_options(t_battmon_options *options)
     gdk_rgba_parse(&(options->colorC), CRITICAL_COLOR);
 }
 
-gboolean
-detect_battery_info(t_battmon *battmon)
-{
-#if defined(__OpenBSD__) || defined(__NetBSD__)
-  /* Code for OpenBSD by Joe Ammond <jra@twinight.org>. Using the same
-     procedure as for FreeBSD.
-     Made to work on NetBSD by Stefan Sperling <stsp@stsp.in-berlin.de>
-  */
-      struct apm_power_info apm;
-      int fd;
-
-      battmon->method = BM_BROKEN;
-      fd = open(APMDEVICE, O_RDONLY);
-      if (fd == -1) return FALSE;
-            if (ioctl(fd, APM_IOC_GETPOWER, &apm) == -1) {
-        close(fd);
-             return FALSE;
-    }
-      close(fd);
-      battmon->method = BM_USE_APM;
-
-      return TRUE;
-#else
-    /* Check to see if ACPI is available */
-    if(check_acpi()==0) {
-        /* ACPI detected */
-        battmon->method = BM_USE_ACPI;
-        return TRUE;
-    }
-
-    /* ACPI not detected/working */
-    battmon->method = BM_BROKEN;
-    return FALSE;
-#endif
-}
-
 static gboolean
 update_apm_status(t_battmon *battmon)
 {
+    int method=BM_BROKEN;
     int present=0, charge=0, rate=0;
     int lcapacity=0, ccapacity=0;
     gboolean fan=FALSE;
@@ -201,7 +164,7 @@ update_apm_status(t_battmon *battmon)
     static int old_state = -1, new_state = BM_MISSING;
     gchar * icon_name = NULL;
     int time_remaining=0;
-    gboolean acline;
+    gboolean acline=FALSE;
     gchar buffer[128];
     gchar *css, *color_str;
 
@@ -223,7 +186,6 @@ update_apm_status(t_battmon *battmon)
       struct apm_power_info apm;
       int fd;
 
-      battmon->method = BM_BROKEN;
       fd = open(APMDEVICE, O_RDONLY);
       if (fd == -1) return TRUE;
       if (ioctl(fd, APM_IOC_GETPOWER, &apm) == -1)
@@ -232,42 +194,15 @@ update_apm_status(t_battmon *battmon)
       charge = apm.battery_life;
       time_remaining = apm.minutes_left;
       acline = apm.ac_state ? TRUE : FALSE;
-
-      battmon->method = BM_USE_APM;
+      method = BM_USE_APM;
 
 #else
     DBG ("Updating battery status...");
 
-    if(battmon->method == BM_BROKEN) {
-      /* See if ACPI or APM support has been enabled yet */
-        if(!detect_battery_info(battmon)) return TRUE;
-        if(battmon->timeoutid != 0) g_source_remove(battmon->timeoutid);
-        /* Poll only once per minute if using ACPI due to a bug */
-#ifdef TUTTLE_UPDATES
-        /* what bug? I don't see any bug here. */
-        if(battmon->method == BM_USE_ACPI) {
-            battmon->timeoutid = g_timeout_add(60 * 1024,
-                    (GSourceFunc) update_apm_status, battmon);
-        }
-            else
-#endif
-            battmon->timeoutid = g_timeout_add(2 * 1024,
-                    (GSourceFunc) update_apm_status, battmon);
-    }
-
-    /* Show initial state if using ACPI rather than waiting a minute */
-    if(battmon->flag) {
-        g_source_remove(battmon->timeoutid);
-        /* we hit ACPI 4-5 times per poll, so polling every 2 seconds
-	 * generates ~10 interrupts per second. updating every 30 seconds
-	 * should be more than enough, and comes down to only 0.16
-	 * interrupts per second, adding significant sleep time */
-        battmon->timeoutid = g_timeout_add(30 * 1024,
-                (GSourceFunc) update_apm_status, battmon);
-    }
-
-    if(battmon->method == BM_USE_ACPI) {
+    /* Check ACPI for AC adapter and battery presence */
+    if(check_acpi() == 0) {
         int i;
+        method = BM_USE_ACPI;
         acline = read_acad_state();
         for (i=0;i<batt_count;i++) {
           if ( !read_acpi_info(i) || !read_acpi_state(i) )
@@ -276,12 +211,6 @@ update_apm_status(t_battmon *battmon)
           lcapacity += acpiinfo->last_full_capacity;
           ccapacity += acpistate->rcapacity;
           rate += acpistate->prate;
-        }
-
-        if ( battmon->flag ) {
-          last_ccapacity = ccapacity;
-          last_lcapacity = lcapacity;
-          last_rate = rate;
         }
 
         sum_lcapacity += lcapacity;
@@ -318,10 +247,9 @@ update_apm_status(t_battmon *battmon)
             time_remaining = 0;
 
         last_acline = acline;
-
     }
 #endif
-    battmon->flag = FALSE;
+
     DBG("method=%d, acline=%d, time_remaining=%d, charge=%d", battmon->method, acline, time_remaining, charge);
 
     charge = CLAMP (charge, 0, 100);
@@ -339,7 +267,7 @@ update_apm_status(t_battmon *battmon)
     }
 
     if(battmon->options.display_icon){
-        if((battmon->method == BM_USE_ACPI && present == 0) || (battmon->method == BM_USE_APM && charge == 0)) {
+        if((method == BM_USE_ACPI && present == 0) || (method == BM_USE_APM && charge == 0)) {
           /* battery missing */
           icon_name = g_strdup("xfce4-battery-missing");
           new_state = BM_MISSING;
@@ -401,7 +329,7 @@ update_apm_status(t_battmon *battmon)
 
     if(acline) {
         char *t;
-        if((battmon->method == BM_USE_ACPI && present == 0) || (battmon->method == BM_USE_APM && charge == 0)) {
+        if((method == BM_USE_ACPI && present == 0) || (method == BM_USE_APM && charge == 0)) {
             t=_("(No battery, AC on-line)");
         } else {
             t=(charge<99.9)?_("(Charging from AC)"):_("(AC on-line)");
@@ -496,7 +424,7 @@ update_apm_status(t_battmon *battmon)
     g_free(color_str);
 
     /* alarms */
-    if (!acline && charge <= battmon->options.low_percentage){
+    if (method != BM_BROKEN && !acline && charge <= battmon->options.low_percentage) {
         if(!battmon->critical && charge <= battmon->options.critical_percentage) {
                battmon->critical = TRUE;
 	       GtkWidget *dialog;
@@ -685,7 +613,6 @@ battmon_create(XfcePanelPlugin *plugin)
     battmon->critical = FALSE;
 
     battmon->timeoutid = 0;
-    battmon->flag = FALSE;
 
     return battmon;
 }
@@ -1482,20 +1409,12 @@ battmon_construct (XfcePanelPlugin *plugin)
 
     xfce_panel_plugin_add_action_widget (plugin, battmon->battstatus);
 
-    /* Determine what facility to use and initialize reading */
-    battmon->method = BM_BROKEN;
+    /* Read initial battery status */
     update_apm_status(battmon);
 
-    /* If neither ACPI nor APM are enabled, check for either every 60 seconds */
+    /* Update battery status every 30 seconds */
     if(battmon->timeoutid == 0)
-        battmon->timeoutid = g_timeout_add(60 * 1024, (GSourceFunc) update_apm_status, battmon);
-
-    /* Required for the percentage and tooltip to be initially displayed due to the long timeout for ACPI */
-    if(battmon->method == BM_USE_ACPI) {
-        battmon->flag = TRUE;
-        g_source_remove(battmon->timeoutid);
-        battmon->timeoutid = g_timeout_add(1000, (GSourceFunc) update_apm_status, battmon);
-    }
+        battmon->timeoutid = g_timeout_add_seconds(30, (GSourceFunc) update_apm_status, battmon);
 }
 
 /* register the plugin */

@@ -200,6 +200,9 @@ int check_acpi_sysfs(void)
 	char typepath[128];
 	char tmptype[8];
 
+	acpi_sysfs = 0;
+	batt_count = 0;
+
 	sysfs = opendir("/sys/class/power_supply");
 	if (sysfs == 0)
 	{
@@ -221,6 +224,7 @@ int check_acpi_sysfs(void)
 		fclose(typefile);
 		if(strncmp("Battery", tmptype, 7)==0)
 		{
+			acpi_sysfs = 1;
 			sprintf(batteries[batt_count], "/sys/class/power_supply/%s", name);
 		#ifdef DEBUG
 			printf("DBG:battery number %d at:\n",batt_count);
@@ -231,6 +235,7 @@ int check_acpi_sysfs(void)
 		}
 		/* I guess that the type of the AC adapter is always "Mains" (?) */
 		else if(strncmp("Mains", tmptype, 5)==0){
+			acpi_sysfs = 1;
 			sprintf(sysfsacdir, "/sys/class/power_supply/%s", name);
 		#ifdef DEBUG
 			printf("DBG:sysfs AC dir->%s\n",sysfsacdir);
@@ -239,17 +244,15 @@ int check_acpi_sysfs(void)
 		}
 	}
 	closedir(sysfs);
-	if ( batt_count == 0 )
+	if ( acpi_sysfs == 0 )
 	{
 #ifdef DEBUG
 	  printf("DBG:No acpi support for sysfs.\n");
 #endif
-		acpi_sysfs = 0;
 		return 2;
 	}
 	else
 	{
-		acpi_sysfs = 1;
 		return 0;
 	}
 }

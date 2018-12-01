@@ -26,9 +26,7 @@
 #include <config.h>
 #endif
 
-#if (defined(__FreeBSD__) || defined(__FreeBSD_kernel__)) && (defined(i386) || defined(__i386__))
-#include <machine/apm_bios.h>
-#elif (defined(__OpenBSD__) || defined(__NetBSD__))
+#if (defined(__OpenBSD__) || defined(__NetBSD__))
 #include <sys/param.h>
 #include <sys/ioctl.h>
 #include <machine/apmvar.h>
@@ -160,52 +158,7 @@ init_options(t_battmon_options *options)
 gboolean
 detect_battery_info(t_battmon *battmon)
 {
-#ifdef __FreeBSD__
-  /* This is how I read the information from the APM subsystem under
-     FreeBSD.  Each time this functions is called (once every second)
-     the APM device is opened, read from and then closed.
-
-     except that is does not work on FreeBSD
-
-  */
-#ifdef APMDEVICE
-    struct apm_info apm;
-#endif
-      int fd;
-
-    /* First check to see if ACPI is available */
-    if (check_acpi() == 0) {
-        int i;
-        /* ACPI detected */
-        battmon->method = BM_USE_ACPI;
-        /* consider battery 0 first... */
-        for (i=0;i<batt_count;i++) {
-            if (read_acpi_info(i)) break;
-        }
-        for (i=0;i<batt_count;i++) {
-            if (read_acpi_state(i)) break;
-        }
-        /*read_acpi_state(0);*/ /* only consider first battery... */
-
-    DBG ("using ACPI");
-
-        return TRUE;
-    }
-
-    battmon->method = BM_BROKEN;
-#ifdef APMDEVICE
-      fd = open(APMDEVICE, O_RDONLY);
-      if (fd == -1) return FALSE;
-
-      if (ioctl(fd, APMIO_GETINFO, &apm) == -1) {
-        close(fd);
-              return FALSE;
-      }
-      close(fd);
-      battmon->method = BM_USE_APM;
-#endif
-      return TRUE;
-#elif defined(__OpenBSD__) || defined(__NetBSD__)
+#if defined(__OpenBSD__) || defined(__NetBSD__)
   /* Code for OpenBSD by Joe Ammond <jra@twinight.org>. Using the same
      procedure as for FreeBSD.
      Made to work on NetBSD by Stefan Sperling <stsp@stsp.in-berlin.de>
@@ -368,47 +321,6 @@ update_apm_status(t_battmon *battmon)
         last_acline = acline;
 
     }
-#ifdef __FreeBSD__
-    else {
- /* This is how I read the information from the APM subsystem under
-     FreeBSD.  Each time this functions is called (once every second)
-     the APM device is opened, read from and then closed.
-
-     except it don't work with 5.x:
-battmon.c: In function `update_apm_status':
-battmon.c:241: `APMDEVICE' undeclared (first use in this function)
-battmon.c:241: (Each undeclared identifier is reported only once
-battmon.c:241: for each function it appears in.)
-*** Error code 1
-
-  */
-#ifdef APMDEVICE
-       int fd;
-       struct apm_info apm;
-
-       battmon->method = BM_BROKEN;
-       fd = open(APMDEVICE, O_RDONLY);
-       if (fd == -1) return TRUE;
-
-       if (ioctl(fd, APMIO_GETINFO, &apm) == -1) {
-        close(fd);
-        return TRUE;
-     }
-
-       close(fd);
-
-       acline = apm.ai_acline ? TRUE : FALSE;
-       time_remaining = apm.ai_batt_time;
-     time_remaining = time_remaining / 60; /* convert from seconds to minutes */
-       charge = apm.ai_batt_life;
-#else
-     /* FIXME: apm stuff needs fix for 5.x kernels */
-     acline=0;
-     time_remaining=0;
-     charge=0;
-#endif
-    }
-#endif
 #endif
     battmon->flag = FALSE;
     DBG("method=%d, acline=%d, time_remaining=%d, charge=%d", battmon->method, acline, time_remaining, charge);

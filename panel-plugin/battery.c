@@ -177,6 +177,7 @@ update_apm_status(t_battmon *battmon)
     static int last_lcapacity = 0;
     static int last_rate = 0;
     static int last_acline = 0;
+    static int last_present = 0;
 
 #if defined(__OpenBSD__) || defined(__NetBSD__)
   /* Code for OpenBSD by Joe Ammond <jra@twinight.org>. Using the same
@@ -207,7 +208,7 @@ update_apm_status(t_battmon *battmon)
         for (i=0;i<batt_count;i++) {
           if ( !read_acpi_info(i) || !read_acpi_state(i) )
             continue;
-          present = 1;
+          present++;
           lcapacity += acpiinfo->last_full_capacity;
           ccapacity += acpistate->rcapacity;
           rate += acpistate->prate;
@@ -218,8 +219,8 @@ update_apm_status(t_battmon *battmon)
         sum_rate += rate;
 
         update_time++;
-        if ( update_time >= AVERAGING_CYCLE || last_acline != acline ) {
-          if ( last_acline != acline ) {
+        if ( update_time >= AVERAGING_CYCLE || last_acline != acline || last_present != present ) {
+          if ( last_acline != acline || last_present != present ) {
             last_ccapacity = ccapacity;
             last_lcapacity = lcapacity;
             last_rate = rate;
@@ -247,6 +248,7 @@ update_apm_status(t_battmon *battmon)
             time_remaining = 0;
 
         last_acline = acline;
+        last_present = present;
     }
 #endif
 

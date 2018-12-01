@@ -33,8 +33,6 @@
 #include <sys/ioctl.h>
 #include <machine/apmvar.h>
 #define APMDEVICE "/dev/apm"
-#elif __linux__
-#include <libapm.h>
 #endif
 
 #include <sys/stat.h>
@@ -226,36 +224,16 @@ detect_battery_info(t_battmon *battmon)
       battmon->method = BM_USE_APM;
 
       return TRUE;
-#elif __linux__
-    struct apm_info apm;
-
-    /* First check to see if ACPI is available */
+#else
+    /* Check to see if ACPI is available */
     if(check_acpi()==0) {
         /* ACPI detected */
-        int i;
         battmon->method = BM_USE_ACPI;
-        for (i=0;i<batt_count;i++) {
-            if (read_acpi_info(i)) break;
-        }
-        /*read_acpi_info(0);*/ /* only consider first battery... */
-        for (i=0;i<batt_count;i++) {
-            if (read_acpi_state(i)) break;
-        }
-        if (batt_count){
-           apm.battery_percentage=acpistate->percentage;
-           apm.battery_time=acpistate->rtime;
-        }
-    return TRUE;
-    }
-    if(apm_read(&apm) == 0) {
-        /* ACPI not detected, but APM works */
-        battmon->method = BM_USE_APM;
         return TRUE;
     }
 
-    /* Neither ACPI or APM detected/working */
+    /* ACPI not detected/working */
     battmon->method = BM_BROKEN;
-
     return FALSE;
 #endif
 }
@@ -306,9 +284,6 @@ update_apm_status(t_battmon *battmon)
       battmon->method = BM_USE_APM;
 
 #else
-#if defined(__linux__) || defined(APMDEVICE)
-    struct apm_info apm;
-#endif
     DBG ("Updating battery status...");
 
     if(battmon->method == BM_BROKEN) {
@@ -393,16 +368,7 @@ update_apm_status(t_battmon *battmon)
         last_acline = acline;
 
     }
-#ifdef __linux__
-    else {
-        DBG ("Trying apm_read()...");
-        apm_read(&apm);    /* not broken and not using ACPI, assume APM */
-        charge = apm.battery_percentage;
-        time_remaining = apm.battery_time;
-        acline = apm.ac_line_status ? TRUE : FALSE;
-
-    }
-#elif __FreeBSD__
+#ifdef __FreeBSD__
     else {
  /* This is how I read the information from the APM subsystem under
      FreeBSD.  Each time this functions is called (once every second)
@@ -418,6 +384,7 @@ battmon.c:241: for each function it appears in.)
   */
 #ifdef APMDEVICE
        int fd;
+       struct apm_info apm;
 
        battmon->method = BM_BROKEN;
        fd = open(APMDEVICE, O_RDONLY);

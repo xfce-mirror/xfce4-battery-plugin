@@ -1376,6 +1376,33 @@ battmon_show_about(XfcePanelPlugin *plugin, t_battmon *battmon)
       g_object_unref(G_OBJECT(icon));
 }
 
+static void
+on_power_change (GDBusProxy  *proxy,
+                 GVariant    *changed_properties,
+                 const gchar *invalidated_properties,
+                 gpointer     battmon)
+{
+    update_apm_status (battmon);
+}
+
+void
+battmon_dbus_monitor (t_battmon *battmon)
+{
+    GDBusProxy *proxy;
+
+    proxy = g_dbus_proxy_new_for_bus_sync (G_BUS_TYPE_SYSTEM,
+                                           G_DBUS_PROXY_FLAGS_NONE,
+                                           NULL,
+                                           "org.freedesktop.UPower",
+                                           "/org/freedesktop/UPower",
+                                           "org.freedesktop.UPower",
+                                           NULL, NULL);
+
+    g_return_if_fail (proxy != NULL);
+
+    g_signal_connect (proxy, "g-properties-changed", G_CALLBACK (on_power_change), battmon);
+}
+
 /* create the plugin */
 static void
 battmon_construct (XfcePanelPlugin *plugin)
@@ -1417,6 +1444,9 @@ battmon_construct (XfcePanelPlugin *plugin)
     /* Update battery status every 30 seconds */
     if(battmon->timeoutid == 0)
         battmon->timeoutid = g_timeout_add_seconds(30, (GSourceFunc) update_apm_status, battmon);
+
+    /* Update battery status on UPower events like power cord connected, disconnected, lid opened */
+    battmon_dbus_monitor (battmon);
 }
 
 /* register the plugin */

@@ -31,6 +31,8 @@
 #include <glob.h>
 #include <unistd.h>
 
+#include <libxfce4util/libxfce4util.h>
+
 #ifdef __FreeBSD__
 #include <fcntl.h>
 #include <sys/ioctl.h>
@@ -148,23 +150,17 @@ get_var(int *oid, int nlen)
     p = val;
     switch (*fmt) {
     case 'I':
-#ifdef DEBUG
-        printf("I:%s%s", name, sep);
-#endif
+        DBG("I:%s%s", name, sep);
         fmt++;
         val = "";
         while (len >= sizeof(int)) {
             if (*fmt == 'U') {
-                retval=*((unsigned int *)p);
-#ifdef DEBUG
-                printf("x%s%u", val, *(unsigned int *)p);
-#endif
+                retval = *((unsigned int *)p);
+                DBG("x%s%u", val, *(unsigned int *)p);
             }
             else {
-                retval=*((int *)p);
-#ifdef DEBUG
-                printf("x%s%d", val, *(int *)p);
-#endif
+                retval = *((int *)p);
+                DBG("x%s%d", val, *(int *)p);
             }
             val = " ";
             len -= sizeof(int);
@@ -205,9 +201,7 @@ check_acpi_sysfs(void)
     sysfs = opendir("/sys/class/power_supply");
     if (sysfs == 0)
     {
-#ifdef DEBUG
-        printf("DBG:No acpi support for sysfs.\n");
-#endif
+        DBG("No acpi support for sysfs.");
         return 2;
     }
 
@@ -230,21 +224,17 @@ check_acpi_sysfs(void)
         {
             acpi_sysfs = 1;
             sprintf(batteries[batt_count], "/sys/class/power_supply/%s", name);
-#ifdef DEBUG
-            printf("DBG:battery number %d at:\n",batt_count);
-            printf("DBG:sysfs dir->%s\n",batteries[batt_count]);
-            printf("DBG:------------------------\n");
-#endif
+            DBG("battery number %d at:", batt_count);
+            DBG("sysfs dir->%s", batteries[batt_count]);
+            DBG("------------------------");
             batt_count++;
         }
         /* I guess that the type of the AC adapter is always "Mains" (?) */
         else if (strncmp("Mains", tmptype, 5)==0) {
             acpi_sysfs = 1;
             sprintf(sysfsacdir, "/sys/class/power_supply/%s", name);
-        #ifdef DEBUG
-            printf("DBG:sysfs AC dir->%s\n",sysfsacdir);
-            printf("DBG:------------------------\n");
-        #endif
+            DBG("sysfs AC dir->%s", sysfsacdir);
+            DBG(":------------------------");
         }
     }
 
@@ -252,9 +242,7 @@ check_acpi_sysfs(void)
 
     if (acpi_sysfs == 0)
     {
-#ifdef DEBUG
-      printf("DBG:No acpi support for sysfs.\n");
-#endif
+        DBG("No acpi support for sysfs.");
         return 2;
     }
 
@@ -315,9 +303,7 @@ read_sysfs_int(char* filename)
     f = fopen(filename,"r");
     if (!f)
     {
-#ifdef DEBUG
-        printf("DBG:Could not open %s\n",filename);
-#endif
+        DBG("Could not open %s", filename);
         return 0;
     }
 
@@ -333,9 +319,7 @@ read_sysfs_string(char* filename)
     f = fopen(filename,"r");
     if (!f)
     {
-#ifdef DEBUG
-        printf("DBG:Could not open %s\n",filename);
-#endif
+        DBG("Could not open %s", filename);
         return NULL;
     }
     fscanf(f,"%s",buf2);
@@ -352,9 +336,7 @@ read_acad_state_sysfs(void)
     sysfs = opendir(sysfsacdir);
     if (sysfs == 0)
     {
-#ifdef DEBUG
-        printf("DBG:Can't open %s",sysfsacdir);
-#endif
+        DBG("Can't open %s", sysfsacdir);
         return 0;
     }
     closedir(sysfs);
@@ -392,12 +374,10 @@ read_acad_state(void)
         err(1, "couldn't find format of oid '%s'", bufp);
     if (len < 0) errx(1, "unknown oid '%s'", bufp);
     if ((kind & CTLTYPE) == CTLTYPE_NODE) {
-        printf("oh-oh...\n");
+        DBG("oh-oh...");
     } else {
         retval=get_var(mib, len);
-#ifdef DEBUG
-        printf("retval=%d\n",retval);
-#endif
+        DBG("retval=%d",retval);
   }
   return retval;
 #else
@@ -416,9 +396,7 @@ read_acpi_info_sysfs(int battery)
     sysfs = opendir(batteries[battery]);
     if (sysfs == 0)
     {
-#ifdef DEBUG
-        printf("DBG:Can't open %s!\n", batteries[battery]);
-#endif
+        DBG("Can't open %s!", batteries[battery]);
         return 0;
     }
     /* malloc.. might explain the random battery level values on 2.6.24
@@ -471,9 +449,7 @@ read_acpi_info(int battery)
 {
 #ifdef __linux__
     if (battery > MAXBATT) {
-#ifdef DEBUG
-        printf("DBG: error, battery > MAXBATT (%d)\n",MAXBATT);
-#endif
+        DBG("error, battery > MAXBATT (%d)",MAXBATT);
         return 0;
   }
 
@@ -502,12 +478,10 @@ read_acpi_info(int battery)
         err(1, "couldn't find format of oid '%s'", bufp);
     if (len < 0) errx(1, "unknown oid '%s'", bufp);
     if ((kind & CTLTYPE) == CTLTYPE_NODE) {
-        printf("oh-oh...\n");
+        DBG("oh-oh...");
     } else {
         retval=get_var(mib, len);
-#ifdef DEBUG
-        printf("retval=%d\n",retval);
-#endif
+        DBG("retval=%d",retval);
     }
     acpiinfo->present = retval;
 
@@ -546,9 +520,7 @@ read_acpi_state_sysfs(int battery)
     sysfs = opendir(batteries[battery]);
     if (sysfs == 0)
     {
-#ifdef DEBUG
-        printf("DBG:Can't open %s!\n", batteries[battery]);
-#endif
+        DBG("Can't open %s!", batteries[battery]);
         return 0;
     }
 
@@ -643,12 +615,10 @@ read_acpi_state(int battery)
         err(1, "couldn't find format of oid '%s'", bufp);
     if (len < 0) errx(1, "unknown oid '%s'", bufp);
     if ((kind & CTLTYPE) == CTLTYPE_NODE) {
-        printf("oh-oh...\n");
+        DBG("oh-oh...");
     } else {
         retval=get_var(mib, len);
-#ifdef DEBUG
-        printf("retval=%d\n",retval);
-#endif
+        DBG("retval=%d",retval);
     }
     acpistate->rtime =(retval<0)?0:retval;
 
@@ -659,12 +629,10 @@ read_acpi_state(int battery)
         err(1, "couldn't find format of oid '%s'", bufp);
     if (len < 0) errx(1, "unknown oid '%s'", bufp);
     if ((kind & CTLTYPE) == CTLTYPE_NODE) {
-        printf("oh-oh...\n");
+        DBG("oh-oh...");
     } else {
         retval=get_var(mib, len);
-#ifdef DEBUG
-        printf("retval=%d\n",retval);
-#endif
+        DBG("retval=%d",retval);
     }
     acpistate->percentage =retval;
 
@@ -765,12 +733,10 @@ get_temperature(void)
         err(1, "couldn't find format of oid '%s'", bufp);
     if (len < 0) errx(1, "unknown oid '%s'", bufp);
     if ((kind & CTLTYPE) == CTLTYPE_NODE) {
-        printf("oh-oh...\n");
+        DBG("oh-oh...");
     } else {
         retval=get_var(mib, len);
-#ifdef DEBUG
-        printf("retval=%d\n",retval);
-#endif
+        DBG("retval=%d",retval);
     }
     snprintf(buf, BUFSIZ, "%d C",(retval-2735)/10);
     return (const char *)buf;

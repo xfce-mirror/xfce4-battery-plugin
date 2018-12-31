@@ -294,9 +294,11 @@ update_apm_status(t_battmon *battmon)
           new_state = BM_FULL;
         }
         if (acline && new_state != BM_MISSING) {
+            gchar *tmp = g_strdup(icon_name);
+            g_free(icon_name);
             new_state++;
-            gchar * tmp = g_strdup(icon_name); g_free(icon_name);
             icon_name = g_strconcat(tmp, "-charging", NULL);
+            g_free(tmp);
         }
         DBG("old_state=%d, new_state=%d, icon_name=%s", old_state, new_state, icon_name);
         if (old_state != new_state)

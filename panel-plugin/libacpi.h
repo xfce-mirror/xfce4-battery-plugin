@@ -21,43 +21,43 @@
 
 typedef enum
 {
-  POWER,			/* on AC, Battery charged  */
-  DISCHARGING,			/* on Battery, Discharging */
-  CHARGING,			/* on AC, Charging         */
-  UNKNOW			/* unknow                  */
+    POWER,        /* on AC, Battery charged  */
+    DISCHARGING,  /* on Battery, Discharging */
+    CHARGING,     /* on AC, Charging         */
+    UNKNOW        /* unknown                 */
 }
 Charging;
 
 typedef struct
 {
-  int present;			/* 1 if present, 0 if no battery         */
-  Charging state;		/* charging state enum                   */
-  int prate;			/* present rate                          */
-  int rcapacity;		/* rameining capacity                    */
-  int pvoltage;			/* present voltage                       */
+    int present;        /* 1 if present, 0 if no battery         */
+    Charging state;     /* charging state enum                   */
+    int prate;          /* present rate                          */
+    int rcapacity;      /* remaining capacity                    */
+    int pvoltage;       /* present voltage                       */
 
-  /* not present in /proc */
-  int rtime;			/* remaining time                        */
-  int percentage;		/* battery percentage (-1 if no battery) */
+    /* not present in /proc */
+    int rtime;          /* remaining time                        */
+    int percentage;     /* battery percentage (-1 if no battery) */
 }
 ACPIstate;
 
 typedef struct
 {
-  int present;			/* 1 if present, 0 if no battery        */
-  int design_capacity;		/* design capacity                      */
-  int last_full_capacity;	/* last_full_capacity                   */
-  int battery_technology;	/* 1 non-rechargeable, 0 rechargeable   */
-  int design_voltage;		/* design voltage                       */
-  int design_capacity_warning;	/* design capacity warning (critical)   */
-  int design_capacity_low;	/* design capacity low (low level)      */
+    int present;                    /* 1 if present, 0 if no battery        */
+    int design_capacity;            /* design capacity                      */
+    int last_full_capacity;         /* last full capacity                   */
+    int battery_technology;         /* 1 non-rechargeable, 0 rechargeable   */
+    int design_voltage;             /* design voltage                       */
+    int design_capacity_warning;    /* design capacity warning (critical)   */
+    int design_capacity_low;        /* design capacity low (low level)      */
 }
 ACPIinfo;
 
 
 typedef struct
 {
-  int state;			/* 1 if online, 0 if offline            */
+    int state;      /* 1 if online, 0 if offline            */
 }
 ACADstate;
 
@@ -86,6 +86,3 @@ extern ACPIstate *acpistate;
 extern ACPIinfo *acpiinfo;
 extern ACADstate *acadstate;
 #endif
-
-
-

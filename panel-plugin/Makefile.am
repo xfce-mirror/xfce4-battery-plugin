@@ -1,7 +1,7 @@
-INCLUDES =								\
+INCLUDES =									\
 	-I$(top_srcdir)							\
-	-DG_LOG_DOMAIN=\"xfce4-battery-plugin\"				\
-	-DPACKAGE_LOCALE_DIR=\"$(localedir)\"				\
+	-DG_LOG_DOMAIN=\"xfce4-battery-plugin\"	\
+	-DPACKAGE_LOCALE_DIR=\"$(localedir)\"	\
 	$(PLATFORM_CPPFLAGS)
 
 #
@@ -11,22 +11,22 @@ plugindir = $(libdir)/xfce4/panel/plugins
 
 plugin_LTLIBRARIES = libbattery.la
 
-libbattery_la_SOURCES =							\
-	battery.c							\
-	libacpi.h							\
+libbattery_la_SOURCES =						\
+	battery.c								\
+	libacpi.h								\
 	libacpi.c
 
-libbattery_la_CFLAGS =							\
-	$(LIBXFCE4PANEL_CFLAGS)						\
-	$(LIBXFCE4UI_CFLAGS)						\
-	$(LIBXFCE4UTIL_CFLAGS)						\
+libbattery_la_CFLAGS =						\
+	$(LIBXFCE4PANEL_CFLAGS)					\
+	$(LIBXFCE4UI_CFLAGS)					\
+	$(LIBXFCE4UTIL_CFLAGS)					\
 	$(GTK_CFLAGS)							\
 	$(PLATFORM_CFLAGS)
 
-libbattery_la_LIBADD =							\
-	$(LIBXFCE4PANEL_LIBS)						\
+libbattery_la_LIBADD =						\
+	$(LIBXFCE4PANEL_LIBS)					\
 	$(LIBXFCE4UI_LIBS)						\
-	$(LIBXFCE4UTIL_LIBS)						\
+	$(LIBXFCE4UTIL_LIBS)					\
 	$(GTK_LIBS)
 
 libbattery_la_LDFLAGS = \

@@ -1399,7 +1399,7 @@ battmon_show_about(XfcePanelPlugin *plugin, t_battmon *battmon)
         "program-name", PACKAGE_NAME,
         "comments", _("Show and monitor the battery status"),
         "website", "http://goodies.xfce.org/projects/panel-plugins/xfce4-battery-plugin",
-        "copyright", _("Copyright (c) 2003-2016\n"),
+        "copyright", _("Copyright (c) 2003-2019\n"),
         "authors", auth, NULL);
 
    if (icon)

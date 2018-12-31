@@ -167,6 +167,9 @@ update_apm_status(t_battmon *battmon)
     gboolean acline=FALSE;
     gchar buffer[128];
     gchar *css, *color_str;
+    GtkWidget *dialog;
+    GdkRGBA *color;
+    gchar *cssminsizes;
 
     static int update_time = AVERAGING_CYCLE;
     static int sum_lcapacity = 0;
@@ -389,7 +392,6 @@ update_apm_status(t_battmon *battmon)
     gtk_progress_bar_set_text(GTK_PROGRESS_BAR(battmon->battstatus), NULL);
 
     /* bar colors and state flags */
-    GdkRGBA *color;
     if (acline) {
       battmon->low = battmon->critical = FALSE;
       color = &battmon->options.colorA;
@@ -410,7 +412,7 @@ update_apm_status(t_battmon *battmon)
 
     color_str = gdk_rgba_to_string (color);
 #if GTK_CHECK_VERSION (3, 20, 0)
-    gchar * cssminsizes = "min-width: 4px; min-height: 0px";
+    cssminsizes = "min-width: 4px; min-height: 0px";
     if (gtk_orientable_get_orientation(GTK_ORIENTABLE(battmon->battstatus)) == GTK_ORIENTATION_HORIZONTAL)
         cssminsizes = "min-width: 0px; min-height: 4px";
     css = g_strdup_printf("progressbar trough { %s } \
@@ -429,7 +431,7 @@ update_apm_status(t_battmon *battmon)
     if (method != BM_BROKEN && !acline && charge <= battmon->options.low_percentage) {
         if(!battmon->critical && charge <= battmon->options.critical_percentage) {
                battmon->critical = TRUE;
-	       GtkWidget *dialog;
+
             if(battmon->options.action_on_critical == BM_MESSAGE){
 do_critical_warn:
                 dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_WARNING, GTK_BUTTONS_CLOSE,
@@ -447,7 +449,7 @@ do_critical_warn:
             }
         } else if (!battmon->low){
                 battmon->low = TRUE;
-	       GtkWidget *dialog;
+
             if(battmon->options.action_on_low == BM_MESSAGE){
 do_low_warn:
                 dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_WARNING, GTK_BUTTONS_CLOSE,
@@ -1385,7 +1387,7 @@ on_power_change (GDBusProxy  *proxy,
     update_apm_status (battmon);
 }
 
-void
+static void
 battmon_dbus_monitor (t_battmon *battmon)
 {
     GDBusProxy *proxy;

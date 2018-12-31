@@ -59,10 +59,9 @@ static int      acpifd;
 #include "libacpi.h"
 
 static char batteries[MAXBATT][128];
-static char battinfo[MAXBATT][128];
 /* path to AC adapter because not all AC adapter are listed 
 in /sys/class/power_supply/AC/ this obviously only supports one AC adapter. */
-static char sysfsacdir[128]; 
+static char sysfsacdir[280]; 
 
 #ifndef __linux__
 #if HAVE_SYSCTL
@@ -191,13 +190,13 @@ get_var(int *oid, int nlen)
 #endif
 #endif
 
-int check_acpi_sysfs(void)
+static int check_acpi_sysfs(void)
 {
 	DIR *sysfs;
 	struct dirent *batt;
 	char *name;
 	FILE *typefile;
-	char typepath[128];
+	char typepath[300];
 	char tmptype[8];
 
 	acpi_sysfs = 0;
@@ -304,9 +303,11 @@ int check_acpi(void)
 #endif
 }
 
-int read_sysfs_int(char* filename)
+static int read_sysfs_int(char* filename)
 {
 	FILE* f;
+	int out;
+
 	f = fopen(filename,"r");
 	if ( !f )
 	{
@@ -315,13 +316,13 @@ int read_sysfs_int(char* filename)
 #endif
 		return 0;
 	}
-	int out;
+
 	fscanf(f,"%d",&out);
 	fclose(f);
 	return out;
 }
 
-char* read_sysfs_string(char* filename)
+static char* read_sysfs_string(char* filename)
 {
 	FILE* f;
 	f = fopen(filename,"r");
@@ -337,12 +338,10 @@ char* read_sysfs_string(char* filename)
 	return buf2;
 }
 
-int read_acad_state_sysfs(void)
+static int read_acad_state_sysfs(void)
 {
 	DIR *sysfs;
-	struct dirent *propety;
-	char *name;
-	char onlinefilepath[128];
+	char onlinefilepath[300];
 	
 	sysfs = opendir(sysfsacdir);
 	if (sysfs == 0)
@@ -356,9 +355,10 @@ int read_acad_state_sysfs(void)
 	
 	if (!acadstate) acadstate=(ACADstate *)malloc(sizeof(ACADstate));
 	/* this code doesn't make much sense.. why look at the whole directory?!
+	struct dirent *propety;
 	while ((propety = readdir(sysfs)))
 	{
-		name = propety->d_name;
+		char *name = propety->d_name;
 		if (!strncmp(".", name, 1) || !strncmp("..", name, 2)) continue;
 		
 		if (strcmp(name,"online") == 0)
@@ -410,7 +410,7 @@ int read_acad_state(void)
 #endif
 }
 
-int read_acpi_info_sysfs(int battery)
+static int read_acpi_info_sysfs(int battery)
 {
 	DIR *sysfs;
 	struct dirent *propety;
@@ -537,7 +537,7 @@ int read_acpi_info(int battery)
 
 }
 
-int read_acpi_state_sysfs(int battery)
+static int read_acpi_state_sysfs(int battery)
 {
 	DIR *sysfs;
 	struct dirent *propety;

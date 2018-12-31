@@ -5,7 +5,7 @@
  * Copyright (c) 2006 Nick Schermer <nick@xfce.org>
  * Copyright (c) 2010 Florian Rivoal <frivoal@xfce.org>
  * Copyright (c) 2012 Landry Breuil <landry@xfce.org>
- * Copyright (c) 2016 Andre Miranda <andre42m@gmail.com>
+ * Copyright (c) 2016 Andre Miranda <andreldm@xfce.org>
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -1364,7 +1364,7 @@ battmon_show_about(XfcePanelPlugin *plugin, t_battmon *battmon)
       "Benedikt Meurer <benny@xfce.org>", "Edscott Wilson <edscott@imp.mx>",
       "Eduard Roccatello <eduard@xfce.org>", "Florian Rivoal <frivoal@xfce.org>",
       "Landry Breuil <landry@xfce.org>", "Nick Schermer <nick@xfce.org>",
-      "Andre Miranda <andre42m@gmail.com>", NULL };
+      "Andre Miranda <andreldm@xfce.org>", NULL };
    icon = xfce_panel_pixbuf_from_source("xfce4-battery-plugin", NULL, 32);
    gtk_show_about_dialog(NULL,
       "logo", icon,

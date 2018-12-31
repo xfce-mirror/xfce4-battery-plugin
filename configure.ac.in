@@ -4,7 +4,7 @@ dnl 2003      Benedikt Meurer <benny@xfce.org>
 dnl 2006-2007 Nick Schermer <nick@xfce.org>
 dnl 2010      Florian Rivoal <frivoal@xfce.org>
 dnl 2012      Landry Breuil <landry@xfce.org>
-dnl 2016      Andre Miranda <andre42m@gmail.com>
+dnl 2016-2019 Andre Miranda <andreldm@xfce.org>
 dnl
 
 dnl ***************************
@@ -20,8 +20,7 @@ m4_define([battery_version], [battery_version_major().battery_version_minor().ba
 dnl ***************************
 dnl *** Initialize autoconf ***
 dnl ***************************
-AC_COPYRIGHT([Copyright (c) 2006-2016
-        The Xfce development team. All rights reserved.])
+AC_COPYRIGHT([Copyright (c) 2006-2019 The Xfce development team. All rights reserved.])
 AC_INIT([xfce4-battery-plugin], [battery_version], [http://bugzilla.xfce.org/], [xfce4-battery-plugin])
 AC_PREREQ([2.50])
 AC_CANONICAL_TARGET()

@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-01 00:31+0100\n"
-"PO-Revision-Date: 2019-01-01 09:52+0000\n"
+"PO-Revision-Date: 2019-01-01 12:30+0000\n"
 "Last-Translator: Besnik <besnik@programeshqip.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/xfce/xfce-panel-plugins/language/sq/)\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: ../panel-plugin/battery.c:346
 msgid "(No battery, AC on-line)"
-msgstr ""
+msgstr "(Pa bateri, në linjë RrA)"
 
 #: ../panel-plugin/battery.c:348
 msgid "(Charging from AC)"
@@ -90,7 +90,7 @@ msgstr "Veti"
 
 #: ../panel-plugin/battery.c:1151
 msgid "On AC:"
-msgstr ""
+msgstr "Në RrA:"
 
 #: ../panel-plugin/battery.c:1165
 msgid "Battery high:"

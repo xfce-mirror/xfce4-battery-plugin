@@ -4,194 +4,194 @@
 # 
 # Translators:
 # Algimantas Margevičius <margevicius.algimantas@gmail.com>, 2012
-# Moo, 2016-2017
+# Moo, 2016-2017,2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-29 12:30+0200\n"
-"PO-Revision-Date: 2017-09-19 18:06+0000\n"
+"POT-Creation-Date: 2019-01-01 00:31+0100\n"
+"PO-Revision-Date: 2019-01-01 14:01+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/xfce/xfce-panel-plugins/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: lt\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);\n"
 
-#: ../panel-plugin/battery.c:526
+#: ../panel-plugin/battery.c:346
 msgid "(No battery, AC on-line)"
 msgstr "(Akumuliatoriaus nėra, naudojama el. tinklo energija)"
 
-#: ../panel-plugin/battery.c:528
+#: ../panel-plugin/battery.c:348
 msgid "(Charging from AC)"
 msgstr "(Įkraunama iš tinklo)"
 
-#: ../panel-plugin/battery.c:528
+#: ../panel-plugin/battery.c:348
 msgid "(AC on-line)"
 msgstr "(įjungta į tinklą)"
 
-#: ../panel-plugin/battery.c:538
+#: ../panel-plugin/battery.c:358
 #, c-format
 msgid "%d%% (%02d:%02d) remaining"
 msgstr "%d%% (%02d:%02d) liko"
 
-#: ../panel-plugin/battery.c:540
+#: ../panel-plugin/battery.c:360
 #, c-format
 msgid "%02d:%02d remaining"
 msgstr "%02d:%02d liko"
 
-#: ../panel-plugin/battery.c:542
+#: ../panel-plugin/battery.c:362
 #, c-format
 msgid "%d%% remaining"
 msgstr "%d%% liko"
 
-#: ../panel-plugin/battery.c:544
+#: ../panel-plugin/battery.c:364
 #, c-format
 msgid "AC off-line"
 msgstr "AC atjungta"
 
-#: ../panel-plugin/battery.c:624
+#: ../panel-plugin/battery.c:447
 msgid ""
 "WARNING: Your battery has reached critical status. You should plug in or "
 "shutdown your computer now to avoid possible data loss."
 msgstr "ĮSPĖJIMAS: Jūsų akumuliatorius pasiekė kritinį lygį. Jūs turėtumėte prijungti kompiuterį pakrovimui arba išjungti jį, nes kitaip galite prarasti duomenis."
 
-#: ../panel-plugin/battery.c:642
+#: ../panel-plugin/battery.c:466
 msgid ""
 "WARNING: Your battery is running low. You should consider plugging in or "
 "shutting down your computer soon to avoid possible data loss."
 msgstr "ĮSPĖJIMAS: Jūsų akumuliatoriuje liko nedaug energijos. Jūs turėtumėte prijungti kompiuterį pakrovimui arba išjungti jį, nes kitaip galite prarasti duomenis."
 
-#: ../panel-plugin/battery.c:678
+#: ../panel-plugin/battery.c:509
 msgid "Battery"
 msgstr "Akumuliatorius"
 
-#: ../panel-plugin/battery.c:1173
+#: ../panel-plugin/battery.c:1002
 msgid "Select file"
 msgstr "Pasirinkite failą"
 
-#: ../panel-plugin/battery.c:1214
+#: ../panel-plugin/battery.c:1043
 msgid "Select command"
 msgstr "Pasirinkti komandą"
 
-#: ../panel-plugin/battery.c:1258
+#: ../panel-plugin/battery.c:1096
 #, c-format
 msgid "Unable to open the following url: %s"
 msgstr "Nepavyko atverti šio url: %s"
 
-#: ../panel-plugin/battery.c:1283 ../panel-plugin/battery.desktop.in.h:1
+#: ../panel-plugin/battery.c:1121 ../panel-plugin/battery.desktop.in.h:1
 msgid "Battery Monitor"
 msgstr "Akumuliatoriaus prižiūryklė"
 
-#: ../panel-plugin/battery.c:1290
+#: ../panel-plugin/battery.c:1128
 msgid "Properties"
 msgstr "Savybės"
 
-#: ../panel-plugin/battery.c:1316
+#: ../panel-plugin/battery.c:1151
 msgid "On AC:"
 msgstr "Ant AC:"
 
-#: ../panel-plugin/battery.c:1329
+#: ../panel-plugin/battery.c:1165
 msgid "Battery high:"
 msgstr "Akumuliatorius įkrautas pilnai:"
 
-#: ../panel-plugin/battery.c:1342
+#: ../panel-plugin/battery.c:1179
 msgid "Battery low:"
 msgstr "Akumuliatorius beveik išsekęs:"
 
-#: ../panel-plugin/battery.c:1355
+#: ../panel-plugin/battery.c:1193
 msgid "Battery critical:"
 msgstr "Akumuliatorius išseko:"
 
-#: ../panel-plugin/battery.c:1365
+#: ../panel-plugin/battery.c:1204
 msgid "Bar _colors"
 msgstr "Juostos _spalva"
 
-#: ../panel-plugin/battery.c:1379
+#: ../panel-plugin/battery.c:1218
 msgid "Low percentage:"
 msgstr "Žemas lygis:"
 
-#: ../panel-plugin/battery.c:1392
+#: ../panel-plugin/battery.c:1232
 msgid "Low battery action:"
 msgstr "Kai akumuliatoriuje mažai energijos:"
 
-#: ../panel-plugin/battery.c:1398 ../panel-plugin/battery.c:1442
+#: ../panel-plugin/battery.c:1239 ../panel-plugin/battery.c:1287
 msgid "Do nothing"
 msgstr "Nieko nedaryti"
 
-#: ../panel-plugin/battery.c:1399 ../panel-plugin/battery.c:1443
+#: ../panel-plugin/battery.c:1240 ../panel-plugin/battery.c:1288
 msgid "Display a warning message"
 msgstr "Parodyti perspėjimo pranešimą"
 
-#: ../panel-plugin/battery.c:1400 ../panel-plugin/battery.c:1444
+#: ../panel-plugin/battery.c:1241 ../panel-plugin/battery.c:1289
 msgid "Run command"
 msgstr "Vykdyti komandą"
 
-#: ../panel-plugin/battery.c:1401 ../panel-plugin/battery.c:1445
+#: ../panel-plugin/battery.c:1242 ../panel-plugin/battery.c:1290
 msgid "Run command in terminal"
 msgstr "Vykdyti komandą terminale"
 
-#: ../panel-plugin/battery.c:1409 ../panel-plugin/battery.c:1453
+#: ../panel-plugin/battery.c:1250 ../panel-plugin/battery.c:1298
 msgid "Command:"
 msgstr "Komanda:"
 
-#: ../panel-plugin/battery.c:1423
+#: ../panel-plugin/battery.c:1266
 msgid "Critical percentage:"
 msgstr "Kritinis lygis:"
 
-#: ../panel-plugin/battery.c:1436
+#: ../panel-plugin/battery.c:1280
 msgid "Critical battery action:"
 msgstr "Kritinio akumuliatoriaus lygio veiksmas:"
 
-#: ../panel-plugin/battery.c:1464
+#: ../panel-plugin/battery.c:1310
 msgid "Levels and _actions"
 msgstr "Lygiai ir _veiksmai"
 
-#: ../panel-plugin/battery.c:1477
+#: ../panel-plugin/battery.c:1323
 msgid "Display label"
 msgstr "Rodyti etiketę"
 
-#: ../panel-plugin/battery.c:1480
+#: ../panel-plugin/battery.c:1326
 msgid "Display icon"
 msgstr "Rodyti piktogramą"
 
-#: ../panel-plugin/battery.c:1483
+#: ../panel-plugin/battery.c:1329
 msgid "Display bar"
 msgstr "Rodyti juostą"
 
-#: ../panel-plugin/battery.c:1486
+#: ../panel-plugin/battery.c:1332
 msgid "Display percentage"
 msgstr "Rodyti procentus"
 
-#: ../panel-plugin/battery.c:1489
+#: ../panel-plugin/battery.c:1335
 msgid "Display time"
 msgstr "Rodyti laiką"
 
-#: ../panel-plugin/battery.c:1492
+#: ../panel-plugin/battery.c:1338
 msgid "Display power"
 msgstr "Rodyti energiją"
 
-#: ../panel-plugin/battery.c:1495
+#: ../panel-plugin/battery.c:1341
 msgid "Hide time/percentage when full"
 msgstr "Slėpti laiką/procentus kai pilna"
 
-#: ../panel-plugin/battery.c:1498
+#: ../panel-plugin/battery.c:1344
 msgid "Display percentage in tooltip"
 msgstr "Rodyti procentus paaiškinimuose"
 
-#: ../panel-plugin/battery.c:1501
+#: ../panel-plugin/battery.c:1347
 msgid "Display time remaining in tooltip"
 msgstr "Paaiškinimuose rodyti likusį laiką"
 
-#: ../panel-plugin/battery.c:1504
+#: ../panel-plugin/battery.c:1350
 msgid "_Display"
 msgstr "_Rodyti"
 
-#: ../panel-plugin/battery.c:1552 ../panel-plugin/battery.desktop.in.h:2
+#: ../panel-plugin/battery.c:1400 ../panel-plugin/battery.desktop.in.h:2
 msgid "Show and monitor the battery status"
 msgstr "Rodyti ir stebėti akumuliatoriaus būseną"
 
-#: ../panel-plugin/battery.c:1554
-msgid "Copyright (c) 2003-2016\n"
-msgstr "Autorių Teisės (c) 2003-2016\n"
+#: ../panel-plugin/battery.c:1402
+msgid "Copyright (c) 2003-2019\n"
+msgstr "Autorių teisės (c) 2003-2019\n"

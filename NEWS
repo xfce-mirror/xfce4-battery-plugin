@@ -1,3 +1,14 @@
+1.1.2 (2019/01/13):
+===================
+* Listen for UPower events for power source changes (Bug #14978, thanks to Alexander Butenko)
+* Reset averages when a battery is removed/added (Bug #14930, thanks to John Lindgren)
+* Re-detect battery presence every 30 seconds (Bug #14930, thanks to John Lindgren)
+* Fix null pointer dereference with no battery present (Bug #14930, thanks to John Lindgren)
+* Remove deprecated /proc/acpi support in favor of sysfs. (Thanks to John Lindgren)
+* Remove APM support on FreeBSD as well, it doesn't even build. (Thanks to John Lindgren)
+* Remove historical APM support for Linux, support ACPI only. (Thanks to John Lindgren)
+* Initially show/hide widgets according to user config (Bug #9594, thanks to John Lindgren)
+
 1.1.1 (2018/09/22):
 ===================
 * Avoid memory leaks

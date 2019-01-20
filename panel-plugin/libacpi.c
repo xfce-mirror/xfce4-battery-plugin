@@ -52,10 +52,6 @@ static int      acpifd;
 #define CTLTYPE 0x0f
 #endif
 
-#include <sys/sysctl.h>
-#include <err.h>
-#include <errno.h>
-
 #endif
 
 #include "libacpi.h"

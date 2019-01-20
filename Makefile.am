@@ -1,12 +1,12 @@
 SUBDIRS =								\
-	panel-plugin							\
+	panel-plugin						\
 	icons								\
 	po
 
 distclean-local:
 	rm -rf *.cache *~
 
-distuninstallcheck_listfiles =                                          \ 
+distuninstallcheck_listfiles =											\
 	find . -type f -print | grep -v ./share/icons/hicolor/icon-theme.cache
 
 rpm: dist
@@ -23,7 +23,7 @@ ChangeLog: Makefile
 dist-hook: ChangeLog
 
 EXTRA_DIST = 								\
-	README								\
+	README									\
 	intltool-extract.in						\
 	intltool-merge.in						\
 	intltool-update.in

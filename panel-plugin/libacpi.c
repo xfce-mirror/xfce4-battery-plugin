@@ -52,6 +52,12 @@ static int      acpifd;
 #define CTLTYPE 0x0f
 #endif
 
+#ifndef __linux__
+#include <sys/sysctl.h>
+#include <err.h>
+#include <errno.h>
+#endif
+
 #endif
 
 #include "libacpi.h"
@@ -63,7 +69,7 @@ static char sysfsacdir[280];
 
 #ifndef __linux__
 #if HAVE_SYSCTL
- static int
+static int
 name2oid(char *name, int *oidp)
 {
     int oid[2];

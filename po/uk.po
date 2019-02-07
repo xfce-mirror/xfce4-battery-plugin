@@ -9,189 +9,189 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-29 12:30+0200\n"
-"PO-Revision-Date: 2017-09-19 18:06+0000\n"
-"Last-Translator: Yarema aka Knedlyk <yupadmin@gmail.com>\n"
+"POT-Creation-Date: 2019-01-01 00:31+0100\n"
+"PO-Revision-Date: 2019-02-07 17:11+0000\n"
+"Last-Translator: zubr139\n"
 "Language-Team: Ukrainian (http://www.transifex.com/xfce/xfce-panel-plugins/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: uk\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 
-#: ../panel-plugin/battery.c:526
+#: ../panel-plugin/battery.c:346
 msgid "(No battery, AC on-line)"
 msgstr "(Без батареї, AC підключено)"
 
-#: ../panel-plugin/battery.c:528
+#: ../panel-plugin/battery.c:348
 msgid "(Charging from AC)"
 msgstr "(Заряджається від AC)"
 
-#: ../panel-plugin/battery.c:528
+#: ../panel-plugin/battery.c:348
 msgid "(AC on-line)"
 msgstr "(AC підключено)"
 
-#: ../panel-plugin/battery.c:538
+#: ../panel-plugin/battery.c:358
 #, c-format
 msgid "%d%% (%02d:%02d) remaining"
 msgstr "%d%% (%02d:%02d) залишилось"
 
-#: ../panel-plugin/battery.c:540
+#: ../panel-plugin/battery.c:360
 #, c-format
 msgid "%02d:%02d remaining"
 msgstr "%02d:%02d залишилось"
 
-#: ../panel-plugin/battery.c:542
+#: ../panel-plugin/battery.c:362
 #, c-format
 msgid "%d%% remaining"
 msgstr "%d%% залишилось"
 
-#: ../panel-plugin/battery.c:544
+#: ../panel-plugin/battery.c:364
 #, c-format
 msgid "AC off-line"
 msgstr "AC відключено"
 
-#: ../panel-plugin/battery.c:624
+#: ../panel-plugin/battery.c:447
 msgid ""
 "WARNING: Your battery has reached critical status. You should plug in or "
 "shutdown your computer now to avoid possible data loss."
 msgstr "ПОПЕРЕДЖЕННЯ: Ваша батарея досягла критичного статусу. Вам краще увімкнути живлення або вимкнути ваш комп'ютер зараз для запобігання втрати даних."
 
-#: ../panel-plugin/battery.c:642
+#: ../panel-plugin/battery.c:466
 msgid ""
 "WARNING: Your battery is running low. You should consider plugging in or "
 "shutting down your computer soon to avoid possible data loss."
 msgstr "ПОПЕРЕДЖЕННЯ: Ваша батарея має слабкий заряд. Вам краще швидше вирішити підключити живлення чи скоро вимкнути ваш комп'ютер для запобігання втрати данних."
 
-#: ../panel-plugin/battery.c:678
+#: ../panel-plugin/battery.c:509
 msgid "Battery"
 msgstr "Батарея"
 
-#: ../panel-plugin/battery.c:1173
+#: ../panel-plugin/battery.c:1002
 msgid "Select file"
 msgstr "Вибрати файл"
 
-#: ../panel-plugin/battery.c:1214
+#: ../panel-plugin/battery.c:1043
 msgid "Select command"
 msgstr "Вибрати команду"
 
-#: ../panel-plugin/battery.c:1258
+#: ../panel-plugin/battery.c:1096
 #, c-format
 msgid "Unable to open the following url: %s"
 msgstr "Неможливо відкрити наступне посилання: %s"
 
-#: ../panel-plugin/battery.c:1283 ../panel-plugin/battery.desktop.in.h:1
+#: ../panel-plugin/battery.c:1121 ../panel-plugin/battery.desktop.in.h:1
 msgid "Battery Monitor"
 msgstr "Монітор батареї"
 
-#: ../panel-plugin/battery.c:1290
+#: ../panel-plugin/battery.c:1128
 msgid "Properties"
 msgstr "Властивості"
 
-#: ../panel-plugin/battery.c:1316
+#: ../panel-plugin/battery.c:1151
 msgid "On AC:"
 msgstr "Від мережі:"
 
-#: ../panel-plugin/battery.c:1329
+#: ../panel-plugin/battery.c:1165
 msgid "Battery high:"
 msgstr "Батарея макс:"
 
-#: ../panel-plugin/battery.c:1342
+#: ../panel-plugin/battery.c:1179
 msgid "Battery low:"
 msgstr "Батарея мін:"
 
-#: ../panel-plugin/battery.c:1355
+#: ../panel-plugin/battery.c:1193
 msgid "Battery critical:"
 msgstr "Батарея критично:"
 
-#: ../panel-plugin/battery.c:1365
+#: ../panel-plugin/battery.c:1204
 msgid "Bar _colors"
 msgstr "Кольори _панелі"
 
-#: ../panel-plugin/battery.c:1379
+#: ../panel-plugin/battery.c:1218
 msgid "Low percentage:"
 msgstr "Слабкий рівень:"
 
-#: ../panel-plugin/battery.c:1392
+#: ../panel-plugin/battery.c:1232
 msgid "Low battery action:"
 msgstr "Дії при слабкому заряді батареї:"
 
-#: ../panel-plugin/battery.c:1398 ../panel-plugin/battery.c:1442
+#: ../panel-plugin/battery.c:1239 ../panel-plugin/battery.c:1287
 msgid "Do nothing"
 msgstr "Ніяких дій"
 
-#: ../panel-plugin/battery.c:1399 ../panel-plugin/battery.c:1443
+#: ../panel-plugin/battery.c:1240 ../panel-plugin/battery.c:1288
 msgid "Display a warning message"
 msgstr "Показати попередження"
 
-#: ../panel-plugin/battery.c:1400 ../panel-plugin/battery.c:1444
+#: ../panel-plugin/battery.c:1241 ../panel-plugin/battery.c:1289
 msgid "Run command"
 msgstr "Виконати команду"
 
-#: ../panel-plugin/battery.c:1401 ../panel-plugin/battery.c:1445
+#: ../panel-plugin/battery.c:1242 ../panel-plugin/battery.c:1290
 msgid "Run command in terminal"
 msgstr "Виконати команду в терміналі"
 
-#: ../panel-plugin/battery.c:1409 ../panel-plugin/battery.c:1453
+#: ../panel-plugin/battery.c:1250 ../panel-plugin/battery.c:1298
 msgid "Command:"
 msgstr "Команда:"
 
-#: ../panel-plugin/battery.c:1423
+#: ../panel-plugin/battery.c:1266
 msgid "Critical percentage:"
 msgstr "Критичний рівень:"
 
-#: ../panel-plugin/battery.c:1436
+#: ../panel-plugin/battery.c:1280
 msgid "Critical battery action:"
 msgstr "Дії при критичному заряді батареї:"
 
-#: ../panel-plugin/battery.c:1464
+#: ../panel-plugin/battery.c:1310
 msgid "Levels and _actions"
 msgstr "Рівні та _дії"
 
-#: ../panel-plugin/battery.c:1477
+#: ../panel-plugin/battery.c:1323
 msgid "Display label"
 msgstr "Відображати мітки"
 
-#: ../panel-plugin/battery.c:1480
+#: ../panel-plugin/battery.c:1326
 msgid "Display icon"
 msgstr "Відображати значок"
 
-#: ../panel-plugin/battery.c:1483
+#: ../panel-plugin/battery.c:1329
 msgid "Display bar"
 msgstr "Показати панель"
 
-#: ../panel-plugin/battery.c:1486
+#: ../panel-plugin/battery.c:1332
 msgid "Display percentage"
 msgstr "Відображати відсотки"
 
-#: ../panel-plugin/battery.c:1489
+#: ../panel-plugin/battery.c:1335
 msgid "Display time"
 msgstr "Відображати час"
 
-#: ../panel-plugin/battery.c:1492
+#: ../panel-plugin/battery.c:1338
 msgid "Display power"
 msgstr "Відображати заряд"
 
-#: ../panel-plugin/battery.c:1495
+#: ../panel-plugin/battery.c:1341
 msgid "Hide time/percentage when full"
 msgstr "Сховати час/відсотки коли заряджено повністю"
 
-#: ../panel-plugin/battery.c:1498
+#: ../panel-plugin/battery.c:1344
 msgid "Display percentage in tooltip"
 msgstr "Відображати відсотки у спливаючих"
 
-#: ../panel-plugin/battery.c:1501
+#: ../panel-plugin/battery.c:1347
 msgid "Display time remaining in tooltip"
 msgstr "Показувати час, що залишився у спливаючих"
 
-#: ../panel-plugin/battery.c:1504
+#: ../panel-plugin/battery.c:1350
 msgid "_Display"
 msgstr "_Показати"
 
-#: ../panel-plugin/battery.c:1552 ../panel-plugin/battery.desktop.in.h:2
+#: ../panel-plugin/battery.c:1400 ../panel-plugin/battery.desktop.in.h:2
 msgid "Show and monitor the battery status"
 msgstr "Показувати і відслідковувати стан батареї"
 
-#: ../panel-plugin/battery.c:1554
-msgid "Copyright (c) 2003-2016\n"
-msgstr "Всі права застережено (c) 2003-2016\n"
+#: ../panel-plugin/battery.c:1402
+msgid "Copyright (c) 2003-2019\n"
+msgstr "Авторське право (c) 2003-2019\n"

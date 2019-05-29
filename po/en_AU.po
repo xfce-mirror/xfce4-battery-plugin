@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# John Humphrys <john.humphrys@pm.me>, 2019
 # Michael Findlay <translate@cobber-linux.org>, 2013
 # Michael Findlay <translate@cobber-linux.org>, 2016
 msgid ""
@@ -10,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-01 00:31+0100\n"
-"PO-Revision-Date: 2018-12-31 23:31+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"PO-Revision-Date: 2019-05-29 10:21+0000\n"
+"Last-Translator: John Humphrys <john.humphrys@pm.me>\n"
 "Language-Team: English (Australia) (http://www.transifex.com/xfce/xfce-panel-plugins/language/en_AU/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -194,4 +195,4 @@ msgstr "Show and monitor the battery status"
 
 #: ../panel-plugin/battery.c:1402
 msgid "Copyright (c) 2003-2019\n"
-msgstr ""
+msgstr "Copyright (c) 2003-2019\n"

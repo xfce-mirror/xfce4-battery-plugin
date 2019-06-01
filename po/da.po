@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-01 00:31+0100\n"
-"PO-Revision-Date: 2019-01-01 17:19+0000\n"
+"PO-Revision-Date: 2019-05-31 22:35+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-panel-plugins/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -111,11 +111,11 @@ msgstr "Bjælke_farver"
 
 #: ../panel-plugin/battery.c:1218
 msgid "Low percentage:"
-msgstr "Lav procent:"
+msgstr "Procent ved lavt:"
 
 #: ../panel-plugin/battery.c:1232
 msgid "Low battery action:"
-msgstr "Handling ved lav batteristand:"
+msgstr "Handling ved lavt batteristand:"
 
 #: ../panel-plugin/battery.c:1239 ../panel-plugin/battery.c:1287
 msgid "Do nothing"
@@ -139,7 +139,7 @@ msgstr "Kommando:"
 
 #: ../panel-plugin/battery.c:1266
 msgid "Critical percentage:"
-msgstr "Kritisk procent:"
+msgstr "Procent ved kritisk:"
 
 #: ../panel-plugin/battery.c:1280
 msgid "Critical battery action:"

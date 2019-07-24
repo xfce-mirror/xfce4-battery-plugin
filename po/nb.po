@@ -5,14 +5,15 @@
 # Translators:
 # Allan Nordhøy <epost@anotheragency.no>, 2016
 # Harald H. <haarektrans@gmail.com>, 2014
+# Kjell Cato Heskjestad <cato@heskjestad.xyz>, 2019
 # Terje Uriansrud <ter@operamail.com>, 2007
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-01 00:31+0100\n"
-"PO-Revision-Date: 2018-12-31 23:31+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"PO-Revision-Date: 2019-07-24 09:38+0000\n"
+"Last-Translator: Kjell Cato Heskjestad <cato@heskjestad.xyz>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/xfce/xfce-panel-plugins/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -195,4 +196,4 @@ msgstr "Vis og overvåk batteristatus"
 
 #: ../panel-plugin/battery.c:1402
 msgid "Copyright (c) 2003-2019\n"
-msgstr ""
+msgstr "Opphavsrett (c) 2003-2019\n"

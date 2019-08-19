@@ -67,6 +67,7 @@ typedef struct
     gboolean    display_bar;
     gboolean    display_time;
     gboolean    hide_when_full;
+    gboolean    hide_indicator_when_full;
     gboolean    tooltip_display_percentage;
     gboolean    tooltip_display_time;
     int         low_percentage;
@@ -109,6 +110,7 @@ typedef struct
     GtkWidget        *cb_disp_bar;
     GtkWidget        *cb_disp_time;
     GtkWidget        *cb_hide_when_full;
+    GtkWidget        *cb_hide_indicator_when_full;
     GtkWidget        *cb_disp_tooltip_percentage;
     GtkWidget        *cb_disp_tooltip_time;
     GtkWidget        *cb_disp_icon;
@@ -260,9 +262,14 @@ update_apm_status(t_battmon *battmon)
 
     charge = CLAMP (charge, 0, 100);
     gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(battmon->battstatus), charge / 100.0);
+
+    if(!(battmon->options.hide_indicator_when_full && charge >= 99 )) {
     if (battmon->options.display_bar) {
         gtk_widget_show(GTK_WIDGET(battmon->battstatus));
     } else {
+        gtk_widget_hide(GTK_WIDGET(battmon->battstatus));
+    }
+    }else{
         gtk_widget_hide(GTK_WIDGET(battmon->battstatus));
     }
 
@@ -689,6 +696,8 @@ battmon_read_config(XfcePanelPlugin *plugin, t_battmon *battmon)
 
     battmon->options.hide_when_full = xfce_rc_read_int_entry (rc, "hide_when_full", 0);
 
+    battmon->options.hide_indicator_when_full = xfce_rc_read_int_entry (rc, "hide_indicator_when_full", 0);
+
     if ((value = xfce_rc_read_entry (rc, "colorA", NULL)) != NULL)
         gdk_rgba_parse(&battmon->options.colorA, value);
     if ((value = xfce_rc_read_entry (rc, "colorH", NULL)) != NULL)
@@ -748,6 +757,8 @@ battmon_write_config(XfcePanelPlugin *plugin, t_battmon *battmon)
     xfce_rc_write_int_entry (rc, "action_on_critical", battmon->options.action_on_critical);
 
     xfce_rc_write_int_entry (rc, "hide_when_full", battmon->options.hide_when_full );
+
+    xfce_rc_write_int_entry (rc, "hide_indicator_when_full", battmon->options.hide_indicator_when_full );
 
     color_str = gdk_rgba_to_string (&battmon->options.colorA);
     xfce_rc_write_entry (rc, "colorA", color_str);
@@ -838,6 +849,7 @@ refresh_dialog(t_battmon_dialog *dialog)
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->cb_disp_tooltip_percentage), battmon->options.tooltip_display_percentage);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->cb_disp_tooltip_time), battmon->options.tooltip_display_time);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->cb_hide_when_full), battmon->options.hide_when_full);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->cb_hide_indicator_when_full), battmon->options.hide_indicator_when_full);
     gtk_widget_set_sensitive(dialog->en_command_low, (battmon->options.action_on_low > 1) ? 1 : 0);
     gtk_widget_set_sensitive(dialog->en_command_critical, (battmon->options.action_on_critical > 1) ? 1 : 0);
 }
@@ -875,6 +887,15 @@ set_hide_when_full(GtkToggleButton *tb, t_battmon_dialog *dialog)
     t_battmon *battmon = dialog->battmon;
 
     battmon->options.hide_when_full = gtk_toggle_button_get_active(tb);
+    update_apm_status(dialog->battmon);
+}
+
+static void
+set_hide_indicator_when_full(GtkToggleButton *tb, t_battmon_dialog *dialog)
+{
+    t_battmon *battmon = dialog->battmon;
+
+    battmon->options.hide_indicator_when_full = gtk_toggle_button_get_active(tb);
     update_apm_status(dialog->battmon);
 }
 
@@ -1340,6 +1361,9 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
     dialog->cb_hide_when_full = gtk_check_button_new_with_mnemonic(_("Hide time/percentage when full"));
     gtk_box_pack_start(GTK_BOX(vbox2), dialog->cb_hide_when_full, FALSE, FALSE, 0);
 
+    dialog->cb_hide_indicator_when_full = gtk_check_button_new_with_mnemonic(_("Hide bar indicator when full"));
+    gtk_box_pack_start(GTK_BOX(vbox2), dialog->cb_hide_indicator_when_full, FALSE, FALSE, 0);
+
     dialog->cb_disp_tooltip_percentage = gtk_check_button_new_with_mnemonic(_("Display percentage in tooltip"));
     gtk_box_pack_start(GTK_BOX(vbox2), dialog->cb_disp_tooltip_percentage, FALSE, FALSE, 0);
 
@@ -1363,6 +1387,7 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
     g_signal_connect(dialog->cb_disp_bar, "toggled", G_CALLBACK(set_disp_bar), dialog);
     g_signal_connect(dialog->cb_disp_time, "toggled", G_CALLBACK(set_disp_time), dialog);
     g_signal_connect(dialog->cb_hide_when_full, "toggled", G_CALLBACK(set_hide_when_full), dialog);
+    g_signal_connect(dialog->cb_hide_indicator_when_full, "toggled", G_CALLBACK(set_hide_indicator_when_full), dialog);
     g_signal_connect(dialog->cb_disp_tooltip_percentage, "toggled", G_CALLBACK(set_tooltip_disp_percentage), dialog);
     g_signal_connect(dialog->cb_disp_power, "toggled", G_CALLBACK(set_disp_power), dialog);
     g_signal_connect(dialog->cb_disp_tooltip_time, "toggled", G_CALLBACK(set_tooltip_time), dialog);

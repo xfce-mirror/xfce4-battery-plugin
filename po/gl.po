@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-02 06:32+0200\n"
-"PO-Revision-Date: 2019-08-15 06:04+0000\n"
+"PO-Revision-Date: 2019-08-21 13:39+0000\n"
 "Last-Translator: Daniel Muñiz Fontoira <dani@damufo.com>\n"
 "Language-Team: Galician (http://www.transifex.com/xfce/xfce-panel-plugins/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -56,13 +56,13 @@ msgstr "Desenchufado da rede eléctrica"
 msgid ""
 "WARNING: Your battery has reached critical status. You should plug in or "
 "shutdown your computer now to avoid possible data loss."
-msgstr "ADVERTENCIA: A batería chegou a un estado crítico. Debe enchufar ou apagar o computador agora para evitar unha posíbel perda de datos."
+msgstr "AVISO: A batería chegou a un estado crítico. Debe enchufar ou apagar o computador agora para evitar unha posíbel perda de datos."
 
 #: ../panel-plugin/battery.c:465
 msgid ""
 "WARNING: Your battery is running low. You should consider plugging in or "
 "shutting down your computer soon to avoid possible data loss."
-msgstr "ADVERTENCIA: A batería estase esgotando. Debería considerar enchufar ou apagar o computador decontado para evitar unha posíbel perda de datos."
+msgstr "AVISO: A batería estase esgotando. Debería considerar enchufar ou apagar o computador decontado para evitar unha posíbel perda de datos."
 
 #: ../panel-plugin/battery.c:508
 msgid "Battery"
@@ -79,7 +79,7 @@ msgstr "Seleccione unha orde"
 #: ../panel-plugin/battery.c:1095
 #, c-format
 msgid "Unable to open the following url: %s"
-msgstr "Non foi posible abrir o seguinte url: %s"
+msgstr "Non se puido abrir o seguinte url: %s"
 
 #: ../panel-plugin/battery.c:1120 ../panel-plugin/battery.desktop.in.h:1
 msgid "Battery Monitor"
@@ -131,7 +131,7 @@ msgstr "Non facer nada"
 
 #: ../panel-plugin/battery.c:1239 ../panel-plugin/battery.c:1287
 msgid "Display a warning message"
-msgstr "Mostrar unha mensaxe de advertencia"
+msgstr "Amosar unha mensaxe de aviso"
 
 #: ../panel-plugin/battery.c:1240 ../panel-plugin/battery.c:1288
 msgid "Run command"
@@ -159,47 +159,47 @@ msgstr "Niveis e _accións"
 
 #: ../panel-plugin/battery.c:1322
 msgid "Display label"
-msgstr "Mostrar unha etiqueta"
+msgstr "Amosar unha etiqueta"
 
 #: ../panel-plugin/battery.c:1325
 msgid "Display icon"
-msgstr "Mostrar unha icona"
+msgstr "Amosar unha icona"
 
 #: ../panel-plugin/battery.c:1328
 msgid "Display bar"
-msgstr "Mostrar a barra"
+msgstr "Amosar a barra"
 
 #: ../panel-plugin/battery.c:1331
 msgid "Display percentage"
-msgstr "Mostrar a porcentaxe"
+msgstr "Amosar a porcentaxe"
 
 #: ../panel-plugin/battery.c:1334
 msgid "Display time"
-msgstr "Mostrar o tempo"
+msgstr "Amosar o tempo"
 
 #: ../panel-plugin/battery.c:1337
 msgid "Display power"
-msgstr "Mostrar a enerxía"
+msgstr "Amosar a enerxía"
 
 #: ../panel-plugin/battery.c:1340
 msgid "Hide time/percentage when full"
-msgstr "Ocultar tempo/porcentaxe cando estea cargada"
+msgstr "Agochar tempo/porcentaxe cando estea cargada"
 
 #: ../panel-plugin/battery.c:1343
 msgid "Display percentage in tooltip"
-msgstr "Mostrar a porcentaxe na notificación"
+msgstr "Amosar a porcentaxe na notificación"
 
 #: ../panel-plugin/battery.c:1346
 msgid "Display time remaining in tooltip"
-msgstr "Mostrar o tempo restante na notificación"
+msgstr "Amosar o tempo restante na notificación"
 
 #: ../panel-plugin/battery.c:1349
 msgid "_Display"
-msgstr "_Mostrar"
+msgstr "_Amosar"
 
 #: ../panel-plugin/battery.c:1399 ../panel-plugin/battery.desktop.in.h:2
 msgid "Show and monitor the battery status"
-msgstr "Mostrar e monitorizar o estado da batería"
+msgstr "Amosar e monitorizar o estado da batería"
 
 #: ../panel-plugin/battery.c:1401
 msgid "Copyright (c) 2003-2019\n"

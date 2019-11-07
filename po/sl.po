@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-02 06:32+0200\n"
-"PO-Revision-Date: 2019-11-03 17:56+0000\n"
+"PO-Revision-Date: 2019-11-07 20:25+0000\n"
 "Last-Translator: Arnold Marko <arnold.marko@gmail.com>\n"
 "Language-Team: Slovenian (http://www.transifex.com/xfce/xfce-panel-plugins/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -82,7 +82,7 @@ msgstr "URL povezave ni mogoče odpreti: %s"
 
 #: ../panel-plugin/battery.c:1120 ../panel-plugin/battery.desktop.in.h:1
 msgid "Battery Monitor"
-msgstr "Nadzor baterije"
+msgstr "Prikazovalnik baterije"
 
 #: ../panel-plugin/battery.c:1123
 msgid "_Help"

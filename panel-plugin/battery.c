@@ -56,7 +56,7 @@
 #define LOW_COLOR       "#ffff00"
 #define CRITICAL_COLOR  "#ff0000"
 #define AVERAGING_CYCLE 5
-#define PLUGIN_WEBSITE  "https://goodies.xfce.org/projects/panel-plugins/xfce4-battery-plugin"
+#define PLUGIN_WEBSITE  "https://docs.xfce.org/panel-plugins/xfce4-battery-plugin"
 
 typedef struct
 {
@@ -1397,7 +1397,7 @@ battmon_show_about(XfcePanelPlugin *plugin, t_battmon *battmon)
         "version", PACKAGE_VERSION,
         "program-name", PACKAGE_NAME,
         "comments", _("Show and monitor the battery status"),
-        "website", "https://goodies.xfce.org/projects/panel-plugins/xfce4-battery-plugin",
+        "website", "https://docs.xfce.org/panel-plugins/xfce4-battery-plugin",
         "copyright", _("Copyright (c) 2003-2019\n"),
         "authors", auth, NULL);
 

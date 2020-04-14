@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-01 00:31+0100\n"
-"PO-Revision-Date: 2019-01-01 09:17+0000\n"
+"POT-Creation-Date: 2019-08-02 06:32+0200\n"
+"PO-Revision-Date: 2019-08-02 04:32+0000\n"
 "Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-panel-plugins/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -21,179 +21,187 @@ msgstr ""
 "Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../panel-plugin/battery.c:346
+#: ../panel-plugin/battery.c:345
 msgid "(No battery, AC on-line)"
 msgstr "(sense bateria, amb corrent elèctric)"
 
-#: ../panel-plugin/battery.c:348
+#: ../panel-plugin/battery.c:347
 msgid "(Charging from AC)"
 msgstr "(carregant del corrent)"
 
-#: ../panel-plugin/battery.c:348
+#: ../panel-plugin/battery.c:347
 msgid "(AC on-line)"
 msgstr "(amb corrent elèctric)"
 
-#: ../panel-plugin/battery.c:358
+#: ../panel-plugin/battery.c:357
 #, c-format
 msgid "%d%% (%02d:%02d) remaining"
 msgstr "%d%% (%02d:%02d) restants"
 
-#: ../panel-plugin/battery.c:360
+#: ../panel-plugin/battery.c:359
 #, c-format
 msgid "%02d:%02d remaining"
 msgstr "%02d:%02d restants"
 
-#: ../panel-plugin/battery.c:362
+#: ../panel-plugin/battery.c:361
 #, c-format
 msgid "%d%% remaining"
 msgstr "%d%% restants"
 
-#: ../panel-plugin/battery.c:364
+#: ../panel-plugin/battery.c:363
 #, c-format
 msgid "AC off-line"
 msgstr "Desconnectat del corrent"
 
-#: ../panel-plugin/battery.c:447
+#: ../panel-plugin/battery.c:446
 msgid ""
 "WARNING: Your battery has reached critical status. You should plug in or "
 "shutdown your computer now to avoid possible data loss."
 msgstr "AVÍS: la bateria està en una situació crítica. Per evitar possibles pèrdues d'informació hauríeu d'endollar o apagar l'ordinador ara."
 
-#: ../panel-plugin/battery.c:466
+#: ../panel-plugin/battery.c:465
 msgid ""
 "WARNING: Your battery is running low. You should consider plugging in or "
 "shutting down your computer soon to avoid possible data loss."
 msgstr "AVÍS: la bateria està baixa de càrrega. Hauríeu de pensar a endollar-la o apagar l'ordinador aviat per evitar possibles pèrdues d'informació."
 
-#: ../panel-plugin/battery.c:509
+#: ../panel-plugin/battery.c:508
 msgid "Battery"
 msgstr "Bateria"
 
-#: ../panel-plugin/battery.c:1002
+#: ../panel-plugin/battery.c:1001
 msgid "Select file"
 msgstr "Seleccioneu el fitxer"
 
-#: ../panel-plugin/battery.c:1043
+#: ../panel-plugin/battery.c:1042
 msgid "Select command"
 msgstr "Seleccioneu l'ordre"
 
-#: ../panel-plugin/battery.c:1096
+#: ../panel-plugin/battery.c:1095
 #, c-format
 msgid "Unable to open the following url: %s"
 msgstr "No es pot obrir l'url següent: %s"
 
-#: ../panel-plugin/battery.c:1121 ../panel-plugin/battery.desktop.in.h:1
+#: ../panel-plugin/battery.c:1120 ../panel-plugin/battery.desktop.in.h:1
 msgid "Battery Monitor"
 msgstr "Monitor de la bateria"
 
-#: ../panel-plugin/battery.c:1128
+#: ../panel-plugin/battery.c:1123
+msgid "_Help"
+msgstr "_Ajuda"
+
+#: ../panel-plugin/battery.c:1124
+msgid "_Close"
+msgstr "Tan_ca"
+
+#: ../panel-plugin/battery.c:1127
 msgid "Properties"
 msgstr "Propietats"
 
-#: ../panel-plugin/battery.c:1151
+#: ../panel-plugin/battery.c:1150
 msgid "On AC:"
 msgstr "Amb corrent elèctric:"
 
-#: ../panel-plugin/battery.c:1165
+#: ../panel-plugin/battery.c:1164
 msgid "Battery high:"
 msgstr "Bateria alta:"
 
-#: ../panel-plugin/battery.c:1179
+#: ../panel-plugin/battery.c:1178
 msgid "Battery low:"
 msgstr "Bateria baixa:"
 
-#: ../panel-plugin/battery.c:1193
+#: ../panel-plugin/battery.c:1192
 msgid "Battery critical:"
 msgstr "Bateria crítica:"
 
-#: ../panel-plugin/battery.c:1204
+#: ../panel-plugin/battery.c:1203
 msgid "Bar _colors"
 msgstr "_Colors de les barres"
 
-#: ../panel-plugin/battery.c:1218
+#: ../panel-plugin/battery.c:1217
 msgid "Low percentage:"
 msgstr "Baixa (percentatge):"
 
-#: ../panel-plugin/battery.c:1232
+#: ../panel-plugin/battery.c:1231
 msgid "Low battery action:"
 msgstr "Acció per bateria baixa:"
 
-#: ../panel-plugin/battery.c:1239 ../panel-plugin/battery.c:1287
+#: ../panel-plugin/battery.c:1238 ../panel-plugin/battery.c:1286
 msgid "Do nothing"
 msgstr "No fer res"
 
-#: ../panel-plugin/battery.c:1240 ../panel-plugin/battery.c:1288
+#: ../panel-plugin/battery.c:1239 ../panel-plugin/battery.c:1287
 msgid "Display a warning message"
 msgstr "Mostra el diàleg d'avís"
 
-#: ../panel-plugin/battery.c:1241 ../panel-plugin/battery.c:1289
+#: ../panel-plugin/battery.c:1240 ../panel-plugin/battery.c:1288
 msgid "Run command"
 msgstr "Executa una ordre"
 
-#: ../panel-plugin/battery.c:1242 ../panel-plugin/battery.c:1290
+#: ../panel-plugin/battery.c:1241 ../panel-plugin/battery.c:1289
 msgid "Run command in terminal"
 msgstr "Executa una ordre en un terminal"
 
-#: ../panel-plugin/battery.c:1250 ../panel-plugin/battery.c:1298
+#: ../panel-plugin/battery.c:1249 ../panel-plugin/battery.c:1297
 msgid "Command:"
 msgstr "Ordre:"
 
-#: ../panel-plugin/battery.c:1266
+#: ../panel-plugin/battery.c:1265
 msgid "Critical percentage:"
 msgstr "Perillosament baixa (percentatge):"
 
-#: ../panel-plugin/battery.c:1280
+#: ../panel-plugin/battery.c:1279
 msgid "Critical battery action:"
 msgstr "Acció per perillosament baixa:"
 
-#: ../panel-plugin/battery.c:1310
+#: ../panel-plugin/battery.c:1309
 msgid "Levels and _actions"
 msgstr "Nivells i _accions"
 
-#: ../panel-plugin/battery.c:1323
+#: ../panel-plugin/battery.c:1322
 msgid "Display label"
 msgstr "Mostra l'etiqueta"
 
-#: ../panel-plugin/battery.c:1326
+#: ../panel-plugin/battery.c:1325
 msgid "Display icon"
 msgstr "Mostra la icona"
 
-#: ../panel-plugin/battery.c:1329
+#: ../panel-plugin/battery.c:1328
 msgid "Display bar"
 msgstr "Mostra la barra"
 
-#: ../panel-plugin/battery.c:1332
+#: ../panel-plugin/battery.c:1331
 msgid "Display percentage"
 msgstr "Mostra el percentatge"
 
-#: ../panel-plugin/battery.c:1335
+#: ../panel-plugin/battery.c:1334
 msgid "Display time"
 msgstr "Mostra el temps"
 
-#: ../panel-plugin/battery.c:1338
+#: ../panel-plugin/battery.c:1337
 msgid "Display power"
 msgstr "Mostra l'energia"
 
-#: ../panel-plugin/battery.c:1341
+#: ../panel-plugin/battery.c:1340
 msgid "Hide time/percentage when full"
 msgstr "Oculta el temps o el percentatge quan estigui plena"
 
-#: ../panel-plugin/battery.c:1344
+#: ../panel-plugin/battery.c:1343
 msgid "Display percentage in tooltip"
 msgstr "Mostra el percentatge a l'indicador de funció"
 
-#: ../panel-plugin/battery.c:1347
+#: ../panel-plugin/battery.c:1346
 msgid "Display time remaining in tooltip"
 msgstr "Mostra el temps restant a l'indicador de funció"
 
-#: ../panel-plugin/battery.c:1350
+#: ../panel-plugin/battery.c:1349
 msgid "_Display"
 msgstr "_Visualització"
 
-#: ../panel-plugin/battery.c:1400 ../panel-plugin/battery.desktop.in.h:2
+#: ../panel-plugin/battery.c:1399 ../panel-plugin/battery.desktop.in.h:2
 msgid "Show and monitor the battery status"
 msgstr "Mostra i monitora l'estat de la bateria"
 
-#: ../panel-plugin/battery.c:1402
+#: ../panel-plugin/battery.c:1401
 msgid "Copyright (c) 2003-2019\n"
 msgstr "Drets d'autor (c) 2003-2019\n"

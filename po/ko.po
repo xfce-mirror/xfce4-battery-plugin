@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-01 00:31+0100\n"
-"PO-Revision-Date: 2019-04-01 01:28+0000\n"
+"POT-Creation-Date: 2019-08-02 06:32+0200\n"
+"PO-Revision-Date: 2019-08-02 04:32+0000\n"
 "Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/xfce/xfce-panel-plugins/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -19,179 +19,187 @@ msgstr ""
 "Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../panel-plugin/battery.c:346
+#: ../panel-plugin/battery.c:345
 msgid "(No battery, AC on-line)"
 msgstr "(배터리 없음, 전원 연결함)"
 
-#: ../panel-plugin/battery.c:348
+#: ../panel-plugin/battery.c:347
 msgid "(Charging from AC)"
 msgstr "(전원 연결하여 충전중)"
 
-#: ../panel-plugin/battery.c:348
+#: ../panel-plugin/battery.c:347
 msgid "(AC on-line)"
 msgstr "(전원 연결함)"
 
-#: ../panel-plugin/battery.c:358
+#: ../panel-plugin/battery.c:357
 #, c-format
 msgid "%d%% (%02d:%02d) remaining"
 msgstr "%d%% (%02d:%02d) 남음"
 
-#: ../panel-plugin/battery.c:360
+#: ../panel-plugin/battery.c:359
 #, c-format
 msgid "%02d:%02d remaining"
 msgstr "%02d:%02d 남음"
 
-#: ../panel-plugin/battery.c:362
+#: ../panel-plugin/battery.c:361
 #, c-format
 msgid "%d%% remaining"
 msgstr "%d%% 남음"
 
-#: ../panel-plugin/battery.c:364
+#: ../panel-plugin/battery.c:363
 #, c-format
 msgid "AC off-line"
 msgstr "전원 연결하지 않음"
 
-#: ../panel-plugin/battery.c:447
+#: ../panel-plugin/battery.c:446
 msgid ""
 "WARNING: Your battery has reached critical status. You should plug in or "
 "shutdown your computer now to avoid possible data loss."
 msgstr "경고: 배터리가 위험 상태에 도달했습니다. 가능한 데이터 유실을 방지하려면 전원을 연결하거나 컴퓨터를 종료합니다."
 
-#: ../panel-plugin/battery.c:466
+#: ../panel-plugin/battery.c:465
 msgid ""
 "WARNING: Your battery is running low. You should consider plugging in or "
 "shutting down your computer soon to avoid possible data loss."
 msgstr "경고: 배터리가 부족합니다. 가능한 데이터 유실을 방지하려면 전원을 연결하거나 컴퓨터를 끄는것을 고려하는 것이 좋습니다."
 
-#: ../panel-plugin/battery.c:509
+#: ../panel-plugin/battery.c:508
 msgid "Battery"
 msgstr "배터리"
 
-#: ../panel-plugin/battery.c:1002
+#: ../panel-plugin/battery.c:1001
 msgid "Select file"
 msgstr "파일 선택"
 
-#: ../panel-plugin/battery.c:1043
+#: ../panel-plugin/battery.c:1042
 msgid "Select command"
 msgstr "명령 선택"
 
-#: ../panel-plugin/battery.c:1096
+#: ../panel-plugin/battery.c:1095
 #, c-format
 msgid "Unable to open the following url: %s"
 msgstr "다음 URL을 열 수 없습니다: %s"
 
-#: ../panel-plugin/battery.c:1121 ../panel-plugin/battery.desktop.in.h:1
+#: ../panel-plugin/battery.c:1120 ../panel-plugin/battery.desktop.in.h:1
 msgid "Battery Monitor"
 msgstr "배터리 감시기"
 
-#: ../panel-plugin/battery.c:1128
+#: ../panel-plugin/battery.c:1123
+msgid "_Help"
+msgstr "도움말(_H)"
+
+#: ../panel-plugin/battery.c:1124
+msgid "_Close"
+msgstr "닫기(_C)"
+
+#: ../panel-plugin/battery.c:1127
 msgid "Properties"
 msgstr "속성"
 
-#: ../panel-plugin/battery.c:1151
+#: ../panel-plugin/battery.c:1150
 msgid "On AC:"
 msgstr "전원:"
 
-#: ../panel-plugin/battery.c:1165
+#: ../panel-plugin/battery.c:1164
 msgid "Battery high:"
 msgstr "배터리 충분:"
 
-#: ../panel-plugin/battery.c:1179
+#: ../panel-plugin/battery.c:1178
 msgid "Battery low:"
 msgstr "배터리 부족:"
 
-#: ../panel-plugin/battery.c:1193
+#: ../panel-plugin/battery.c:1192
 msgid "Battery critical:"
 msgstr "배터리 위험:"
 
-#: ../panel-plugin/battery.c:1204
+#: ../panel-plugin/battery.c:1203
 msgid "Bar _colors"
 msgstr "막대 색(_C)"
 
-#: ../panel-plugin/battery.c:1218
+#: ../panel-plugin/battery.c:1217
 msgid "Low percentage:"
 msgstr "최저 백분율:"
 
-#: ../panel-plugin/battery.c:1232
+#: ../panel-plugin/battery.c:1231
 msgid "Low battery action:"
 msgstr "최저 배터리 동작:"
 
-#: ../panel-plugin/battery.c:1239 ../panel-plugin/battery.c:1287
+#: ../panel-plugin/battery.c:1238 ../panel-plugin/battery.c:1286
 msgid "Do nothing"
 msgstr "아무것도 안 함"
 
-#: ../panel-plugin/battery.c:1240 ../panel-plugin/battery.c:1288
+#: ../panel-plugin/battery.c:1239 ../panel-plugin/battery.c:1287
 msgid "Display a warning message"
 msgstr "경고 메시지 보임"
 
-#: ../panel-plugin/battery.c:1241 ../panel-plugin/battery.c:1289
+#: ../panel-plugin/battery.c:1240 ../panel-plugin/battery.c:1288
 msgid "Run command"
 msgstr "명령 실행"
 
-#: ../panel-plugin/battery.c:1242 ../panel-plugin/battery.c:1290
+#: ../panel-plugin/battery.c:1241 ../panel-plugin/battery.c:1289
 msgid "Run command in terminal"
 msgstr "터미널에서 명령 실행"
 
-#: ../panel-plugin/battery.c:1250 ../panel-plugin/battery.c:1298
+#: ../panel-plugin/battery.c:1249 ../panel-plugin/battery.c:1297
 msgid "Command:"
 msgstr "명령:"
 
-#: ../panel-plugin/battery.c:1266
+#: ../panel-plugin/battery.c:1265
 msgid "Critical percentage:"
 msgstr "위험 백분율:"
 
-#: ../panel-plugin/battery.c:1280
+#: ../panel-plugin/battery.c:1279
 msgid "Critical battery action:"
 msgstr "위험 배터리 동작:"
 
-#: ../panel-plugin/battery.c:1310
+#: ../panel-plugin/battery.c:1309
 msgid "Levels and _actions"
 msgstr "수준과 동작(_A)"
 
-#: ../panel-plugin/battery.c:1323
+#: ../panel-plugin/battery.c:1322
 msgid "Display label"
 msgstr "레이블 보기"
 
-#: ../panel-plugin/battery.c:1326
+#: ../panel-plugin/battery.c:1325
 msgid "Display icon"
 msgstr "아이콘 보기"
 
-#: ../panel-plugin/battery.c:1329
+#: ../panel-plugin/battery.c:1328
 msgid "Display bar"
 msgstr "표시 막대"
 
-#: ../panel-plugin/battery.c:1332
+#: ../panel-plugin/battery.c:1331
 msgid "Display percentage"
 msgstr "백분율 보기"
 
-#: ../panel-plugin/battery.c:1335
+#: ../panel-plugin/battery.c:1334
 msgid "Display time"
 msgstr "시간 보기"
 
-#: ../panel-plugin/battery.c:1338
+#: ../panel-plugin/battery.c:1337
 msgid "Display power"
 msgstr "전원 보기"
 
-#: ../panel-plugin/battery.c:1341
+#: ../panel-plugin/battery.c:1340
 msgid "Hide time/percentage when full"
 msgstr "배터리가 찼을 때 시간/백분율 숨기기"
 
-#: ../panel-plugin/battery.c:1344
+#: ../panel-plugin/battery.c:1343
 msgid "Display percentage in tooltip"
 msgstr "풍선 도움말로 백분율 보기"
 
-#: ../panel-plugin/battery.c:1347
+#: ../panel-plugin/battery.c:1346
 msgid "Display time remaining in tooltip"
 msgstr "풍선 도움말로 남은 시간 보기"
 
-#: ../panel-plugin/battery.c:1350
+#: ../panel-plugin/battery.c:1349
 msgid "_Display"
 msgstr "표시(_D)"
 
-#: ../panel-plugin/battery.c:1400 ../panel-plugin/battery.desktop.in.h:2
+#: ../panel-plugin/battery.c:1399 ../panel-plugin/battery.desktop.in.h:2
 msgid "Show and monitor the battery status"
 msgstr "배터리 상태를 보이며 감시합니다"
 
-#: ../panel-plugin/battery.c:1402
+#: ../panel-plugin/battery.c:1401
 msgid "Copyright (c) 2003-2019\n"
 msgstr "Copyright (c) 2003-2019\n"

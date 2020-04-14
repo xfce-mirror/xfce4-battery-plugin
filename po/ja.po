@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-01 00:31+0100\n"
-"PO-Revision-Date: 2019-01-10 23:12+0000\n"
+"POT-Creation-Date: 2019-08-02 06:32+0200\n"
+"PO-Revision-Date: 2019-08-02 04:32+0000\n"
 "Last-Translator: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/xfce/xfce-panel-plugins/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -19,179 +19,187 @@ msgstr ""
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../panel-plugin/battery.c:346
+#: ../panel-plugin/battery.c:345
 msgid "(No battery, AC on-line)"
 msgstr "(バッテリなし、AC 接続)"
 
-#: ../panel-plugin/battery.c:348
+#: ../panel-plugin/battery.c:347
 msgid "(Charging from AC)"
 msgstr "(AC から充電中)"
 
-#: ../panel-plugin/battery.c:348
+#: ../panel-plugin/battery.c:347
 msgid "(AC on-line)"
 msgstr "(AC 接続)"
 
-#: ../panel-plugin/battery.c:358
+#: ../panel-plugin/battery.c:357
 #, c-format
 msgid "%d%% (%02d:%02d) remaining"
 msgstr "残り %d%% (%02d:%02d)"
 
-#: ../panel-plugin/battery.c:360
+#: ../panel-plugin/battery.c:359
 #, c-format
 msgid "%02d:%02d remaining"
 msgstr "残り %02d:%02d"
 
-#: ../panel-plugin/battery.c:362
+#: ../panel-plugin/battery.c:361
 #, c-format
 msgid "%d%% remaining"
 msgstr "残り %d%%"
 
-#: ../panel-plugin/battery.c:364
+#: ../panel-plugin/battery.c:363
 #, c-format
 msgid "AC off-line"
 msgstr "AC 未接続"
 
-#: ../panel-plugin/battery.c:447
+#: ../panel-plugin/battery.c:446
 msgid ""
 "WARNING: Your battery has reached critical status. You should plug in or "
 "shutdown your computer now to avoid possible data loss."
 msgstr "警告: バッテリが空に近い状態になりました。電源プラグを差し込むか、できるたけデータが消えないようにコンピューターをシャットダウンすべきです。"
 
-#: ../panel-plugin/battery.c:466
+#: ../panel-plugin/battery.c:465
 msgid ""
 "WARNING: Your battery is running low. You should consider plugging in or "
 "shutting down your computer soon to avoid possible data loss."
 msgstr "警告: バッテリが残り少なくなりました。電源プラグを差し込むか、データが消えないようにコンピューターのシャットダウンを検討してください。"
 
-#: ../panel-plugin/battery.c:509
+#: ../panel-plugin/battery.c:508
 msgid "Battery"
 msgstr "バッテリ"
 
-#: ../panel-plugin/battery.c:1002
+#: ../panel-plugin/battery.c:1001
 msgid "Select file"
 msgstr "ファイル選択"
 
-#: ../panel-plugin/battery.c:1043
+#: ../panel-plugin/battery.c:1042
 msgid "Select command"
 msgstr "コマンド選択"
 
-#: ../panel-plugin/battery.c:1096
+#: ../panel-plugin/battery.c:1095
 #, c-format
 msgid "Unable to open the following url: %s"
 msgstr "次の URL を開くことができません: %s"
 
-#: ../panel-plugin/battery.c:1121 ../panel-plugin/battery.desktop.in.h:1
+#: ../panel-plugin/battery.c:1120 ../panel-plugin/battery.desktop.in.h:1
 msgid "Battery Monitor"
 msgstr "バッテリモニター"
 
-#: ../panel-plugin/battery.c:1128
+#: ../panel-plugin/battery.c:1123
+msgid "_Help"
+msgstr "ヘルプ(_H)"
+
+#: ../panel-plugin/battery.c:1124
+msgid "_Close"
+msgstr "閉じる(_C)"
+
+#: ../panel-plugin/battery.c:1127
 msgid "Properties"
 msgstr "プロパティ"
 
-#: ../panel-plugin/battery.c:1151
+#: ../panel-plugin/battery.c:1150
 msgid "On AC:"
 msgstr "AC 電源の時:"
 
-#: ../panel-plugin/battery.c:1165
+#: ../panel-plugin/battery.c:1164
 msgid "Battery high:"
 msgstr "残量が多い時:"
 
-#: ../panel-plugin/battery.c:1179
+#: ../panel-plugin/battery.c:1178
 msgid "Battery low:"
 msgstr "残量が少ない時:"
 
-#: ../panel-plugin/battery.c:1193
+#: ../panel-plugin/battery.c:1192
 msgid "Battery critical:"
 msgstr "残量が空に近い時:"
 
-#: ../panel-plugin/battery.c:1204
+#: ../panel-plugin/battery.c:1203
 msgid "Bar _colors"
 msgstr "バーの色(_C)"
 
-#: ../panel-plugin/battery.c:1218
+#: ../panel-plugin/battery.c:1217
 msgid "Low percentage:"
 msgstr "残り少ないとする割合:"
 
-#: ../panel-plugin/battery.c:1232
+#: ../panel-plugin/battery.c:1231
 msgid "Low battery action:"
 msgstr "バッテリが少ない時のアクション:"
 
-#: ../panel-plugin/battery.c:1239 ../panel-plugin/battery.c:1287
+#: ../panel-plugin/battery.c:1238 ../panel-plugin/battery.c:1286
 msgid "Do nothing"
 msgstr "なにもしない"
 
-#: ../panel-plugin/battery.c:1240 ../panel-plugin/battery.c:1288
+#: ../panel-plugin/battery.c:1239 ../panel-plugin/battery.c:1287
 msgid "Display a warning message"
 msgstr "警告メッセージを表示する"
 
-#: ../panel-plugin/battery.c:1241 ../panel-plugin/battery.c:1289
+#: ../panel-plugin/battery.c:1240 ../panel-plugin/battery.c:1288
 msgid "Run command"
 msgstr "コマンドを実行する"
 
-#: ../panel-plugin/battery.c:1242 ../panel-plugin/battery.c:1290
+#: ../panel-plugin/battery.c:1241 ../panel-plugin/battery.c:1289
 msgid "Run command in terminal"
 msgstr "ターミナルでコマンドを実行する"
 
-#: ../panel-plugin/battery.c:1250 ../panel-plugin/battery.c:1298
+#: ../panel-plugin/battery.c:1249 ../panel-plugin/battery.c:1297
 msgid "Command:"
 msgstr "コマンド:"
 
-#: ../panel-plugin/battery.c:1266
+#: ../panel-plugin/battery.c:1265
 msgid "Critical percentage:"
 msgstr "空に近いとする割合:"
 
-#: ../panel-plugin/battery.c:1280
+#: ../panel-plugin/battery.c:1279
 msgid "Critical battery action:"
 msgstr "バッテリが空に近い時のアクション:"
 
-#: ../panel-plugin/battery.c:1310
+#: ../panel-plugin/battery.c:1309
 msgid "Levels and _actions"
 msgstr "レベルとアクション(_A)"
 
-#: ../panel-plugin/battery.c:1323
+#: ../panel-plugin/battery.c:1322
 msgid "Display label"
 msgstr "ラベルを表示する"
 
-#: ../panel-plugin/battery.c:1326
+#: ../panel-plugin/battery.c:1325
 msgid "Display icon"
 msgstr "アイコンを表示する"
 
-#: ../panel-plugin/battery.c:1329
+#: ../panel-plugin/battery.c:1328
 msgid "Display bar"
 msgstr "バーを表示する"
 
-#: ../panel-plugin/battery.c:1332
+#: ../panel-plugin/battery.c:1331
 msgid "Display percentage"
 msgstr "残量を表示する"
 
-#: ../panel-plugin/battery.c:1335
+#: ../panel-plugin/battery.c:1334
 msgid "Display time"
 msgstr "時間を表示する"
 
-#: ../panel-plugin/battery.c:1338
+#: ../panel-plugin/battery.c:1337
 msgid "Display power"
 msgstr "電源を表示する"
 
-#: ../panel-plugin/battery.c:1341
+#: ../panel-plugin/battery.c:1340
 msgid "Hide time/percentage when full"
 msgstr "バッテリがフル充電時、時間と残量を隠す"
 
-#: ../panel-plugin/battery.c:1344
+#: ../panel-plugin/battery.c:1343
 msgid "Display percentage in tooltip"
 msgstr "残量をツールチップに表示する"
 
-#: ../panel-plugin/battery.c:1347
+#: ../panel-plugin/battery.c:1346
 msgid "Display time remaining in tooltip"
 msgstr "残り時間をツールチップに表示する"
 
-#: ../panel-plugin/battery.c:1350
+#: ../panel-plugin/battery.c:1349
 msgid "_Display"
 msgstr "表示(_D)"
 
-#: ../panel-plugin/battery.c:1400 ../panel-plugin/battery.desktop.in.h:2
+#: ../panel-plugin/battery.c:1399 ../panel-plugin/battery.desktop.in.h:2
 msgid "Show and monitor the battery status"
 msgstr "バッテリ状況の表示と監視を行います"
 
-#: ../panel-plugin/battery.c:1402
+#: ../panel-plugin/battery.c:1401
 msgid "Copyright (c) 2003-2019\n"
 msgstr "Copyright (c) 2003-2019\n"

@@ -8,14 +8,15 @@
 # Adolfo Jayme-Barrientos, 2019
 # Adolfo Jayme-Barrientos, 2014
 # gabrieltandil <gabriel.tandil@gmail.com>, 2016
+# Ignacio Poggi <ignaciop.3@gmail.com>, 2020
 # prflr88 <prflr88@gmail.com>, 2013-2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-02 06:32+0200\n"
-"PO-Revision-Date: 2019-08-02 04:32+0000\n"
-"Last-Translator: Casper casper\n"
+"PO-Revision-Date: 2020-04-21 01:44+0000\n"
+"Last-Translator: Ignacio Poggi <ignaciop.3@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/xfce/xfce-panel-plugins/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -206,4 +207,4 @@ msgstr "Visualizar y monitorizar el estado de la batería"
 
 #: ../panel-plugin/battery.c:1401
 msgid "Copyright (c) 2003-2019\n"
-msgstr "Derechos de autor © 2003-2019\n"
+msgstr "Derechos de autor (c) 2003-2019\n"

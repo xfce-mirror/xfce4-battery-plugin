@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Arman Harutyunyan <arman.harut468@gmail.com>, 2020
 # Real School <localization@ehayq.am>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-02 06:32+0200\n"
-"PO-Revision-Date: 2020-05-25 07:33+0000\n"
+"PO-Revision-Date: 2020-06-04 13:00+0000\n"
 "Last-Translator: Arman Harutyunyan <arman.harut468@gmail.com>\n"
 "Language-Team: Eastern Armenian (http://www.transifex.com/xfce/xfce-panel-plugins/language/hye/)\n"
 "MIME-Version: 1.0\n"
@@ -54,13 +55,13 @@ msgstr "AC ան-գիծ"
 msgid ""
 "WARNING: Your battery has reached critical status. You should plug in or "
 "shutdown your computer now to avoid possible data loss."
-msgstr "ԶԳՈՒՇԱՑՈՒՄ․ Ձեր մարտկոցը հասաւ վճռական վիճակի։ Տուեալների կորստից խուսափելու համար լիցքաւորեք, կամ անջատեք համակարգիչը հիմա։"
+msgstr "ԶԳՈՒՇԱՑՈՒՄ․ Ձեր մարտկոցը հասաւ վճռական վիճակի։ Տուեալների կորստից խուսափելու համար լիցքաւորէք, կամ անջատէք համակարգիչը հիմա։"
 
 #: ../panel-plugin/battery.c:465
 msgid ""
 "WARNING: Your battery is running low. You should consider plugging in or "
 "shutting down your computer soon to avoid possible data loss."
-msgstr "ԶԳՈՒՇԱՑՈՒՄ․  Մարտկոցի լիցքի մակարդակը ցածր է։ Տուեալների կորստից խուսափելու համար լիցքաւորեք, կամ անջատեք համակարգիչը հիմա։"
+msgstr "ԶԳՈՒՇԱՑՈՒՄ․  Մարտկոցի լիցքի մակարդակը ցածր է։ Տուեալների կորստից խուսափելու համար լիցքաւորէք, կամ անջատէք համակարգիչը հիմա։"
 
 #: ../panel-plugin/battery.c:508
 msgid "Battery"

@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-02 06:32+0200\n"
-"PO-Revision-Date: 2020-06-04 13:00+0000\n"
+"PO-Revision-Date: 2020-06-07 20:26+0000\n"
 "Last-Translator: Arman Harutyunyan <arman.harut468@gmail.com>\n"
 "Language-Team: Eastern Armenian (http://www.transifex.com/xfce/xfce-panel-plugins/language/hye/)\n"
 "MIME-Version: 1.0\n"
@@ -86,7 +86,7 @@ msgstr "Մարտկոցի ցուցադրիչ"
 
 #: ../panel-plugin/battery.c:1123
 msgid "_Help"
-msgstr ""
+msgstr "_Աւգնութիւն"
 
 #: ../panel-plugin/battery.c:1124
 msgid "_Close"

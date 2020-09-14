@@ -1,14 +1,14 @@
-[![License](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://gitlab.xfce.org/xfce/xfce4-battery-plugin/COPYING)
+[![License](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://gitlab.xfce.org/panel-plugins/xfce4-battery-plugin/-/blob/master/COPYING)
 
 # xfce4-battery-plugin
 
-xfce4-battery-plugin is a battery monitor panel plugin for Xfce4, compatible with APM and ACPI, for Linux and BSDs.
+Xfce4-battery-plugin is a battery monitor panel plugin for Xfce4, compatible with APM and ACPI, for Linux and BSDs.
 
 ----
 
 ### Homepage
 
-[xfce4-battery-plugin documentation](https://docs.xfce.org/panel-plugins/xfce4-battery-plugin/start)
+[Xfce4-battery-plugin documentation](https://docs.xfce.org/panel-plugins/xfce4-battery-plugin/start)
 
 ### Changelog
 
@@ -16,13 +16,13 @@ See [NEWS](https://gitlab.xfce.org/panel-plugins/xfce4-battery-plugin/-/blob/mas
 
 ### Source Code Repository
 
-[xfce4-battery-plugin source code](https://gitlab.xfce.org/panel-plugins/xfce4-battery-plugin)
+[Xfce4-battery-plugin source code](https://gitlab.xfce.org/panel-plugins/xfce4-battery-plugin)
 
-### Download A Release Tarball
+### Download a Release Tarball
 
-[xfce4-battery-plugin archive](https://archive.xfce.org/src/panel-plugins/xfce4-battery-plugin)
+[Xfce4-battery-plugin archive](https://archive.xfce.org/src/panel-plugins/xfce4-battery-plugin)
     or
-[xfce4-battery-plugin tags](https://gitlab.xfce.org/panel-plugins/xfce4-battery-plugin/-/tags)
+[Xfce4-battery-plugin tags](https://gitlab.xfce.org/panel-plugins/xfce4-battery-plugin/-/tags)
 
 ### Installation
 

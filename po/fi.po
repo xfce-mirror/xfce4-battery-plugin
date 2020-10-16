@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Elias Julkunen <elias.julkunen@gmail.com>, 2006
-# Jari Rahkonen <inactive+jari@transifex.com>, 2008
+# 9e06e299e74d2541309887ba0f7d6eee_126c110 <673225c2b34f8d31a8e0b8e4dc2dd62e_1152>, 2008
 # Jiri Grönroos <jiri.gronroos@iki.fi>, 2013
 # Pasi Lallinaho <pasi@shimmerproject.org>, 2015,2017
 msgid ""

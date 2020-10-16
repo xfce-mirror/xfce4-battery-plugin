@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Andhika Padmawan <andhika.padmawan@gmail.com>, 2008
+# Triyan W. Nugroho <triyan.wn@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-02 06:32+0200\n"
-"PO-Revision-Date: 2020-05-28 12:38+0000\n"
+"PO-Revision-Date: 2020-08-03 09:04+0000\n"
 "Last-Translator: Triyan W. Nugroho <triyan.wn@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/xfce/xfce-panel-plugins/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -201,4 +202,4 @@ msgstr "Tampilkan dan pantau status baterai"
 
 #: ../panel-plugin/battery.c:1401
 msgid "Copyright (c) 2003-2019\n"
-msgstr ""
+msgstr "Hak Cipta (c) 2003-2019\n"

@@ -154,7 +154,7 @@ init_options(t_battmon_options *options)
     gdk_rgba_parse(&(options->colorC), CRITICAL_COLOR);
 }
 
-static gboolean
+static void
 update_apm_status(t_battmon *battmon)
 {
     int method = BM_BROKEN;
@@ -192,9 +192,9 @@ update_apm_status(t_battmon *battmon)
     int fd;
 
     fd = open(APMDEVICE, O_RDONLY);
-    if (fd == -1) return TRUE;
+    if (fd == -1) return;
     if (ioctl(fd, APM_IOC_GETPOWER, &apm) == -1)
-        return TRUE;
+        return;
     close(fd);
     charge = apm.battery_life;
     time_remaining = apm.minutes_left;
@@ -446,7 +446,7 @@ do_critical_warn:
                     _("WARNING: Your battery has reached critical status. You should plug in or shutdown your computer now to avoid possible data loss."));
                 g_signal_connect_swapped (dialog, "response", G_CALLBACK (gtk_widget_destroy), dialog);
                 gtk_widget_show_all (dialog);
-                return TRUE;
+                return;
             }
 
             if (battmon->options.action_on_critical == BM_COMMAND ||
@@ -465,7 +465,7 @@ do_low_warn:
                 _("WARNING: Your battery is running low. You should consider plugging in or shutting down your computer soon to avoid possible data loss."));
                 g_signal_connect_swapped (dialog, "response", G_CALLBACK (gtk_widget_destroy), dialog);
                 gtk_widget_show_all (dialog);
-                return TRUE;
+                return;
             }
 
             if (battmon->options.action_on_low == BM_COMMAND ||
@@ -477,8 +477,6 @@ do_low_warn:
             }
         }
     }
-
-    return TRUE;
 }
 
 static void
@@ -1432,6 +1430,14 @@ battmon_dbus_monitor(t_battmon *battmon)
     g_signal_connect(proxy, "g-properties-changed", G_CALLBACK(on_power_change), battmon);
 }
 
+static gboolean
+update_apm_status_cb(gpointer user_data)
+{
+    t_battmon *battmon = user_data;
+    update_apm_status(battmon);
+    return TRUE;
+}
+
 /* create the plugin */
 static void
 battmon_construct(XfcePanelPlugin *plugin)
@@ -1472,7 +1478,7 @@ battmon_construct(XfcePanelPlugin *plugin)
 
     /* Update battery status every 30 seconds */
     if (battmon->timeoutid == 0)
-        battmon->timeoutid = g_timeout_add_seconds(30,(GSourceFunc) update_apm_status, battmon);
+        battmon->timeoutid = g_timeout_add_seconds(30, update_apm_status_cb, battmon);
 
     /* Update battery status on UPower events like power cord connected, disconnected, lid opened */
     battmon_dbus_monitor(battmon);

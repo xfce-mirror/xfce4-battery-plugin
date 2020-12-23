@@ -515,6 +515,7 @@ setup_battmon(t_battmon *battmon)
     /* percent + rtime */
     /* create the label hvbox with an orientation opposite to the panel */
     battmon->timechargebox = gtk_box_new(!xfce_panel_plugin_get_orientation(battmon->plugin), 0);
+    gtk_box_set_homogeneous(GTK_BOX(battmon->timechargebox), TRUE);
     gtk_box_pack_start(GTK_BOX(battmon->ebox), battmon->timechargebox, FALSE, FALSE, 0);
 
     battmon->charge = (GtkLabel *)gtk_label_new("--");
@@ -526,6 +527,7 @@ setup_battmon(t_battmon *battmon)
     /* ac-fan-temp */
     /* create the label hvbox with an orientation opposite to the panel */
     battmon->actempbox = gtk_box_new(!xfce_panel_plugin_get_orientation(battmon->plugin), 0);
+    gtk_box_set_homogeneous(GTK_BOX(battmon->timechargebox), TRUE);
     gtk_box_pack_start(GTK_BOX(battmon->ebox), battmon->actempbox, FALSE, FALSE, 0);
 
     battmon->acfan = (GtkLabel *)gtk_label_new("--");

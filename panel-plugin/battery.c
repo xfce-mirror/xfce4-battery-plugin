@@ -86,7 +86,6 @@ typedef struct
     XfcePanelPlugin *plugin;
 
     GtkWidget         *ebox, *timechargebox, *actempbox;
-    GtkWidget         *timechargealignment, *actempalignment;
     GtkWidget         *battstatus;
     int                timeoutid; /* To update apm status */
     gboolean           low;
@@ -317,7 +316,7 @@ update_apm_status(t_battmon *battmon)
 
     if (battmon->options.display_percentage && charge > 0 && !(battmon->options.hide_when_full && acline && charge >= 99)) {
         gtk_widget_show(GTK_WIDGET(battmon->charge));
-        gtk_widget_show(GTK_WIDGET(battmon->timechargealignment));
+        gtk_widget_show(GTK_WIDGET(battmon->timechargebox));
         g_snprintf(buffer, sizeof(buffer),"%d%% ", charge);
         gtk_label_set_text(battmon->charge,buffer);
     } else {
@@ -326,7 +325,7 @@ update_apm_status(t_battmon *battmon)
 
     if (battmon->options.display_time && time_remaining > 0 && !(battmon->options.hide_when_full && acline && charge >= 99 )) {
         gtk_widget_show(GTK_WIDGET(battmon->rtime));
-        gtk_widget_show(GTK_WIDGET(battmon->timechargealignment));
+        gtk_widget_show(GTK_WIDGET(battmon->timechargebox));
         g_snprintf(buffer, sizeof(buffer),"%02d:%02d ",time_remaining/60,time_remaining%60);
         gtk_label_set_text(battmon->rtime,buffer);
 
@@ -335,7 +334,7 @@ update_apm_status(t_battmon *battmon)
     }
 
     if ((!battmon->options.display_time && !battmon->options.display_percentage) || (battmon->options.hide_when_full && acline && charge >= 99 )) {
-        gtk_widget_hide(GTK_WIDGET(battmon->timechargealignment));
+        gtk_widget_hide(GTK_WIDGET(battmon->timechargebox));
     }
 
     if (acline) {
@@ -368,7 +367,7 @@ update_apm_status(t_battmon *battmon)
     if (battmon->options.display_power) {
         gtk_widget_show(GTK_WIDGET(battmon->acfan));
         gtk_widget_show(GTK_WIDGET(battmon->temp));
-        gtk_widget_show_all(GTK_WIDGET(battmon->actempalignment));
+        gtk_widget_show_all(GTK_WIDGET(battmon->actempbox));
 
         fan=get_fan_status();
         if (acline && fan)
@@ -393,7 +392,7 @@ update_apm_status(t_battmon *battmon)
     } else {
         gtk_widget_hide(GTK_WIDGET(battmon->acfan));
         gtk_widget_hide(GTK_WIDGET(battmon->temp));
-        gtk_widget_hide(GTK_WIDGET(battmon->actempalignment));
+        gtk_widget_hide(GTK_WIDGET(battmon->actempbox));
     }
 
     gtk_progress_bar_set_text(GTK_PROGRESS_BAR(battmon->battstatus), NULL);
@@ -516,14 +515,7 @@ setup_battmon(t_battmon *battmon)
     /* percent + rtime */
     /* create the label hvbox with an orientation opposite to the panel */
     battmon->timechargebox = gtk_box_new(!xfce_panel_plugin_get_orientation(battmon->plugin), 0);
-
-    /* Should be removed(was a GtkAligment)? */
-    battmon->timechargealignment = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-    gtk_widget_set_halign(GTK_WIDGET(battmon->timechargealignment), GTK_ALIGN_CENTER);
-    gtk_widget_set_valign(GTK_WIDGET(battmon->timechargealignment), GTK_ALIGN_CENTER);
-
-    gtk_container_add (GTK_CONTAINER(battmon->timechargealignment), battmon->timechargebox);
-    gtk_box_pack_start(GTK_BOX(battmon->ebox), battmon->timechargealignment, FALSE, FALSE, 2);
+    gtk_box_pack_start(GTK_BOX(battmon->ebox), battmon->timechargebox, FALSE, FALSE, 0);
 
     battmon->charge = (GtkLabel *)gtk_label_new("--");
     gtk_box_pack_start(GTK_BOX(battmon->timechargebox),GTK_WIDGET(battmon->charge),TRUE, TRUE, 0);
@@ -534,14 +526,7 @@ setup_battmon(t_battmon *battmon)
     /* ac-fan-temp */
     /* create the label hvbox with an orientation opposite to the panel */
     battmon->actempbox = gtk_box_new(!xfce_panel_plugin_get_orientation(battmon->plugin), 0);
-
-    /* Should be removed(was a GtkAligment)? */
-    battmon->actempalignment = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-    gtk_widget_set_halign(GTK_WIDGET(battmon->actempalignment), GTK_ALIGN_CENTER);
-    gtk_widget_set_valign(GTK_WIDGET(battmon->actempalignment), GTK_ALIGN_CENTER);
-
-    gtk_container_add (GTK_CONTAINER(battmon->actempalignment), battmon->actempbox);
-    gtk_box_pack_start(GTK_BOX(battmon->ebox), battmon->actempalignment, FALSE, FALSE, 2);
+    gtk_box_pack_start(GTK_BOX(battmon->ebox), battmon->actempbox, FALSE, FALSE, 0);
 
     battmon->acfan = (GtkLabel *)gtk_label_new("--");
     gtk_box_pack_start(GTK_BOX(battmon->actempbox),GTK_WIDGET(battmon->acfan),TRUE, TRUE, 0);
@@ -559,7 +544,7 @@ setup_battmon(t_battmon *battmon)
     if (!battmon->options.display_power) {
         gtk_widget_hide(GTK_WIDGET(battmon->acfan));
         gtk_widget_hide(GTK_WIDGET(battmon->temp));
-        gtk_widget_hide(GTK_WIDGET(battmon->actempalignment));
+        gtk_widget_hide(GTK_WIDGET(battmon->actempbox));
     }
     if (!battmon->options.display_percentage) {
         gtk_widget_hide(GTK_WIDGET(battmon->charge));
@@ -568,7 +553,7 @@ setup_battmon(t_battmon *battmon)
         gtk_widget_hide(GTK_WIDGET(battmon->rtime));
     }
     if (!battmon->options.display_time && !battmon->options.display_percentage) {
-        gtk_widget_hide(GTK_WIDGET(battmon->timechargealignment));
+        gtk_widget_hide(GTK_WIDGET(battmon->timechargebox));
     }
 
     gtk_widget_set_size_request(battmon->ebox, -1, -1);

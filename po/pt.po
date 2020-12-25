@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Hugo Carvalho <hugokarvalho@hotmail.com>, 2020
 # Nuno Miguel <nunis@netcabo.pt>, 2007
 # Nuno Miguel <nunomgue@gmail.com>, 2016
 msgid ""
@@ -10,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-02 06:32+0200\n"
-"PO-Revision-Date: 2019-08-02 04:32+0000\n"
-"Last-Translator: Nuno Miguel <nunomgue@gmail.com>\n"
+"PO-Revision-Date: 2020-12-25 22:42+0000\n"
+"Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese (http://www.transifex.com/xfce/xfce-panel-plugins/language/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -90,7 +91,7 @@ msgstr "_Ajuda"
 
 #: ../panel-plugin/battery.c:1124
 msgid "_Close"
-msgstr "_Fechar"
+msgstr "Fe_char"
 
 #: ../panel-plugin/battery.c:1127
 msgid "Properties"
@@ -126,11 +127,11 @@ msgstr "Ação para bateria fraca:"
 
 #: ../panel-plugin/battery.c:1238 ../panel-plugin/battery.c:1286
 msgid "Do nothing"
-msgstr "Nada fazer"
+msgstr "Não fazer nada"
 
 #: ../panel-plugin/battery.c:1239 ../panel-plugin/battery.c:1287
 msgid "Display a warning message"
-msgstr "Exibir mensagem de alerta"
+msgstr "Mostrar mensagem de alerta"
 
 #: ../panel-plugin/battery.c:1240 ../panel-plugin/battery.c:1288
 msgid "Run command"
@@ -158,43 +159,43 @@ msgstr "Níveis e _ações"
 
 #: ../panel-plugin/battery.c:1322
 msgid "Display label"
-msgstr "Exibir texto"
+msgstr "Mostrar legenda"
 
 #: ../panel-plugin/battery.c:1325
 msgid "Display icon"
-msgstr "Exibir ícone"
+msgstr "Mostrar ícone"
 
 #: ../panel-plugin/battery.c:1328
 msgid "Display bar"
-msgstr "Exibir barra"
+msgstr "Mostrar barra"
 
 #: ../panel-plugin/battery.c:1331
 msgid "Display percentage"
-msgstr "Exibir percentagem"
+msgstr "Mostrar percentagem"
 
 #: ../panel-plugin/battery.c:1334
 msgid "Display time"
-msgstr "Exibir tempo"
+msgstr "Mostrar tempo"
 
 #: ../panel-plugin/battery.c:1337
 msgid "Display power"
-msgstr "Exibir energia"
+msgstr "Mostrar energia"
 
 #: ../panel-plugin/battery.c:1340
 msgid "Hide time/percentage when full"
-msgstr "Ocultar tempo/percentagem quando cheia"
+msgstr "Ocultar tempo/percentagem quando carregada"
 
 #: ../panel-plugin/battery.c:1343
 msgid "Display percentage in tooltip"
-msgstr "Exibir percentagem como aviso"
+msgstr "Mostrar percentagem como aviso"
 
 #: ../panel-plugin/battery.c:1346
 msgid "Display time remaining in tooltip"
-msgstr "Exibir tempo restante como aviso "
+msgstr "Mostrar tempo restante como aviso "
 
 #: ../panel-plugin/battery.c:1349
 msgid "_Display"
-msgstr "_Exibição"
+msgstr "_Mostrar"
 
 #: ../panel-plugin/battery.c:1399 ../panel-plugin/battery.desktop.in.h:2
 msgid "Show and monitor the battery status"
@@ -202,4 +203,4 @@ msgstr "Mostrar e monitorizar o estado da bateria"
 
 #: ../panel-plugin/battery.c:1401
 msgid "Copyright (c) 2003-2019\n"
-msgstr "Copyright (c) 2003-2019\n\n"
+msgstr "Direitos de autor (c) 2003-2019\n\n"

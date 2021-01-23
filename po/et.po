@@ -1,0 +1,204 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Priit Jõerüüt <transifex@joeruut.com>, 2020-2021
+msgid ""
+msgstr ""
+"Project-Id-Version: Xfce Panel Plugins\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-08-02 06:32+0200\n"
+"PO-Revision-Date: 2021-01-23 20:29+0000\n"
+"Last-Translator: Priit Jõerüüt <transifex@joeruut.com>\n"
+"Language-Team: Estonian (http://www.transifex.com/xfce/xfce-panel-plugins/language/et/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: et\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../panel-plugin/battery.c:345
+msgid "(No battery, AC on-line)"
+msgstr "(Aku puudub, ühendatud vooluvõrku)"
+
+#: ../panel-plugin/battery.c:347
+msgid "(Charging from AC)"
+msgstr "(Laen vooluvõrgust)"
+
+#: ../panel-plugin/battery.c:347
+msgid "(AC on-line)"
+msgstr "(Ühendatud vooluvõrku)"
+
+#: ../panel-plugin/battery.c:357
+#, c-format
+msgid "%d%% (%02d:%02d) remaining"
+msgstr "Jäänud on %d%% (%02d:%02d)"
+
+#: ../panel-plugin/battery.c:359
+#, c-format
+msgid "%02d:%02d remaining"
+msgstr "Jäänud on %02d:%02d "
+
+#: ../panel-plugin/battery.c:361
+#, c-format
+msgid "%d%% remaining"
+msgstr "Jäänud on %d%% "
+
+#: ../panel-plugin/battery.c:363
+#, c-format
+msgid "AC off-line"
+msgstr "Ei ole ühendatud vooluvõrku"
+
+#: ../panel-plugin/battery.c:446
+msgid ""
+"WARNING: Your battery has reached critical status. You should plug in or "
+"shutdown your computer now to avoid possible data loss."
+msgstr "HOIATUS: Sinu arvuti aku täituvus on jõudnud kriitilise piirini. Andmekao vältimiseks peaksid ühendama toitejuhtme või arvuti seiskama."
+
+#: ../panel-plugin/battery.c:465
+msgid ""
+"WARNING: Your battery is running low. You should consider plugging in or "
+"shutting down your computer soon to avoid possible data loss."
+msgstr "HOIATUS: Sinu arvuti aku on üsna tühi. Andmekao vältimiseks peaksid üsna varsti ühendama toitejuhtme või arvuti seiskama."
+
+#: ../panel-plugin/battery.c:508
+msgid "Battery"
+msgstr "Aku"
+
+#: ../panel-plugin/battery.c:1001
+msgid "Select file"
+msgstr "Vali fail"
+
+#: ../panel-plugin/battery.c:1042
+msgid "Select command"
+msgstr "Vali käsk"
+
+#: ../panel-plugin/battery.c:1095
+#, c-format
+msgid "Unable to open the following url: %s"
+msgstr "Järgneva urli avamisel tekkis viga: %s"
+
+#: ../panel-plugin/battery.c:1120 ../panel-plugin/battery.desktop.in.h:1
+msgid "Battery Monitor"
+msgstr "Akukasutuse jälgija"
+
+#: ../panel-plugin/battery.c:1123
+msgid "_Help"
+msgstr "_Abi"
+
+#: ../panel-plugin/battery.c:1124
+msgid "_Close"
+msgstr "_Sulge"
+
+#: ../panel-plugin/battery.c:1127
+msgid "Properties"
+msgstr "Omadused"
+
+#: ../panel-plugin/battery.c:1150
+msgid "On AC:"
+msgstr "Võrgutoitel:"
+
+#: ../panel-plugin/battery.c:1164
+msgid "Battery high:"
+msgstr "Aku on laetud:"
+
+#: ../panel-plugin/battery.c:1178
+msgid "Battery low:"
+msgstr "Aku on tühjenenud:"
+
+#: ../panel-plugin/battery.c:1192
+msgid "Battery critical:"
+msgstr "Aku on tühi:"
+
+#: ../panel-plugin/battery.c:1203
+msgid "Bar _colors"
+msgstr "_Tunnusvärvid"
+
+#: ../panel-plugin/battery.c:1217
+msgid "Low percentage:"
+msgstr "Aku on peaaegu tühjenenud:"
+
+#: ../panel-plugin/battery.c:1231
+msgid "Low battery action:"
+msgstr "Tegevus peaaegu tühjenenud aku puhul:"
+
+#: ../panel-plugin/battery.c:1238 ../panel-plugin/battery.c:1286
+msgid "Do nothing"
+msgstr "Ära tee midagi"
+
+#: ../panel-plugin/battery.c:1239 ../panel-plugin/battery.c:1287
+msgid "Display a warning message"
+msgstr "Näita hoiatust"
+
+#: ../panel-plugin/battery.c:1240 ../panel-plugin/battery.c:1288
+msgid "Run command"
+msgstr "Käivita käsk"
+
+#: ../panel-plugin/battery.c:1241 ../panel-plugin/battery.c:1289
+msgid "Run command in terminal"
+msgstr "Käivita käsk terminalis"
+
+#: ../panel-plugin/battery.c:1249 ../panel-plugin/battery.c:1297
+msgid "Command:"
+msgstr "Käsk:"
+
+#: ../panel-plugin/battery.c:1265
+msgid "Critical percentage:"
+msgstr "Aku on tühi:"
+
+#: ../panel-plugin/battery.c:1279
+msgid "Critical battery action:"
+msgstr "Tegevus tühja aku puhul:"
+
+#: ../panel-plugin/battery.c:1309
+msgid "Levels and _actions"
+msgstr "_Akutasemed ja tegevused"
+
+#: ../panel-plugin/battery.c:1322
+msgid "Display label"
+msgstr "Näita silti"
+
+#: ../panel-plugin/battery.c:1325
+msgid "Display icon"
+msgstr "Näita ikooni"
+
+#: ../panel-plugin/battery.c:1328
+msgid "Display bar"
+msgstr "Näita tunnusvärvi"
+
+#: ../panel-plugin/battery.c:1331
+msgid "Display percentage"
+msgstr "Näita aku täituvust"
+
+#: ../panel-plugin/battery.c:1334
+msgid "Display time"
+msgstr "Näita aega aku tühjenemiseni"
+
+#: ../panel-plugin/battery.c:1337
+msgid "Display power"
+msgstr "Näita toite olekut"
+
+#: ../panel-plugin/battery.c:1340
+msgid "Hide time/percentage when full"
+msgstr "Täis akuga ära kuva aega ega täituvuse protsenti"
+
+#: ../panel-plugin/battery.c:1343
+msgid "Display percentage in tooltip"
+msgstr "Näita teabemullis täituvuse protsenti"
+
+#: ../panel-plugin/battery.c:1346
+msgid "Display time remaining in tooltip"
+msgstr "Näita teabemullis järelejäänud aega"
+
+#: ../panel-plugin/battery.c:1349
+msgid "_Display"
+msgstr "_Näidatav teave"
+
+#: ../panel-plugin/battery.c:1399 ../panel-plugin/battery.desktop.in.h:2
+msgid "Show and monitor the battery status"
+msgstr "Näita ja jälgi akutaset"
+
+#: ../panel-plugin/battery.c:1401
+msgid "Copyright (c) 2003-2019\n"
+msgstr "Copyright (c) 2003-2019\n"

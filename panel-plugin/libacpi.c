@@ -43,7 +43,7 @@ static int      acpifd;
 #define UNKNOWN_VOLTAGE 0xffffffff
 #endif
 
-#if HAVE_SYSCTL
+#ifdef HAVE_SYSCTL
 
 #if defined(__NetBSD__) || defined (__OpenBSD__)
 #include <sys/param.h>

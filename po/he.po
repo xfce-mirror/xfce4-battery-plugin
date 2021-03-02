@@ -5,13 +5,14 @@
 # Translators:
 # Elishai Eliyahu <elishai@mailfence.com>, 2016,2019
 # GenghisKhan <genghiskhan@gmx.ca>, 2016
+# Omer I.S. <omeritzicschwartz@gmail.com>, 2021
 # Omer I.S. <omeritzicschwartz@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-02 06:32+0200\n"
-"PO-Revision-Date: 2020-05-26 13:27+0000\n"
+"PO-Revision-Date: 2021-03-02 18:08+0000\n"
 "Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>\n"
 "Language-Team: Hebrew (http://www.transifex.com/xfce/xfce-panel-plugins/language/he/)\n"
 "MIME-Version: 1.0\n"
@@ -35,17 +36,17 @@ msgstr "(זרם חילופין מחובר)"
 #: ../panel-plugin/battery.c:357
 #, c-format
 msgid "%d%% (%02d:%02d) remaining"
-msgstr "%d%% (%02d:%02d) נשארו"
+msgstr "%d%% (%02d:%02d) נותרו"
 
 #: ../panel-plugin/battery.c:359
 #, c-format
 msgid "%02d:%02d remaining"
-msgstr "%02d:%02d נשארו"
+msgstr "%02d:%02d נותרו"
 
 #: ../panel-plugin/battery.c:361
 #, c-format
 msgid "%d%% remaining"
-msgstr "%d%% נשארו"
+msgstr "%d%% נותרו"
 
 #: ../panel-plugin/battery.c:363
 #, c-format

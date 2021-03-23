@@ -1,3 +1,28 @@
+1.1.4
+======
+- Add help button to properties dialog
+- Drop subtitle from settings dialog
+- Fix labels alignment for very small panels
+- Fix compilation warnings
+- automake: INCLUDES -> AM_CPPFLAGS
+- autoconf: Some updates
+- Remove unnecessary boxes
+- Remove GSourceFunc casts
+- Add new README.md, update AM_INIT_AUTOMAKE
+- Add basic GitLab pipeline
+- Update URLs from goodies.xfce.org to docs.xfce.org (Bug #16154)
+- Translation Updates:
+  Albanian, Arabic, Armenian (Armenia), Basque, Belarusian, Bulgarian,
+  Catalan, Chinese (China), Chinese (Taiwan), Croatian, Czech, Danish,
+  Dutch, Eastern Armenian, English (Australia), English (Canada),
+  English (United Kingdom), Estonian, Finnish, French, Galician,
+  German, Greek, Hebrew, Hungarian, Icelandic, Indonesian, Interlingue,
+  Italian, Japanese, Kazakh, Korean, Latvian, Lithuanian, Malay,
+  Norwegian Nynorsk, Occitan (post 1500), Panjabi (Punjabi), Polish,
+  Portuguese, Portuguese (Brazil), Russian, Serbian, Slovak, Slovenian,
+  Spanish, Swedish, Thai, Turkish, Ukrainian, Urdu, Urdu (Pakistan),
+  Uyghur, Uzbek, Uzbek (Latin), Vietnamese
+
 1.1.3 (2019/09/13):
 ===================
 * Fix some warnings reported by Clang (Bug #15037)

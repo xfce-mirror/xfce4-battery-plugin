@@ -1116,7 +1116,6 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
         "help-browser", _("_Help"), GTK_RESPONSE_HELP,
         NULL);
 
-    xfce_titled_dialog_set_subtitle(XFCE_TITLED_DIALOG(dlg), _("Properties"));
     gtk_window_set_position(GTK_WINDOW(dlg), GTK_WIN_POS_CENTER);
     gtk_window_set_icon_name(GTK_WINDOW(dlg), "xfce4-battery-plugin");
 

@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-02 06:32+0200\n"
-"PO-Revision-Date: 2020-02-02 14:42+0000\n"
-"Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
+"POT-Creation-Date: 2021-03-23 12:48+0100\n"
+"PO-Revision-Date: 2021-03-23 11:48+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
 "Language-Team: Kazakh (http://www.transifex.com/xfce/xfce-panel-plugins/language/kk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,187 +18,183 @@ msgstr ""
 "Language: kk\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: ../panel-plugin/battery.c:345
+#: ../panel-plugin/battery.c:344
 msgid "(No battery, AC on-line)"
 msgstr "(Батарея жоқ, электр желісі)"
 
-#: ../panel-plugin/battery.c:347
+#: ../panel-plugin/battery.c:346
 msgid "(Charging from AC)"
 msgstr "(Электр желісінен зарядталу)"
 
-#: ../panel-plugin/battery.c:347
+#: ../panel-plugin/battery.c:346
 msgid "(AC on-line)"
 msgstr "(Электр желісіне қосулы тұр)"
 
-#: ../panel-plugin/battery.c:357
+#: ../panel-plugin/battery.c:356
 #, c-format
 msgid "%d%% (%02d:%02d) remaining"
 msgstr "%d%% (%02d:%02d) қалды"
 
-#: ../panel-plugin/battery.c:359
+#: ../panel-plugin/battery.c:358
 #, c-format
 msgid "%02d:%02d remaining"
 msgstr "%02d:%02d қалды"
 
-#: ../panel-plugin/battery.c:361
+#: ../panel-plugin/battery.c:360
 #, c-format
 msgid "%d%% remaining"
 msgstr "%d%% қалды"
 
-#: ../panel-plugin/battery.c:363
+#: ../panel-plugin/battery.c:362
 #, c-format
 msgid "AC off-line"
 msgstr "Электр желісінде емес"
 
-#: ../panel-plugin/battery.c:446
+#: ../panel-plugin/battery.c:445
 msgid ""
 "WARNING: Your battery has reached critical status. You should plug in or "
 "shutdown your computer now to avoid possible data loss."
 msgstr "Ескерту: Батареяның заряд шамасы критикалық мәніне жетті. Ақпаратты жоғалтпас үшін компьютеріңізді электр желісіне қосыңыз не өшіріңіз."
 
-#: ../panel-plugin/battery.c:465
+#: ../panel-plugin/battery.c:464
 msgid ""
 "WARNING: Your battery is running low. You should consider plugging in or "
 "shutting down your computer soon to avoid possible data loss."
 msgstr "Ескерту: Батареяның заряд шамасы аз мәніне жетті. Ақпаратты жоғалтпас үшін компьютеріңізді электр желісіне қосыңыз не өшіріңіз."
 
-#: ../panel-plugin/battery.c:508
+#: ../panel-plugin/battery.c:505
 msgid "Battery"
 msgstr "Батарея"
 
-#: ../panel-plugin/battery.c:1001
+#: ../panel-plugin/battery.c:986
 msgid "Select file"
 msgstr "Файлды таңдаңыз"
 
-#: ../panel-plugin/battery.c:1042
+#: ../panel-plugin/battery.c:1027
 msgid "Select command"
 msgstr "Команданы таңдаңыз"
 
-#: ../panel-plugin/battery.c:1095
+#: ../panel-plugin/battery.c:1080
 #, c-format
 msgid "Unable to open the following url: %s"
 msgstr "Келесі url-ды ашу мүмкін емес: %s"
 
-#: ../panel-plugin/battery.c:1120 ../panel-plugin/battery.desktop.in.h:1
+#: ../panel-plugin/battery.c:1112 ../panel-plugin/battery.desktop.in.h:1
 msgid "Battery Monitor"
 msgstr "Батарея бақылаушысы"
 
-#: ../panel-plugin/battery.c:1123
-msgid "_Help"
-msgstr "Кө_мек"
-
-#: ../panel-plugin/battery.c:1124
+#: ../panel-plugin/battery.c:1115
 msgid "_Close"
 msgstr "_Жабу"
 
-#: ../panel-plugin/battery.c:1127
-msgid "Properties"
-msgstr "Қасиеттері"
+#: ../panel-plugin/battery.c:1116
+msgid "_Help"
+msgstr "Кө_мек"
 
-#: ../panel-plugin/battery.c:1150
+#: ../panel-plugin/battery.c:1141
 msgid "On AC:"
 msgstr "Эл. желісінде:"
 
-#: ../panel-plugin/battery.c:1164
+#: ../panel-plugin/battery.c:1155
 msgid "Battery high:"
 msgstr "Батарея заряды көп:"
 
-#: ../panel-plugin/battery.c:1178
+#: ../panel-plugin/battery.c:1169
 msgid "Battery low:"
 msgstr "Батарея заряды аз:"
 
-#: ../panel-plugin/battery.c:1192
+#: ../panel-plugin/battery.c:1183
 msgid "Battery critical:"
 msgstr "Батарея заряды критикалық:"
 
-#: ../panel-plugin/battery.c:1203
+#: ../panel-plugin/battery.c:1194
 msgid "Bar _colors"
 msgstr "Баған _түстері"
 
-#: ../panel-plugin/battery.c:1217
+#: ../panel-plugin/battery.c:1208
 msgid "Low percentage:"
 msgstr "Төмен заряд:"
 
-#: ../panel-plugin/battery.c:1231
+#: ../panel-plugin/battery.c:1222
 msgid "Low battery action:"
 msgstr "Аз батарея әрекеті:"
 
-#: ../panel-plugin/battery.c:1238 ../panel-plugin/battery.c:1286
+#: ../panel-plugin/battery.c:1229 ../panel-plugin/battery.c:1277
 msgid "Do nothing"
 msgstr "Ешнәрсе жасамау"
 
-#: ../panel-plugin/battery.c:1239 ../panel-plugin/battery.c:1287
+#: ../panel-plugin/battery.c:1230 ../panel-plugin/battery.c:1278
 msgid "Display a warning message"
 msgstr "Ескерту хабарламасын көрсету"
 
-#: ../panel-plugin/battery.c:1240 ../panel-plugin/battery.c:1288
+#: ../panel-plugin/battery.c:1231 ../panel-plugin/battery.c:1279
 msgid "Run command"
 msgstr "Команданы орындау"
 
-#: ../panel-plugin/battery.c:1241 ../panel-plugin/battery.c:1289
+#: ../panel-plugin/battery.c:1232 ../panel-plugin/battery.c:1280
 msgid "Run command in terminal"
 msgstr "Команданы терминалда орындау"
 
-#: ../panel-plugin/battery.c:1249 ../panel-plugin/battery.c:1297
+#: ../panel-plugin/battery.c:1240 ../panel-plugin/battery.c:1288
 msgid "Command:"
 msgstr "Команда:"
 
-#: ../panel-plugin/battery.c:1265
+#: ../panel-plugin/battery.c:1256
 msgid "Critical percentage:"
 msgstr "Критикалық заряд:"
 
-#: ../panel-plugin/battery.c:1279
+#: ../panel-plugin/battery.c:1270
 msgid "Critical battery action:"
 msgstr "Критикалық батарея әрекеті:"
 
-#: ../panel-plugin/battery.c:1309
+#: ../panel-plugin/battery.c:1300
 msgid "Levels and _actions"
 msgstr "Деңгейлер мен әре_кеттер"
 
-#: ../panel-plugin/battery.c:1322
+#: ../panel-plugin/battery.c:1313
 msgid "Display label"
 msgstr "Атауын көрсету"
 
-#: ../panel-plugin/battery.c:1325
+#: ../panel-plugin/battery.c:1316
 msgid "Display icon"
 msgstr "Таңбашаны көрсету"
 
-#: ../panel-plugin/battery.c:1328
+#: ../panel-plugin/battery.c:1319
 msgid "Display bar"
 msgstr "Бағанды көрсету"
 
-#: ../panel-plugin/battery.c:1331
+#: ../panel-plugin/battery.c:1322
 msgid "Display percentage"
 msgstr "Пайыз өлшемін көрсету"
 
-#: ../panel-plugin/battery.c:1334
+#: ../panel-plugin/battery.c:1325
 msgid "Display time"
 msgstr "Уақытын көрсету"
 
-#: ../panel-plugin/battery.c:1337
+#: ../panel-plugin/battery.c:1328
 msgid "Display power"
 msgstr "Ток көзін көрсету"
 
-#: ../panel-plugin/battery.c:1340
+#: ../panel-plugin/battery.c:1331
 msgid "Hide time/percentage when full"
 msgstr "Батарея толық кезінде уақыт/пайыз шамаларын жасыру"
 
-#: ../panel-plugin/battery.c:1343
+#: ../panel-plugin/battery.c:1334
 msgid "Display percentage in tooltip"
 msgstr "Пайыз шамасын көмексөз түрінде көрсету"
 
-#: ../panel-plugin/battery.c:1346
+#: ../panel-plugin/battery.c:1337
 msgid "Display time remaining in tooltip"
 msgstr "Қалған уақыт шамасын көмексөз түрінде көрсету"
 
-#: ../panel-plugin/battery.c:1349
+#: ../panel-plugin/battery.c:1340
 msgid "_Display"
 msgstr "Көр_сету"
 
-#: ../panel-plugin/battery.c:1399 ../panel-plugin/battery.desktop.in.h:2
+#: ../panel-plugin/battery.c:1390 ../panel-plugin/battery.desktop.in.h:2
 msgid "Show and monitor the battery status"
 msgstr "Батарея қалпын көрсету және бақылау"
 
-#: ../panel-plugin/battery.c:1401
+#: ../panel-plugin/battery.c:1392
 msgid "Copyright (c) 2003-2019\n"
 msgstr "Copyright (c) 2003-2019\n"

@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-02 06:32+0200\n"
-"PO-Revision-Date: 2020-02-11 11:03+0000\n"
-"Last-Translator: Pjotr <pjotrvertaalt@gmail.com>\n"
+"POT-Creation-Date: 2021-03-23 12:48+0100\n"
+"PO-Revision-Date: 2021-03-23 11:48+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/xfce/xfce-panel-plugins/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,187 +18,183 @@ msgstr ""
 "Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../panel-plugin/battery.c:345
+#: ../panel-plugin/battery.c:344
 msgid "(No battery, AC on-line)"
 msgstr "(Geen accu, actieve netstroomvoeding)"
 
-#: ../panel-plugin/battery.c:347
+#: ../panel-plugin/battery.c:346
 msgid "(Charging from AC)"
 msgstr "(Aan het opladen via netstroom)"
 
-#: ../panel-plugin/battery.c:347
+#: ../panel-plugin/battery.c:346
 msgid "(AC on-line)"
 msgstr "(Netstroomvoeding actief)"
 
-#: ../panel-plugin/battery.c:357
+#: ../panel-plugin/battery.c:356
 #, c-format
 msgid "%d%% (%02d:%02d) remaining"
 msgstr "%d%% (%02d:%02d) resterend"
 
-#: ../panel-plugin/battery.c:359
+#: ../panel-plugin/battery.c:358
 #, c-format
 msgid "%02d:%02d remaining"
 msgstr "%02d:%02d resterend"
 
-#: ../panel-plugin/battery.c:361
+#: ../panel-plugin/battery.c:360
 #, c-format
 msgid "%d%% remaining"
 msgstr "%d%% resterend"
 
-#: ../panel-plugin/battery.c:363
+#: ../panel-plugin/battery.c:362
 #, c-format
 msgid "AC off-line"
 msgstr "Netstroomvoeding is niet actief"
 
-#: ../panel-plugin/battery.c:446
+#: ../panel-plugin/battery.c:445
 msgid ""
 "WARNING: Your battery has reached critical status. You should plug in or "
 "shutdown your computer now to avoid possible data loss."
 msgstr "WAARSCHUWING: De acculading heeft de kritieke status bereikt. U kunt het beste uw computer meteen op netstroom aansluiten of uitzetten, om gegevensverlies te vermijden."
 
-#: ../panel-plugin/battery.c:465
+#: ../panel-plugin/battery.c:464
 msgid ""
 "WARNING: Your battery is running low. You should consider plugging in or "
 "shutting down your computer soon to avoid possible data loss."
 msgstr "WAARSCHUWING: De accu is bijna leeg. U kunt het beste uw computer snel opnetstroom aansluiten of uitzetten, om gegevensverlies te vermijden."
 
-#: ../panel-plugin/battery.c:508
+#: ../panel-plugin/battery.c:505
 msgid "Battery"
 msgstr "Accu"
 
-#: ../panel-plugin/battery.c:1001
+#: ../panel-plugin/battery.c:986
 msgid "Select file"
 msgstr "Selecteer bestand"
 
-#: ../panel-plugin/battery.c:1042
+#: ../panel-plugin/battery.c:1027
 msgid "Select command"
 msgstr "Selecteer opdracht"
 
-#: ../panel-plugin/battery.c:1095
+#: ../panel-plugin/battery.c:1080
 #, c-format
 msgid "Unable to open the following url: %s"
 msgstr "Kan het volgende webadres niet openen: %s"
 
-#: ../panel-plugin/battery.c:1120 ../panel-plugin/battery.desktop.in.h:1
+#: ../panel-plugin/battery.c:1112 ../panel-plugin/battery.desktop.in.h:1
 msgid "Battery Monitor"
 msgstr "Accubewaker"
 
-#: ../panel-plugin/battery.c:1123
-msgid "_Help"
-msgstr "_Hulp"
-
-#: ../panel-plugin/battery.c:1124
+#: ../panel-plugin/battery.c:1115
 msgid "_Close"
 msgstr "S_luiten"
 
-#: ../panel-plugin/battery.c:1127
-msgid "Properties"
-msgstr "Eigenschappen"
+#: ../panel-plugin/battery.c:1116
+msgid "_Help"
+msgstr "_Hulp"
 
-#: ../panel-plugin/battery.c:1150
+#: ../panel-plugin/battery.c:1141
 msgid "On AC:"
 msgstr "Op netstroom:"
 
-#: ../panel-plugin/battery.c:1164
+#: ../panel-plugin/battery.c:1155
 msgid "Battery high:"
 msgstr "Accu vol:"
 
-#: ../panel-plugin/battery.c:1178
+#: ../panel-plugin/battery.c:1169
 msgid "Battery low:"
 msgstr "Accu bijna leeg:"
 
-#: ../panel-plugin/battery.c:1192
+#: ../panel-plugin/battery.c:1183
 msgid "Battery critical:"
 msgstr "Accu kritiek:"
 
-#: ../panel-plugin/battery.c:1203
+#: ../panel-plugin/battery.c:1194
 msgid "Bar _colors"
 msgstr "Balk_kleuren"
 
-#: ../panel-plugin/battery.c:1217
+#: ../panel-plugin/battery.c:1208
 msgid "Low percentage:"
 msgstr "Laag percentage:"
 
-#: ../panel-plugin/battery.c:1231
+#: ../panel-plugin/battery.c:1222
 msgid "Low battery action:"
 msgstr "Actie wanneer de accu bijna leeg is:"
 
-#: ../panel-plugin/battery.c:1238 ../panel-plugin/battery.c:1286
+#: ../panel-plugin/battery.c:1229 ../panel-plugin/battery.c:1277
 msgid "Do nothing"
 msgstr "Niets doen"
 
-#: ../panel-plugin/battery.c:1239 ../panel-plugin/battery.c:1287
+#: ../panel-plugin/battery.c:1230 ../panel-plugin/battery.c:1278
 msgid "Display a warning message"
 msgstr "Toon een waarschuwing"
 
-#: ../panel-plugin/battery.c:1240 ../panel-plugin/battery.c:1288
+#: ../panel-plugin/battery.c:1231 ../panel-plugin/battery.c:1279
 msgid "Run command"
 msgstr "Voer een opdracht uit"
 
-#: ../panel-plugin/battery.c:1241 ../panel-plugin/battery.c:1289
+#: ../panel-plugin/battery.c:1232 ../panel-plugin/battery.c:1280
 msgid "Run command in terminal"
 msgstr "Voer een opdracht uit in terminal"
 
-#: ../panel-plugin/battery.c:1249 ../panel-plugin/battery.c:1297
+#: ../panel-plugin/battery.c:1240 ../panel-plugin/battery.c:1288
 msgid "Command:"
 msgstr "Opdracht:"
 
-#: ../panel-plugin/battery.c:1265
+#: ../panel-plugin/battery.c:1256
 msgid "Critical percentage:"
 msgstr "Kritiek percentage:"
 
-#: ../panel-plugin/battery.c:1279
+#: ../panel-plugin/battery.c:1270
 msgid "Critical battery action:"
 msgstr "Actie bij kritische acculading:"
 
-#: ../panel-plugin/battery.c:1309
+#: ../panel-plugin/battery.c:1300
 msgid "Levels and _actions"
 msgstr "Niveaus en _acties"
 
-#: ../panel-plugin/battery.c:1322
+#: ../panel-plugin/battery.c:1313
 msgid "Display label"
 msgstr "Geef etiket weer"
 
-#: ../panel-plugin/battery.c:1325
+#: ../panel-plugin/battery.c:1316
 msgid "Display icon"
 msgstr "Geef pictogram weer"
 
-#: ../panel-plugin/battery.c:1328
+#: ../panel-plugin/battery.c:1319
 msgid "Display bar"
 msgstr "Toon balk"
 
-#: ../panel-plugin/battery.c:1331
+#: ../panel-plugin/battery.c:1322
 msgid "Display percentage"
 msgstr "Geef percentage weer"
 
-#: ../panel-plugin/battery.c:1334
+#: ../panel-plugin/battery.c:1325
 msgid "Display time"
 msgstr "Geef tijd weer"
 
-#: ../panel-plugin/battery.c:1337
+#: ../panel-plugin/battery.c:1328
 msgid "Display power"
 msgstr "Geef energie weer"
 
-#: ../panel-plugin/battery.c:1340
+#: ../panel-plugin/battery.c:1331
 msgid "Hide time/percentage when full"
 msgstr "Verberg tijd/percentage wanneer vol"
 
-#: ../panel-plugin/battery.c:1343
+#: ../panel-plugin/battery.c:1334
 msgid "Display percentage in tooltip"
 msgstr "Geef percentage weer in de gereedschaptip"
 
-#: ../panel-plugin/battery.c:1346
+#: ../panel-plugin/battery.c:1337
 msgid "Display time remaining in tooltip"
 msgstr "Geef resterende tijd weer in de gereedschaptip"
 
-#: ../panel-plugin/battery.c:1349
+#: ../panel-plugin/battery.c:1340
 msgid "_Display"
 msgstr "_Toon"
 
-#: ../panel-plugin/battery.c:1399 ../panel-plugin/battery.desktop.in.h:2
+#: ../panel-plugin/battery.c:1390 ../panel-plugin/battery.desktop.in.h:2
 msgid "Show and monitor the battery status"
 msgstr "Toon en bewaak de status van de accu"
 
-#: ../panel-plugin/battery.c:1401
+#: ../panel-plugin/battery.c:1392
 msgid "Copyright (c) 2003-2019\n"
 msgstr "Auteursrecht (c) 2003-2019\n"

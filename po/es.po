@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-23 12:48+0100\n"
-"PO-Revision-Date: 2021-05-05 19:32+0000\n"
+"PO-Revision-Date: 2021-05-09 02:54+0000\n"
 "Last-Translator: Toni Estévez <toni.estevez@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/xfce/xfce-panel-plugins/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -140,7 +140,7 @@ msgstr "Ejecutar una orden"
 
 #: ../panel-plugin/battery.c:1232 ../panel-plugin/battery.c:1280
 msgid "Run command in terminal"
-msgstr "Ejecutar una orden en el terminal"
+msgstr "Ejecutar una orden en un terminal"
 
 #: ../panel-plugin/battery.c:1240 ../panel-plugin/battery.c:1288
 msgid "Command:"

@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-23 12:48+0100\n"
-"PO-Revision-Date: 2021-05-15 07:18+0000\n"
+"PO-Revision-Date: 2021-05-16 20:07+0000\n"
 "Last-Translator: Toni Estévez <toni.estevez@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/xfce/xfce-panel-plugins/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -27,20 +27,20 @@ msgstr ""
 
 #: ../panel-plugin/battery.c:344
 msgid "(No battery, AC on-line)"
-msgstr "(Sin batería, con CA)"
+msgstr "(sin batería, con CA)"
 
 #: ../panel-plugin/battery.c:346
 msgid "(Charging from AC)"
-msgstr "(Cargando la batería)"
+msgstr "(cargando)"
 
 #: ../panel-plugin/battery.c:346
 msgid "(AC on-line)"
-msgstr "(Con CA)"
+msgstr "(conectado)"
 
 #: ../panel-plugin/battery.c:356
 #, c-format
 msgid "%d%% (%02d:%02d) remaining"
-msgstr "%d %% (%02d:%02d) restante"
+msgstr "%d%% restante (%02d:%02d) "
 
 #: ../panel-plugin/battery.c:358
 #, c-format
@@ -55,7 +55,7 @@ msgstr "%d %% restante"
 #: ../panel-plugin/battery.c:362
 #, c-format
 msgid "AC off-line"
-msgstr "Sin CA"
+msgstr "Desconectado"
 
 #: ../panel-plugin/battery.c:445
 msgid ""
@@ -100,7 +100,7 @@ msgstr "Ay_uda"
 
 #: ../panel-plugin/battery.c:1141
 msgid "On AC:"
-msgstr "Con CA:"
+msgstr "Conectado:"
 
 #: ../panel-plugin/battery.c:1155
 msgid "Battery high:"
@@ -156,7 +156,7 @@ msgstr "Acción con la batería en estado crítico:"
 
 #: ../panel-plugin/battery.c:1300
 msgid "Levels and _actions"
-msgstr "Niveles y _acciones"
+msgstr "_Niveles y acciones"
 
 #: ../panel-plugin/battery.c:1313
 msgid "Display label"
@@ -184,7 +184,7 @@ msgstr "Mostrar la fuente de alimentación"
 
 #: ../panel-plugin/battery.c:1331
 msgid "Hide time/percentage when full"
-msgstr "Ocultar el tiempo o el porcentaje cuando esté completamente cargada"
+msgstr "Ocultar el tiempo o el porcentaje al completarse la carga"
 
 #: ../panel-plugin/battery.c:1334
 msgid "Display percentage in tooltip"

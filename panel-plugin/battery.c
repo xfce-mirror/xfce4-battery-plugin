@@ -761,8 +761,10 @@ static gboolean
 battmon_set_size(XfcePanelPlugin *plugin, int size, t_battmon *battmon)
 {
     int border_width;
+    gint icon_size;
 
     size /= xfce_panel_plugin_get_nrows (battmon->plugin);
+    icon_size = xfce_panel_plugin_get_icon_size(XFCE_PANEL_PLUGIN (battmon->plugin));
     border_width = size > 26 ? 2 : 1;
     DBG("set_size(%d)", size);
 
@@ -783,7 +785,7 @@ battmon_set_size(XfcePanelPlugin *plugin, int size, t_battmon *battmon)
 
     gtk_container_set_border_width (GTK_CONTAINER (battmon->ebox), border_width);
     /* update the icon */
-    xfce_panel_image_set_size(XFCE_PANEL_IMAGE(battmon->image), size - (2 * border_width));
+    xfce_panel_image_set_size(XFCE_PANEL_IMAGE(battmon->image), icon_size);
 
     return TRUE;
 }

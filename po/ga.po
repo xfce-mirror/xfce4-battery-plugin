@@ -1,0 +1,201 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Michael O'Connor, 2022
+# Seán Ó Séaghdha <sean.anseo@gmail.com>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Xfce Panel Plugins\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-03-23 12:48+0100\n"
+"PO-Revision-Date: 2013-07-03 18:48+0000\n"
+"Last-Translator: Michael O'Connor, 2022\n"
+"Language-Team: Irish (http://www.transifex.com/xfce/xfce-panel-plugins/language/ga/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ga\n"
+"Plural-Forms: nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);\n"
+
+#: ../panel-plugin/battery.c:344
+msgid "(No battery, AC on-line)"
+msgstr "(Gan chadhnra, AC ar líne)"
+
+#: ../panel-plugin/battery.c:346
+msgid "(Charging from AC)"
+msgstr "(Ag luchtú ón bpríomhlíonra)"
+
+#: ../panel-plugin/battery.c:346
+msgid "(AC on-line)"
+msgstr "(AC ar líne)"
+
+#: ../panel-plugin/battery.c:356
+#, c-format
+msgid "%d%% (%02d:%02d) remaining"
+msgstr "%d%% (%02d:%02d) fágtha"
+
+#: ../panel-plugin/battery.c:358
+#, c-format
+msgid "%02d:%02d remaining"
+msgstr "%02d:%02d fágtha"
+
+#: ../panel-plugin/battery.c:360
+#, c-format
+msgid "%d%% remaining"
+msgstr "%d%% fágtha"
+
+#: ../panel-plugin/battery.c:362
+#, c-format
+msgid "AC off-line"
+msgstr "AC as líne"
+
+#: ../panel-plugin/battery.c:445
+msgid ""
+"WARNING: Your battery has reached critical status. You should plug in or "
+"shutdown your computer now to avoid possible data loss."
+msgstr "RABHADH: Tháinig do chadhnra chun staid ghéibheannach. Ba cheart duit do ríomhaire a phlugáil isteach nó é a mhúchadh anois ionas nach gcaillfear sonraí."
+
+#: ../panel-plugin/battery.c:464
+msgid ""
+"WARNING: Your battery is running low. You should consider plugging in or "
+"shutting down your computer soon to avoid possible data loss."
+msgstr "RABHADH: Tá do chadhnra beagnach ídithe. Ba chóir cuimhneamh ar phlugáil isteach an ríomhaire nó é a mhúchadh go luath anois ionas nach gcaillfear sonraí."
+
+#: ../panel-plugin/battery.c:505
+msgid "Battery"
+msgstr "Cadhnra"
+
+#: ../panel-plugin/battery.c:986
+msgid "Select file"
+msgstr "Roghnaigh comhad"
+
+#: ../panel-plugin/battery.c:1027
+msgid "Select command"
+msgstr "Roghnaigh ordú"
+
+#: ../panel-plugin/battery.c:1080
+#, c-format
+msgid "Unable to open the following url: %s"
+msgstr "Ní féidir an URL seo a oscailt:: %s"
+
+#: ../panel-plugin/battery.c:1112 ../panel-plugin/battery.desktop.in.h:1
+msgid "Battery Monitor"
+msgstr "Monatóir Cadhnra"
+
+#: ../panel-plugin/battery.c:1115
+msgid "_Close"
+msgstr "_Scoir"
+
+#: ../panel-plugin/battery.c:1116
+msgid "_Help"
+msgstr "C_abhrach"
+
+#: ../panel-plugin/battery.c:1141
+msgid "On AC:"
+msgstr "Ar AC:"
+
+#: ../panel-plugin/battery.c:1155
+msgid "Battery high:"
+msgstr "Cadhra ard:"
+
+#: ../panel-plugin/battery.c:1169
+msgid "Battery low:"
+msgstr "Cadhra íseal:"
+
+#: ../panel-plugin/battery.c:1183
+msgid "Battery critical:"
+msgstr "Cadhra criticiúil"
+
+#: ../panel-plugin/battery.c:1194
+msgid "Bar _colors"
+msgstr "Bearáil _dathanna"
+
+#: ../panel-plugin/battery.c:1208
+msgid "Low percentage:"
+msgstr "Céatadán íseal:"
+
+#: ../panel-plugin/battery.c:1222
+msgid "Low battery action:"
+msgstr "Gníomh cadhnra íseal"
+
+#: ../panel-plugin/battery.c:1229 ../panel-plugin/battery.c:1277
+msgid "Do nothing"
+msgstr "Déan rud ar bith"
+
+#: ../panel-plugin/battery.c:1230 ../panel-plugin/battery.c:1278
+msgid "Display a warning message"
+msgstr "Taispeáin teachtaireacht rabhaidh"
+
+#: ../panel-plugin/battery.c:1231 ../panel-plugin/battery.c:1279
+msgid "Run command"
+msgstr "Rith ordú"
+
+#: ../panel-plugin/battery.c:1232 ../panel-plugin/battery.c:1280
+msgid "Run command in terminal"
+msgstr "Rith ordú sa theriminéal"
+
+#: ../panel-plugin/battery.c:1240 ../panel-plugin/battery.c:1288
+msgid "Command:"
+msgstr "Ordú:"
+
+#: ../panel-plugin/battery.c:1256
+msgid "Critical percentage:"
+msgstr "Céatadán criticiúil:"
+
+#: ../panel-plugin/battery.c:1270
+msgid "Critical battery action:"
+msgstr "Gníomh cadhnra criticiúil:"
+
+#: ../panel-plugin/battery.c:1300
+msgid "Levels and _actions"
+msgstr "Leibhéil agus _gníomhartha"
+
+#: ../panel-plugin/battery.c:1313
+msgid "Display label"
+msgstr "Taispeáin lipéad"
+
+#: ../panel-plugin/battery.c:1316
+msgid "Display icon"
+msgstr "Taispeáin íocón"
+
+#: ../panel-plugin/battery.c:1319
+msgid "Display bar"
+msgstr "Taispeáin barra"
+
+#: ../panel-plugin/battery.c:1322
+msgid "Display percentage"
+msgstr "Taispeáin céatadán"
+
+#: ../panel-plugin/battery.c:1325
+msgid "Display time"
+msgstr "Taispeáin am"
+
+#: ../panel-plugin/battery.c:1328
+msgid "Display power"
+msgstr "Taispeáin cumhacht"
+
+#: ../panel-plugin/battery.c:1331
+msgid "Hide time/percentage when full"
+msgstr "Folaigh am/céatadán nuair atá lán"
+
+#: ../panel-plugin/battery.c:1334
+msgid "Display percentage in tooltip"
+msgstr "Taispeáin céatadán sa leid uirlise"
+
+#: ../panel-plugin/battery.c:1337
+msgid "Display time remaining in tooltip"
+msgstr "Taispeáin am fágtha sa leid uirlise"
+
+#: ../panel-plugin/battery.c:1340
+msgid "_Display"
+msgstr "_Taispeáin"
+
+#: ../panel-plugin/battery.c:1390 ../panel-plugin/battery.desktop.in.h:2
+msgid "Show and monitor the battery status"
+msgstr "Taispeáin agus déan monatóireacht ar staid an cadhnra"
+
+#: ../panel-plugin/battery.c:1392
+msgid "Copyright (c) 2003-2019\n"
+msgstr "Cóipcheart (c) 2003-2019\n"

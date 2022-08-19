@@ -21,9 +21,10 @@ dnl ***************************
 dnl *** Initialize autoconf ***
 dnl ***************************
 AC_COPYRIGHT([Copyright (c) 2006-2019 The Xfce development team. All rights reserved.])
-AC_INIT([xfce4-battery-plugin], [battery_version], [https://bugzilla.xfce.org/], [xfce4-battery-plugin])
+AC_INIT([xfce4-battery-plugin], [battery_version], [https://gitlab.xfce.org/panel-plugins/xfce4-battery-plugin], [xfce4-battery-plugin])
 AC_PREREQ([2.50])
 AC_CANONICAL_TARGET()
+AC_CONFIG_MACRO_DIRS([m4])
 
 dnl ***************************
 dnl *** Initialize automake ***
@@ -37,7 +38,7 @@ dnl ********************************
 dnl *** Check for basic programs ***
 dnl ********************************
 AC_PROG_CC()
-AC_PROG_LD()
+LT_PATH_LD()
 AC_PROG_INSTALL()
 IT_PROG_INTLTOOL([0.35.0])
 

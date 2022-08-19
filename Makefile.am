@@ -1,3 +1,5 @@
+ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
+
 SUBDIRS =								\
 	panel-plugin						\
 	icons								\
@@ -8,10 +10,6 @@ distclean-local:
 
 distuninstallcheck_listfiles =											\
 	find . -type f -print | grep -v ./share/icons/hicolor/icon-theme.cache
-
-rpm: dist
-	rpmbuild -ta $(PACKAGE)-$(VERSION).tar.gz
-	@rm -f $(PACKAGE)-$(VERSION).tar.gz
 
 .PHONY: ChangeLog
 
@@ -31,7 +29,8 @@ EXTRA_DIST = 								\
 DISTCLEANFILES =							\
 	intltool-extract						\
 	intltool-merge							\
-	intltool-update
+	intltool-update							\
+	./po/.intltool-merge-cache.lock
 
 # vi:set ts=8 sw=8 noet ai nocindent syntax=automake:
 

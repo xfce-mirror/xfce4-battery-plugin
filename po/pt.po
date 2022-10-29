@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pt\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: ../panel-plugin/battery.c:344
 msgid "(No battery, AC on-line)"
@@ -187,7 +187,7 @@ msgstr "Mostrar percentagem como aviso"
 
 #: ../panel-plugin/battery.c:1337
 msgid "Display time remaining in tooltip"
-msgstr "Mostrar tempo restante como aviso "
+msgstr "Mostrar tempo restante como aviso"
 
 #: ../panel-plugin/battery.c:1340
 msgid "_Display"

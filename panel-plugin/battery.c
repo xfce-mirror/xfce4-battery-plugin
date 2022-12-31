@@ -1375,17 +1375,14 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
 static void
 battmon_show_about(XfcePanelPlugin *plugin, t_battmon *battmon)
 {
-   GdkPixbuf *icon;
    const gchar *auth[] = {
         "Benedikt Meurer <benny@xfce.org>", "Edscott Wilson <edscott@imp.mx>",
         "Eduard Roccatello <eduard@xfce.org>", "Florian Rivoal <frivoal@xfce.org>",
         "Landry Breuil <landry@xfce.org>", "Nick Schermer <nick@xfce.org>",
         "Andre Miranda <andreldm@xfce.org>", NULL };
 
-   icon = xfce_panel_pixbuf_from_source("xfce4-battery-plugin", NULL, 32);
-
    gtk_show_about_dialog(NULL,
-        "logo", icon,
+        "logo-icon-name", "xfce4-battery-plugin",
         "license", xfce_get_license_text (XFCE_LICENSE_TEXT_GPL),
         "version", PACKAGE_VERSION,
         "program-name", PACKAGE_NAME,
@@ -1393,9 +1390,6 @@ battmon_show_about(XfcePanelPlugin *plugin, t_battmon *battmon)
         "website", "https://docs.xfce.org/panel-plugins/xfce4-battery-plugin",
         "copyright", _("Copyright (c) 2003-2019\n"),
         "authors", auth, NULL);
-
-   if (icon)
-      g_object_unref(G_OBJECT(icon));
 }
 
 static void

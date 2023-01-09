@@ -304,7 +304,7 @@ update_apm_status(t_battmon *battmon)
         DBG("old_state=%d, new_state=%d, icon_name=%s", old_state, new_state, icon_name);
 
         if (old_state != new_state)
-            xfce_panel_image_set_from_source(XFCE_PANEL_IMAGE(battmon->image), icon_name);
+            gtk_image_set_from_icon_name(GTK_IMAGE(battmon->image), icon_name, GTK_ICON_SIZE_BUTTON);
         if (icon_name)
             g_free(icon_name);
 
@@ -505,8 +505,8 @@ setup_battmon(t_battmon *battmon)
     battmon->label = (GtkLabel *)gtk_label_new(_("Battery"));
     gtk_box_pack_start(GTK_BOX(battmon->ebox),GTK_WIDGET(battmon->label),FALSE, FALSE, 2);
 
-    battmon->image = xfce_panel_image_new_from_source("xfce4-battery-plugin");
-    xfce_panel_image_set_size(XFCE_PANEL_IMAGE(battmon->image), size);
+    battmon->image = gtk_image_new_from_icon_name("xfce4-battery-plugin", GTK_ICON_SIZE_BUTTON);
+    gtk_image_set_pixel_size(GTK_IMAGE(battmon->image), size);
 
     gtk_box_pack_start(GTK_BOX(battmon->ebox),GTK_WIDGET(battmon->image), FALSE, FALSE, 0);
 
@@ -785,7 +785,7 @@ battmon_set_size(XfcePanelPlugin *plugin, int size, t_battmon *battmon)
 
     gtk_container_set_border_width (GTK_CONTAINER (battmon->ebox), border_width);
     /* update the icon */
-    xfce_panel_image_set_size(XFCE_PANEL_IMAGE(battmon->image), icon_size);
+    gtk_image_set_pixel_size(GTK_IMAGE(battmon->image), icon_size);
 
     return TRUE;
 }

@@ -43,7 +43,7 @@ missing
 mkinstalldirs
 panel-plugin/battery.desktop
 po/POTFILES
-po/.intltool-merge-cache
+po/.intltool-merge-cache*
 stamp-*
 INSTALL
 intltool-*.in

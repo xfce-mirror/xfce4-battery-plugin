@@ -20,7 +20,7 @@ m4_define([battery_version], [battery_version_major().battery_version_minor().ba
 dnl ***************************
 dnl *** Initialize autoconf ***
 dnl ***************************
-AC_COPYRIGHT([Copyright (c) 2006-2019 The Xfce development team. All rights reserved.])
+AC_COPYRIGHT([Copyright (c) 2003-2023 The Xfce development team. All rights reserved.])
 AC_INIT([xfce4-battery-plugin], [battery_version], [https://gitlab.xfce.org/panel-plugins/xfce4-battery-plugin], [xfce4-battery-plugin])
 AC_PREREQ([2.50])
 AC_CANONICAL_TARGET()

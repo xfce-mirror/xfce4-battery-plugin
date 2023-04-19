@@ -1,3 +1,25 @@
+1.1.5 (2023-04-19)
+=====
+- Update copyright year
+- build: Add GLib requirement
+- Replace deprecated XfcePanelImage with GtkImage
+- Update `.gitignore`
+- Use "logo-icon-name" instead of "logo" in about dialog
+- Fix make distcheck
+- Respect panel setting "Adjust size automatically"
+- Update COPYING
+- Translation Updates:
+  Albanian, Arabic, Armenian (Armenia), Basque, Belarusian, Bulgarian,
+  Catalan, Chinese (China), Chinese (Taiwan), Croatian, Czech, Danish,
+  Dutch, Eastern Armenian, English (Australia), English (Canada),
+  English (United Kingdom), Estonian, Finnish, French, Galician,
+  German, Greek, Hebrew, Hungarian, Icelandic, Indonesian, Interlingue,
+  Irish, Italian, Japanese, Kazakh, Korean, Latvian, Lithuanian, Malay,
+  Norwegian Bokmål, Norwegian Nynorsk, Occitan (post 1500), Panjabi
+  (Punjabi), Polish, Portuguese, Portuguese (Brazil), Russian, Serbian,
+  Slovak, Slovenian, Spanish, Swedish, Thai, Turkish, Ukrainian, Urdu,
+  Urdu (Pakistan), Uyghur, Uzbek, Uzbek (Latin), Vietnamese
+
 1.1.4
 ======
 - Add help button to properties dialog

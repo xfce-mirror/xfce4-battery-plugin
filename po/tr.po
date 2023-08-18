@@ -8,14 +8,15 @@
 # Emin Tufan Çetin <etcetin@gmail.com>, 2020
 # Necdet Yücel <necdetyucel@gmail.com>, 2013,2016
 # Recep, 2013
+# Sabri Ünal <libreajans@gmail.com>, 2023
 # Serdar Sağlam <teknomobil@msn.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-19 01:16+0200\n"
+"POT-Creation-Date: 2023-05-30 00:52+0200\n"
 "PO-Revision-Date: 2013-07-03 18:48+0000\n"
-"Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>, 2020\n"
+"Last-Translator: Sabri Ünal <libreajans@gmail.com>, 2023\n"
 "Language-Team: Turkish (http://app.transifex.com/xfce/xfce-panel-plugins/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +26,7 @@ msgstr ""
 
 #: ../panel-plugin/battery.c:344
 msgid "(No battery, AC on-line)"
-msgstr "(Pil yok, Fişe takılı)"
+msgstr "(Pil yok, fişe takılı)"
 
 #: ../panel-plugin/battery.c:346
 msgid "(Charging from AC)"
@@ -59,13 +60,13 @@ msgstr "Fişe takılı değil"
 msgid ""
 "WARNING: Your battery has reached critical status. You should plug in or "
 "shutdown your computer now to avoid possible data loss."
-msgstr "UYARI: Piliniz kritik düzeye erişti. Olası veri yitimini önlemek için bilgisayarınızı kapatın veya fişe takın."
+msgstr "UYARI: Piliniz kritik düzeye erişti. Olası veri kaybını önlemek için bilgisayarınızı kapatın veya fişe takın."
 
 #: ../panel-plugin/battery.c:464
 msgid ""
 "WARNING: Your battery is running low. You should consider plugging in or "
 "shutting down your computer soon to avoid possible data loss."
-msgstr "UYARI: Piliniz bitmek üzere. Olası veri yitimini önlemek için bilgisayarınızı kapatmayı veya fişe takmayı düşünün."
+msgstr "UYARI: Piliniz bitmek üzere. Olası veri kaybını önlemek için bilgisayarınızı kapatmayı veya fişe takmayı düşünün."
 
 #: ../panel-plugin/battery.c:505
 msgid "Battery"
@@ -98,7 +99,7 @@ msgstr "_Yardım"
 
 #: ../panel-plugin/battery.c:1143
 msgid "On AC:"
-msgstr "Elektrikte:"
+msgstr "Fişte:"
 
 #: ../panel-plugin/battery.c:1157
 msgid "Battery high:"
@@ -174,7 +175,7 @@ msgstr "Yüzdeyi göster"
 
 #: ../panel-plugin/battery.c:1327
 msgid "Display time"
-msgstr "Saati göster"
+msgstr "Süreyi göster"
 
 #: ../panel-plugin/battery.c:1330
 msgid "Display power"
@@ -182,7 +183,7 @@ msgstr "Gücü göster"
 
 #: ../panel-plugin/battery.c:1333
 msgid "Hide time/percentage when full"
-msgstr "Doluyken saat/yüzdeyi gizle"
+msgstr "Doluyken süreyi/yüzdeyi gizle"
 
 #: ../panel-plugin/battery.c:1336
 msgid "Display percentage in tooltip"
@@ -190,7 +191,7 @@ msgstr "İpucunda yüzdeyi göster"
 
 #: ../panel-plugin/battery.c:1339
 msgid "Display time remaining in tooltip"
-msgstr "İpucunda kalan pil süresini göster"
+msgstr "İpucunda kalan süreyi göster"
 
 #: ../panel-plugin/battery.c:1342
 msgid "_Display"

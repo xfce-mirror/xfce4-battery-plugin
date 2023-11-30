@@ -4,6 +4,7 @@ AM_CPPFLAGS =									\
 	-DPACKAGE_LOCALE_DIR=\"$(localedir)\"	\
 	$(PLATFORM_CPPFLAGS)
 
+
 #
 # Battery plugin
 #
@@ -35,6 +36,10 @@ libbattery_la_LDFLAGS = \
 	-no-undefined \
 	-export-symbols-regex '^xfce_panel_module_(preinit|init|construct)' \
 	$(PLATFORM_LDFLAGS)
+
+if NETBSD
+libbattery_la_LDFLAGS += -lprop -Wl,-rpath=/usr/X11R7/lib
+endif
 
 #
 # Desktop file

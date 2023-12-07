@@ -6,7 +6,6 @@
  * Copyright (c) 2010 Florian Rivoal <frivoal@xfce.org>
  * Copyright (c) 2012 Landry Breuil <landry@xfce.org>
  * Copyright (c) 2016 Andre Miranda <andreldm@xfce.org>
- * Copyright (c) 2023 Marius Boerschig <code-xfce@yoyomail.de>
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -54,7 +53,8 @@ struct battery {
     int charge_rate;
 };
 
-static void get_battery_infos(struct battery* bat)
+static void
+get_battery_infos(struct battery* bat)
 {
     prop_dictionary_t dict;
     int result = 0;
@@ -66,21 +66,20 @@ static void get_battery_infos(struct battery* bat)
     prop_object_iterator_t dict_iter = NULL;
     prop_object_iterator_t value_iter = NULL;
 
-    if (!bat) return;
 
-    if ((sysmonfd = open(_PATH_SYSMON, O_RDONLY)) == -1)
-    {
+    sysmonfd = open(_PATH_SYSMON, O_RDONLY);
+    if (sysmonfd == -1) {
         return;
     }
 
     result = prop_dictionary_recv_ioctl(sysmonfd, ENVSYS_GETDICTIONARY, &dict);
-    if(result == -1) {
+    if (result == -1) {
         goto cleanup;
         return;
     }
 
     dict_iter = prop_dictionary_iterator(dict);
-    if(dict_iter == NULL ) {
+    if (dict_iter == NULL ) {
         goto cleanup;
     }
 
@@ -95,16 +94,16 @@ static void get_battery_infos(struct battery* bat)
         }
 
         value_iter = prop_array_iterator(array);
-        if (!value_iter){
+        if (!value_iter) {
             break;
         }
         while ((obj1 = prop_object_iterator_next(value_iter)) != NULL) {
             obj2  = prop_dictionary_get(obj1, "type");
-            if(obj2) {
+            if (obj2) {
                 // Actual Battery capacity
-                if(prop_string_equals_string(obj2, "Ampere hour")) {
+                if (prop_string_equals_string(obj2, "Ampere hour")) {
                     obj2 = prop_dictionary_get(obj1, "description");
-                    if(prop_string_equals_string(obj2, "charge")) {
+                    if (prop_string_equals_string(obj2, "charge")) {
                         obj2 = prop_dictionary_get(obj1, "max-value");
                         if (obj2) {
                             maxval = prop_number_signed_value(obj2);
@@ -113,14 +112,14 @@ static void get_battery_infos(struct battery* bat)
                         if (obj2) {
                             curval = prop_number_signed_value(obj2);
                         }
-                        if(maxval > 0) {
+                        if (maxval > 0) {
                             bat->percent_capacity = curval * 100 / maxval;
                             bat->current_capacity = curval;
                             bat->full_capacity = maxval;
                         }
                     }
                     // just to make sure we get the full capacity, if max-value for charge is not provided
-                    if(prop_string_equals_string(obj2, "last full cap")) {
+                    if (prop_string_equals_string(obj2, "last full cap")) {
                         obj2 = prop_dictionary_get(obj1, "cur-value");
                         if (obj2) {
                             bat->full_capacity =(float)prop_number_signed_value(obj2) / 1e6;
@@ -128,15 +127,15 @@ static void get_battery_infos(struct battery* bat)
                     }
                 }
                 // discharge rate in ampere
-                if(prop_string_equals_string(obj2, "Ampere")) {
+                if (prop_string_equals_string(obj2, "Ampere")) {
                     obj2 = prop_dictionary_get(obj1, "description");
-                    if(prop_string_equals_string(obj2, "discharge rate")) {
+                    if (prop_string_equals_string(obj2, "discharge rate")) {
                         obj2 = prop_dictionary_get(obj1, "cur-value");
                         if (obj2) {
                             bat->discharge_rate = prop_number_signed_value(obj2);
                         }
                     }
-                    if(prop_string_equals_string(obj2, "charge rate")) {
+                    if (prop_string_equals_string(obj2, "charge rate")) {
                         obj2 = prop_dictionary_get(obj1, "cur-value");
                         if (obj2) {
                             bat->charge_rate = prop_number_signed_value(obj2);
@@ -145,21 +144,21 @@ static void get_battery_infos(struct battery* bat)
                 }
                 // Battery charge may not be sensible when AC adapter is
                 // connected
-                if(prop_string_equals_string(obj2, "Battery charge")) {
+                if (prop_string_equals_string(obj2, "Battery charge")) {
                     obj2 = prop_dictionary_get(obj1, "cur-value");
-                    if(obj2) {
-                        if(ac_adapter_is_charging == 0) {
+                    if (obj2) {
+                        if (ac_adapter_is_charging == 0) {
                             bat->charging = prop_number_signed_value(obj2);
                         }
                     }
                 }
                 // AC adapter has a 'connected' property, preferable to Battery
                 // charge
-                if(prop_string_equals_string(obj2, "Indicator")) {
+                if (prop_string_equals_string(obj2, "Indicator")) {
                     obj2 = prop_dictionary_get(obj1, "description");
-                    if(prop_string_equals_string(obj2, "connected")) {
+                    if (prop_string_equals_string(obj2, "connected")) {
                         obj2 = prop_dictionary_get(obj1, "cur-value");
-                        if(obj2) {
+                        if (obj2) {
                             bat->charging = prop_number_signed_value(obj2);
                             ac_adapter_is_charging = bat->charging;
                         }
@@ -167,19 +166,18 @@ static void get_battery_infos(struct battery* bat)
 
                 }
             }
-
         }
         dict_obj=NULL;
-        if(value_iter) {
+        if (value_iter) {
             prop_object_iterator_release(value_iter);
             value_iter=NULL;
         }
     }
 cleanup:
-    if(value_iter) {
+    if (value_iter) {
         prop_object_iterator_release(value_iter);
     }
-    if(dict_iter) {
+    if (dict_iter) {
         prop_object_iterator_release(dict_iter);
     }
     prop_object_release(dict);
@@ -364,13 +362,13 @@ update_apm_status(t_battmon *battmon)
     time_remaining = 0;
     acline = bat_info.charging ? TRUE : FALSE;
 
-    if(bat_info.percent_capacity > 0)
+    if (bat_info.percent_capacity > 0)
         present++;
 
     lcapacity += bat_info.full_capacity;
     ccapacity += bat_info.current_capacity;
 
-    if(acline)
+    if (acline)
         rate = bat_info.charge_rate;
     else
         rate = bat_info.discharge_rate;
@@ -394,13 +392,12 @@ update_apm_status(t_battmon *battmon)
         }
     }
 #endif
-    if(method == BM_USE_ACPI || method == BM_USE_ENVSYS) {
+    if (method == BM_USE_ACPI || method == BM_USE_ENVSYS) {
         sum_lcapacity += lcapacity;
         sum_ccapacity += ccapacity;
         sum_rate += rate;
 
         update_time++;
-
         if (update_time >= AVERAGING_CYCLE || last_acline != acline || last_present != present) {
             if (last_acline != acline || last_present != present) {
                 last_ccapacity = ccapacity;

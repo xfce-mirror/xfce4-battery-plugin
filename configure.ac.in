@@ -56,6 +56,12 @@ dnl ************************************
 dnl *** Check for standard functions ***
 dnl ************************************
 AC_CHECK_FUNCS([sysctl])
+AC_CANONICAL_HOST
+case $host_os in
+    *NetBSD*) netbsd=true;;
+    *)  netbsd=false;;
+esac
+AM_CONDITIONAL([NETBSD], [test x$netbsd = xtrue])
 
 dnl ******************************
 dnl *** Check for i18n support ***
@@ -89,17 +95,6 @@ icons/scalable/Makefile
 po/Makefile.in
 ])
 AC_OUTPUT
-
-dnl *******************************
-dnl *** Platform specific flags ***
-dnl *******************************
-
-AC_CANONICAL_HOST
-case $host_os in
-    *NetBSD*) netbsd=true;;
-    *)  netbsd=false;;
-esac
-AM_CONDITIONAL([NETBSD], [test x$netbsd = xtrue])
 
 dnl ***************************
 dnl *** Print configuration ***

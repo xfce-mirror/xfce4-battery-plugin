@@ -4,7 +4,6 @@ AM_CPPFLAGS =									\
 	-DPACKAGE_LOCALE_DIR=\"$(localedir)\"	\
 	$(PLATFORM_CPPFLAGS)
 
-
 #
 # Battery plugin
 #

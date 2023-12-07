@@ -56,6 +56,10 @@ dnl ************************************
 dnl *** Check for standard functions ***
 dnl ************************************
 AC_CHECK_FUNCS([sysctl])
+
+dnl *******************************
+dnl *** Platform specific flags ***
+dnl *******************************
 AC_CANONICAL_HOST
 case $host_os in
     *netbsd*) netbsd=true;;

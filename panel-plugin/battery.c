@@ -66,7 +66,6 @@ get_battery_infos(struct battery* bat)
     prop_object_iterator_t dict_iter = NULL;
     prop_object_iterator_t value_iter = NULL;
 
-
     sysmonfd = open(_PATH_SYSMON, O_RDONLY);
     if (sysmonfd == -1) {
         return;
@@ -163,14 +162,13 @@ get_battery_infos(struct battery* bat)
                             ac_adapter_is_charging = bat->charging;
                         }
                     }
-
                 }
             }
         }
-        dict_obj=NULL;
+        dict_obj = NULL;
         if (value_iter) {
             prop_object_iterator_release(value_iter);
-            value_iter=NULL;
+            value_iter = NULL;
         }
     }
 cleanup:

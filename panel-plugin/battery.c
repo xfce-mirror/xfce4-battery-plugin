@@ -26,11 +26,162 @@
 #include <config.h>
 #endif
 
-#if (defined(__OpenBSD__) || defined(__NetBSD__))
+#if defined(__OpenBSD__)
 #include <sys/param.h>
 #include <sys/ioctl.h>
 #include <machine/apmvar.h>
 #define APMDEVICE "/dev/apm"
+
+#elif defined(__NetBSD__)
+
+#include <prop/prop_object.h>
+#include <sys/envsys.h>
+#include <prop/proplib.h>
+#include <paths.h>
+#include <string.h>
+
+#include <stdio.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+struct battery {
+    int charging;
+    float full_capacity;
+    int current_capacity;
+    int percent_capacity;
+    int discharge_rate;
+    int charge_rate;
+};
+
+static void
+get_battery_infos(struct battery* bat)
+{
+    prop_dictionary_t dict;
+    int result = 0;
+    int sysmonfd = -1;
+    int ac_adapter_is_charging=0;
+
+    prop_object_t dict_obj;
+    prop_array_t array;
+    prop_object_iterator_t dict_iter = NULL;
+    prop_object_iterator_t value_iter = NULL;
+
+    sysmonfd = open(_PATH_SYSMON, O_RDONLY);
+    if (sysmonfd == -1) {
+        return;
+    }
+
+    result = prop_dictionary_recv_ioctl(sysmonfd, ENVSYS_GETDICTIONARY, &dict);
+    if (result == -1) {
+        goto cleanup;
+        return;
+    }
+
+    dict_iter = prop_dictionary_iterator(dict);
+    if (dict_iter == NULL ) {
+        goto cleanup;
+    }
+
+    while ((dict_obj = prop_object_iterator_next(dict_iter)) != NULL) {
+        prop_object_t obj1, obj2 ;
+
+        int maxval = 0;
+        int curval = 0;
+        array = prop_dictionary_get_keysym(dict, dict_obj);
+        if (prop_object_type(array) != PROP_TYPE_ARRAY) {
+            break;
+        }
+
+        value_iter = prop_array_iterator(array);
+        if (!value_iter) {
+            break;
+        }
+        while ((obj1 = prop_object_iterator_next(value_iter)) != NULL) {
+            obj2  = prop_dictionary_get(obj1, "type");
+            if (obj2) {
+                // Actual Battery capacity
+                if (prop_string_equals_string(obj2, "Ampere hour")) {
+                    obj2 = prop_dictionary_get(obj1, "description");
+                    if (prop_string_equals_string(obj2, "charge")) {
+                        obj2 = prop_dictionary_get(obj1, "max-value");
+                        if (obj2) {
+                            maxval = prop_number_signed_value(obj2);
+                        }
+                        obj2 = prop_dictionary_get(obj1, "cur-value");
+                        if (obj2) {
+                            curval = prop_number_signed_value(obj2);
+                        }
+                        if (maxval > 0) {
+                            bat->percent_capacity = curval * 100 / maxval;
+                            bat->current_capacity = curval;
+                            bat->full_capacity = maxval;
+                        }
+                    }
+                    // just to make sure we get the full capacity, if max-value for charge is not provided
+                    if (prop_string_equals_string(obj2, "last full cap")) {
+                        obj2 = prop_dictionary_get(obj1, "cur-value");
+                        if (obj2) {
+                            bat->full_capacity =(float)prop_number_signed_value(obj2) / 1e6;
+                        }
+                    }
+                }
+                // discharge rate in ampere
+                if (prop_string_equals_string(obj2, "Ampere")) {
+                    obj2 = prop_dictionary_get(obj1, "description");
+                    if (prop_string_equals_string(obj2, "discharge rate")) {
+                        obj2 = prop_dictionary_get(obj1, "cur-value");
+                        if (obj2) {
+                            bat->discharge_rate = prop_number_signed_value(obj2);
+                        }
+                    }
+                    if (prop_string_equals_string(obj2, "charge rate")) {
+                        obj2 = prop_dictionary_get(obj1, "cur-value");
+                        if (obj2) {
+                            bat->charge_rate = prop_number_signed_value(obj2);
+                        }
+                    }
+                }
+                // Battery charge may not be sensible when AC adapter is
+                // connected
+                if (prop_string_equals_string(obj2, "Battery charge")) {
+                    obj2 = prop_dictionary_get(obj1, "cur-value");
+                    if (obj2) {
+                        if (ac_adapter_is_charging == 0) {
+                            bat->charging = prop_number_signed_value(obj2);
+                        }
+                    }
+                }
+                // AC adapter has a 'connected' property, preferable to Battery
+                // charge
+                if (prop_string_equals_string(obj2, "Indicator")) {
+                    obj2 = prop_dictionary_get(obj1, "description");
+                    if (prop_string_equals_string(obj2, "connected")) {
+                        obj2 = prop_dictionary_get(obj1, "cur-value");
+                        if (obj2) {
+                            bat->charging = prop_number_signed_value(obj2);
+                            ac_adapter_is_charging = bat->charging;
+                        }
+                    }
+                }
+            }
+        }
+        dict_obj = NULL;
+        if (value_iter) {
+            prop_object_iterator_release(value_iter);
+            value_iter = NULL;
+        }
+    }
+cleanup:
+    if (value_iter) {
+        prop_object_iterator_release(value_iter);
+    }
+    if (dict_iter) {
+        prop_object_iterator_release(dict_iter);
+    }
+    prop_object_release(dict);
+    (void)close(sysmonfd);
+}
+
 #endif
 
 #include <sys/stat.h>
@@ -125,7 +276,7 @@ typedef struct
 } t_battmon_dialog;
 
 enum {BM_DO_NOTHING, BM_MESSAGE, BM_COMMAND, BM_COMMAND_TERM};
-enum {BM_BROKEN, BM_USE_ACPI, BM_USE_APM};
+enum {BM_BROKEN, BM_USE_ACPI, BM_USE_APM, BM_USE_ENVSYS};
 enum {BM_MISSING, BM_CRITICAL, BM_CRITICAL_CHARGING, BM_LOW, BM_LOW_CHARGING, BM_OK, BM_OK_CHARGING, BM_FULL, BM_FULL_CHARGING};
 
 static gboolean battmon_set_size(XfcePanelPlugin *plugin, int size, t_battmon *battmon);
@@ -182,7 +333,7 @@ update_apm_status(t_battmon *battmon)
     static int last_acline = 0;
     static int last_present = 0;
 
-#if defined(__OpenBSD__) || defined(__NetBSD__)
+#if defined(__OpenBSD__)
   /* Code for OpenBSD by Joe Ammond <jra@twinight.org>. Using the same
      procedure as for FreeBSD.
      Made to work on NetBSD by Stefan Sperling <stsp@stsp.in-berlin.de>
@@ -200,6 +351,27 @@ update_apm_status(t_battmon *battmon)
     acline = apm.ac_state ? TRUE : FALSE;
     method = BM_USE_APM;
 
+#elif defined(__NetBSD__)
+    struct battery bat_info;
+    memset(&bat_info, 0, sizeof(bat_info));
+    get_battery_infos(&bat_info);
+
+    charge = bat_info.percent_capacity;
+    time_remaining = 0;
+    acline = bat_info.charging ? TRUE : FALSE;
+
+    if (bat_info.percent_capacity > 0)
+        present++;
+
+    lcapacity += bat_info.full_capacity;
+    ccapacity += bat_info.current_capacity;
+
+    if (acline)
+        rate = bat_info.charge_rate;
+    else
+        rate = bat_info.discharge_rate;
+
+    method = BM_USE_ENVSYS;
 #else
     DBG ("Updating battery status...");
 
@@ -216,7 +388,9 @@ update_apm_status(t_battmon *battmon)
             ccapacity += acpistate->rcapacity;
             rate += acpistate->prate;
         }
-
+    }
+#endif
+    if (method == BM_USE_ACPI || method == BM_USE_ENVSYS) {
         sum_lcapacity += lcapacity;
         sum_ccapacity += ccapacity;
         sum_rate += rate;
@@ -253,7 +427,6 @@ update_apm_status(t_battmon *battmon)
         last_acline = acline;
         last_present = present;
     }
-#endif
 
     DBG("method=%d, acline=%d, time_remaining=%d, charge=%d", method, acline, time_remaining, charge);
 

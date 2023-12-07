@@ -58,7 +58,7 @@ dnl ************************************
 AC_CHECK_FUNCS([sysctl])
 AC_CANONICAL_HOST
 case $host_os in
-    *NetBSD*) netbsd=true;;
+    *netbsd*) netbsd=true;;
     *)  netbsd=false;;
 esac
 AM_CONDITIONAL([NETBSD], [test x$netbsd = xtrue])

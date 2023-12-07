@@ -56,6 +56,12 @@ dnl ************************************
 dnl *** Check for standard functions ***
 dnl ************************************
 AC_CHECK_FUNCS([sysctl])
+AC_CANONICAL_HOST
+case $host_os in
+    *NetBSD*) netbsd=true;;
+    *)  netbsd=false;;
+esac
+AM_CONDITIONAL([NETBSD], [test x$netbsd = xtrue])
 
 dnl ******************************
 dnl *** Check for i18n support ***

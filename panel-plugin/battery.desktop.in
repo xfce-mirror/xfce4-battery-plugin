@@ -1,8 +1,8 @@
 [Xfce Panel]
 Type=X-XFCE-PanelPlugin
 Encoding=UTF-8
-_Name=Battery Monitor
-_Comment=Show and monitor the battery status
+Name=Battery Monitor
+Comment=Show and monitor the battery status
 Icon=xfce4-battery-plugin
 X-XFCE-Internal=FALSE
 X-XFCE-Module=battery

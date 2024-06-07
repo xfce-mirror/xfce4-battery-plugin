@@ -710,10 +710,12 @@ get_temperature(void)
         fgets(line,255,fp);
         fclose(fp);
         p = line;
-        if (strchr(p,'\n')) *strchr(p,'\n') = 0;
-        if (strlen(p) <= 3) return NULL;
-        p2 = p + strlen(p) - 3;
-        strcpy(p2, " C");
+        if (p != NULL) {
+            if ((p2 = strchr(p,'\n')) != NULL) *p2 = 0;
+            if (strlen(p) <= 3) return NULL;
+            p2 = p + strlen(p) - 3;
+            strcpy(p2, " C");
+        }
         return (const char *)p;
     }
 

@@ -1477,8 +1477,6 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
     gtk_notebook_prepend_page(GTK_NOTEBOOK(notebook), vbox, label);
 
     g_object_unref(G_OBJECT(sg));
-    /* Create size group to keep widgets aligned */
-    sg = gtk_size_group_new(GTK_SIZE_GROUP_HORIZONTAL);
 
     /* Create checkbox options */
 

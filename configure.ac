@@ -10,19 +10,15 @@ dnl
 dnl ***************************
 dnl *** Version information ***
 dnl ***************************
-m4_define([battery_version_major], [1])
-m4_define([battery_version_minor], [1])
-m4_define([battery_version_micro], [5])
-m4_define([battery_version_build], [r@REVISION@])
-m4_define([battery_version_tag], [git])
-m4_define([battery_version], [battery_version_major().battery_version_minor().battery_version_micro()ifelse(battery_version_tag(), [svn], [battery_version_tag()-battery_version_build()], [battery_version_tag()])])
+XDT_VERSION_INIT([1.1.5], [git])
 
 dnl ***************************
 dnl *** Initialize autoconf ***
 dnl ***************************
 AC_COPYRIGHT([Copyright (c) 2003-2023 The Xfce development team. All rights reserved.])
-AC_INIT([xfce4-battery-plugin], [battery_version], [https://gitlab.xfce.org/panel-plugins/xfce4-battery-plugin], [xfce4-battery-plugin])
-AC_PREREQ([2.50])
+AC_INIT([xfce4-battery-plugin], [xdt_version], [https://gitlab.xfce.org/panel-plugins/xfce4-battery-plugin], [xfce4-battery-plugin])
+AC_REVISION([xdt_version_build])
+AC_PREREQ([2.69])
 AC_CANONICAL_TARGET()
 AC_CONFIG_MACRO_DIRS([m4])
 
@@ -88,7 +84,7 @@ XDT_CHECK_PACKAGE([LIBXFCE4PANEL], [libxfce4panel-2.0], [4.14.0])
 dnl ***********************************
 dnl *** Check for debugging support ***
 dnl ***********************************
-XDT_FEATURE_DEBUG()
+XDT_FEATURE_DEBUG([xdt_debug_default])
 
 AC_CONFIG_FILES([
 Makefile

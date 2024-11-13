@@ -14,7 +14,8 @@ plugin_LTLIBRARIES = libbattery.la
 libbattery_la_SOURCES =						\
 	battery.c								\
 	libacpi.h								\
-	libacpi.c
+	libacpi.c						\
+	libsmc.c
 
 libbattery_la_CFLAGS =						\
 	$(LIBXFCE4PANEL_CFLAGS)					\

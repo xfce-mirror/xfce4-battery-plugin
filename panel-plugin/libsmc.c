@@ -135,7 +135,7 @@ __attribute__((destructor)) void smc_close(void) {
 int get_fan_status(void) {
   IOReturn result = kIOReturnSuccess;
   SMCKey key;
-  char *keyStr = NULL;
+  char keyStr[5];
   uint8_t fan_num;
   int i;
 
@@ -192,7 +192,7 @@ const char *get_temperature(void) {
 
   snprintf(buf, BUFSIZ, "%.1f C", retval);
 
-  return buf;
+  return (const char *)buf;
 }
 
 int get_time_to_empty(void) {

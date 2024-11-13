@@ -33,6 +33,8 @@
 
 #include <libxfce4util/libxfce4util.h>
 
+#ifndef __APPLE__
+
 #ifdef __FreeBSD__
 #include <fcntl.h>
 #include <sys/ioctl.h>
@@ -749,3 +751,4 @@ get_temperature(void)
 #endif
 #endif
 }
+#endif

@@ -184,6 +184,12 @@ cleanup:
 
 #endif
 
+#if defined(__APPLE__)
+#include <CoreFoundation/CoreFoundation.h>
+#include <IOKit/ps/IOPSKeys.h>
+#include <IOKit/ps/IOPowerSources.h>
+#endif
+
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <fcntl.h>
@@ -197,7 +203,11 @@ cleanup:
 #include <gtk/gtk.h>
 #include <libxfce4panel/libxfce4panel.h>
 
+#if defined(__APPLE__)
+#include "libsmc.h"
+#else
 #include "libacpi.h"
+#endif
 
 #include <sys/time.h>
 #include <time.h>
@@ -276,7 +286,7 @@ typedef struct
 } t_battmon_dialog;
 
 enum {BM_DO_NOTHING, BM_MESSAGE, BM_COMMAND, BM_COMMAND_TERM};
-enum {BM_BROKEN, BM_USE_ACPI, BM_USE_APM, BM_USE_ENVSYS};
+enum {BM_BROKEN, BM_USE_ACPI, BM_USE_APM, BM_USE_ENVSYS, BM_USE_IOKIT};
 enum {BM_MISSING, BM_CRITICAL, BM_CRITICAL_CHARGING, BM_LOW, BM_LOW_CHARGING, BM_OK, BM_OK_CHARGING, BM_FULL, BM_FULL_CHARGING};
 
 static gboolean battmon_set_size(XfcePanelPlugin *plugin, int size, t_battmon *battmon);
@@ -372,6 +382,85 @@ update_apm_status(t_battmon *battmon)
         rate = bat_info.discharge_rate;
 
     method = BM_USE_ENVSYS;
+#elif defined(__APPLE__)
+    CFTypeRef ps_info = NULL;
+    CFArrayRef list = NULL;
+    CFStringRef ps_name;
+    CFDictionaryRef one_ps = NULL;
+    CFIndex count;
+    CFNumberRef number;
+    CFStringRef state;
+    char strbuf[255];
+    int current_cap, max_cap;
+    int i;
+
+    method = BM_USE_IOKIT;
+
+    ps_info = IOPSCopyPowerSourcesInfo();
+    if (!ps_info) {
+        DBG ("No power source info available");
+        return;
+    }
+
+    ps_name = IOPSGetProvidingPowerSourceType(ps_info);
+    if (!ps_name || !CFStringGetCString(ps_name, strbuf, 255, kCFStringEncodingUTF8)) {
+        DBG ("Unable to get power source type");
+        return;
+    } else {
+        DBG ("Power source type: '%s'\n", strbuf);
+    }
+
+    list = IOPSCopyPowerSourcesList(ps_info);
+    if (list != NULL) {
+        /* Normally there only have one battery present */
+        count = CFArrayGetCount(list);
+
+        for (i = 0; i < count; i++) {
+            one_ps = IOPSGetPowerSourceDescription(ps_info, CFArrayGetValueAtIndex(list, i));
+            if (!one_ps) break;
+
+            if ((number = (CFNumberRef)CFDictionaryGetValue(one_ps, CFSTR(kIOPSCurrentCapacityKey)))) {
+                CFNumberGetValue(number, kCFNumberIntType, &current_cap);
+            }
+            if ((number = (CFNumberRef)CFDictionaryGetValue(one_ps, CFSTR(kIOPSMaxCapacityKey)))) {
+                CFNumberGetValue(number, kCFNumberIntType, &max_cap);
+            }
+            if (current_cap != 0 && max_cap != 0)
+                charge = current_cap * 100 / max_cap;
+
+            state = CFDictionaryGetValue(one_ps, CFSTR(kIOPSPowerSourceStateKey));
+            if (state && (kCFCompareEqualTo == CFStringCompare(state, CFSTR(kIOPSBatteryPowerValue), 0))) {
+                number = CFDictionaryGetValue(one_ps, CFSTR(kIOPSTimeToEmptyKey));
+            } else {
+                number = CFDictionaryGetValue(one_ps, CFSTR(kIOPSTimeToFullChargeKey));
+            }
+            /* TimeToEmpty / TimeToFullCharge in minutes */
+            if (number) {
+                CFNumberGetValue(number, kCFNumberIntType, &time_remaining);
+            }
+
+            /* There's a confusion that, AC attached doesn't means the battery is charging,
+             * so it could have a status that "AC attached but not charging" */
+            acline = (kCFCompareEqualTo == CFStringCompare(state, CFSTR(kIOPSACPowerValue), 0)) ? TRUE : FALSE;
+
+            if ((number = (CFNumberRef)CFDictionaryGetValue(one_ps, CFSTR(kIOPSIsPresentKey)))) {
+                CFNumberGetValue(number, kCFNumberIntType, &present);
+            }
+
+#if TARGET_OS_EMBEDDED
+            /* For some reason, iOS powerd not writting kIOPSTimeToEmptyKey/kIOPSTimeToFullChargeKey */
+            if (time_remaining <= 0 && present) {
+                if (acline)
+                    time_remaining = estimate_time_to_full() * (100 - charge);
+                else
+                    time_remaining = get_time_to_empty();
+            }
+#endif
+        }
+    }
+
+    if (ps_info) CFRelease(ps_info);
+    if (list) CFRelease(list);
 #else
     DBG ("Updating battery status...");
 

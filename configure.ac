@@ -80,6 +80,11 @@ XDT_CHECK_PACKAGE([GTK], [gtk+-3.0], [3.16.0])
 XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.14.0])
 XDT_CHECK_PACKAGE([LIBXFCE4UI], [libxfce4ui-2], [4.14.0])
 XDT_CHECK_PACKAGE([LIBXFCE4PANEL], [libxfce4panel-2.0], [4.14.0])
+case "$target_os" in
+    darwin*)
+    LDFLAGS="-Wl,-dead_strip_dylibs -Wl,-framework,CoreFoundation -Wl,-framework,IOKit $LDFLAGS"
+    ;;
+esac
 
 dnl ***********************************
 dnl *** Check for debugging support ***

@@ -590,7 +590,6 @@ update_apm_status(t_battmon *battmon)
     }
 
     color_str = gdk_rgba_to_string (color);
-#if GTK_CHECK_VERSION (3, 20, 0)
     cssminsizes = "min-width: 4px; min-height: 0px";
     if (gtk_orientable_get_orientation(GTK_ORIENTABLE(battmon->battstatus)) == GTK_ORIENTATION_HORIZONTAL)
         cssminsizes = "min-width: 0px; min-height: 4px";
@@ -598,9 +597,6 @@ update_apm_status(t_battmon *battmon)
                            progressbar progress { %s ; \
                            background-color: %s; background-image: none; }",
                           cssminsizes, cssminsizes,
-#else
-    css = g_strdup_printf(".progressbar progress { background-color: %s; background-image: none; }",
-#endif
                           color_str);
 
     gtk_css_provider_load_from_data (battmon->css_provider, css, strlen(css), NULL);
@@ -626,7 +622,7 @@ do_critical_warn:
                 int interm=(battmon->options.action_on_critical == BM_COMMAND_TERM)?1:0;
                 if (!battmon->options.command_on_critical ||
                     !strlen(battmon->options.command_on_critical)) goto do_critical_warn;
-                xfce_spawn_command_line_on_screen(NULL, battmon->options.command_on_critical, interm, FALSE, NULL);
+                xfce_spawn_command_line(NULL, battmon->options.command_on_critical, interm, FALSE, TRUE, NULL);
             }
         } else if (!battmon->low) {
             battmon->low = TRUE;
@@ -645,7 +641,7 @@ do_low_warn:
                 int interm=(battmon->options.action_on_low == BM_COMMAND_TERM)?1:0;
                 if (!battmon->options.command_on_low ||
                     !strlen(battmon->options.command_on_low)) goto do_low_warn;
-                xfce_spawn_command_line_on_screen(NULL, battmon->options.command_on_low, interm, FALSE, NULL);
+                xfce_spawn_command_line(NULL, battmon->options.command_on_low, interm, FALSE, TRUE, NULL);
             }
         }
     }

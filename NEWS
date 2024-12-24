@@ -1,3 +1,18 @@
+1.1.6 (2024-12-24)
+=====
+- Update copyright year
+- Introduce Darwin support
+- build: Bump dependency versions and fix deprecation warnings
+- I18n: Update po/LINGUAS list
+- build: Use XDT_VERSION_INIT and get rid of configure.ac.in
+- gcc-analyzer: Fix -Wanalyzer-null-dereference
+- scan-build: Fix deadcode.DeadStores
+- I18n: Update po/LINGUAS list
+- build: Get rid of intltool
+- Add initial envsys support for NetBSD
+- Translation Updates:
+  Chinese (China), Polish, Portuguese (Brazil), Romanian, Turkish
+
 1.1.5 (2023-04-19)
 =====
 - Update copyright year

@@ -25,6 +25,9 @@
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
+#ifdef HAVE_XFCE_REVISION_H
+#include "xfce-revision.h"
+#endif
 
 #if defined(__OpenBSD__)
 #include <sys/param.h>
@@ -1640,7 +1643,7 @@ battmon_show_about(XfcePanelPlugin *plugin, t_battmon *battmon)
    gtk_show_about_dialog(NULL,
         "logo-icon-name", "xfce4-battery-plugin",
         "license", xfce_get_license_text (XFCE_LICENSE_TEXT_GPL),
-        "version", PACKAGE_VERSION,
+        "version", VERSION_FULL,
         "program-name", PACKAGE_NAME,
         "comments", _("Show and monitor the battery status"),
         "website", "https://docs.xfce.org/panel-plugins/xfce4-battery-plugin",

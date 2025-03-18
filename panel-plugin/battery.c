@@ -47,6 +47,8 @@
 #include <fcntl.h>
 #include <unistd.h>
 
+#include <libxfce4ui/libxfce4ui.h>
+
 struct battery {
     int charging;
     float full_capacity;
@@ -1337,7 +1339,11 @@ battmon_dialog_response (GtkWidget *dlg, int response, t_battmon *battmon)
     if (response == GTK_RESPONSE_HELP)
     {
         /* show help */
+#if LIBXFCE4UI_CHECK_VERSION(4, 21, 0)
+        result = g_spawn_command_line_async ("xfce-open --launch WebBrowser " PLUGIN_WEBSITE, NULL);
+#else
         result = g_spawn_command_line_async ("exo-open --launch WebBrowser " PLUGIN_WEBSITE, NULL);
+#endif
 
         if (G_UNLIKELY (result == FALSE))
             g_warning (_("Unable to open the following url: %s"), PLUGIN_WEBSITE);

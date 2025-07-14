@@ -251,6 +251,7 @@ typedef struct
 {
     XfcePanelPlugin *plugin;
 
+    GtkWidget         *settings_dialog;
     GtkWidget         *ebox, *timechargebox, *actempbox;
     GtkWidget         *battstatus;
     int                timeoutid; /* To update apm status */
@@ -1357,7 +1358,6 @@ battmon_dialog_response (GtkWidget *dlg, int response, t_battmon *battmon)
         else
         {
             gtk_widget_destroy (dlg);
-            xfce_panel_plugin_unblock_menu (battmon->plugin);
             battmon_write_config (battmon->plugin, battmon);
         }
     }
@@ -1372,18 +1372,23 @@ battmon_create_options(XfcePanelPlugin *plugin, t_battmon *battmon)
     GtkSizeGroup *sg;
     t_battmon_dialog *dialog;
 
+    if (battmon->settings_dialog != NULL)
+    {
+        gtk_window_present(GTK_WINDOW(battmon->settings_dialog));
+        return;
+    }
+
     dialog = g_new0(t_battmon_dialog, 1);
 
     dialog->battmon = battmon;
 
-    xfce_panel_plugin_block_menu(plugin);
-
-    dlg = xfce_titled_dialog_new_with_mixed_buttons(_("Battery Monitor"),
+    battmon->settings_dialog = dlg = xfce_titled_dialog_new_with_mixed_buttons(_("Battery Monitor"),
         GTK_WINDOW(gtk_widget_get_toplevel(GTK_WIDGET(plugin))),
         GTK_DIALOG_DESTROY_WITH_PARENT,
         "window-close", _("_Close"), GTK_RESPONSE_OK,
         "help-browser", _("_Help"), GTK_RESPONSE_HELP,
         NULL);
+    g_object_add_weak_pointer(G_OBJECT(dlg), (gpointer *)&battmon->settings_dialog);
 
     gtk_window_set_position(GTK_WINDOW(dlg), GTK_WIN_POS_CENTER);
     gtk_window_set_icon_name(GTK_WINDOW(dlg), "xfce4-battery-plugin");

@@ -17,9 +17,6 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
 #ifndef __libacpi_c__
 #define __libacpi_c__
 #endif

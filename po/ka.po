@@ -1,0 +1,195 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: Xfce Panel Plugins\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-30 00:52+0200\n"
+"PO-Revision-Date: 2013-07-03 18:48+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Georgian (http://app.transifex.com/xfce/xfce-panel-plugins/language/ka/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ka\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: ../panel-plugin/battery.c:344
+msgid "(No battery, AC on-line)"
+msgstr "(ელემენტის გარეშე. მიერთებულია კვების წყაროზე)"
+
+#: ../panel-plugin/battery.c:346
+msgid "(Charging from AC)"
+msgstr "(იტენება კვების წყაროდან)"
+
+#: ../panel-plugin/battery.c:346
+msgid "(AC on-line)"
+msgstr "(მიერთებულია კვების წყარო)"
+
+#: ../panel-plugin/battery.c:356
+#, c-format
+msgid "%d%% (%02d:%02d) remaining"
+msgstr "%d%% (%02d:%02d) დარჩენილია"
+
+#: ../panel-plugin/battery.c:358
+#, c-format
+msgid "%02d:%02d remaining"
+msgstr "%02d:%02d დარჩენილია"
+
+#: ../panel-plugin/battery.c:360
+#, c-format
+msgid "%d%% remaining"
+msgstr "დარჩენილია %d%%"
+
+#: ../panel-plugin/battery.c:362
+#, c-format
+msgid "AC off-line"
+msgstr "კვების წყარო გათიშულია"
+
+#: ../panel-plugin/battery.c:445
+msgid ""
+"WARNING: Your battery has reached critical status. You should plug in or "
+"shutdown your computer now to avoid possible data loss."
+msgstr ""
+
+#: ../panel-plugin/battery.c:464
+msgid ""
+"WARNING: Your battery is running low. You should consider plugging in or "
+"shutting down your computer soon to avoid possible data loss."
+msgstr ""
+
+#: ../panel-plugin/battery.c:505
+msgid "Battery"
+msgstr "ელემენტი"
+
+#: ../panel-plugin/battery.c:988
+msgid "Select file"
+msgstr "აირჩიეთ ფაილი"
+
+#: ../panel-plugin/battery.c:1029
+msgid "Select command"
+msgstr "ბრძანების არჩევა"
+
+#: ../panel-plugin/battery.c:1082
+#, c-format
+msgid "Unable to open the following url: %s"
+msgstr "ვერ გაიხსნა შემდეგი url: %s"
+
+#: ../panel-plugin/battery.c:1114 ../panel-plugin/battery.desktop.in.h:1
+msgid "Battery Monitor"
+msgstr "ელემენტის მონიტორი"
+
+#: ../panel-plugin/battery.c:1117
+msgid "_Close"
+msgstr "და_ხურვა"
+
+#: ../panel-plugin/battery.c:1118
+msgid "_Help"
+msgstr "_დახმარება"
+
+#: ../panel-plugin/battery.c:1143
+msgid "On AC:"
+msgstr "დენის წყაროზე:"
+
+#: ../panel-plugin/battery.c:1157
+msgid "Battery high:"
+msgstr "ელემენტის მაღალი მუხტი:"
+
+#: ../panel-plugin/battery.c:1171
+msgid "Battery low:"
+msgstr "ელემენტის დაბალი მუხტი:"
+
+#: ../panel-plugin/battery.c:1185
+msgid "Battery critical:"
+msgstr "ელემენტის კრიტიკული მუხტი:"
+
+#: ../panel-plugin/battery.c:1196
+msgid "Bar _colors"
+msgstr "პანელის _ფერები"
+
+#: ../panel-plugin/battery.c:1210
+msgid "Low percentage:"
+msgstr "დაბალი პროცენტულობა:"
+
+#: ../panel-plugin/battery.c:1224
+msgid "Low battery action:"
+msgstr "ქმედება დაბალი პროცენტულობისას:"
+
+#: ../panel-plugin/battery.c:1231 ../panel-plugin/battery.c:1279
+msgid "Do nothing"
+msgstr "არაფრის გაკეთება"
+
+#: ../panel-plugin/battery.c:1232 ../panel-plugin/battery.c:1280
+msgid "Display a warning message"
+msgstr "გაფრთხილების შეტყობინების ჩვენება"
+
+#: ../panel-plugin/battery.c:1233 ../panel-plugin/battery.c:1281
+msgid "Run command"
+msgstr "ბრძანების გაშვება"
+
+#: ../panel-plugin/battery.c:1234 ../panel-plugin/battery.c:1282
+msgid "Run command in terminal"
+msgstr "ბრძანების გაშვება ტერმინალში"
+
+#: ../panel-plugin/battery.c:1242 ../panel-plugin/battery.c:1290
+msgid "Command:"
+msgstr "ბრძანება:"
+
+#: ../panel-plugin/battery.c:1258
+msgid "Critical percentage:"
+msgstr "კრიტიკული პროცენტულობა:"
+
+#: ../panel-plugin/battery.c:1272
+msgid "Critical battery action:"
+msgstr "კრიტიკული ელემენტის ქმედება:"
+
+#: ../panel-plugin/battery.c:1302
+msgid "Levels and _actions"
+msgstr "დონეები დ_ა ქმედებები"
+
+#: ../panel-plugin/battery.c:1315
+msgid "Display label"
+msgstr "ჭდის ჩვენება"
+
+#: ../panel-plugin/battery.c:1318
+msgid "Display icon"
+msgstr "ხატულას ჩვენება"
+
+#: ../panel-plugin/battery.c:1321
+msgid "Display bar"
+msgstr "პანელის ჩვენება"
+
+#: ../panel-plugin/battery.c:1324
+msgid "Display percentage"
+msgstr "პროცენტულობის ჩვენება"
+
+#: ../panel-plugin/battery.c:1327
+msgid "Display time"
+msgstr "დროის ჩვენება"
+
+#: ../panel-plugin/battery.c:1330
+msgid "Display power"
+msgstr "კვების ჩვენება"
+
+#: ../panel-plugin/battery.c:1333
+msgid "Hide time/percentage when full"
+msgstr "დროის/პროცენტულობის დამალვა, როცა ელემენტი ბოლომდეა დამუხტული"
+
+#: ../panel-plugin/battery.c:1336
+msgid "Display percentage in tooltip"
+msgstr "პროცენტულობის ჩვენება მინიშნებაში"
+
+#: ../panel-plugin/battery.c:1339
+msgid "Display time remaining in tooltip"
+msgstr "დარჩენილი დროის ჩვენება მინიშნებაში"
+
+#: ../panel-plugin/battery.c:1342
+msgid "_Display"
+msgstr "ეკრანი"
+
+#: ../panel-plugin/battery.c:1389 ../panel-plugin/battery.desktop.in.h:2
+msgid "Show and monitor the battery status"
+msgstr "ელემენტის სტატუსის ჩვენება და მონიტორინგი"

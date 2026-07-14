@@ -449,8 +449,8 @@ int
 read_acpi_info(int battery)
 {
 #ifdef __linux__
-    if (battery > MAXBATT) {
-        DBG("error, battery > MAXBATT (%d)",MAXBATT);
+    if (battery >= MAXBATT) {
+        DBG("error, battery >= MAXBATT (%d)",MAXBATT);
         return 0;
   }
 

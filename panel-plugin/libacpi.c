@@ -343,7 +343,7 @@ read_acad_state_sysfs(void)
     closedir(sysfs);
 
     if (!acadstate)
-        acadstate=(ACADstate *)malloc(sizeof(ACADstate));
+        acadstate = g_new(ACADstate, 1);
 
     sprintf(onlinefilepath, "%s/online", sysfsacdir);
     /* if onlinefilepath doesn't exist read_sysfs_int() will return 0
@@ -405,7 +405,8 @@ read_acpi_info_sysfs(int battery)
     and some random data from the heap is displayed..)
     if (!acpiinfo) acpiinfo=(ACPIinfo *)malloc(sizeof(ACPIinfo));
     */
-    if (!acpiinfo) acpiinfo=(ACPIinfo *)calloc(1, sizeof(ACPIinfo));
+    if (!acpiinfo)
+        acpiinfo = g_new0(ACPIinfo, 1);
 
     while ((propety = readdir(sysfs)))
     {
@@ -464,7 +465,7 @@ read_acpi_info(int battery)
     u_int kind;
     int retval;
     if (!acpiinfo)
-        acpiinfo=(ACPIinfo *)malloc(sizeof(ACPIinfo));
+        acpiinfo = g_new(ACPIinfo, 1);
     acpiinfo->present = 0;
     acpiinfo->design_capacity = 0;
     acpiinfo->last_full_capacity = 0;
@@ -527,7 +528,7 @@ read_acpi_state_sysfs(int battery)
 
     /* again it might be better to use calloc */
     if (!acpistate)
-        acpistate=(ACPIstate *)calloc(1, sizeof(ACPIstate));
+        acpistate = g_new0(ACPIstate, 1);
 
     while ((propety = readdir(sysfs)))
     {
@@ -599,7 +600,7 @@ read_acpi_state(int battery)
     int retval;
     u_int kind;
     if (!acpistate)
-        acpistate=(ACPIstate *)malloc(sizeof(ACPIstate));
+        acpistate = g_new(ACPIstate, 1);
     acpistate->present = 0;
     acpistate->state = UNKNOW;
     acpistate->prate = 0;

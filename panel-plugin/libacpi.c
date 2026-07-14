@@ -590,7 +590,6 @@ read_acpi_state(int battery)
     return acpi_sysfs ? read_acpi_state_sysfs(battery) : 0;
 #else
 #ifdef HAVE_SYSCTL
-    char *string;
     static char buf[BUFSIZ];
     char fmt[BUFSIZ];
     char *bufp=buf;

@@ -567,8 +567,7 @@ update_apm_status(t_battmon *battmon)
 
         if (old_state != new_state)
             gtk_image_set_from_icon_name(GTK_IMAGE(battmon->image), icon_name, GTK_ICON_SIZE_BUTTON);
-        if (icon_name)
-            g_free(icon_name);
+        g_free(icon_name);
 
         old_state = new_state;
         gtk_widget_show(battmon->image);

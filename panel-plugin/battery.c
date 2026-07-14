@@ -76,7 +76,6 @@ get_battery_infos(struct battery* bat)
     result = prop_dictionary_recv_ioctl(sysmonfd, ENVSYS_GETDICTIONARY, &dict);
     if (result == -1) {
         goto cleanup;
-        return;
     }
 
     dict_iter = prop_dictionary_iterator(dict);

@@ -168,10 +168,7 @@ get_battery_infos(struct battery* bat)
             }
         }
         dict_obj = NULL;
-        if (value_iter) {
-            prop_object_iterator_release(value_iter);
-            value_iter = NULL;
-        }
+        g_clear_pointer(&value_iter, prop_object_iterator_release);
     }
 cleanup:
     if (value_iter) {
@@ -881,10 +878,7 @@ battmon_create(XfcePanelPlugin *plugin)
 static void
 battmon_free(XfcePanelPlugin *plugin, t_battmon *battmon)
 {
-    if (battmon->timeoutid != 0) {
-        g_source_remove(battmon->timeoutid);
-        battmon->timeoutid = 0;
-    }
+    g_clear_handle_id(&battmon->timeoutid, g_source_remove);
 
     /* cleanup options */
     g_free (battmon->options.command_on_low);

@@ -116,7 +116,7 @@ static int
 get_var(int *oid, int nlen)
 {
     int retval=0;
-    u_char buf1[BUFSIZ], *val, *p;
+    u_char buf1[BUFSIZ], *p;
     char name[BUFSIZ], *fmt, *sep;
     int qoid[CTL_MAXNAME+2];
     int i;
@@ -139,7 +139,7 @@ get_var(int *oid, int nlen)
     sysctl(oid, nlen, 0, &j, 0, 0);
     j += j; /* we want to be sure :-) */
 
-    val = alloca(j + 1);
+    u_char val[j + 1];
     len = j;
     i = sysctl(oid, nlen, val, &len, 0, 0);
     if (i || !len)

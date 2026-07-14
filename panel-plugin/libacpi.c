@@ -90,7 +90,7 @@ static int
 oidfmt(int *oid, int len, char *fmt, u_int *kind)
 {
     int qoid[CTL_MAXNAME+2];
-    u_char buf[BUFSIZ];
+    u_char buf1[BUFSIZ];
     int i;
     size_t j;
 
@@ -98,16 +98,16 @@ oidfmt(int *oid, int len, char *fmt, u_int *kind)
     qoid[1] = 4;
     memcpy(qoid + 2, oid, len * sizeof(int));
 
-    j = sizeof(buf);
-    i = sysctl(qoid, len + 2, buf, &j, 0, 0);
+    j = sizeof(buf1);
+    i = sysctl(qoid, len + 2, buf1, &j, 0, 0);
     if (i)
         err(1, "sysctl fmt %d %zu %d", i, j, errno);
 
     if (kind)
-        *kind = *(u_int *)buf;
+        *kind = *(u_int *)buf1;
 
     if (fmt)
-        g_strlcpy(fmt, (char *)(buf + sizeof(u_int)), sizeof(fmt));
+        g_strlcpy(fmt, (char *)(buf1 + sizeof(u_int)), sizeof(fmt));
 
     return 0;
 }
@@ -116,7 +116,7 @@ static int
 get_var(int *oid, int nlen)
 {
     int retval=0;
-    u_char buf[BUFSIZ], *val, *p;
+    u_char buf1[BUFSIZ], *val, *p;
     char name[BUFSIZ], *fmt, *sep;
     int qoid[CTL_MAXNAME+2];
     int i;
@@ -146,7 +146,7 @@ get_var(int *oid, int nlen)
         return (1);
 
     val[len] = '\0';
-    fmt = (char *)buf;
+    fmt = (char *)buf1;
     oidfmt(oid, nlen, fmt, &kind);
     p = val;
     switch (*fmt) {
@@ -274,14 +274,14 @@ check_acpi(void)
     return check_acpi_sysfs();
 #else
 #ifdef HAVE_SYSCTL
-    static char buf[BUFSIZ];
-    char *bufp=buf;
+    static char buf1[BUFSIZ];
+    char *bufp=buf1;
     char fmt[BUFSIZ];
-    void *oldp=(void *)buf;
+    void *oldp=(void *)buf1;
     size_t oldlenp=BUFSIZ;
     int len,mib[CTL_MAXNAME];
     u_int kind;
-    snprintf(buf, BUFSIZ, "%s", "hw.acpi.battery.units");
+    snprintf(buf1, BUFSIZ, "%s", "hw.acpi.battery.units");
     len = name2oid(bufp, mib);
     if (len <=0) return 1;
     if (oidfmt(mib, len, fmt, &kind)) return 1;
@@ -360,15 +360,15 @@ read_acad_state(void)
     return acpi_sysfs ? read_acad_state_sysfs() : 0;
 #else
 #ifdef HAVE_SYSCTL
-    static char buf[BUFSIZ];
+    static char buf1[BUFSIZ];
     char fmt[BUFSIZ];
-    void *oldp=(void *)buf;
-    char *bufp=buf;
+    void *oldp=(void *)buf1;
+    char *bufp=buf1;
     size_t oldlenp=BUFSIZ;
     int len,mib[CTL_MAXNAME];
     u_int kind;
     int retval;
-    snprintf(buf, BUFSIZ, "%s", "hw.acpi.acline");
+    snprintf(buf1, BUFSIZ, "%s", "hw.acpi.acline");
     len = name2oid(bufp, mib);
     if (len <= 0) return(-1);
     if (oidfmt(mib, len, fmt, &kind))
@@ -457,8 +457,8 @@ read_acpi_info(int battery)
     return acpi_sysfs ? read_acpi_info_sysfs(battery) : 0;
 #else
 #ifdef HAVE_SYSCTL
-    static char buf[BUFSIZ];
-    char *bufp=buf;
+    static char buf1[BUFSIZ];
+    char *bufp=buf1;
     int len,mib[CTL_MAXNAME];
     char fmt[BUFSIZ];
     u_int kind;
@@ -472,7 +472,7 @@ read_acpi_info(int battery)
     acpiinfo->design_voltage = 0;
     acpiinfo->design_capacity_warning = 0;
     acpiinfo->design_capacity_low = 0;
-    snprintf(buf, BUFSIZ, "%s", "hw.acpi.battery.units");
+    snprintf(buf1, BUFSIZ, "%s", "hw.acpi.battery.units");
     len = name2oid(bufp, mib);
     if (len <= 0) return(-1);
     if (oidfmt(mib, len, fmt, &kind))
@@ -590,10 +590,10 @@ read_acpi_state(int battery)
     return acpi_sysfs ? read_acpi_state_sysfs(battery) : 0;
 #else
 #ifdef HAVE_SYSCTL
-    static char buf[BUFSIZ];
+    static char buf1[BUFSIZ];
     char fmt[BUFSIZ];
-    char *bufp=buf;
-    void *oldp=(void *)buf;
+    char *bufp=buf1;
+    void *oldp=(void *)buf1;
     size_t oldlenp=BUFSIZ;
     int len,mib[CTL_MAXNAME];
     int retval;
@@ -608,7 +608,7 @@ read_acpi_state(int battery)
     acpistate->rtime = 0;
     acpistate->percentage = 0;
 
-    snprintf(buf, BUFSIZ, "%s", "hw.acpi.battery.time");
+    snprintf(buf1, BUFSIZ, "%s", "hw.acpi.battery.time");
     len = name2oid(bufp, mib);
     if (len <= 0) return(-1);
     if (oidfmt(mib, len, fmt, &kind))
@@ -622,7 +622,7 @@ read_acpi_state(int battery)
     }
     acpistate->rtime =(retval<0)?0:retval;
 
-    snprintf(buf, BUFSIZ, "%s", "hw.acpi.battery.life");
+    snprintf(buf1, BUFSIZ, "%s", "hw.acpi.battery.life");
     len = name2oid(bufp, mib);
     if (len <= 0) return(-1);
     if (oidfmt(mib, len, fmt, &kind))
@@ -720,15 +720,15 @@ get_temperature(void)
     return NULL;
 #else
 #ifdef HAVE_SYSCTL
-    static char buf[BUFSIZ];
+    static char buf1[BUFSIZ];
     char fmt[BUFSIZ];
-    char *bufp=buf;
-    void *oldp=(void *)buf;
+    char *bufp=buf1;
+    void *oldp=(void *)buf1;
     size_t oldlenp=BUFSIZ;
     int len,mib[CTL_MAXNAME];
     int retval;
     u_int kind;
-    snprintf(buf, BUFSIZ, "%s", "hw.acpi.thermal.tz0.temperature");
+    snprintf(buf1, BUFSIZ, "%s", "hw.acpi.thermal.tz0.temperature");
     len = name2oid(bufp, mib);
     if (len <= 0) return(NULL);
     if (oidfmt(mib, len, fmt, &kind))
@@ -740,8 +740,8 @@ get_temperature(void)
         retval=get_var(mib, len);
         DBG("retval=%d",retval);
     }
-    snprintf(buf, BUFSIZ, "%d C",(retval-2735)/10);
-    return (const char *)buf;
+    snprintf(buf1, BUFSIZ, "%d C",(retval-2735)/10);
+    return (const char *)buf1;
 #else
     return "";
 #endif

@@ -247,7 +247,7 @@ int estimate_time_to_full() {
     return 0;
 
   /* Not charging */
-  if (current < 0)
+  if (current <= 0)
     return 0;
 
   /* TimeToFullCharge = FullChargeCapacity (mAh) / AverageCurrent (mA) */

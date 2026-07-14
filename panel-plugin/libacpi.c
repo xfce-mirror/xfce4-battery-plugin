@@ -107,7 +107,7 @@ oidfmt(int *oid, int len, char *fmt, u_int *kind)
         *kind = *(u_int *)buf;
 
     if (fmt)
-        strcpy(fmt, (char *)(buf + sizeof(u_int)));
+        g_strlcpy(fmt, (char *)(buf + sizeof(u_int)), sizeof(fmt));
 
     return 0;
 }
@@ -713,7 +713,7 @@ get_temperature(void)
             if ((p2 = strchr(p,'\n')) != NULL) *p2 = 0;
             if (strlen(p) <= 3) return NULL;
             p2 = p + strlen(p) - 3;
-            strcpy(p2, " C");
+            g_strlcpy(p2, " C", sizeof(p2));
         }
         return (const char *)p;
     }

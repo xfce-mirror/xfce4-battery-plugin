@@ -136,7 +136,7 @@ get_var(int *oid, int nlen)
 
     /* find an estimate of how much we need for this var */
     j = 0;
-    i = sysctl(oid, nlen, 0, &j, 0, 0);
+    sysctl(oid, nlen, 0, &j, 0, 0);
     j += j; /* we want to be sure :-) */
 
     val = alloca(j + 1);

@@ -86,11 +86,11 @@ name2oid(char *name, int *oidp)
     return (j);
 }
 
-static int
+static void
 oidfmt(int *oid, int len, char *fmt, u_int *kind)
 {
     int qoid[CTL_MAXNAME+2];
-    u_char buf[BUFSIZ];
+    u_char buf1[BUFSIZ];
     int i;
     size_t j;
 
@@ -98,25 +98,23 @@ oidfmt(int *oid, int len, char *fmt, u_int *kind)
     qoid[1] = 4;
     memcpy(qoid + 2, oid, len * sizeof(int));
 
-    j = sizeof(buf);
-    i = sysctl(qoid, len + 2, buf, &j, 0, 0);
+    j = sizeof(buf1);
+    i = sysctl(qoid, len + 2, buf1, &j, 0, 0);
     if (i)
         err(1, "sysctl fmt %d %zu %d", i, j, errno);
 
     if (kind)
-        *kind = *(u_int *)buf;
+        *kind = *(u_int *)buf1;
 
     if (fmt)
-        strcpy(fmt, (char *)(buf + sizeof(u_int)));
-
-    return 0;
+        g_strlcpy(fmt, (char *)(buf1 + sizeof(u_int)), sizeof(fmt));
 }
 
 static int
 get_var(int *oid, int nlen)
 {
     int retval=0;
-    u_char buf[BUFSIZ], *val, *p;
+    u_char buf1[BUFSIZ], *p;
     char name[BUFSIZ], *fmt, *sep;
     int qoid[CTL_MAXNAME+2];
     int i;
@@ -136,17 +134,17 @@ get_var(int *oid, int nlen)
 
     /* find an estimate of how much we need for this var */
     j = 0;
-    i = sysctl(oid, nlen, 0, &j, 0, 0);
+    sysctl(oid, nlen, 0, &j, 0, 0);
     j += j; /* we want to be sure :-) */
 
-    val = alloca(j + 1);
+    u_char val[j + 1];
     len = j;
     i = sysctl(oid, nlen, val, &len, 0, 0);
     if (i || !len)
         return (1);
 
     val[len] = '\0';
-    fmt = (char *)buf;
+    fmt = (char *)buf1;
     oidfmt(oid, nlen, fmt, &kind);
     p = val;
     switch (*fmt) {
@@ -274,17 +272,15 @@ check_acpi(void)
     return check_acpi_sysfs();
 #else
 #ifdef HAVE_SYSCTL
-    static char buf[BUFSIZ];
-    char *bufp=buf;
+    static char buf1[BUFSIZ];
+    char *bufp=buf1;
     char fmt[BUFSIZ];
-    void *oldp=(void *)buf;
-    size_t oldlenp=BUFSIZ;
     int len,mib[CTL_MAXNAME];
     u_int kind;
-    snprintf(buf, BUFSIZ, "%s", "hw.acpi.battery.units");
+    snprintf(buf1, BUFSIZ, "%s", "hw.acpi.battery.units");
     len = name2oid(bufp, mib);
     if (len <=0) return 1;
-    if (oidfmt(mib, len, fmt, &kind)) return 1;
+    oidfmt(mib, len, fmt, &kind);
     if ((kind & CTLTYPE) == CTLTYPE_NODE) return 1;
     batt_count=get_var(mib, len);
 
@@ -299,7 +295,7 @@ static int
 read_sysfs_int(char* filename)
 {
     FILE* f;
-    int out;
+    int out = 0;
 
     f = fopen(filename,"r");
     if (!f)
@@ -316,15 +312,22 @@ read_sysfs_int(char* filename)
 static char*
 read_sysfs_string(char* filename)
 {
-    FILE* f;
-    f = fopen(filename,"r");
-    if (!f)
+    GError *error = NULL;
+    gchar *contents;
+    gsize length;
+    if (!g_file_get_contents(filename, &contents, &length, &error))
     {
-        DBG("Could not open %s", filename);
+        g_warning("Failed to read from file %s: %s", filename, error->message);
+        g_error_free(error);
         return NULL;
     }
-    fscanf(f,"%s",buf2);
-    fclose(f);
+
+    if (g_strlcpy (buf2, contents, ACPI_BUFSIZE) >= ACPI_BUFSIZE)
+    {
+        g_warning("Contents read from file %s truncated: it exceeds max buffer size %d", filename, ACPI_BUFSIZE);
+    }
+
+    g_free(contents);
     return buf2;
 }
 
@@ -343,7 +346,7 @@ read_acad_state_sysfs(void)
     closedir(sysfs);
 
     if (!acadstate)
-        acadstate=(ACADstate *)malloc(sizeof(ACADstate));
+        acadstate = g_new(ACADstate, 1);
 
     sprintf(onlinefilepath, "%s/online", sysfsacdir);
     /* if onlinefilepath doesn't exist read_sysfs_int() will return 0
@@ -360,20 +363,16 @@ read_acad_state(void)
     return acpi_sysfs ? read_acad_state_sysfs() : 0;
 #else
 #ifdef HAVE_SYSCTL
-    static char buf[BUFSIZ];
+    static char buf1[BUFSIZ];
     char fmt[BUFSIZ];
-    void *oldp=(void *)buf;
-    char *bufp=buf;
-    size_t oldlenp=BUFSIZ;
+    char *bufp=buf1;
     int len,mib[CTL_MAXNAME];
     u_int kind;
     int retval;
-    snprintf(buf, BUFSIZ, "%s", "hw.acpi.acline");
+    snprintf(buf1, BUFSIZ, "%s", "hw.acpi.acline");
     len = name2oid(bufp, mib);
     if (len <= 0) return(-1);
-    if (oidfmt(mib, len, fmt, &kind))
-        err(1, "couldn't find format of oid '%s'", bufp);
-    if (len < 0) errx(1, "unknown oid '%s'", bufp);
+    oidfmt(mib, len, fmt, &kind);
     if ((kind & CTLTYPE) == CTLTYPE_NODE) {
         DBG("oh-oh...");
     } else {
@@ -405,7 +404,8 @@ read_acpi_info_sysfs(int battery)
     and some random data from the heap is displayed..)
     if (!acpiinfo) acpiinfo=(ACPIinfo *)malloc(sizeof(ACPIinfo));
     */
-    if (!acpiinfo) acpiinfo=(ACPIinfo *)calloc(1, sizeof(ACPIinfo));
+    if (!acpiinfo)
+        acpiinfo = g_new0(ACPIinfo, 1);
 
     while ((propety = readdir(sysfs)))
     {
@@ -449,22 +449,22 @@ int
 read_acpi_info(int battery)
 {
 #ifdef __linux__
-    if (battery > MAXBATT) {
-        DBG("error, battery > MAXBATT (%d)",MAXBATT);
+    if (battery >= MAXBATT) {
+        DBG("error, battery >= MAXBATT (%d)",MAXBATT);
         return 0;
   }
 
     return acpi_sysfs ? read_acpi_info_sysfs(battery) : 0;
 #else
 #ifdef HAVE_SYSCTL
-    static char buf[BUFSIZ];
-    char *bufp=buf;
+    static char buf1[BUFSIZ];
+    char *bufp=buf1;
     int len,mib[CTL_MAXNAME];
     char fmt[BUFSIZ];
     u_int kind;
     int retval;
     if (!acpiinfo)
-        acpiinfo=(ACPIinfo *)malloc(sizeof(ACPIinfo));
+        acpiinfo = g_new(ACPIinfo, 1);
     acpiinfo->present = 0;
     acpiinfo->design_capacity = 0;
     acpiinfo->last_full_capacity = 0;
@@ -472,12 +472,10 @@ read_acpi_info(int battery)
     acpiinfo->design_voltage = 0;
     acpiinfo->design_capacity_warning = 0;
     acpiinfo->design_capacity_low = 0;
-    snprintf(buf, BUFSIZ, "%s", "hw.acpi.battery.units");
+    snprintf(buf1, BUFSIZ, "%s", "hw.acpi.battery.units");
     len = name2oid(bufp, mib);
     if (len <= 0) return(-1);
-    if (oidfmt(mib, len, fmt, &kind))
-        err(1, "couldn't find format of oid '%s'", bufp);
-    if (len < 0) errx(1, "unknown oid '%s'", bufp);
+    oidfmt(mib, len, fmt, &kind);
     if ((kind & CTLTYPE) == CTLTYPE_NODE) {
         DBG("oh-oh...");
     } else {
@@ -527,7 +525,7 @@ read_acpi_state_sysfs(int battery)
 
     /* again it might be better to use calloc */
     if (!acpistate)
-        acpistate=(ACPIstate *)calloc(1, sizeof(ACPIstate));
+        acpistate = g_new0(ACPIstate, 1);
 
     while ((propety = readdir(sysfs)))
     {
@@ -590,17 +588,14 @@ read_acpi_state(int battery)
     return acpi_sysfs ? read_acpi_state_sysfs(battery) : 0;
 #else
 #ifdef HAVE_SYSCTL
-    char *string;
-    static char buf[BUFSIZ];
+    static char buf1[BUFSIZ];
     char fmt[BUFSIZ];
-    char *bufp=buf;
-    void *oldp=(void *)buf;
-    size_t oldlenp=BUFSIZ;
+    char *bufp=buf1;
     int len,mib[CTL_MAXNAME];
     int retval;
     u_int kind;
     if (!acpistate)
-        acpistate=(ACPIstate *)malloc(sizeof(ACPIstate));
+        acpistate = g_new(ACPIstate, 1);
     acpistate->present = 0;
     acpistate->state = UNKNOW;
     acpistate->prate = 0;
@@ -609,12 +604,10 @@ read_acpi_state(int battery)
     acpistate->rtime = 0;
     acpistate->percentage = 0;
 
-    snprintf(buf, BUFSIZ, "%s", "hw.acpi.battery.time");
+    snprintf(buf1, BUFSIZ, "%s", "hw.acpi.battery.time");
     len = name2oid(bufp, mib);
     if (len <= 0) return(-1);
-    if (oidfmt(mib, len, fmt, &kind))
-        err(1, "couldn't find format of oid '%s'", bufp);
-    if (len < 0) errx(1, "unknown oid '%s'", bufp);
+    oidfmt(mib, len, fmt, &kind);
     if ((kind & CTLTYPE) == CTLTYPE_NODE) {
         DBG("oh-oh...");
     } else {
@@ -623,12 +616,10 @@ read_acpi_state(int battery)
     }
     acpistate->rtime =(retval<0)?0:retval;
 
-    snprintf(buf, BUFSIZ, "%s", "hw.acpi.battery.life");
+    snprintf(buf1, BUFSIZ, "%s", "hw.acpi.battery.life");
     len = name2oid(bufp, mib);
     if (len <= 0) return(-1);
-    if (oidfmt(mib, len, fmt, &kind))
-        err(1, "couldn't find format of oid '%s'", bufp);
-    if (len < 0) errx(1, "unknown oid '%s'", bufp);
+    oidfmt(mib, len, fmt, &kind);
     if ((kind & CTLTYPE) == CTLTYPE_NODE) {
         DBG("oh-oh...");
     } else {
@@ -709,40 +700,34 @@ get_temperature(void)
         fgets(line,255,fp);
         fclose(fp);
         p = line;
-        if (p != NULL) {
-            if ((p2 = strchr(p,'\n')) != NULL) *p2 = 0;
-            if (strlen(p) <= 3) return NULL;
-            p2 = p + strlen(p) - 3;
-            strcpy(p2, " C");
-        }
+        if ((p2 = strchr(p,'\n')) != NULL) *p2 = 0;
+        if (strlen(p) <= 3) return NULL;
+        p2 = p + strlen(p) - 3;
+        g_strlcpy(p2, " C", sizeof(p2));
         return (const char *)p;
     }
 
     return NULL;
 #else
 #ifdef HAVE_SYSCTL
-    static char buf[BUFSIZ];
+    static char buf1[BUFSIZ];
     char fmt[BUFSIZ];
-    char *bufp=buf;
-    void *oldp=(void *)buf;
-    size_t oldlenp=BUFSIZ;
+    char *bufp=buf1;
     int len,mib[CTL_MAXNAME];
     int retval;
     u_int kind;
-    snprintf(buf, BUFSIZ, "%s", "hw.acpi.thermal.tz0.temperature");
+    snprintf(buf1, BUFSIZ, "%s", "hw.acpi.thermal.tz0.temperature");
     len = name2oid(bufp, mib);
     if (len <= 0) return(NULL);
-    if (oidfmt(mib, len, fmt, &kind))
-        err(1, "couldn't find format of oid '%s'", bufp);
-    if (len < 0) errx(1, "unknown oid '%s'", bufp);
+    oidfmt(mib, len, fmt, &kind);
     if ((kind & CTLTYPE) == CTLTYPE_NODE) {
         DBG("oh-oh...");
     } else {
         retval=get_var(mib, len);
         DBG("retval=%d",retval);
     }
-    snprintf(buf, BUFSIZ, "%d C",(retval-2735)/10);
-    return (const char *)buf;
+    snprintf(buf1, BUFSIZ, "%d C",(retval-2735)/10);
+    return (const char *)buf1;
 #else
     return "";
 #endif

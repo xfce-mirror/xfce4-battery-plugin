@@ -130,22 +130,18 @@ __attribute__((destructor)) void smc_close(void) {
 }
 
 int get_fan_status(void) {
-  IOReturn result = kIOReturnSuccess;
   SMCKey key;
   char keyStr[5];
   uint8_t fan_num;
   int i;
 
-  if (gConn == 0)
-    result = smc_open();
-
-  if (result != kIOReturnSuccess)
+  if (gConn == 0 && smc_open() != kIOReturnSuccess)
     return 0;
 
   key = makeUInt32Key("FNum", 4, 16);
   result = smc_read(key, &fan_num);
   /* No hardware fan support, or permission deined */
-  if (result != kIOReturnSuccess)
+  if (smc_read(key, &fan_num) != kIOReturnSuccess)
     return 0;
 
   /* FNum(ui8) = 0, no fans on device */
@@ -158,7 +154,7 @@ int get_fan_status(void) {
 
     sprintf(keyStr, "F%dAc", i);
     key = makeUInt32Key(keyStr, 4, 16);
-    result = smc_read(key, &retval);
+    smc_read(key, &retval);
     /* F*Ac(flt), return 1 if any fan working */
     if (retval > 0.0)
       return 1;

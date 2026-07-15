@@ -275,8 +275,6 @@ check_acpi(void)
     static char buf1[BUFSIZ];
     char *bufp=buf1;
     char fmt[BUFSIZ];
-    void *oldp=(void *)buf1;
-    size_t oldlenp=BUFSIZ;
     int len,mib[CTL_MAXNAME];
     u_int kind;
     snprintf(buf1, BUFSIZ, "%s", "hw.acpi.battery.units");
@@ -367,9 +365,7 @@ read_acad_state(void)
 #ifdef HAVE_SYSCTL
     static char buf1[BUFSIZ];
     char fmt[BUFSIZ];
-    void *oldp=(void *)buf1;
     char *bufp=buf1;
-    size_t oldlenp=BUFSIZ;
     int len,mib[CTL_MAXNAME];
     u_int kind;
     int retval;
@@ -595,8 +591,6 @@ read_acpi_state(int battery)
     static char buf1[BUFSIZ];
     char fmt[BUFSIZ];
     char *bufp=buf1;
-    void *oldp=(void *)buf1;
-    size_t oldlenp=BUFSIZ;
     int len,mib[CTL_MAXNAME];
     int retval;
     u_int kind;
@@ -719,8 +713,6 @@ get_temperature(void)
     static char buf1[BUFSIZ];
     char fmt[BUFSIZ];
     char *bufp=buf1;
-    void *oldp=(void *)buf1;
-    size_t oldlenp=BUFSIZ;
     int len,mib[CTL_MAXNAME];
     int retval;
     u_int kind;

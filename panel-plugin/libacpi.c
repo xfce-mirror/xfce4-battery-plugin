@@ -86,7 +86,7 @@ name2oid(char *name, int *oidp)
     return (j);
 }
 
-static int
+static void
 oidfmt(int *oid, int len, char *fmt, u_int *kind)
 {
     int qoid[CTL_MAXNAME+2];
@@ -108,8 +108,6 @@ oidfmt(int *oid, int len, char *fmt, u_int *kind)
 
     if (fmt)
         g_strlcpy(fmt, (char *)(buf1 + sizeof(u_int)), sizeof(fmt));
-
-    return 0;
 }
 
 static int
@@ -284,7 +282,7 @@ check_acpi(void)
     snprintf(buf1, BUFSIZ, "%s", "hw.acpi.battery.units");
     len = name2oid(bufp, mib);
     if (len <=0) return 1;
-    if (oidfmt(mib, len, fmt, &kind)) return 1;
+    oidfmt(mib, len, fmt, &kind);
     if ((kind & CTLTYPE) == CTLTYPE_NODE) return 1;
     batt_count=get_var(mib, len);
 
@@ -378,9 +376,7 @@ read_acad_state(void)
     snprintf(buf1, BUFSIZ, "%s", "hw.acpi.acline");
     len = name2oid(bufp, mib);
     if (len <= 0) return(-1);
-    if (oidfmt(mib, len, fmt, &kind))
-        err(1, "couldn't find format of oid '%s'", bufp);
-    if (len < 0) errx(1, "unknown oid '%s'", bufp);
+    oidfmt(mib, len, fmt, &kind);
     if ((kind & CTLTYPE) == CTLTYPE_NODE) {
         DBG("oh-oh...");
     } else {
@@ -483,9 +479,7 @@ read_acpi_info(int battery)
     snprintf(buf1, BUFSIZ, "%s", "hw.acpi.battery.units");
     len = name2oid(bufp, mib);
     if (len <= 0) return(-1);
-    if (oidfmt(mib, len, fmt, &kind))
-        err(1, "couldn't find format of oid '%s'", bufp);
-    if (len < 0) errx(1, "unknown oid '%s'", bufp);
+    oidfmt(mib, len, fmt, &kind);
     if ((kind & CTLTYPE) == CTLTYPE_NODE) {
         DBG("oh-oh...");
     } else {
@@ -619,9 +613,7 @@ read_acpi_state(int battery)
     snprintf(buf1, BUFSIZ, "%s", "hw.acpi.battery.time");
     len = name2oid(bufp, mib);
     if (len <= 0) return(-1);
-    if (oidfmt(mib, len, fmt, &kind))
-        err(1, "couldn't find format of oid '%s'", bufp);
-    if (len < 0) errx(1, "unknown oid '%s'", bufp);
+    oidfmt(mib, len, fmt, &kind);
     if ((kind & CTLTYPE) == CTLTYPE_NODE) {
         DBG("oh-oh...");
     } else {
@@ -633,9 +625,7 @@ read_acpi_state(int battery)
     snprintf(buf1, BUFSIZ, "%s", "hw.acpi.battery.life");
     len = name2oid(bufp, mib);
     if (len <= 0) return(-1);
-    if (oidfmt(mib, len, fmt, &kind))
-        err(1, "couldn't find format of oid '%s'", bufp);
-    if (len < 0) errx(1, "unknown oid '%s'", bufp);
+    oidfmt(mib, len, fmt, &kind);
     if ((kind & CTLTYPE) == CTLTYPE_NODE) {
         DBG("oh-oh...");
     } else {
@@ -716,12 +706,10 @@ get_temperature(void)
         fgets(line,255,fp);
         fclose(fp);
         p = line;
-        if (p != NULL) {
-            if ((p2 = strchr(p,'\n')) != NULL) *p2 = 0;
-            if (strlen(p) <= 3) return NULL;
-            p2 = p + strlen(p) - 3;
-            g_strlcpy(p2, " C", sizeof(p2));
-        }
+        if ((p2 = strchr(p,'\n')) != NULL) *p2 = 0;
+        if (strlen(p) <= 3) return NULL;
+        p2 = p + strlen(p) - 3;
+        g_strlcpy(p2, " C", sizeof(p2));
         return (const char *)p;
     }
 
@@ -739,9 +727,7 @@ get_temperature(void)
     snprintf(buf1, BUFSIZ, "%s", "hw.acpi.thermal.tz0.temperature");
     len = name2oid(bufp, mib);
     if (len <= 0) return(NULL);
-    if (oidfmt(mib, len, fmt, &kind))
-        err(1, "couldn't find format of oid '%s'", bufp);
-    if (len < 0) errx(1, "unknown oid '%s'", bufp);
+    oidfmt(mib, len, fmt, &kind);
     if ((kind & CTLTYPE) == CTLTYPE_NODE) {
         DBG("oh-oh...");
     } else {

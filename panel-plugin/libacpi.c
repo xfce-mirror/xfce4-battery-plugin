@@ -295,7 +295,7 @@ static int
 read_sysfs_int(char* filename)
 {
     FILE* f;
-    int out;
+    int out = 0;
 
     f = fopen(filename,"r");
     if (!f)

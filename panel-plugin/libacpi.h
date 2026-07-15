@@ -18,6 +18,7 @@
  */
 
 #define MAXBATT 8
+#define ACPI_BUFSIZE 512
 
 typedef enum
 {
@@ -77,8 +78,8 @@ ACADstate *acadstate=NULL;
 /* batteries detected */
 int batt_count;
 /* temp buffer */
-char buf[512];
-char buf2[512];
+char buf[ACPI_BUFSIZE];
+char buf2[ACPI_BUFSIZE];
 int acpi_sysfs;
 #else
 extern int batt_count;

@@ -316,15 +316,22 @@ read_sysfs_int(char* filename)
 static char*
 read_sysfs_string(char* filename)
 {
-    FILE* f;
-    f = fopen(filename,"r");
-    if (!f)
+    GError *error = NULL;
+    gchar *contents;
+    gsize length;
+    if (!g_file_get_contents(filename, &contents, &length, &error))
     {
-        DBG("Could not open %s", filename);
+        g_warning("Failed to read from file %s: %s", filename, error->message);
+        g_error_free(error);
         return NULL;
     }
-    fscanf(f,"%s",buf2);
-    fclose(f);
+
+    if (g_strlcpy (buf2, contents, ACPI_BUFSIZE) >= ACPI_BUFSIZE)
+    {
+        g_warning("Contents read from file %s truncated: it exceeds max buffer size %d", filename, ACPI_BUFSIZE);
+    }
+
+    g_free(contents);
     return buf2;
 }
 

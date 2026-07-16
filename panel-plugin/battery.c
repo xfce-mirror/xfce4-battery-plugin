@@ -858,18 +858,9 @@ battmon_set_mode (XfcePanelPlugin *plugin, XfcePanelPluginMode mode,
 static t_battmon*
 battmon_create(XfcePanelPlugin *plugin)
 {
-    t_battmon *battmon;
-
-    battmon = g_new(t_battmon, 1);
+    t_battmon *battmon = g_new0(t_battmon, 1);
     init_options(&(battmon->options));
-
     battmon->plugin = plugin;
-
-    battmon->low = FALSE;
-    battmon->critical = FALSE;
-
-    battmon->timeoutid = 0;
-
     return battmon;
 }
 

@@ -139,7 +139,6 @@ int get_fan_status(void) {
     return 0;
 
   key = makeUInt32Key("FNum", 4, 16);
-  result = smc_read(key, &fan_num);
   /* No hardware fan support, or permission deined */
   if (smc_read(key, &fan_num) != kIOReturnSuccess)
     return 0;

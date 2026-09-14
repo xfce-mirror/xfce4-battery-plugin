@@ -103,7 +103,7 @@ msgstr "Veliko energije:"
 
 #: ../panel-plugin/battery.c:1171
 msgid "Battery low:"
-msgstr "Malo energije:"
+msgstr "Nizek nivo baterije:"
 
 #: ../panel-plugin/battery.c:1185
 msgid "Battery critical:"
@@ -119,7 +119,7 @@ msgstr "Nizek odstotek:"
 
 #: ../panel-plugin/battery.c:1224
 msgid "Low battery action:"
-msgstr "Akcija ob malo energije:"
+msgstr "Dejanje ob nizkem nivoju baterije:"
 
 #: ../panel-plugin/battery.c:1231 ../panel-plugin/battery.c:1279
 msgid "Do nothing"
@@ -147,7 +147,7 @@ msgstr "Kritičen odstotek:"
 
 #: ../panel-plugin/battery.c:1272
 msgid "Critical battery action:"
-msgstr "Akcija ob kritično prazni bateriji:"
+msgstr "Dejanje ob kritično prazni bateriji:"
 
 #: ../panel-plugin/battery.c:1302
 msgid "Levels and _actions"

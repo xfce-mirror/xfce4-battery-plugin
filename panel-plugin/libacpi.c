@@ -207,7 +207,7 @@ check_acpi_sysfs(void)
     while ((batt = readdir(sysfs)))
     {
         name = batt->d_name;
-        if (!strncmp(".", name, 1))
+        if (strncmp(".", name, 1) == 0)
             continue;
 
         /* check whether /sys/class/power_supply/$name/type exists and
@@ -410,7 +410,7 @@ read_acpi_info_sysfs(int battery)
     while ((propety = readdir(sysfs)))
     {
         name = propety->d_name;
-        if (!strncmp(".", name, 1) || !strncmp("..", name, 2)) continue;
+        if (strncmp(".", name, 1) == 0 || strncmp("..", name, 2) == 0) continue;
         /* at least on my system this is called charge_full */
         if ((strcmp(name,"energy_full") == 0) || (strcmp(name,"charge_full") == 0))
         {
@@ -530,7 +530,7 @@ read_acpi_state_sysfs(int battery)
     while ((propety = readdir(sysfs)))
     {
         name = propety->d_name;
-        if (!strncmp(".", name, 1) || !strncmp("..", name, 2))
+        if (strncmp(".", name, 1) == 0 || strncmp("..", name, 2) == 0)
             continue;
 
         if (strcmp(name,"status") == 0)

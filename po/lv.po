@@ -4,15 +4,16 @@
 # 
 # Translators:
 # Rihards Priedītis <rprieditis@gmail.com>, 2009
+# Rihards Priedītis <rprieditis@gmail.com>, 2007,2009,2026
 # Rihards Prieditis <rprieditis@inbox.lv>, 2007
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-23 12:48+0100\n"
-"PO-Revision-Date: 2021-03-23 11:48+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
-"Language-Team: Latvian (http://www.transifex.com/xfce/xfce-panel-plugins/language/lv/)\n"
+"POT-Creation-Date: 2023-05-30 00:52+0200\n"
+"PO-Revision-Date: 2013-07-03 18:48+0000\n"
+"Last-Translator: Rihards Priedītis <rprieditis@gmail.com>, 2007,2009,2026\n"
+"Language-Team: Latvian (http://app.transifex.com/xfce/xfce-panel-plugins/language/lv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,7 +22,7 @@ msgstr ""
 
 #: ../panel-plugin/battery.c:344
 msgid "(No battery, AC on-line)"
-msgstr ""
+msgstr "(Nav baterijas, pievienots elektrotīklam)"
 
 #: ../panel-plugin/battery.c:346
 msgid "(Charging from AC)"
@@ -29,173 +30,169 @@ msgstr "(Lādējas no elektrotīkla)"
 
 #: ../panel-plugin/battery.c:346
 msgid "(AC on-line)"
-msgstr "(Elektrotīkls pieejams)"
+msgstr "(Pievienots elektrotīklam)"
 
 #: ../panel-plugin/battery.c:356
 #, c-format
 msgid "%d%% (%02d:%02d) remaining"
-msgstr "%d%% (%02d:%02d) atlicis"
+msgstr "%d%% (atlicis %02d:%02d)"
 
 #: ../panel-plugin/battery.c:358
 #, c-format
 msgid "%02d:%02d remaining"
-msgstr "%02d:%02d atlicis"
+msgstr "Atlicis %02d:%02d"
 
 #: ../panel-plugin/battery.c:360
 #, c-format
 msgid "%d%% remaining"
-msgstr "%d%% atlicis"
+msgstr "Atlicis %d%%"
 
 #: ../panel-plugin/battery.c:362
 #, c-format
 msgid "AC off-line"
-msgstr "Elektrotīkls atslēgts"
+msgstr "Nav pievienots elektrotīklam"
 
 #: ../panel-plugin/battery.c:445
 msgid ""
 "WARNING: Your battery has reached critical status. You should plug in or "
 "shutdown your computer now to avoid possible data loss."
-msgstr "UZMANĪBU: Jūsu baterija ir sasniegusi kritisku līmeni. nepieciešams pieslēgties pie elektroenerģijas tīkla, vai izslēgt datoru, lai novērstu iespējamos datu zudumu."
+msgstr "BRĪDINĀJUMS: baterijas uzlādes līmenis ir kritisks. Lai nezaudētu datus, pievienojiet datoru elektrotīklam vai izslēdziet to tūlīt."
 
 #: ../panel-plugin/battery.c:464
 msgid ""
 "WARNING: Your battery is running low. You should consider plugging in or "
 "shutting down your computer soon to avoid possible data loss."
-msgstr "UZMANĪBU: Jūsu baterijai ir zems uzlādēs līmenis. Nepieciešams pieslēgties pie elektroenerģijas tīkla, vai izslēgt datoru, lai novērstu iespējamos datu zudumu."
+msgstr "BRĪDINĀJUMS: baterijas uzlādes līmenis ir zems. Lai nezaudētu datus, drīz pievienojiet datoru elektrotīklam vai izslēdziet to."
 
 #: ../panel-plugin/battery.c:505
 msgid "Battery"
 msgstr "Baterija"
 
-#: ../panel-plugin/battery.c:986
+#: ../panel-plugin/battery.c:988
 msgid "Select file"
-msgstr "Norādiet failu"
+msgstr "Izvēlieties failu"
 
-#: ../panel-plugin/battery.c:1027
+#: ../panel-plugin/battery.c:1029
 msgid "Select command"
-msgstr "Norādīt komandu"
+msgstr "Izvēlieties komandu"
 
-#: ../panel-plugin/battery.c:1080
+#: ../panel-plugin/battery.c:1082
 #, c-format
 msgid "Unable to open the following url: %s"
-msgstr "Neizdevās atvērt sekojošu url: %s"
+msgstr "Neizdevās atvērt šo URL: %s"
 
-#: ../panel-plugin/battery.c:1112 ../panel-plugin/battery.desktop.in.h:1
+#: ../panel-plugin/battery.c:1114 ../panel-plugin/battery.desktop.in.h:1
 msgid "Battery Monitor"
-msgstr "Baterijas novērotājs"
+msgstr "Baterijas pārraugs"
 
-#: ../panel-plugin/battery.c:1115
+#: ../panel-plugin/battery.c:1117
 msgid "_Close"
-msgstr ""
+msgstr "_Aizvērt"
 
-#: ../panel-plugin/battery.c:1116
+#: ../panel-plugin/battery.c:1118
 msgid "_Help"
-msgstr ""
+msgstr "_Palīdzība"
 
-#: ../panel-plugin/battery.c:1141
+#: ../panel-plugin/battery.c:1143
 msgid "On AC:"
-msgstr ""
+msgstr "No elektrotīkla:"
 
-#: ../panel-plugin/battery.c:1155
+#: ../panel-plugin/battery.c:1157
 msgid "Battery high:"
-msgstr ""
+msgstr "Augsts baterijas līmenis:"
 
-#: ../panel-plugin/battery.c:1169
+#: ../panel-plugin/battery.c:1171
 msgid "Battery low:"
-msgstr ""
+msgstr "Zems baterijas līmenis:"
 
-#: ../panel-plugin/battery.c:1183
+#: ../panel-plugin/battery.c:1185
 msgid "Battery critical:"
-msgstr ""
+msgstr "Kritisks baterijas līmenis:"
 
-#: ../panel-plugin/battery.c:1194
+#: ../panel-plugin/battery.c:1196
 msgid "Bar _colors"
-msgstr ""
+msgstr "Joslas _krāsas"
 
-#: ../panel-plugin/battery.c:1208
+#: ../panel-plugin/battery.c:1210
 msgid "Low percentage:"
-msgstr "Zems līmenis:"
+msgstr "Zems līmenis procentos:"
 
-#: ../panel-plugin/battery.c:1222
+#: ../panel-plugin/battery.c:1224
 msgid "Low battery action:"
-msgstr "Zema baterijas līmeņa darbība:"
+msgstr "Darbība pie zema baterijas līmeņa:"
 
-#: ../panel-plugin/battery.c:1229 ../panel-plugin/battery.c:1277
+#: ../panel-plugin/battery.c:1231 ../panel-plugin/battery.c:1279
 msgid "Do nothing"
-msgstr "Nedarīt neko"
+msgstr "Neko nedarīt"
 
-#: ../panel-plugin/battery.c:1230 ../panel-plugin/battery.c:1278
+#: ../panel-plugin/battery.c:1232 ../panel-plugin/battery.c:1280
 msgid "Display a warning message"
 msgstr "Rādīt brīdinājuma paziņojumu"
 
-#: ../panel-plugin/battery.c:1231 ../panel-plugin/battery.c:1279
+#: ../panel-plugin/battery.c:1233 ../panel-plugin/battery.c:1281
 msgid "Run command"
 msgstr "Izpildīt komandu"
 
-#: ../panel-plugin/battery.c:1232 ../panel-plugin/battery.c:1280
+#: ../panel-plugin/battery.c:1234 ../panel-plugin/battery.c:1282
 msgid "Run command in terminal"
 msgstr "Izpildīt komandu terminālī"
 
-#: ../panel-plugin/battery.c:1240 ../panel-plugin/battery.c:1288
+#: ../panel-plugin/battery.c:1242 ../panel-plugin/battery.c:1290
 msgid "Command:"
 msgstr "Komanda:"
 
-#: ../panel-plugin/battery.c:1256
+#: ../panel-plugin/battery.c:1258
 msgid "Critical percentage:"
-msgstr "Kritisks līmenis:"
+msgstr "Kritisks līmenis procentos:"
 
-#: ../panel-plugin/battery.c:1270
+#: ../panel-plugin/battery.c:1272
 msgid "Critical battery action:"
-msgstr "Kritiska baterijas līmeņa darbības:"
+msgstr "Darbība pie kritiska baterijas līmeņa:"
 
-#: ../panel-plugin/battery.c:1300
+#: ../panel-plugin/battery.c:1302
 msgid "Levels and _actions"
-msgstr ""
+msgstr "Līmeņi un _darbības"
 
-#: ../panel-plugin/battery.c:1313
+#: ../panel-plugin/battery.c:1315
 msgid "Display label"
 msgstr "Rādīt etiķeti"
 
-#: ../panel-plugin/battery.c:1316
+#: ../panel-plugin/battery.c:1318
 msgid "Display icon"
 msgstr "Rādīt ikonu"
 
-#: ../panel-plugin/battery.c:1319
+#: ../panel-plugin/battery.c:1321
 msgid "Display bar"
-msgstr ""
+msgstr "Rādīt joslu"
 
-#: ../panel-plugin/battery.c:1322
+#: ../panel-plugin/battery.c:1324
 msgid "Display percentage"
 msgstr "Rādīt procentus"
 
-#: ../panel-plugin/battery.c:1325
+#: ../panel-plugin/battery.c:1327
 msgid "Display time"
 msgstr "Rādīt laiku"
 
-#: ../panel-plugin/battery.c:1328
+#: ../panel-plugin/battery.c:1330
 msgid "Display power"
-msgstr "Rādīt enerģiju"
+msgstr "Rādīt jaudu"
 
-#: ../panel-plugin/battery.c:1331
+#: ../panel-plugin/battery.c:1333
 msgid "Hide time/percentage when full"
-msgstr "Slēpt laiku/procentus, kad pilna"
+msgstr "Paslēpt laiku/procentus, kad uzlādēts pilnībā"
 
-#: ../panel-plugin/battery.c:1334
+#: ../panel-plugin/battery.c:1336
 msgid "Display percentage in tooltip"
 msgstr "Rādīt paskaidrē procentus"
 
-#: ../panel-plugin/battery.c:1337
+#: ../panel-plugin/battery.c:1339
 msgid "Display time remaining in tooltip"
 msgstr "Rādīt paskaidrē atlikušo laiku"
 
-#: ../panel-plugin/battery.c:1340
+#: ../panel-plugin/battery.c:1342
 msgid "_Display"
-msgstr ""
+msgstr "_Attēlojums"
 
-#: ../panel-plugin/battery.c:1390 ../panel-plugin/battery.desktop.in.h:2
+#: ../panel-plugin/battery.c:1389 ../panel-plugin/battery.desktop.in.h:2
 msgid "Show and monitor the battery status"
-msgstr "Rādīt un novērot baterijas stāvokli"
-
-#: ../panel-plugin/battery.c:1392
-msgid "Copyright (c) 2003-2019\n"
-msgstr ""
+msgstr "Rādīt un uzraudzīt baterijas stāvokli"
